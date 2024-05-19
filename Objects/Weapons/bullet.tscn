@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://cdlimeudjkf06"]
+
+[ext_resource type="Texture2D" uid="uid://0gquy8novl7q" path="res://Art/weapons/bullet.png" id="1_wsxn7"]
+[ext_resource type="Script" path="res://Objects/Weapons/bullet.gd" id="1_ylq1d"]
+[ext_resource type="Script" path="res://Objects/Weapons/bullet_hurtbox.gd" id="3_gvjj3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j5js6"]
+radius = 7.5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cv5c1"]
+size = Vector2(4, 13)
+
+[node name="Bullet" type="CharacterBody2D" node_paths=PackedStringArray("hurtbox")]
+collision_layer = 2
+collision_mask = 36
+script = ExtResource("1_ylq1d")
+hurtbox = NodePath("Hurtbox")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("1_wsxn7")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 36
+script = ExtResource("3_gvjj3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0.5, 0)
+shape = SubResource("CircleShape2D_j5js6")
+
+[node name="Floor Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -2.98023e-08)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_cv5c1")
