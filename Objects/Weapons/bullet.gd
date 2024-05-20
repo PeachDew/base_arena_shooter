@@ -3,7 +3,7 @@ class_name Bullet
 
 @export var speed := 300.0
 @export var damage := 5.0
-@export var max_pierce := 1
+@export var max_pierce := 0
 
 var curr_pierce := 0
 
@@ -11,7 +11,7 @@ var curr_pierce := 0
 
 func _ready() -> void:
 	if hurtbox:
-		hurtbox.hit_enemy.connect(on_enemy_hit)
+		hurtbox.hit_hitbox.connect(on_hitbox_hit)
 
 func _physics_process(delta: float) -> void:
 	
@@ -19,11 +19,10 @@ func _physics_process(delta: float) -> void:
 	velocity = direction*speed
 	
 	var collision := move_and_collide(velocity*delta)
-
 	if collision:
 		queue_free()
 		
-func on_enemy_hit():
+func on_hitbox_hit():
 	curr_pierce += 1
 	
 	if curr_pierce > max_pierce:

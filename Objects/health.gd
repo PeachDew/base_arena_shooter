@@ -2,7 +2,7 @@ extends Node
 class_name Health
 
 @export var hitbox : Hitbox
-@export var max_health := 10
+@export var max_health := 20
 @onready var health := max_health
 
 func _ready() -> void:

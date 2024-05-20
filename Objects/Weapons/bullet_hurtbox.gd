@@ -1,7 +1,7 @@
 extends Area2D
 class_name HurtBox
 
-signal hit_enemy
+signal hit_hitbox
 @onready var bullet : Bullet = get_owner()
 
 func _ready() -> void:
@@ -9,9 +9,11 @@ func _ready() -> void:
 	
 func on_area_entered(area: Area2D):
 	if area is Hitbox:
-		var attack := Attack.new()
 		
+		# create new attack object, set attack value
+		var attack := Attack.new()
 		attack.damage = bullet.damage
+		# get hitbox to emit "damaged" signal
 		area.damage(attack)
 		
-		hit_enemy.emit()
+		hit_hitbox.emit()
