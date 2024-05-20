@@ -1,11 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://h10owepq4qt2"]
+[gd_scene load_steps=18 format=3 uid="uid://h10owepq4qt2"]
 
 [ext_resource type="Texture2D" uid="uid://d3jesry654ryr" path="res://Art/dino/DinoSprites - vita.png" id="1_6p4aw"]
 [ext_resource type="Script" path="res://Objects/Enemy_1/enemy_1_hitbox.gd" id="2_oeg23"]
 [ext_resource type="Script" path="res://Objects/health.gd" id="3_6x7xv"]
 [ext_resource type="Script" path="res://Objects/health_bar.gd" id="4_omui4"]
-[ext_resource type="Texture2D" uid="uid://dioi1q8e5un3a" path="res://Art/ui/Over_hp.png" id="4_rhk6q"]
-[ext_resource type="Texture2D" uid="uid://cucqo7hsarkgk" path="res://Art/ui/progress.png" id="5_yjjra"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xqpvs"]
 
@@ -124,11 +122,9 @@ script = ExtResource("3_6x7xv")
 hitbox = NodePath("../Hitbox")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="." node_paths=PackedStringArray("health_node")]
-offset_left = -9.0
-offset_top = -16.0
-offset_right = 23.0
-scale = Vector2(0.57, 0.57)
-texture_over = ExtResource("4_rhk6q")
-texture_progress = ExtResource("5_yjjra")
+offset_left = 55.0
+offset_top = 14.0
+offset_right = 95.0
+offset_bottom = 54.0
 script = ExtResource("4_omui4")
 health_node = NodePath("../Health")
