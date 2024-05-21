@@ -121,7 +121,7 @@ script = ExtResource("2_oeg23")
 scale = Vector2(1.215, 1.215)
 shape = SubResource("CircleShape2D_ofk5m")
 
-[node name="EnemyStats" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+[node name="Enemy_Stats" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
 script = ExtResource("4_mv6dd")
 hitbox = NodePath("../Hitbox")
 

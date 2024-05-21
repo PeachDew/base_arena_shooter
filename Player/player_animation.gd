@@ -2,13 +2,14 @@ extends Node
 
 @export var animated_sprite : AnimatedSprite2D
 @onready var player = get_owner()
+@onready var center = $"../PlayerCenter"
 
 func _physics_process(delta):
-	if player.velocity:
+	if player.velocity and center:
 		if player.velocity.x < 0:
-			animated_sprite.flip_h = true
+			center.scale.x = -1
 		else:
-			animated_sprite.flip_h = false
+			center.scale.x = 1
 		animated_sprite.play("move")
 	else:
 		animated_sprite.play("idle")

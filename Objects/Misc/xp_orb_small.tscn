@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxu432d25y2pp"]
+
+[ext_resource type="Script" path="res://Objects/Misc/xp_orb_small.gd" id="1_nslxp"]
+[ext_resource type="Texture2D" uid="uid://b2a30bi2ge2n1" path="res://Art/misc/xp_orb.png" id="1_perjr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fbwqd"]
+radius = 6.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yne1y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_perjr")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="XpOrbSmall" type="Area2D"]
+scale = Vector2(0.895, 0.895)
+script = ExtResource("1_nslxp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_fbwqd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_yne1y")

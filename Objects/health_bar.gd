@@ -1,9 +1,10 @@
 class_name hp_bar
 extends TextureProgressBar
 
-@export var health_node : Health
+var health_node : EnemyStats
 
 func _ready() -> void:
+	health_node = get_owner().get_node("EnemyStats")
 	min_value = 0
 	max_value = 100
 	value = 100

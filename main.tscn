@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://c230d3kp4fgk6"]
+[gd_scene load_steps=8 format=3 uid="uid://c230d3kp4fgk6"]
 
 [ext_resource type="PackedScene" uid="uid://hoc8wacnty4h" path="res://Player/player.tscn" id="1_1c26b"]
+[ext_resource type="Script" path="res://admin_commands.gd" id="1_4jdlq"]
 [ext_resource type="Texture2D" uid="uid://b7kt5rqscnj5u" path="res://Art/Free CC0 Top Down Tileset Pixel Art/Tilesets/tileset_gray.png" id="2_0soaj"]
 [ext_resource type="Script" path="res://Player/player_camera.gd" id="3_6tn4k"]
-[ext_resource type="PackedScene" uid="uid://h10owepq4qt2" path="res://Objects/Enemy_1/enemy_1.tscn" id="4_s3p5d"]
+[ext_resource type="Script" path="res://drop_manager.gd" id="5_p4by0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_03rxl"]
 texture = ExtResource("2_0soaj")
@@ -389,6 +390,7 @@ sources/0 = SubResource("TileSetAtlasSource_03rxl")
 
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_4jdlq")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -408,10 +410,5 @@ target = NodePath("../Player")
 y_sort_enabled = true
 position = Vector2(-256, -147)
 
-[node name="Enemy" parent="." instance=ExtResource("4_s3p5d")]
-y_sort_enabled = true
-position = Vector2(-287, -105)
-
-[node name="Enemy2" parent="." instance=ExtResource("4_s3p5d")]
-y_sort_enabled = true
-position = Vector2(-181, -84)
+[node name="EnemyManager" type="Node" parent="."]
+script = ExtResource("5_p4by0")

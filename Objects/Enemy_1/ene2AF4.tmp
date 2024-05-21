@@ -121,11 +121,11 @@ script = ExtResource("2_oeg23")
 scale = Vector2(1.215, 1.215)
 shape = SubResource("CircleShape2D_ofk5m")
 
-[node name="EnemyStats" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+[node name="Enemy_Stats" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
 script = ExtResource("4_mv6dd")
 hitbox = NodePath("../Hitbox")
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." node_paths=PackedStringArray("health_node")]
 offset_left = -13.0
 offset_top = -19.0
 offset_right = 19.0
@@ -134,3 +134,4 @@ scale = Vector2(0.81, 0.81)
 texture_over = ExtResource("4_rhk6q")
 texture_progress = ExtResource("5_yjjra")
 script = ExtResource("4_omui4")
+health_node = NodePath("../Enemy_Stats")

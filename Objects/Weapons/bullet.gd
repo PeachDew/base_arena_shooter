@@ -3,7 +3,7 @@ class_name Bullet
 
 @export var speed := 300.0
 @export var damage := 5.0
-@export var max_pierce := 0
+@export var max_pierce := 2
 
 var curr_pierce := 0
 
