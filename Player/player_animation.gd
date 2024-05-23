@@ -4,7 +4,7 @@ extends Node
 @onready var player = get_owner()
 @onready var center = $"../PlayerCenter"
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if player.velocity and center:
 		if player.velocity.x < 0:
 			center.scale.x = -1

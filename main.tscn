@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://admin_commands.gd" id="1_4jdlq"]
 [ext_resource type="Texture2D" uid="uid://b7kt5rqscnj5u" path="res://Art/Free CC0 Top Down Tileset Pixel Art/Tilesets/tileset_gray.png" id="2_0soaj"]
 [ext_resource type="Script" path="res://Player/player_camera.gd" id="3_6tn4k"]
-[ext_resource type="Script" path="res://drop_manager.gd" id="5_p4by0"]
+[ext_resource type="Script" path="res://enemy_manager.gd" id="5_p4by0"]
 [ext_resource type="PackedScene" uid="uid://blt677eo2k0jl" path="res://Objects/Misc/xp_bar.tscn" id="6_5vyas"]
 [ext_resource type="Script" path="res://ui_manager.gd" id="6_oyqrp"]
 

@@ -1,6 +1,5 @@
-[gd_scene load_steps=5 format=3 uid="uid://blt677eo2k0jl"]
+[gd_scene load_steps=4 format=3 uid="uid://blt677eo2k0jl"]
 
-[ext_resource type="Texture2D" uid="uid://docm14yotuftf" path="res://Art/ui/under_xp.png" id="1_ahua8"]
 [ext_resource type="Texture2D" uid="uid://b4h0ls2cjqt2n" path="res://Art/ui/over_xp.png" id="1_ok76o"]
 [ext_resource type="Script" path="res://Objects/Misc/xpbar.gd" id="1_y8dpl"]
 [ext_resource type="Texture2D" uid="uid://pdxydw6lllym" path="res://Art/ui/progress_xp.png" id="2_t0fpn"]
@@ -11,7 +10,34 @@ offset_top = -157.0
 offset_right = -391.0
 offset_bottom = -112.0
 scale = Vector2(6.935, 6.935)
-texture_under = ExtResource("1_ahua8")
 texture_over = ExtResource("1_ok76o")
 texture_progress = ExtResource("2_t0fpn")
 script = ExtResource("1_y8dpl")
+
+[node name="LevelText" type="RichTextLabel" parent="."]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 13.0
+offset_top = 20.0
+offset_right = 75.0
+offset_bottom = 45.0
+scale = Vector2(0.22, 0.22)
+text = "LEVEL "
+
+[node name="LevelNumber" type="RichTextLabel" parent="."]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.496
+anchor_top = 0.5
+anchor_right = 0.496
+anchor_bottom = 0.5
+offset_left = -4.23383
+offset_top = -2.45674
+offset_right = 35.7662
+offset_bottom = 20.5433
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.22, 0.22)
+bbcode_enabled = true
+text = "1"

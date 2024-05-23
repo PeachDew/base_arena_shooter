@@ -70,6 +70,11 @@ spawn_enemy1={
 2d_physics/layer_4="Enemy Projectile"
 2d_physics/layer_5="Object"
 2d_physics/layer_6="Walls"
+2d_physics/layer_7="Pickups"
+
+[physics]
+
+2d/default_gravity=0.0
 
 [rendering]
 

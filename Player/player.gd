@@ -9,8 +9,12 @@ extends CharacterBody2D
 @export var switch_direction_bonus_mult := 0.01
 
 # XP Stats
+@export var player_level := 1
 @export var xp := 0.0
-@export var max_xp := 5.0
+@export var max_xp := 83.0
+
+# Nodes
+@onready var playerstats := $PlayerStats
 
 
 

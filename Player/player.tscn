@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://hoc8wacnty4h"]
+[gd_scene load_steps=23 format=3 uid="uid://hoc8wacnty4h"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_rtain"]
 [ext_resource type="Texture2D" uid="uid://dl7lclc7wwoa6" path="res://Art/swim_art/1 Woodcutter/Idle.png" id="2_ms10f"]
@@ -9,8 +9,8 @@
 [ext_resource type="Script" path="res://Player/player_stats.gd" id="7_7e1x2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wte35"]
-radius = 5.65106
-height = 18.0
+radius = 12.0128
+height = 24.0255
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r25rq"]
 atlas = ExtResource("2_ms10f")
@@ -109,13 +109,16 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_t7fct"]
+radius = 66.3702
+
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(7.96, -6.475)
 collision_mask = 40
 script = ExtResource("1_rtain")
 
 [node name="FloorCollision" type="CollisionShape2D" parent="."]
-position = Vector2(-8.03, 19.36)
+position = Vector2(-8.03, 14.36)
 rotation = 1.5708
 scale = Vector2(1.175, 1.175)
 shape = SubResource("CapsuleShape2D_wte35")
@@ -145,3 +148,14 @@ autoplay = "idle"
 
 [node name="PlayerStats" type="Node" parent="."]
 script = ExtResource("7_7e1x2")
+
+[node name="PickupGravity" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 64
+gravity_space_override = 1
+gravity_point = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupGravity"]
+position = Vector2(-7.96, 6.475)
+shape = SubResource("CircleShape2D_t7fct")
+debug_color = Color(0.982741, 0.0516402, 0.30941, 0.42)

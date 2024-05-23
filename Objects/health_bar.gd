@@ -11,16 +11,14 @@ func _ready() -> void:
 	if health_node:
 		max_value = health_node.max_hp
 		value = health_node.curr_hp
-		health_node.hp_change.connect(on_hp_change)
+		health_node.enemy_hp_change.connect(on_enemy_hp_change)
 	if value < max_value:
 		visible = true
 	else:
 		visible = false
 
-func on_hp_change() -> void:
+func on_enemy_hp_change() -> void:
 	value = health_node.curr_hp
-	print("HEALTH BAR SIGNAL:")
-	print(value)
 	
 	if value < max_value:
 		visible = true

@@ -4,7 +4,8 @@ extends Node2D
 var bullet_scene : PackedScene = preload("res://Objects/Weapons/bullet.tscn")
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
+	
 	if Input.is_action_just_pressed("primary_fire"):
 		
 		var spawned_bullet := bullet_scene.instantiate()
