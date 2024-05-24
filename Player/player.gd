@@ -15,6 +15,8 @@ extends CharacterBody2D
 
 # Nodes
 @onready var playerstats := $PlayerStats
+@onready var playerweapon := $PlayerWeapon
+
 
 
 

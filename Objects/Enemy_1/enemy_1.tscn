@@ -1,9 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://h10owepq4qt2"]
+[gd_scene load_steps=20 format=3 uid="uid://h10owepq4qt2"]
 
 [ext_resource type="Texture2D" uid="uid://d3jesry654ryr" path="res://Art/dino/DinoSprites - vita.png" id="1_6p4aw"]
 [ext_resource type="Script" path="res://Objects/Enemy_1/enemy.gd" id="1_esnu8"]
 [ext_resource type="Script" path="res://Objects/Enemy_1/enemy_1_hitbox.gd" id="2_oeg23"]
-[ext_resource type="Script" path="res://Objects/enemy_stats.gd" id="4_mv6dd"]
 [ext_resource type="Script" path="res://Objects/health_bar.gd" id="4_omui4"]
 [ext_resource type="Texture2D" uid="uid://dioi1q8e5un3a" path="res://Art/ui/Over_hp.png" id="4_rhk6q"]
 [ext_resource type="Texture2D" uid="uid://cucqo7hsarkgk" path="res://Art/ui/progress.png" id="5_yjjra"]
@@ -113,20 +112,16 @@ animation = &"idle"
 autoplay = "idle"
 speed_scale = 1.36
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="EnemyHitbox" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("2_oeg23")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitbox"]
 scale = Vector2(1.215, 1.215)
 shape = SubResource("CircleShape2D_ofk5m")
 
-[node name="EnemyStats" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
-script = ExtResource("4_mv6dd")
-hitbox = NodePath("../Hitbox")
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+[node name="EnemyHpBar" type="TextureProgressBar" parent="."]
 offset_left = -13.0
 offset_top = -19.0
 offset_right = 19.0

@@ -15,5 +15,4 @@ func on_area_entered(area: Area2D):
 		attack.damage = bullet.damage
 		# get hitbox to emit "damaged" signal
 		area.damage(attack)
-		
 		hit_hitbox.emit()

@@ -11,6 +11,7 @@ radius = 7.5
 size = Vector2(4, 13)
 
 [node name="Bullet" type="CharacterBody2D" node_paths=PackedStringArray("hurtbox")]
+scale = Vector2(2.08, 2.08)
 collision_layer = 2
 collision_mask = 36
 script = ExtResource("1_ylq1d")

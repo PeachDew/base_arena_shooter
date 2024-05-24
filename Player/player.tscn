@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://Player/player_stats.gd" id="7_7e1x2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wte35"]
-radius = 12.0128
+radius = 12.0127
 height = 24.0255
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r25rq"]
@@ -126,12 +126,13 @@ shape = SubResource("CapsuleShape2D_wte35")
 [node name="PlayerMovement" type="Node" parent="."]
 script = ExtResource("3_hf5p4")
 
-[node name="PlayerWeapon" type="Node2D" parent="." node_paths=PackedStringArray("firing_position")]
+[node name="PlayerWeapon" type="Node2D" parent="."]
 script = ExtResource("4_0v3h3")
-firing_position = NodePath("../BulletSpawn")
 
-[node name="BulletSpawn" type="Marker2D" parent="."]
+[node name="BulletSpawn" type="Marker2D" parent="PlayerWeapon"]
 position = Vector2(-1.64, -0.4)
+
+[node name="CooldownTimer" type="Timer" parent="PlayerWeapon"]
 
 [node name="PlayerAnimation" type="Node" parent="." node_paths=PackedStringArray("animated_sprite")]
 script = ExtResource("5_pmraa")
