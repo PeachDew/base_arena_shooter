@@ -98,7 +98,7 @@ animations = [{
 scale = Vector2(1.77, 1.77)
 script = ExtResource("1_kr3f8")
 max_hp = 50.0
-xp_drop = 500000.0
+xp_drop = 100.0
 
 [node name="FloorCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5.94)
