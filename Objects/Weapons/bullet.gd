@@ -4,9 +4,6 @@ class_name Bullet
 @export var speed := 300.0
 @export var damage := 5.0
 @export var max_pierce := 0
-@export var cooldown := 0.5
-
-@onready var cooldown_timer := $CooldownTimer
 
 var curr_pierce := 0
 
@@ -30,3 +27,6 @@ func on_hitbox_hit():
 	
 	if curr_pierce > max_pierce:
 		queue_free()
+
+
+	

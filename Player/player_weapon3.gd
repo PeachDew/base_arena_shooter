@@ -1,6 +1,8 @@
 extends Weapon
 
-@export var cooldown := 0.1
+@export var cooldown := 0.2
+@export var angle_mod := -30.0
+
 @export var set_weapon_modifiers := {
 	"pierce": 1
 }
@@ -53,11 +55,11 @@ func _fire_bullet(bullet_angle):
 	# if str: "mouse" takes angle from mouse to origin
 	if typeof(bullet_angle) == TYPE_STRING and bullet_angle == "mouse":
 		bullet_angle = (get_global_mouse_position() - global_position).angle()
-	
+
 	var loaded_bullet : PackedScene = load(projectile_scene_file_path)
 	var spawned_bullet = loaded_bullet.instantiate()
 	spawned_bullet.global_position = firing_position.global_position
-	spawned_bullet.rotation = bullet_angle
+	spawned_bullet.rotation = bullet_angle + (angle_mod*PI/180)
 	
 	# find way to prevent using get_tree().root
 	get_tree().root.add_child(spawned_bullet)
