@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c7yt3ac02pmem"]
+
+[ext_resource type="Script" path="res://Objects/Weapons/WeaponResources/WeaponResourceScripts/weapon_1.gd" id="1_skefv"]
+
+[resource]
+script = ExtResource("1_skefv")
+cooldown = 0.2
+projectile_scene_file_path = "res://Objects/Weapons/bullet.tscn"
+shooting_angle_modifier = 0
+speed = 300.0
+damage = 5.0
+max_pierce = 0

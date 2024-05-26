@@ -1,15 +1,21 @@
 extends CharacterBody2D
 class_name Bullet
 
-@export var speed := 300.0
-@export var damage := 5.0
-@export var max_pierce := 0
+var weapon_stats : Resource
+var speed : float
+var damage : float
+var max_pierce : int
 
 var curr_pierce := 0
 
 @export var hurtbox : HurtBox
 
 func _ready() -> void:
+	if weapon_stats:
+		speed = weapon_stats.speed
+		damage = weapon_stats.damage
+		max_pierce = weapon_stats.max_pierce
+		
 	if hurtbox:
 		hurtbox.hit_hitbox.connect(on_hitbox_hit)
 

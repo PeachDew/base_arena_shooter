@@ -1,21 +1,21 @@
-extends Weapon
-
-@export var cooldown := 0.1
-@export var set_weapon_modifiers := {
-	"pierce": 1
-}
-@export var projectile_scene_file_path := "res://Objects/Weapons/bullet_slanted.tscn"
+extends Node2D
 
 # Bullet origin: firing_position.global_position
 @onready var firing_position := $BulletSpawn
 @onready var weapon_timer := $Timer
 
+@export var weapon_stats : Resource
+
+var shooting_angle_modifier : float
 
 var auto_firing := false
 
 func _ready() -> void:	
-	weapon_timer.wait_time = cooldown
-	weapon_timer.timeout.connect(on_projectile_cooldown)
+	
+	if weapon_stats:
+		weapon_timer.wait_time = weapon_stats.cooldown
+		weapon_timer.timeout.connect(on_projectile_cooldown)
+		shooting_angle_modifier = weapon_stats.shooting_angle_modifier * PI / 180
 
 # Todo modifiers		
 #func apply_modifiers() -> void:
@@ -54,10 +54,11 @@ func _fire_bullet(bullet_angle):
 	if typeof(bullet_angle) == TYPE_STRING and bullet_angle == "mouse":
 		bullet_angle = (get_global_mouse_position() - global_position).angle()
 	
-	var loaded_bullet : PackedScene = load(projectile_scene_file_path)
+	var loaded_bullet : PackedScene = load(weapon_stats.projectile_scene_file_path)
 	var spawned_bullet = loaded_bullet.instantiate()
+	spawned_bullet.weapon_stats = weapon_stats
 	spawned_bullet.global_position = firing_position.global_position
-	spawned_bullet.rotation = bullet_angle
+	spawned_bullet.rotation = bullet_angle + shooting_angle_modifier
 	
 	# find way to prevent using get_tree().root
 	get_tree().root.add_child(spawned_bullet)
