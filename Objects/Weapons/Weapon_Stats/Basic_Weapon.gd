@@ -1,7 +1,18 @@
-extends Node2D
-class_name Weapon
+extends Weapon
 
-@export var cooldown := 0.2
-@export var bullet_scene : PackedScene = preload("res://Objects/Weapons/bullet.tscn")
-@export var pierce_modifier := 0
+@export var set_weapon_modifiers := {
+	"pierce": 1
+}
+
+@onready var weapon_projectiles := get_children()
+
+func _ready() -> void: 
+	weapon_modifiers.pierce = set_weapon_modifiers.pierce
+	apply_modifiers()
+	
+func apply_modifiers() -> void:
+	pass
+	# iterate through dict
+		# for each attribute, iterate through projectiles
+			# apply modifier to projectiles
 

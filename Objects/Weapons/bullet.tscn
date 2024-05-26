@@ -34,3 +34,5 @@ shape = SubResource("CircleShape2D_j5js6")
 position = Vector2(0.5, -2.98023e-08)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_cv5c1")
+
+[node name="CooldownTimer" type="Timer" parent="."]
