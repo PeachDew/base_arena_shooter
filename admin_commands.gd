@@ -12,6 +12,8 @@ func _ready() -> void:
 	enemymanager.enemy_death.connect(on_enemy_death)
 	
 
+var TEST_SAM := 5.0
+
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("spawn_enemy"):
 		spawned_enemies += 1
@@ -24,6 +26,16 @@ func _physics_process(_delta: float) -> void:
 		spawned_enemy.position = get_local_mouse_position()
 		
 		add_child(spawned_enemy)
+	
+	if Input.is_action_just_pressed("ADMIN_add_weapon"):
+		var weapon_resource_path = "res://Objects/Weapons/WeaponResources/Weapon_2.tres"
+		var weapon_stats = load(weapon_resource_path)
+		var new_player_weapon : PackedScene = load("res://Player/player_weapon.tscn")
+		var new_player_weapon_instance = new_player_weapon.instantiate()
+		new_player_weapon_instance.weapon_stats = weapon_stats
+		$Player.add_child(new_player_weapon_instance)
+		weapon_stats.shooting_angle_modifier += TEST_SAM
+	
 		
 var small_xp : PackedScene = preload("res://Objects/Misc/xp_orb_small.tscn")
 func on_enemy_death(enemy_info : Dictionary) -> void:
@@ -33,5 +45,7 @@ func on_enemy_death(enemy_info : Dictionary) -> void:
 	spawned_small_xp.position.y = enemy_info.y
 	spawned_small_xp.xp_value = enemy_info.xp
 	call_deferred("add_child",spawned_small_xp)
+	
+
 
 

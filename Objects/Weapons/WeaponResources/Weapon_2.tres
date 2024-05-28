@@ -4,9 +4,9 @@
 
 [resource]
 script = ExtResource("1_jk7oc")
-cooldown = 0.4
+cooldown = 0.1
 projectile_scene_file_path = "res://Objects/Weapons/bullet_slanted.tscn"
-shooting_angle_modifier = 20
-speed = 300.0
+shooting_angle_modifier = 5
+speed = 1000.0
 damage = 5.0
-max_pierce = 2
+max_pierce = 3

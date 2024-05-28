@@ -410,7 +410,7 @@ scale = Vector2(1.5, 1.5)
 zoom = Vector2(1.1, 1.1)
 script = ExtResource("3_6tn4k")
 
-[node name="Player" parent="." instance=ExtResource("1_1c26b")]
+[node name="Player" parent="." groups=["PersistObject"] instance=ExtResource("1_1c26b")]
 y_sort_enabled = true
 position = Vector2(0, 0)
 scale = Vector2(1.5, 1.5)
@@ -422,3 +422,4 @@ script = ExtResource("5_p4by0")
 script = ExtResource("6_oyqrp")
 
 [node name="XPBar" parent="UIManager" instance=ExtResource("6_5vyas")]
+metadata/_edit_use_anchors_ = true

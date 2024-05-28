@@ -4,7 +4,7 @@ extends Node2D
 @onready var firing_position := $BulletSpawn
 @onready var weapon_timer := $Timer
 
-@export var weapon_stats : Resource
+var weapon_stats : Resource
 
 var shooting_angle_modifier : float
 
@@ -16,6 +16,10 @@ func _ready() -> void:
 		weapon_timer.wait_time = weapon_stats.cooldown
 		weapon_timer.timeout.connect(on_projectile_cooldown)
 		shooting_angle_modifier = weapon_stats.shooting_angle_modifier * PI / 180
+	
+	else:
+		print("No resource attached to PlayerWeapon, freeing node")
+		queue_free()
 
 # Todo modifiers		
 #func apply_modifiers() -> void:

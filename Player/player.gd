@@ -15,7 +15,17 @@ extends CharacterBody2D
 
 # Nodes
 @onready var playerstats := $PlayerStats
-@onready var playerweapon := $PlayerWeapon
+
+func _ready() -> void:
+	_TEST_add_basic_weapon()
+
+func _TEST_add_basic_weapon() -> void:
+	var weapon_resource_path = "res://Objects/Weapons/WeaponResources/Weapon_1.tres"
+	var weapon_stats = load(weapon_resource_path)
+	var new_player_weapon : PackedScene = load("res://Player/player_weapon.tscn")
+	var new_player_weapon_instance = new_player_weapon.instantiate()
+	new_player_weapon_instance.weapon_stats = weapon_stats
+	add_child(new_player_weapon_instance)
 
 
 
