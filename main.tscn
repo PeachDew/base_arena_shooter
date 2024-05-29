@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c230d3kp4fgk6"]
+[gd_scene load_steps=11 format=3 uid="uid://c230d3kp4fgk6"]
 
 [ext_resource type="PackedScene" uid="uid://hoc8wacnty4h" path="res://Player/player.tscn" id="1_1c26b"]
 [ext_resource type="Script" path="res://admin_commands.gd" id="1_4jdlq"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://enemy_manager.gd" id="5_p4by0"]
 [ext_resource type="PackedScene" uid="uid://blt677eo2k0jl" path="res://Objects/Misc/xp_bar.tscn" id="6_5vyas"]
 [ext_resource type="Script" path="res://ui_manager.gd" id="6_oyqrp"]
+[ext_resource type="PackedScene" uid="uid://dphy3gtxgspow" path="res://UIScenes/pause_scene.tscn" id="8_njjaa"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_03rxl"]
 texture = ExtResource("2_0soaj")
@@ -423,3 +424,9 @@ script = ExtResource("6_oyqrp")
 
 [node name="XPBar" parent="UIManager" instance=ExtResource("6_5vyas")]
 metadata/_edit_use_anchors_ = true
+
+[node name="PauseMenu" parent="UIManager" instance=ExtResource("8_njjaa")]
+offset_left = 6.0
+offset_top = -36.0
+offset_right = 46.0
+offset_bottom = 4.0

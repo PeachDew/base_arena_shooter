@@ -1,0 +1,60 @@
+[gd_scene load_steps=2 format=3 uid="uid://dphy3gtxgspow"]
+
+[ext_resource type="Script" path="res://UIScenes/pause_menu.gd" id="1_u1yor"]
+
+[node name="PauseMenu" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u1yor")
+
+[node name="PauseRectangle" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -7.975
+anchor_top = -4.65
+anchor_right = 9.694
+anchor_bottom = 6.3375
+offset_right = -626.355
+offset_bottom = -389.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(8.79, 8.79)
+color = Color(0, 0, 0, 0.27451)
+metadata/_edit_use_anchors_ = true
+
+[node name="PausedText" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.675
+anchor_top = -3.975
+anchor_right = 2.70287
+anchor_bottom = -2.4245
+offset_right = -74.115
+offset_bottom = -34.02
+scale = Vector2(2.215, 2.215)
+text = "Paused"
+metadata/_edit_use_anchors_ = true
+
+[node name="SaveButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.675
+anchor_top = -0.625
+anchor_right = 3.75625
+anchor_bottom = 2.43625
+offset_right = -162.25
+offset_bottom = -91.45
+scale = Vector2(3.95, 3.95)
+text = "Save"
+metadata/_edit_use_anchors_ = true

@@ -5,7 +5,7 @@ extends CharacterBody2D
 @export var speed := 500.0
 @export var max_speed := 1000.0
 @export var acceleration_time := 0.2
-@export var deceleration_time := 0.1
+@export var deceleration_time := 0.5
 @export var switch_direction_bonus_mult := 0.01
 
 # XP Stats

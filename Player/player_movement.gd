@@ -13,10 +13,17 @@ func _physics_process(delta):
 		"move_left","move_right","move_up","move_down"
 		)
 	
-	velocity = velocity.move_toward(
-		input_direction*player.speed,
-		(1.0/player.acceleration_time) * delta * player.max_speed
-	)
+	if input_direction:
+		velocity = velocity.move_toward(
+			input_direction * player.speed,
+			(1.0 / player.acceleration_time) * delta * player.max_speed
+		)
+	else:
+		var deceleration_direction = Vector2.ZERO
+		velocity = velocity.move_toward(
+			deceleration_direction * player.max_speed,
+			(1.0 / player.deceleration_time) * delta * player.max_speed
+		)
 	
 	if input_direction.y && sign(input_direction.y) != sign(velocity.y):
 		velocity.y *= player.switch_direction_bonus_mult
