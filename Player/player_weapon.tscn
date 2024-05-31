@@ -9,3 +9,6 @@ script = ExtResource("1_fs613")
 position = Vector2(-1.64, -0.4)
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="OSTimer" type="Timer" parent="."]
+one_shot = true

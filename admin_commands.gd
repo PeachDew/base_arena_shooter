@@ -9,8 +9,6 @@ var spawned_enemies := 0
 func _ready() -> void:
 	enemymanager = $EnemyManager
 	child_entered_tree.connect(enemymanager.on_child_entered_tree)
-	enemymanager.enemy_death.connect(on_enemy_death)
-	
 
 var TEST_SAM := 5.0
 

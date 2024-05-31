@@ -94,12 +94,12 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ofk5m"]
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
 scale = Vector2(1.47, 1.47)
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_esnu8")
-xp_drop = 50.0
+xp_drop = 105
 
 [node name="FloorCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5.94)

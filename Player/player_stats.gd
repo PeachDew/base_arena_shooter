@@ -10,12 +10,13 @@ func _ready() -> void:
 
 func add_xp(x: int) -> void:
 	player.xp += x
+	player.cumulative_xp += x
 	xp_change.emit()
 	while player.xp >= player.max_xp:
 		player.xp -= player.max_xp
 		player.max_xp = scale_xp(player.player_level)
 		player.player_level += 1
-		print("Now level "+str(player.player_level), " Current XP: ", str(player.xp))
+		print("Now level "+str(player.player_level), " Current XP: ", str(player.cumulative_xp))
 		level_change.emit()
 
 func scale_xp(curr_lvl: int) -> float: 

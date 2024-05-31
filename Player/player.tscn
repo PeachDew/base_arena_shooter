@@ -138,7 +138,7 @@ sprite_frames = SubResource("SpriteFrames_1g71b")
 animation = &"idle"
 autoplay = "idle"
 
-[node name="PlayerStats" type="Node" parent="."]
+[node name="PlayerStatsManager" type="Node" parent="."]
 script = ExtResource("7_7e1x2")
 
 [node name="PickupGravity" type="Area2D" parent="."]

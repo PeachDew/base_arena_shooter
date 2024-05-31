@@ -1,8 +1,9 @@
 extends CharacterBody2D
 class_name Enemy
 
-@export var max_hp := 20.0
-@export var xp_drop := 10000.0
+@export var max_hp := 10.0
+@export var xp_drop := 0
+
 @onready var curr_hp := max_hp
 @onready var hitbox := $EnemyHitbox
 @onready var enemy_hpbar := $EnemyHpBar
