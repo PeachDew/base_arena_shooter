@@ -6,8 +6,8 @@ extends CanvasLayer
 
 
 func _ready() -> void:
-	player.playerstats.xp_change.connect(on_xp_change)
-	player.playerstats.level_change.connect(on_level_change)
+	player.playerstats_manager.xp_change.connect(on_xp_change)
+	player.playerstats_manager.level_change.connect(on_level_change)
 	
 func _physics_process(delta: float) -> void:
 	

@@ -7,7 +7,7 @@ func _ready() -> void:
 	pickup_area.player_pickup.connect(on_player_pickup)
 	
 func on_player_pickup(body: CharacterBody2D):
-	body.playerstats.add_xp(xp_value)
+	body.playerstats_manager.add_xp(xp_value)
 	queue_free() 
 
 

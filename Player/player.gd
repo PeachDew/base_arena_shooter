@@ -12,10 +12,10 @@ extends CharacterBody2D
 @export var player_level := 1
 @export var xp := 0.0
 @export var max_xp := 83.0
-var cumulative_xp := 0.0
+@export var cumulative_xp := 0.0
 
 # Nodes
-@onready var playerstats := $PlayerStatsManager
+@onready var playerstats_manager := $PlayerStatsManager
 
 func _ready() -> void:
 	_TEST_add_basic_weapon()
