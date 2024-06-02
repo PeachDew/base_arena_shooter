@@ -1,11 +1,13 @@
-[gd_scene load_steps=20 format=3 uid="uid://h10owepq4qt2"]
+[gd_scene load_steps=23 format=3 uid="uid://h10owepq4qt2"]
 
 [ext_resource type="Texture2D" uid="uid://d3jesry654ryr" path="res://Art/dino/DinoSprites - vita.png" id="1_6p4aw"]
 [ext_resource type="Script" path="res://Objects/Enemy_1/enemy.gd" id="1_esnu8"]
 [ext_resource type="Script" path="res://Objects/Enemy_1/enemy_1_hitbox.gd" id="2_oeg23"]
+[ext_resource type="Script" path="res://Objects/Enemy_1/enemy_animation.gd" id="3_edr4y"]
 [ext_resource type="Script" path="res://Objects/health_bar.gd" id="4_omui4"]
 [ext_resource type="Texture2D" uid="uid://dioi1q8e5un3a" path="res://Art/ui/Over_hp.png" id="4_rhk6q"]
 [ext_resource type="Texture2D" uid="uid://cucqo7hsarkgk" path="res://Art/ui/progress.png" id="5_yjjra"]
+[ext_resource type="Script" path="res://Objects/Enemy_1/enemy_movement.gd" id="7_gstmp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xqpvs"]
 
@@ -94,12 +96,13 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ofk5m"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_64qxd"]
+
 [node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
-scale = Vector2(1.47, 1.47)
+scale = Vector2(1.425, 1.425)
 collision_layer = 8
-collision_mask = 0
+collision_mask = 8
 script = ExtResource("1_esnu8")
-xp_drop = 105
 
 [node name="FloorCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5.94)
@@ -112,6 +115,7 @@ sprite_frames = SubResource("SpriteFrames_vrvxy")
 animation = &"idle"
 autoplay = "idle"
 speed_scale = 1.36
+script = ExtResource("3_edr4y")
 
 [node name="EnemyHitbox" type="Area2D" parent="."]
 collision_layer = 4
@@ -131,3 +135,14 @@ scale = Vector2(0.81, 0.81)
 texture_over = ExtResource("4_rhk6q")
 texture_progress = ExtResource("5_yjjra")
 script = ExtResource("4_omui4")
+
+[node name="EnemyMovement" type="Node2D" parent="."]
+script = ExtResource("7_gstmp")
+
+[node name="EnemyChaseRadius" type="Area2D" parent="EnemyMovement"]
+scale = Vector2(1.47, 1.47)
+collision_layer = 0
+
+[node name="EnemyChaseCollision" type="CollisionShape2D" parent="EnemyMovement/EnemyChaseRadius"]
+scale = Vector2(6.73, 6.73)
+shape = SubResource("CircleShape2D_64qxd")

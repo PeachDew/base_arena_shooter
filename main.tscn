@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c230d3kp4fgk6"]
+[gd_scene load_steps=14 format=3 uid="uid://c230d3kp4fgk6"]
 
 [ext_resource type="PackedScene" uid="uid://hoc8wacnty4h" path="res://Player/player.tscn" id="1_1c26b"]
 [ext_resource type="Script" path="res://admin_commands.gd" id="1_4jdlq"]
@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://blt677eo2k0jl" path="res://Objects/Misc/xp_bar.tscn" id="6_5vyas"]
 [ext_resource type="Script" path="res://ui_manager.gd" id="6_oyqrp"]
 [ext_resource type="PackedScene" uid="uid://dphy3gtxgspow" path="res://UIScenes/pause_scene.tscn" id="8_njjaa"]
+[ext_resource type="Texture2D" uid="uid://d3t6a44drsoke" path="res://Art/ui/over_hp_player.png" id="9_1r0fw"]
+[ext_resource type="Script" path="res://Objects/Misc/hpbar.gd" id="9_xapjv"]
+[ext_resource type="Texture2D" uid="uid://dc6nxv30400io" path="res://Art/ui/progress_hp.png" id="10_vv8mx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_03rxl"]
 texture = ExtResource("2_0soaj")
@@ -430,3 +433,33 @@ offset_left = 6.0
 offset_top = -36.0
 offset_right = 46.0
 offset_bottom = 4.0
+
+[node name="HPBar" type="TextureProgressBar" parent="UIManager"]
+offset_left = -396.0
+offset_top = -113.0
+offset_right = -236.0
+offset_bottom = -68.0
+scale = Vector2(5, 5)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_over = ExtResource("9_1r0fw")
+texture_progress = ExtResource("10_vv8mx")
+script = ExtResource("9_xapjv")
+
+[node name="HPNumber" type="RichTextLabel" parent="UIManager/HPBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 31.0
+offset_top = -3.90001
+offset_right = 152.0
+offset_bottom = 20.1
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+bbcode_enabled = true
+text = "100/100
+"

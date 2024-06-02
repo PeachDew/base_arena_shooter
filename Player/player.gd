@@ -14,6 +14,9 @@ extends CharacterBody2D
 @export var max_xp := 83.0
 @export var cumulative_xp := 0.0
 
+@export var hp := 100.0
+@export var max_hp := 100.0
+
 # Nodes
 @onready var playerstats_manager := $PlayerStatsManager
 
