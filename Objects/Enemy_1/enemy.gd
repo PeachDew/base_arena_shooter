@@ -4,6 +4,7 @@ class_name Enemy
 @export var max_hp := 10.0
 @export var xp_drop := 0.0
 @export var speed := 50.0
+@export var contact_damage := 20
 
 @onready var curr_hp := max_hp
 @onready var hitbox := $EnemyHitbox

@@ -9,9 +9,10 @@ signal player_loaded
 
 func _ready() -> void:
 	player = get_owner()
-	print("emitting player loaded")
+	
+	# When player loaded, hp bar receives signal to update hp UI
 	player_loaded.emit()
-
+	
 func add_xp(x: float) -> void:
 	player.xp += x
 	player.cumulative_xp += x
@@ -31,4 +32,5 @@ func change_hp(x: float) -> void:
 func scale_xp(curr_lvl: int) -> float: 
 	var scaled_xp = 0.25* (float(curr_lvl)+ 300.0* (2.0**(float(curr_lvl)/7.0) ) )
 	return scaled_xp
+
 

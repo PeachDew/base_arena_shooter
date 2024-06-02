@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://hoc8wacnty4h"]
+[gd_scene load_steps=23 format=3 uid="uid://hoc8wacnty4h"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_rtain"]
 [ext_resource type="Texture2D" uid="uid://dl7lclc7wwoa6" path="res://Art/swim_art/1 Woodcutter/Idle.png" id="2_ms10f"]
@@ -108,6 +108,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0lgdj"]
+size = Vector2(19, 31)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_t7fct"]
 radius = 66.3702
 
@@ -138,6 +141,13 @@ sprite_frames = SubResource("SpriteFrames_1g71b")
 animation = &"idle"
 autoplay = "idle"
 
+[node name="PlayerHurtbox" type="Area2D" parent="."]
+collision_mask = 12
+
+[node name="PlayerHurtboxCollisionShape" type="CollisionShape2D" parent="PlayerHurtbox"]
+position = Vector2(-7.46, 4.975)
+shape = SubResource("RectangleShape2D_0lgdj")
+
 [node name="PlayerStatsManager" type="Node" parent="."]
 script = ExtResource("7_7e1x2")
 
@@ -151,3 +161,6 @@ gravity_point = true
 position = Vector2(-7.96, 6.475)
 shape = SubResource("CircleShape2D_t7fct")
 debug_color = Color(0.982741, 0.0516402, 0.30941, 0.42)
+
+[node name="IFrames_Timer" type="Timer" parent="."]
+one_shot = true

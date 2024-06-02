@@ -5,6 +5,7 @@ var enemy2_scene : PackedScene = preload("res://Objects/Enemy_2/enemy_2.tscn")
 var enemymanager : EnemyManager
 
 var spawned_enemies := 0
+@onready var player_camera = $PlayerCamera
 
 func _ready() -> void:
 	enemymanager = $EnemyManager
