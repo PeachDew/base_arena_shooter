@@ -100,6 +100,8 @@ animations = [{
 
 [node name="Enemy2" type="CharacterBody2D" groups=["Enemy"]]
 scale = Vector2(2.555, 2.555)
+collision_layer = 8
+collision_mask = 8
 script = ExtResource("1_kr3f8")
 max_hp = 50.0
 speed = 100.0
