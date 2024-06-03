@@ -112,7 +112,7 @@ shape = SubResource("CapsuleShape2D_xqpvs")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_vrvxy")
-animation = &"idle"
+animation = &"walk"
 autoplay = "idle"
 speed_scale = 1.36
 script = ExtResource("3_edr4y")
@@ -144,5 +144,5 @@ scale = Vector2(1.47, 1.47)
 collision_layer = 0
 
 [node name="EnemyChaseCollision" type="CollisionShape2D" parent="EnemyMovement/EnemyChaseRadius"]
-scale = Vector2(6.73, 6.73)
+scale = Vector2(3.695, 3.695)
 shape = SubResource("CircleShape2D_64qxd")

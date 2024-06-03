@@ -148,5 +148,5 @@ scale = Vector2(1.47, 1.47)
 collision_layer = 0
 
 [node name="EnemyChaseCollision" type="CollisionShape2D" parent="EnemyMovement/EnemyChaseRadius"]
-scale = Vector2(6.73, 6.73)
+scale = Vector2(3.535, 3.535)
 shape = SubResource("CircleShape2D_qxpka")

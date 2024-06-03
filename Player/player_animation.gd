@@ -5,7 +5,7 @@ extends Node
 @onready var center = $"../PlayerCenter"
 
 var blink_timer := 0.0
-var blink_interval := 0.125
+var blink_interval := 0.09
 var is_visible := true
 
 func _physics_process(_delta):
@@ -25,8 +25,11 @@ func _process(delta: float) -> void:
 		if blink_timer >= blink_interval:
 			blink_timer = 0.0
 			is_visible = !is_visible
-		animated_sprite.set_visible(is_visible)
+		if !is_visible:
+			animated_sprite.modulate.a = 0.5
+		else:
+			animated_sprite.modulate.a = 1
 	else:
-		animated_sprite.set_visible(true)
+		animated_sprite.modulate.a = 1
 		
 	

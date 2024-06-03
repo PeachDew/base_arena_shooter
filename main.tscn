@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c230d3kp4fgk6"]
+[gd_scene load_steps=15 format=3 uid="uid://c230d3kp4fgk6"]
 
 [ext_resource type="PackedScene" uid="uid://hoc8wacnty4h" path="res://Player/player.tscn" id="1_1c26b"]
 [ext_resource type="Script" path="res://admin_commands.gd" id="1_4jdlq"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://d3t6a44drsoke" path="res://Art/ui/over_hp_player.png" id="9_1r0fw"]
 [ext_resource type="Script" path="res://Objects/Misc/hpbar.gd" id="9_xapjv"]
 [ext_resource type="Texture2D" uid="uid://dc6nxv30400io" path="res://Art/ui/progress_hp.png" id="10_vv8mx"]
+[ext_resource type="Script" path="res://lootbag_ui.gd" id="12_8wquk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_03rxl"]
 texture = ExtResource("2_0soaj")
@@ -462,4 +463,26 @@ grow_vertical = 2
 scale = Vector2(0.3, 0.3)
 bbcode_enabled = true
 text = "100/100
+"
+
+[node name="LootBagUI" type="Control" parent="UIManager"]
+process_mode = 4
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("12_8wquk")
+
+[node name="GridContainer" type="GridContainer" parent="UIManager/LootBagUI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+columns = 3
+
+[node name="TESTTEXT" type="RichTextLabel" parent="UIManager/LootBagUI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+text = "TESTTEXT
 "

@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://ddunfn5o52wsl"]
+
+[ext_resource type="Script" path="res://Objects/Weapons/bullet.gd" id="1_l3gbj"]
+[ext_resource type="Texture2D" uid="uid://b8bujnc1g3hd4" path="res://Art/loot/fire_staff_projectile.png" id="2_v770o"]
+[ext_resource type="Script" path="res://Objects/Weapons/bullet_hurtbox.gd" id="3_txy1s"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j5js6"]
+radius = 7.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oisyt"]
+radius = 7.55
+
+[node name="Bullet" type="CharacterBody2D" node_paths=PackedStringArray("hurtbox")]
+scale = Vector2(2.08, 2.08)
+collision_layer = 2
+collision_mask = 36
+script = ExtResource("1_l3gbj")
+hurtbox = NodePath("Hurtbox")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 4.14865
+scale = Vector2(2.7, 2.7)
+texture = ExtResource("2_v770o")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 36
+script = ExtResource("3_txy1s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0.5, 0)
+shape = SubResource("CircleShape2D_j5js6")
+
+[node name="Floor Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -2.98023e-08)
+rotation = 1.5708
+shape = SubResource("CircleShape2D_oisyt")
+debug_color = Color(0.660804, 0.506947, 0.245037, 0.42)

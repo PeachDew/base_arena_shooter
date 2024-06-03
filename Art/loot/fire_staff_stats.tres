@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://d3fuhxf627vd3"]
+
+[ext_resource type="Script" path="res://Art/loot/fire_staff.gd" id="1_f8qut"]
+
+[resource]
+script = ExtResource("1_f8qut")
+cooldown = 0.1
+projectile_scene_file_path = "res://Art/loot/fire_staff_projectile.tscn"
+shooting_angle_modifier = 10
+speed = 600.0
+damage = 5.0
+max_pierce = 1

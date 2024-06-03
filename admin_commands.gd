@@ -3,13 +3,17 @@ extends Node2D
 var enemy1_scene : PackedScene = preload("res://Objects/Enemy_1/enemy_1.tscn")
 var enemy2_scene : PackedScene = preload("res://Objects/Enemy_2/enemy_2.tscn")
 var enemymanager : EnemyManager
+var ui_manager
 
 var spawned_enemies := 0
 @onready var player_camera = $PlayerCamera
 
 func _ready() -> void:
 	enemymanager = $EnemyManager
+	ui_manager = $UIManager
 	child_entered_tree.connect(enemymanager.on_child_entered_tree)
+	child_entered_tree.connect(ui_manager.on_child_entered_tree)
+	
 
 var TEST_SAM := 5.0
 
@@ -27,9 +31,9 @@ func _physics_process(_delta: float) -> void:
 		add_child(spawned_enemy)
 	
 	if Input.is_action_just_pressed("ADMIN_add_weapon"):
-		var weapon_resource_path = "res://Objects/Weapons/WeaponResources/Weapon_2.tres"
+		var weapon_resource_path = "res://Art/loot/fire_staff_stats.tres"
 		var weapon_stats = load(weapon_resource_path)
-		var new_player_weapon : PackedScene = load("res://Player/player_weapon.tscn")
+		var new_player_weapon : PackedScene = load("res://Art/loot/fire_staff.tscn")
 		var new_player_weapon_instance = new_player_weapon.instantiate()
 		new_player_weapon_instance.weapon_stats = weapon_stats
 		$Player.add_child(new_player_weapon_instance)

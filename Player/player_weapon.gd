@@ -5,7 +5,9 @@ extends Node2D
 @onready var weapon_timer := $Timer
 @onready var oneshot_timer := $OSTimer
 
-var weapon_stats : Resource
+@export var weapon_stats : Resource
+
+# indicates maximum spread
 var shooting_angle_modifier : float
 var auto_firing := false
 
@@ -14,8 +16,6 @@ func _ready() -> void:
 	if weapon_stats:
 		weapon_timer.wait_time = weapon_stats.cooldown
 		oneshot_timer.wait_time = weapon_stats.cooldown
-		print(str(weapon_timer.wait_time))
-		print(str(oneshot_timer.wait_time))
 		weapon_timer.timeout.connect(on_projectile_cooldown)
 		shooting_angle_modifier = weapon_stats.shooting_angle_modifier * PI / 180
 	
@@ -38,8 +38,6 @@ func _physics_process(_delta: float) -> void:
 			on_projectile_cooldown()
 			oneshot_timer.start()
 			
-	
-
 func find_nearest_enemy():
 	var nearest_enemy
 	var player_node : CharacterBody2D = get_parent()
@@ -71,7 +69,7 @@ func _fire_bullet(bullet_angle):
 	var spawned_bullet = loaded_bullet.instantiate()
 	spawned_bullet.weapon_stats = weapon_stats
 	spawned_bullet.global_position = firing_position.global_position
-	spawned_bullet.rotation = bullet_angle + shooting_angle_modifier
+	spawned_bullet.rotation = bullet_angle + randf_range(-1*shooting_angle_modifier, shooting_angle_modifier)
 	
 	# find way to prevent using get_tree().root
 	get_tree().root.add_child(spawned_bullet)
