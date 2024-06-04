@@ -28,6 +28,8 @@ var damageable = true
 var latest_incoming_damage:= 0.0
 var enemies_in_hurtbox := 0
 
+var equipped_weapons : Array
+
 func _ready() -> void:
 	_TEST_add_basic_weapon()
 	player_hurtbox.body_entered.connect(on_body_entered_player_hurtbox)
@@ -47,6 +49,7 @@ func _TEST_add_basic_weapon() -> void:
 	var new_player_weapon_instance = new_player_weapon.instantiate()
 	new_player_weapon_instance.weapon_stats = weapon_stats
 	add_child(new_player_weapon_instance)
+	equipped_weapons.append(new_player_weapon_instance)
 
 func on_body_entered_player_hurtbox(body)->void:
 	if body is Enemy:

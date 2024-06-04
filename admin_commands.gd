@@ -13,9 +13,6 @@ func _ready() -> void:
 	ui_manager = $UIManager
 	child_entered_tree.connect(enemymanager.on_child_entered_tree)
 	child_entered_tree.connect(ui_manager.on_child_entered_tree)
-	
-
-var TEST_SAM := 5.0
 
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("spawn_enemy"):
@@ -36,8 +33,11 @@ func _physics_process(_delta: float) -> void:
 		var new_player_weapon : PackedScene = load("res://Art/loot/fire_staff.tscn")
 		var new_player_weapon_instance = new_player_weapon.instantiate()
 		new_player_weapon_instance.weapon_stats = weapon_stats
+		if $Player.equipped_weapons:
+			print($Player.equipped_weapons[0].auto_firing)
+			new_player_weapon_instance.auto_firing = $Player.equipped_weapons[0].auto_firing
 		$Player.add_child(new_player_weapon_instance)
-		weapon_stats.shooting_angle_modifier += TEST_SAM
+		
 	
 		
 var small_xp : PackedScene = preload("res://Objects/Misc/xp_orb_small.tscn")

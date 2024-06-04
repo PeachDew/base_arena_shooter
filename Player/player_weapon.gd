@@ -13,19 +13,24 @@ var auto_firing := false
 
 func _ready() -> void:	
 	oneshot_timer.one_shot = true
+
 	if weapon_stats:
 		weapon_timer.wait_time = weapon_stats.cooldown
 		oneshot_timer.wait_time = weapon_stats.cooldown
 		weapon_timer.timeout.connect(on_projectile_cooldown)
 		shooting_angle_modifier = weapon_stats.shooting_angle_modifier * PI / 180
-	
 	else:
 		print("No resource attached to PlayerWeapon, freeing node")
 		queue_free()
+		
+	if auto_firing:
+		on_projectile_cooldown()
+		weapon_timer.start()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("autofire"):
 		if weapon_timer.is_stopped():
+			on_projectile_cooldown()
 			weapon_timer.start()
 			auto_firing = true
 		else:
