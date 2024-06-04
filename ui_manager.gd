@@ -4,9 +4,11 @@ extends CanvasLayer
 @onready var xp_bar = $XPBar
 @onready var pause_menu = $PauseMenu
 @onready var hp_bar = $HPBar
-@onready var lootbag_ui = $LootBagUI
+@onready var inventory_ui = $InventoryUI
+@onready var loot_ui = $LootUI
 
 var player_on_lootbag := 0
+var inv_active := false
 
 func _ready() -> void:
 	player.playerstats_manager.xp_change.connect(on_xp_change)
@@ -14,17 +16,25 @@ func _ready() -> void:
 	player.playerstats_manager.hp_change.connect(on_hp_change)
 	player.playerstats_manager.player_loaded.connect(on_player_loaded)
 	
+	loot_ui.position.x = inventory_ui.lootui_reference.global_position.x
+	
 	on_player_loaded()
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
 		get_tree().paused = true
+	if Input.is_action_just_pressed("inventory"):
+		inv_active = !inv_active
 	
-	if player_on_lootbag:
-		show_loot()
+	if player_on_lootbag or inv_active:
+		show_inv()
+		if player_on_lootbag: 
+			show_loot()
+		else:
+			hide_loot()
 	else:
-		lootbag_ui.process_mode = Node.PROCESS_MODE_DISABLED
-		lootbag_ui.hide()
+		hide_inv()
+		hide_loot()
 
 func on_xp_change()->void: 
 	xp_bar.value = player.xp
@@ -58,7 +68,19 @@ func on_body_exited_lootbag(body)->void:
 	if body is Player:
 		player_on_lootbag -= 1
 
+func show_inv():
+	inventory_ui.process_mode = Node.PROCESS_MODE_INHERIT
+	inventory_ui.show()
+
+func hide_inv():
+	inventory_ui.process_mode = Node.PROCESS_MODE_DISABLED
+	inventory_ui.hide()
+	
 func show_loot():
-	lootbag_ui.process_mode = Node.PROCESS_MODE_INHERIT
-	lootbag_ui.show()
+	loot_ui.process_mode = Node.PROCESS_MODE_INHERIT
+	loot_ui.show()
+
+func hide_loot():
+	loot_ui.process_mode = Node.PROCESS_MODE_DISABLED
+	loot_ui.hide()
 

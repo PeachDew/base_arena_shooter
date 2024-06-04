@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6ewuobp88mnx"]
+
+[ext_resource type="Script" path="res://UIScenes/lootui.gd" id="1_r47aw"]
+[ext_resource type="Texture2D" uid="uid://bi5o5k0r6shyq" path="res://Art/ui/loot_ui.png" id="2_2adfj"]
+
+[node name="LootUI" type="Control"]
+layout_mode = 3
+script = ExtResource("1_r47aw")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 34.0
+offset_bottom = 23.0
+scale = Vector2(6.055, 6.055)
+texture = ExtResource("2_2adfj")
+stretch_mode = 2

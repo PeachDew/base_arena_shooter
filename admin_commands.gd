@@ -15,7 +15,7 @@ func _ready() -> void:
 	child_entered_tree.connect(ui_manager.on_child_entered_tree)
 
 func _physics_process(_delta: float) -> void:
-	if Input.is_action_just_pressed("spawn_enemy"):
+	if Input.is_action_just_pressed("ADMIN_spawn_enemy"):
 		spawned_enemies += 1
 		var es
 		if spawned_enemies % 2 == 0:
