@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bvocp4m8prgeu"]
+[gd_scene load_steps=4 format=3 uid="uid://bvocp4m8prgeu"]
 
 [ext_resource type="Texture2D" uid="uid://kqu5paiwq8u2" path="res://Art/loot/bags/common_lootbag.png" id="1_8cixy"]
+[ext_resource type="Script" path="res://Objects/Misc/lootbag.gd" id="1_f6poe"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_trw6r"]
 radius = 7.07107
@@ -8,6 +9,7 @@ radius = 7.07107
 [node name="LootBag" type="Area2D" groups=["lootbag"]]
 scale = Vector2(1.99, 1.99)
 collision_layer = 0
+script = ExtResource("1_f6poe")
 
 [node name="LootBagCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_trw6r")

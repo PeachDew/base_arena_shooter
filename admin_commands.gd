@@ -28,18 +28,22 @@ func _physics_process(_delta: float) -> void:
 		add_child(spawned_enemy)
 	
 	if Input.is_action_just_pressed("ADMIN_add_weapon"):
-		var weapon_resource_path = "res://Art/loot/fire_staff_stats.tres"
-		var weapon_stats = load(weapon_resource_path)
-		var new_player_weapon : PackedScene = load("res://Art/loot/fire_staff.tscn")
-		var new_player_weapon_instance = new_player_weapon.instantiate()
-		new_player_weapon_instance.weapon_stats = weapon_stats
-		if $Player.equipped_weapons:
-			print($Player.equipped_weapons[0].auto_firing)
-			new_player_weapon_instance.auto_firing = $Player.equipped_weapons[0].auto_firing
-		$Player.add_child(new_player_weapon_instance)
+		add_weapon(
+			"res://Art/loot/fire_staff_stats.tres",
+			"res://Art/loot/fire_staff.tscn",
+			$Player
+		)
 		
+func add_weapon(weapon_resource_path:String, weapon_packed_scene_path:String, player:CharacterBody2D) -> void:
+	var weapon_stats = load(weapon_resource_path)
+	var new_player_weapon : PackedScene = load(weapon_packed_scene_path)
+	var new_player_weapon_instance = new_player_weapon.instantiate()
+	new_player_weapon_instance.weapon_stats = weapon_stats
+	if player.equipped_weapons:
+		print(player.equipped_weapons[0].auto_firing)
+		new_player_weapon_instance.auto_firing = player.equipped_weapons[0].auto_firing
+	player.add_child(new_player_weapon_instance)
 	
-		
 var small_xp : PackedScene = preload("res://Objects/Misc/xp_orb_small.tscn")
 func on_enemy_death(enemy_info : Dictionary) -> void:
 	# spawn a small xp orb
