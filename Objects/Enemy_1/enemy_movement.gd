@@ -16,7 +16,7 @@ func _ready() -> void:
 	enemy_chase_radius.body_entered.connect(on_body_entered_enemy_chase_radius)
 	enemy_chase_radius.body_exited.connect(on_body_exited_enemy_chase_radius)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if state == 1:
 		chasing_target()
 

@@ -51,8 +51,6 @@ func on_hp_change()->void:
 func on_player_loaded()->void:
 	hp_bar.value = player.hp
 	hp_bar.max_value = player.max_hp
-	print(hp_bar.value)
-	print(hp_bar.max_value)
 	hp_bar.hp_number.text = "[right]%s[/right]" % (str(player.hp)+"/"+str(player.max_hp))
 	
 func on_child_entered_tree(child)->void:
