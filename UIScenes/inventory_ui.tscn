@@ -68,6 +68,7 @@ script = ExtResource("3_y6im0")
 [node name="Background" type="TextureRect" parent="Equipped/AbilitySlot"]
 show_behind_parent = true
 custom_minimum_size = Vector2(60, 60)
+layout_mode = 0
 offset_top = 1.0
 offset_right = 60.0
 offset_bottom = 61.0
@@ -87,6 +88,7 @@ script = ExtResource("3_y6im0")
 [node name="Background" type="TextureRect" parent="Equipped/WeaponSlot"]
 show_behind_parent = true
 custom_minimum_size = Vector2(60, 60)
+layout_mode = 0
 offset_top = 1.0
 offset_right = 60.0
 offset_bottom = 61.0
@@ -97,8 +99,9 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Slot 1" type="TextureRect" parent="Inventory"]
+[node name="Slot1" type="TextureRect" parent="Inventory"]
 custom_minimum_size = Vector2(60, 60)
+layout_mode = 0
 offset_left = 97.0
 offset_top = 38.0
 offset_right = 157.0
@@ -106,8 +109,9 @@ offset_bottom = 98.0
 expand_mode = 1
 script = ExtResource("3_townx")
 
-[node name="Slot 4" type="TextureRect" parent="Inventory"]
+[node name="Slot4" type="TextureRect" parent="Inventory"]
 custom_minimum_size = Vector2(60, 60)
+layout_mode = 0
 offset_left = 97.0
 offset_top = 116.26
 offset_right = 157.0
@@ -115,8 +119,9 @@ offset_bottom = 176.26
 expand_mode = 1
 script = ExtResource("3_townx")
 
-[node name="Slot 7" type="TextureRect" parent="Inventory"]
+[node name="Slot7" type="TextureRect" parent="Inventory"]
 custom_minimum_size = Vector2(60, 60)
+layout_mode = 0
 offset_left = 97.0
 offset_top = 195.21
 offset_right = 157.0
@@ -124,8 +129,9 @@ offset_bottom = 255.21
 expand_mode = 1
 script = ExtResource("3_townx")
 
-[node name="Slot 2" type="TextureRect" parent="Inventory"]
+[node name="Slot2" type="TextureRect" parent="Inventory"]
 custom_minimum_size = Vector2(60, 60)
+layout_mode = 0
 offset_left = 163.115
 offset_top = 38.0
 offset_right = 223.115
@@ -133,8 +139,9 @@ offset_bottom = 98.0
 expand_mode = 1
 script = ExtResource("3_townx")
 
-[node name="Slot 5" type="TextureRect" parent="Inventory"]
+[node name="Slot5" type="TextureRect" parent="Inventory"]
 custom_minimum_size = Vector2(60, 60)
+layout_mode = 0
 offset_left = 163.115
 offset_top = 116.26
 offset_right = 223.115
@@ -142,8 +149,9 @@ offset_bottom = 176.26
 expand_mode = 1
 script = ExtResource("3_townx")
 
-[node name="Slot 8" type="TextureRect" parent="Inventory"]
+[node name="Slot8" type="TextureRect" parent="Inventory"]
 custom_minimum_size = Vector2(60, 60)
+layout_mode = 0
 offset_left = 163.115
 offset_top = 195.21
 offset_right = 223.115
@@ -151,8 +159,9 @@ offset_bottom = 255.21
 expand_mode = 1
 script = ExtResource("3_townx")
 
-[node name="Slot 3" type="TextureRect" parent="Inventory"]
+[node name="Slot3" type="TextureRect" parent="Inventory"]
 custom_minimum_size = Vector2(60, 60)
+layout_mode = 0
 offset_left = 229.765
 offset_top = 38.0
 offset_right = 289.766
@@ -160,8 +169,9 @@ offset_bottom = 98.375
 expand_mode = 1
 script = ExtResource("3_townx")
 
-[node name="Slot 6" type="TextureRect" parent="Inventory"]
+[node name="Slot6" type="TextureRect" parent="Inventory"]
 custom_minimum_size = Vector2(60, 60)
+layout_mode = 0
 offset_left = 229.765
 offset_top = 116.26
 offset_right = 289.766
@@ -169,8 +179,9 @@ offset_bottom = 176.635
 expand_mode = 1
 script = ExtResource("3_townx")
 
-[node name="Slot 9" type="TextureRect" parent="Inventory"]
+[node name="Slot9" type="TextureRect" parent="Inventory"]
 custom_minimum_size = Vector2(60, 60)
+layout_mode = 0
 offset_left = 229.765
 offset_top = 195.21
 offset_right = 289.766

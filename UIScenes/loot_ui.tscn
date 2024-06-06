@@ -5,6 +5,7 @@
 
 [node name="LootUI" type="Control"]
 layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_r47aw")
 
 [node name="Background" type="TextureRect" parent="."]
