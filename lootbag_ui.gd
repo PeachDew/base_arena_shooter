@@ -28,6 +28,6 @@ func _ready() -> void:
 	for sa in slots_array:
 		sa.item_moved.connect(on_item_moved)
 
-func on_item_moved(from: String, to: String):
-	item_moved.emit(from, to)
+func on_item_moved(move_dict: Dictionary):
+	item_moved.emit(move_dict)
 	

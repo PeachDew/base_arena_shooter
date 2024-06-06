@@ -20,7 +20,7 @@ func _ready() -> void:
 	
 	on_player_loaded()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
 		get_tree().paused = true
 	if Input.is_action_just_pressed("inventory"):

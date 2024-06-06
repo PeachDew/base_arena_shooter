@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://lootbag_ui.gd" id="1_jdk6x"]
 [ext_resource type="Texture2D" uid="uid://c1r5aqslsk4fk" path="res://Art/ui/INVENTORY.png" id="2_nuqfr"]
-[ext_resource type="Texture2D" uid="uid://b38bo6gmtfk3n" path="res://Art/loot/fire_staff.png" id="3_8f740"]
 [ext_resource type="Script" path="res://UIScenes/inv_slot.gd" id="3_townx"]
 [ext_resource type="Script" path="res://UIScenes/equip_slot.gd" id="3_y6im0"]
 [ext_resource type="Texture2D" uid="uid://de8vo0iod7lvt" path="res://Art/ui/one_inv_background.png" id="4_a4lfu"]
+[ext_resource type="Texture2D" uid="uid://b38bo6gmtfk3n" path="res://Art/loot/fire_staff.png" id="5_jmvrm"]
 
 [node name="InventoryUI" type="Control"]
 process_mode = 4
@@ -45,6 +45,7 @@ offset_right = -76.0
 offset_bottom = -33.0
 expand_mode = 1
 script = ExtResource("3_y6im0")
+accept_item_type = 1
 
 [node name="Background" type="TextureRect" parent="Equipped/HatSlot"]
 show_behind_parent = true
@@ -64,6 +65,7 @@ offset_right = -75.0
 offset_bottom = 44.26
 expand_mode = 1
 script = ExtResource("3_y6im0")
+accept_item_type = 2
 
 [node name="Background" type="TextureRect" parent="Equipped/AbilitySlot"]
 show_behind_parent = true
@@ -81,9 +83,12 @@ offset_left = -135.0
 offset_top = 63.21
 offset_right = -75.0
 offset_bottom = 123.21
-texture = ExtResource("3_8f740")
+texture = ExtResource("5_jmvrm")
 expand_mode = 1
 script = ExtResource("3_y6im0")
+accept_item_type = 3
+holding_item_id = 0
+holding_item_type = 3
 
 [node name="Background" type="TextureRect" parent="Equipped/WeaponSlot"]
 show_behind_parent = true

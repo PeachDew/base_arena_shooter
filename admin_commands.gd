@@ -52,7 +52,8 @@ func on_enemy_death(enemy_info : Dictionary) -> void:
 	spawned_small_xp.position.y = enemy_info.y
 	spawned_small_xp.xp_value = enemy_info.xp
 	call_deferred("add_child",spawned_small_xp)
+	#
+#func ADMIN_equip_firestaff(item, slot) -> void:
 	
-
 
 

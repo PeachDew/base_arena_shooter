@@ -1,4 +1,4 @@
-class_name hp_bar
+class_name enemy_hp_bar
 extends TextureProgressBar
 
 func on_enemy_hp_change(new_hp: float) -> void:
