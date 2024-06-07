@@ -2,18 +2,18 @@ extends Control
 
 @onready var lootui_reference := $lootui_reference
 @onready var slots_array := [
-	$Equipped/HatSlot,
-	$Equipped/AbilitySlot,
-	$Equipped/WeaponSlot,
-	$Inventory/Slot1,
-	$Inventory/Slot4, 
-	$Inventory/Slot7, 
-	$Inventory/Slot2, 
-	$Inventory/Slot5, 
-	$Inventory/Slot8, 
-	$Inventory/Slot3, 
-	$Inventory/Slot6, 
-	$Inventory/Slot9
+	$HatSlot,
+	$AbilitySlot,
+	$WeaponSlot,
+	$Slot1,
+	$Slot4, 
+	$Slot7, 
+	$Slot2, 
+	$Slot5, 
+	$Slot8, 
+	$Slot3, 
+	$Slot6, 
+	$Slot9
 ]
 
 signal item_moved

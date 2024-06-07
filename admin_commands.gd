@@ -3,6 +3,7 @@ extends Node2D
 var enemy1_scene : PackedScene = preload("res://Objects/Enemy_1/enemy_1.tscn")
 var enemy2_scene : PackedScene = preload("res://Objects/Enemy_2/enemy_2.tscn")
 var enemymanager : EnemyManager
+var items_manager : ItemsManager
 var ui_manager
 
 var spawned_enemies := 0
@@ -11,6 +12,7 @@ var spawned_enemies := 0
 func _ready() -> void:
 	enemymanager = $EnemyManager
 	ui_manager = $UIManager
+	items_manager = $ItemsManager
 	child_entered_tree.connect(enemymanager.on_child_entered_tree)
 	child_entered_tree.connect(ui_manager.on_child_entered_tree)
 
@@ -53,7 +55,8 @@ func on_enemy_death(enemy_info : Dictionary) -> void:
 	spawned_small_xp.xp_value = enemy_info.xp
 	call_deferred("add_child",spawned_small_xp)
 	#
-#func ADMIN_equip_firestaff(item, slot) -> void:
+
+	
 	
 
 

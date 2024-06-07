@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bprmbisj0m7n4"]
+[gd_scene load_steps=6 format=3 uid="uid://bprmbisj0m7n4"]
 
 [ext_resource type="Script" path="res://lootbag_ui.gd" id="1_jdk6x"]
 [ext_resource type="Texture2D" uid="uid://c1r5aqslsk4fk" path="res://Art/ui/INVENTORY.png" id="2_nuqfr"]
 [ext_resource type="Script" path="res://UIScenes/inv_slot.gd" id="3_townx"]
 [ext_resource type="Script" path="res://UIScenes/equip_slot.gd" id="3_y6im0"]
 [ext_resource type="Texture2D" uid="uid://de8vo0iod7lvt" path="res://Art/ui/one_inv_background.png" id="4_a4lfu"]
-[ext_resource type="Texture2D" uid="uid://b38bo6gmtfk3n" path="res://Art/loot/fire_staff.png" id="5_jmvrm"]
 
 [node name="InventoryUI" type="Control"]
 process_mode = 4
@@ -26,85 +25,7 @@ texture = ExtResource("2_nuqfr")
 [node name="lootui_reference" type="Marker2D" parent="."]
 position = Vector2(91, 30)
 
-[node name="Equipped" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="HatSlot" type="TextureRect" parent="Equipped"]
-custom_minimum_size = Vector2(57.975, 57.93)
-layout_mode = 0
-offset_left = -136.0
-offset_top = -94.0
-offset_right = -76.0
-offset_bottom = -33.0
-expand_mode = 1
-script = ExtResource("3_y6im0")
-accept_item_type = 1
-
-[node name="Background" type="TextureRect" parent="Equipped/HatSlot"]
-show_behind_parent = true
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 0
-offset_left = 0.5
-offset_right = 60.5
-offset_bottom = 60.0
-texture = ExtResource("4_a4lfu")
-
-[node name="AbilitySlot" type="TextureRect" parent="Equipped"]
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 0
-offset_left = -135.0
-offset_top = -15.74
-offset_right = -75.0
-offset_bottom = 44.26
-expand_mode = 1
-script = ExtResource("3_y6im0")
-accept_item_type = 2
-
-[node name="Background" type="TextureRect" parent="Equipped/AbilitySlot"]
-show_behind_parent = true
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 0
-offset_top = 1.0
-offset_right = 60.0
-offset_bottom = 61.0
-texture = ExtResource("4_a4lfu")
-
-[node name="WeaponSlot" type="TextureRect" parent="Equipped"]
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 0
-offset_left = -135.0
-offset_top = 63.21
-offset_right = -75.0
-offset_bottom = 123.21
-texture = ExtResource("5_jmvrm")
-expand_mode = 1
-script = ExtResource("3_y6im0")
-accept_item_type = 3
-holding_item_id = 0
-holding_item_type = 3
-
-[node name="Background" type="TextureRect" parent="Equipped/WeaponSlot"]
-show_behind_parent = true
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 0
-offset_top = 1.0
-offset_right = 60.0
-offset_bottom = 61.0
-texture = ExtResource("4_a4lfu")
-
-[node name="Inventory" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Slot1" type="TextureRect" parent="Inventory"]
+[node name="Slot1" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 0
 offset_left = 97.0
@@ -114,7 +35,7 @@ offset_bottom = 98.0
 expand_mode = 1
 script = ExtResource("3_townx")
 
-[node name="Slot4" type="TextureRect" parent="Inventory"]
+[node name="Slot4" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 0
 offset_left = 97.0
@@ -124,7 +45,7 @@ offset_bottom = 176.26
 expand_mode = 1
 script = ExtResource("3_townx")
 
-[node name="Slot7" type="TextureRect" parent="Inventory"]
+[node name="Slot7" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 0
 offset_left = 97.0
@@ -134,7 +55,7 @@ offset_bottom = 255.21
 expand_mode = 1
 script = ExtResource("3_townx")
 
-[node name="Slot2" type="TextureRect" parent="Inventory"]
+[node name="Slot2" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 0
 offset_left = 163.115
@@ -144,7 +65,7 @@ offset_bottom = 98.0
 expand_mode = 1
 script = ExtResource("3_townx")
 
-[node name="Slot5" type="TextureRect" parent="Inventory"]
+[node name="Slot5" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 0
 offset_left = 163.115
@@ -154,7 +75,7 @@ offset_bottom = 176.26
 expand_mode = 1
 script = ExtResource("3_townx")
 
-[node name="Slot8" type="TextureRect" parent="Inventory"]
+[node name="Slot8" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 0
 offset_left = 163.115
@@ -164,7 +85,7 @@ offset_bottom = 255.21
 expand_mode = 1
 script = ExtResource("3_townx")
 
-[node name="Slot3" type="TextureRect" parent="Inventory"]
+[node name="Slot3" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 0
 offset_left = 229.765
@@ -174,7 +95,7 @@ offset_bottom = 98.375
 expand_mode = 1
 script = ExtResource("3_townx")
 
-[node name="Slot6" type="TextureRect" parent="Inventory"]
+[node name="Slot6" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 0
 offset_left = 229.765
@@ -184,7 +105,7 @@ offset_bottom = 176.635
 expand_mode = 1
 script = ExtResource("3_townx")
 
-[node name="Slot9" type="TextureRect" parent="Inventory"]
+[node name="Slot9" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 0
 offset_left = 229.765
@@ -193,3 +114,60 @@ offset_right = 289.766
 offset_bottom = 255.585
 expand_mode = 1
 script = ExtResource("3_townx")
+
+[node name="HatSlot" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(57.975, 57.93)
+layout_mode = 0
+offset_left = 11.5
+offset_top = 36.0
+offset_right = 71.5
+offset_bottom = 97.0
+expand_mode = 1
+script = ExtResource("3_y6im0")
+
+[node name="Background" type="TextureRect" parent="HatSlot"]
+show_behind_parent = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 0
+offset_left = 0.5
+offset_right = 60.5
+offset_bottom = 60.0
+texture = ExtResource("4_a4lfu")
+
+[node name="AbilitySlot" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 0
+offset_left = 12.5
+offset_top = 114.26
+offset_right = 72.5
+offset_bottom = 174.26
+expand_mode = 1
+script = ExtResource("3_y6im0")
+
+[node name="Background" type="TextureRect" parent="AbilitySlot"]
+show_behind_parent = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 0
+offset_top = 1.0
+offset_right = 60.0
+offset_bottom = 61.0
+texture = ExtResource("4_a4lfu")
+
+[node name="WeaponSlot" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 0
+offset_left = 12.5
+offset_top = 193.21
+offset_right = 72.5
+offset_bottom = 253.21
+expand_mode = 1
+script = ExtResource("3_y6im0")
+
+[node name="Background" type="TextureRect" parent="WeaponSlot"]
+show_behind_parent = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 0
+offset_top = 1.0
+offset_right = 60.0
+offset_bottom = 61.0
+texture = ExtResource("4_a4lfu")
