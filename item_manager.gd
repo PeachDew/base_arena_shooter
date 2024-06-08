@@ -55,19 +55,25 @@ var loot_node_names : Array = [
 var loot_background_name := "LootUIBackground"
 
 @onready var inventoryui_node = $"../UIManager/InventoryUI"
+@onready var player = $"../Player"
 
 var player_on_lootbag := 0
+var lootbags_in_contact_with_player := []
 var inv_active := false
 
 var example_weapon = {
-	"item_type": 3,
-	"item_sprite": load("res://Art/loot/fire_staff.png")
+	"id": 2,
+	"type": 3,
+	"sprite": load("res://Art/loot/fire_staff.png")
 }
 
 var example_hat = {
-	"item_type": 1,
-	"item_sprite": load("res://Art/loot/beggarhat.png")
+	"id": 1,
+	"type": 1,
+	"sprite": load("res://Art/loot/beggarhat.png")
 }
+
+var last_shown_lootbag : Area2D
 
 func _ready() -> void:
 	inventoryui_node.item_moved.connect(on_item_moved)
@@ -76,6 +82,7 @@ func _ready() -> void:
 	put_item(example_hat, "HatSlot")
 	
 func _physics_process(_delta: float) -> void:
+
 	if Input.is_action_just_pressed("inventory"):
 		inv_active = !inv_active
 	
@@ -91,16 +98,32 @@ func _physics_process(_delta: float) -> void:
 
 func on_child_entered_tree(child)->void:
 	if child.is_in_group("lootbag"):
-		child.body_entered.connect(on_body_entered_lootbag)
-		child.body_exited.connect(on_body_exited_lootbag)
+		child.player_body_entered.connect(on_playerbody_entered_lootbag)
+		child.player_body_exited.connect(on_playerbody_exited_lootbag)
 		
-func on_body_entered_lootbag(body)->void:
-	if body is Player:
-		player_on_lootbag += 1
+func on_playerbody_entered_lootbag(lootnode_info)->void:
+	player_on_lootbag += 1
+	lootbags_in_contact_with_player.append(lootnode_info.loot_node)
+	var loot_node = lootnode_info.loot_node
+	update_lootnodes(loot_node)
+	
+func update_lootnodes(loot_node):
+	last_shown_lootbag = loot_node
+	var loot_dict = loot_node.loot_dict
+	for key in loot_dict:
+		var loot_item_id = loot_dict[key]
+		if loot_item_id:
+			if loot_item_id in ItemsDatabase.items:
+				var loot_item = ItemsDatabase.items[loot_item_id]
+				inventory[key] = loot_item
+				inventoryui_node.get_node(key).texture = loot_item.sprite
+		else:
+			inventory[key] = null
+			inventoryui_node.get_node(key).texture = null
 
-func on_body_exited_lootbag(body)->void:
-	if body is Player:
-		player_on_lootbag -= 1
+func on_playerbody_exited_lootbag(lootnode_info)->void:
+	player_on_lootbag -= 1
+	lootbags_in_contact_with_player.erase(lootnode_info.loot_node)
 
 func on_item_moved(move_dict: Dictionary):
 	if !(move_dict.origin_slot in inventory and move_dict.destination_slot in inventory):
@@ -111,13 +134,13 @@ func on_item_moved(move_dict: Dictionary):
 		print("origin slot has nothing, ignoring drag and drop.")
 	elif (
 		(inventory_slot_types[move_dict.destination_slot] == 0) 
-		or (inventory_slot_types[move_dict.destination_slot] == inventory[move_dict.origin_slot].item_type)
+		or (inventory_slot_types[move_dict.destination_slot] == inventory[move_dict.origin_slot].type)
 	): # checks destination is "welcome" for item
 		if inventory[move_dict.destination_slot]:
 			# destiantion has an item, check if can swap
 			if (
 				(inventory_slot_types[move_dict.origin_slot] == 0) 
-				or (inventory_slot_types[move_dict.origin_slot] == inventory[move_dict.destination_slot].item_type)
+				or (inventory_slot_types[move_dict.origin_slot] == inventory[move_dict.destination_slot].type)
 			):
 				var hold = inventory[move_dict.origin_slot]
 				empty_itemslot(move_dict.origin_slot)
@@ -131,16 +154,40 @@ func on_item_moved(move_dict: Dictionary):
 				move_dict.destination_slot
 			)
 			empty_itemslot(move_dict.origin_slot)
+	
+	if last_shown_lootbag:
+		check_empty_lootbag()
+	
+func check_empty_lootbag():
+	var all_loot_empty = true
+	for lnn in loot_node_names:
+		if inventory[lnn]:
+			all_loot_empty = false
+	if all_loot_empty:
+		print(lootbags_in_contact_with_player)
+		lootbags_in_contact_with_player.erase(last_shown_lootbag)
+		last_shown_lootbag.queue_free()
+		last_shown_lootbag = null
+		print(lootbags_in_contact_with_player)
+		if len(lootbags_in_contact_with_player) > 0:
+			update_lootnodes(lootbags_in_contact_with_player[0])
 
 func empty_itemslot(slot_name):
 	inventory[slot_name] = null
 	inventoryui_node.get_node(str(slot_name)).texture = null
+	
+	if "Loot" in slot_name:
+		last_shown_lootbag.loot_dict[slot_name] = null
 
 func put_item(item, slot_name):
 	if !inventory[slot_name]:
 		inventory[slot_name] = item
-		inventoryui_node.get_node(str(slot_name)).texture = item.item_sprite
-
+		inventoryui_node.get_node(str(slot_name)).texture = item.sprite
+	
+	if "Loot" in slot_name:
+		if last_shown_lootbag.loot_dict[slot_name]:
+			print("NEED TO INVESTIGATE: CANNOT OVERRIDE LOOT")
+		last_shown_lootbag.loot_dict[slot_name] = item.id
 
 func enable_inv():
 	inventoryui_node.process_mode = Node.PROCESS_MODE_INHERIT

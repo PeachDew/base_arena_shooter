@@ -5,6 +5,7 @@ class_name Enemy
 @export var xp_drop := 0.0
 @export var speed := 50.0
 @export var contact_damage := 20
+@export var loot_table := "common_monster"
 
 @onready var curr_hp := max_hp
 @onready var hitbox := $EnemyHitbox
@@ -27,17 +28,19 @@ func _ready() -> void:
 		enemy_hpbar.visible = false
 		
 func on_damaged(attack: Attack):
-	curr_hp -= attack.damage
-	enemy_hp_change.emit(curr_hp)
-	
-	if curr_hp <= 0:
-		curr_hp = 0
+	if curr_hp > 0:
+		curr_hp -= attack.damage
+		enemy_hp_change.emit(curr_hp)
 		
-		enemy_death.emit(
-			{
-				"x": position.x,
-				"y": position.y,
-				"xp": xp_drop
-			}
-		)
-		queue_free()
+		if curr_hp <= 0:
+			curr_hp = 0
+			var loot = LootTable.roll_loottable(loot_table,1)
+			enemy_death.emit(
+				{
+					"x": position.x,
+					"y": position.y,
+					"xp": xp_drop,
+					"loot": loot,
+				}
+			)
+			queue_free()

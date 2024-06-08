@@ -6,6 +6,8 @@ var enemymanager : EnemyManager
 var items_manager : ItemsManager
 var ui_manager
 
+
+
 var spawned_enemies := 0
 @onready var player_camera = $PlayerCamera
 

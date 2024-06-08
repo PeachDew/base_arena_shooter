@@ -171,6 +171,7 @@ offset_bottom = 61.0
 texture = ExtResource("4_a4lfu")
 
 [node name="LootUIBackground" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 91.0
 offset_top = -120.0
 offset_right = 125.0
