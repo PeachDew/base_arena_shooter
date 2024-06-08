@@ -103,9 +103,10 @@ func on_body_exited_lootbag(body)->void:
 		player_on_lootbag -= 1
 
 func on_item_moved(move_dict: Dictionary):
-	print(move_dict)
 	if !(move_dict.origin_slot in inventory and move_dict.destination_slot in inventory):
 		print("ERROR: item_moved signal transmitting wrong node names.")
+	elif move_dict.origin_slot == move_dict.destination_slot:
+		print("Putting item in same slot, nothing happens.")
 	elif !inventory[move_dict.origin_slot]:
 		print("origin slot has nothing, ignoring drag and drop.")
 	elif (
@@ -139,8 +140,6 @@ func put_item(item, slot_name):
 	if !inventory[slot_name]:
 		inventory[slot_name] = item
 		inventoryui_node.get_node(str(slot_name)).texture = item.item_sprite
-	else:
-		print("Put item error: slot_name already contains an item.")
 
 
 func enable_inv():
