@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c230d3kp4fgk6"]
+[gd_scene load_steps=16 format=3 uid="uid://c230d3kp4fgk6"]
 
 [ext_resource type="PackedScene" uid="uid://hoc8wacnty4h" path="res://Player/player.tscn" id="1_1c26b"]
 [ext_resource type="Script" path="res://admin_commands.gd" id="1_4jdlq"]
@@ -12,7 +12,6 @@
 [ext_resource type="Script" path="res://Objects/Misc/hpbar.gd" id="9_xapjv"]
 [ext_resource type="Texture2D" uid="uid://dc6nxv30400io" path="res://Art/ui/progress_hp.png" id="10_vv8mx"]
 [ext_resource type="PackedScene" uid="uid://bprmbisj0m7n4" path="res://UIScenes/inventory_ui.tscn" id="12_fqh2y"]
-[ext_resource type="PackedScene" uid="uid://b6ewuobp88mnx" path="res://UIScenes/loot_ui.tscn" id="13_odx3t"]
 [ext_resource type="Script" path="res://item_manager.gd" id="14_5o44h"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_03rxl"]
@@ -466,10 +465,6 @@ scale = Vector2(0.3, 0.3)
 bbcode_enabled = true
 text = "100/100
 "
-
-[node name="LootUI" parent="UIManager" instance=ExtResource("13_odx3t")]
-offset_right = 250.0
-offset_bottom = 220.0
 
 [node name="InventoryUI" parent="UIManager" instance=ExtResource("12_fqh2y")]
 offset_left = 0.0

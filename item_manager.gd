@@ -14,6 +14,12 @@ class_name ItemsManager
 	"Slot7": null,
 	"Slot8": null,
 	"Slot9": null,
+	"LootSlot1": null,
+	"LootSlot2": null,
+	"LootSlot3": null,
+	"LootSlot4": null,
+	"LootSlot5": null,
+	"LootSlot6": null,
 }
 
 @export var inventory_slot_types := {
@@ -29,9 +35,29 @@ class_name ItemsManager
 	"Slot7": 0,
 	"Slot8": 0,
 	"Slot9": 0,
+	"LootSlot1": 0,
+	"LootSlot2": 0,
+	"LootSlot3": 0,
+	"LootSlot4": 0,
+	"LootSlot5": 0,
+	"LootSlot6": 0,
 }
 
-@onready var inventoryui_node := $"../UIManager/InventoryUI"
+var loot_node_names : Array = [
+	"LootSlot1",
+	"LootSlot2",
+	"LootSlot3",
+	"LootSlot4",
+	"LootSlot5",
+	"LootSlot6",
+]
+
+var loot_background_name := "LootUIBackground"
+
+@onready var inventoryui_node = $"../UIManager/InventoryUI"
+
+var player_on_lootbag := 0
+var inv_active := false
 
 var example_weapon = {
 	"item_type": 3,
@@ -49,7 +75,35 @@ func _ready() -> void:
 	put_item(example_weapon, "WeaponSlot")
 	put_item(example_hat, "HatSlot")
 	
+func _physics_process(_delta: float) -> void:
+	if Input.is_action_just_pressed("inventory"):
+		inv_active = !inv_active
+	
+	if player_on_lootbag or inv_active:
+		enable_inv()
+		if player_on_lootbag: 
+			enable_loot_ui()
+		else:
+			disable_loot_ui()
+	else:
+		disable_inv()
+		disable_loot_ui()
+
+func on_child_entered_tree(child)->void:
+	if child.is_in_group("lootbag"):
+		child.body_entered.connect(on_body_entered_lootbag)
+		child.body_exited.connect(on_body_exited_lootbag)
+		
+func on_body_entered_lootbag(body)->void:
+	if body is Player:
+		player_on_lootbag += 1
+
+func on_body_exited_lootbag(body)->void:
+	if body is Player:
+		player_on_lootbag -= 1
+
 func on_item_moved(move_dict: Dictionary):
+	print(move_dict)
 	if !(move_dict.origin_slot in inventory and move_dict.destination_slot in inventory):
 		print("ERROR: item_moved signal transmitting wrong node names.")
 	elif !inventory[move_dict.origin_slot]:
@@ -87,5 +141,25 @@ func put_item(item, slot_name):
 		inventoryui_node.get_node(str(slot_name)).texture = item.item_sprite
 	else:
 		print("Put item error: slot_name already contains an item.")
-	
+
+
+func enable_inv():
+	inventoryui_node.process_mode = Node.PROCESS_MODE_INHERIT
+	inventoryui_node.show()
+
+func disable_inv():
+	inventoryui_node.process_mode = Node.PROCESS_MODE_DISABLED
+	inventoryui_node.hide()
+
+func disable_loot_ui():
+	inventoryui_node.get_node(loot_background_name).hide()
+	for lnames in loot_node_names:
+		inventoryui_node.get_node(lnames).set_process(PROCESS_MODE_DISABLED)
+		inventoryui_node.get_node(lnames).hide()
+		
+func enable_loot_ui():
+	inventoryui_node.get_node(loot_background_name).show()
+	for lnames in loot_node_names:
+		inventoryui_node.get_node(lnames).set_process(PROCESS_MODE_INHERIT)
+		inventoryui_node.get_node(lnames).show()
 

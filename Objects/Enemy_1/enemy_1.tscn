@@ -103,6 +103,7 @@ scale = Vector2(1.425, 1.425)
 collision_layer = 8
 collision_mask = 8
 script = ExtResource("1_esnu8")
+xp_drop = 50.0
 
 [node name="FloorCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5.94)

@@ -14,7 +14,7 @@ func _ready() -> void:
 	ui_manager = $UIManager
 	items_manager = $ItemsManager
 	child_entered_tree.connect(enemymanager.on_child_entered_tree)
-	child_entered_tree.connect(ui_manager.on_child_entered_tree)
+	child_entered_tree.connect(items_manager.on_child_entered_tree)
 
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ADMIN_spawn_enemy"):
