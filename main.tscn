@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c230d3kp4fgk6"]
+[gd_scene load_steps=17 format=3 uid="uid://c230d3kp4fgk6"]
 
 [ext_resource type="PackedScene" uid="uid://hoc8wacnty4h" path="res://Player/player.tscn" id="1_1c26b"]
 [ext_resource type="Script" path="res://admin_commands.gd" id="1_4jdlq"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://dc6nxv30400io" path="res://Art/ui/progress_hp.png" id="10_vv8mx"]
 [ext_resource type="PackedScene" uid="uid://bprmbisj0m7n4" path="res://UIScenes/inventory_ui.tscn" id="12_fqh2y"]
 [ext_resource type="Script" path="res://item_manager.gd" id="14_5o44h"]
+[ext_resource type="PackedScene" uid="uid://d2i1fpad0uybc" path="res://Objects/Spawners/monster_spawner.tscn" id="14_sgjie"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_03rxl"]
 texture = ExtResource("2_0soaj")
@@ -474,3 +475,6 @@ offset_bottom = 260.0
 
 [node name="ItemsManager" type="Node" parent="."]
 script = ExtResource("14_5o44h")
+
+[node name="MonsterSpawn" parent="." instance=ExtResource("14_sgjie")]
+position = Vector2(-306.667, 118)

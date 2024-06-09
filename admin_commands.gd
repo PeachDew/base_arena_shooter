@@ -10,6 +10,7 @@ var ui_manager
 
 var spawned_enemies := 0
 @onready var player_camera = $PlayerCamera
+@onready var test_monster_spawn = $MonsterSpawn
 
 func _ready() -> void:
 	enemymanager = $EnemyManager
@@ -37,6 +38,12 @@ func _physics_process(_delta: float) -> void:
 			"res://Art/loot/fire_staff.tscn",
 			$Player
 		)
+	
+	if Input.is_action_just_pressed("ADMIN_start_spawner"):
+		#test_monster_spawn.start_spawning()
+		test_monster_spawn.spawn_circle_enemies()
+	if Input.is_action_just_pressed("ADMIN_stop_spawner"):
+		test_monster_spawn.stop_spawning()
 		
 func add_weapon(weapon_resource_path:String, weapon_packed_scene_path:String, player:CharacterBody2D) -> void:
 	var weapon_stats = load(weapon_resource_path)
