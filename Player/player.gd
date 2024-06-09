@@ -23,15 +23,17 @@ extends CharacterBody2D
 @onready var playerstats_manager := $PlayerStatsManager
 @onready var player_hurtbox := $PlayerHurtbox
 @onready var iframes_timer := $IFrames_Timer
+@onready var equipped_weapon := $EquippedWeapon
+
+
 
 var damageable = true
 var latest_incoming_damage:= 0.0
 var enemies_in_hurtbox := 0
 
-var equipped_weapons : Array
+var last_autofiring_state = -1
 
 func _ready() -> void:
-	_TEST_add_basic_weapon()
 	player_hurtbox.body_entered.connect(on_body_entered_player_hurtbox)
 	player_hurtbox.body_exited.connect(on_body_exited_player_hurtbox)
 	iframes_timer.one_shot = true
@@ -41,15 +43,6 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if damageable and enemies_in_hurtbox:
 		take_damage(latest_incoming_damage)
-
-func _TEST_add_basic_weapon() -> void:
-	var weapon_resource_path = "res://Objects/Weapons/WeaponResources/Weapon_1.tres"
-	var weapon_stats = load(weapon_resource_path)
-	var new_player_weapon : PackedScene = load("res://Player/player_weapon.tscn")
-	var new_player_weapon_instance = new_player_weapon.instantiate()
-	new_player_weapon_instance.weapon_stats = weapon_stats
-	add_child(new_player_weapon_instance)
-	equipped_weapons.append(new_player_weapon_instance)
 
 func on_body_entered_player_hurtbox(body)->void:
 	if body is Enemy:
@@ -67,6 +60,25 @@ func take_damage(damage: float) -> void:
 			
 func on_iframes_timer_timeout()->void:
 	damageable = true
+	
+func add_weapon(weapon_resource_path:String, weapon_packed_scene_path:String) -> void:
+	if equipped_weapon.get_child_count() > 0:
+		print("Player is already equipping weapon")
+	else:
+		var weapon_stats = load(weapon_resource_path)
+		var new_player_weapon : PackedScene = load(weapon_packed_scene_path)
+		var new_player_weapon_instance = new_player_weapon.instantiate()
+		new_player_weapon_instance.weapon_stats = weapon_stats
+		if typeof(last_autofiring_state) == TYPE_BOOL:
+			new_player_weapon_instance.auto_firing = last_autofiring_state
+		
+		equipped_weapon.add_child(new_player_weapon_instance)
+
+func clear_weapon():
+	for n in equipped_weapon.get_children():
+		last_autofiring_state = n.auto_firing
+		equipped_weapon.remove_child(n)
+		n.queue_free() 
 
 
 

@@ -164,3 +164,5 @@ debug_color = Color(0.982741, 0.0516402, 0.30941, 0.42)
 
 [node name="IFrames_Timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="EquippedWeapon" type="Node2D" parent="."]

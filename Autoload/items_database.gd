@@ -15,7 +15,9 @@ var items:= {
 		"id": 2,
 		"name": "Fire Staff",
 		"sprite": load("res://Art/loot/fire_staff.png"),
-		"type": 3
+		"type": 3,
+		"weapon_resource_path": "res://Art/loot/fire_staff_stats.tres",
+		"weapon_packed_scene_path": "res://Art/loot/fire_staff.tscn"
 	}
 }
 

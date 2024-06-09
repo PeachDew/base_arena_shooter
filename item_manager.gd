@@ -61,25 +61,12 @@ var player_on_lootbag := 0
 var lootbags_in_contact_with_player := []
 var inv_active := false
 
-var example_weapon = {
-	"id": 2,
-	"type": 3,
-	"sprite": load("res://Art/loot/fire_staff.png")
-}
-
-var example_hat = {
-	"id": 1,
-	"type": 1,
-	"sprite": load("res://Art/loot/beggarhat.png")
-}
-
 var last_shown_lootbag : Area2D
 
 func _ready() -> void:
 	inventoryui_node.item_moved.connect(on_item_moved)
 	
-	put_item(example_weapon, "WeaponSlot")
-	put_item(example_hat, "HatSlot")
+	put_item(ItemsDatabase.items[2], "WeaponSlot")
 	
 func _physics_process(_delta: float) -> void:
 
@@ -178,6 +165,9 @@ func empty_itemslot(slot_name):
 	
 	if "Loot" in slot_name:
 		last_shown_lootbag.loot_dict[slot_name] = null
+	
+	if "Weapon" in slot_name:
+		player.clear_weapon()
 
 func put_item(item, slot_name):
 	if !inventory[slot_name]:
@@ -188,6 +178,9 @@ func put_item(item, slot_name):
 		if last_shown_lootbag.loot_dict[slot_name]:
 			print("NEED TO INVESTIGATE: CANNOT OVERRIDE LOOT")
 		last_shown_lootbag.loot_dict[slot_name] = item.id
+	
+	if "Weapon" in slot_name:
+		player.add_weapon(item.weapon_resource_path, item.weapon_packed_scene_path)
 
 func enable_inv():
 	inventoryui_node.process_mode = Node.PROCESS_MODE_INHERIT

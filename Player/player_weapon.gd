@@ -45,7 +45,8 @@ func _physics_process(_delta: float) -> void:
 			
 func find_nearest_enemy():
 	var nearest_enemy
-	var player_node : CharacterBody2D = get_parent()
+	var player_node : CharacterBody2D = get_parent().get_parent() # Weapon under Node2D "EquippedWeapon"
+
 	for e in get_tree().get_nodes_in_group("Enemy"):
 		var distance_to_e : float = player_node.position.distance_to(e.position)
 		if !nearest_enemy:
