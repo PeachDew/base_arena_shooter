@@ -168,6 +168,10 @@ func empty_itemslot(slot_name):
 	
 	if "Weapon" in slot_name:
 		player.clear_weapon()
+	elif "Hat" in slot_name:
+		player.clear_hat()
+	elif "Ability" in slot_name:
+		player.clear_ability()
 
 func put_item(item, slot_name):
 	if !inventory[slot_name]:
@@ -180,7 +184,11 @@ func put_item(item, slot_name):
 		last_shown_lootbag.loot_dict[slot_name] = item.id
 	
 	if "Weapon" in slot_name:
-		player.add_weapon(item.weapon_resource_path, item.weapon_packed_scene_path)
+		player.add_weapon(item)
+	elif "Hat" in slot_name:
+		player.add_hat(item)
+	elif "Ability" in slot_name:
+		player.add_ability(item)
 
 func enable_inv():
 	inventoryui_node.process_mode = Node.PROCESS_MODE_INHERIT

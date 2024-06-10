@@ -23,17 +23,22 @@ extends CharacterBody2D
 @onready var playerstats_manager := $PlayerStatsManager
 @onready var player_hurtbox := $PlayerHurtbox
 @onready var iframes_timer := $IFrames_Timer
+
 @onready var equipped_hat := $EquippedHat
 @onready var equipped_ability := $EquippedAbility
 @onready var equipped_weapon := $EquippedWeapon
 
-
+@export var equipped_hat_item := {}
+@export var equipped_ability_item := {}
+@export var equipped_weapon_item := {}
 
 var damageable = true
 var latest_incoming_damage:= 0.0
 var enemies_in_hurtbox := 0
 
 var last_autofiring_state = -1
+
+signal stat_change
 
 func _ready() -> void:
 	player_hurtbox.body_entered.connect(on_body_entered_player_hurtbox)
@@ -63,10 +68,15 @@ func take_damage(damage: float) -> void:
 func on_iframes_timer_timeout()->void:
 	damageable = true
 	
-func add_weapon(weapon_resource_path:String, weapon_packed_scene_path:String) -> void:
+func add_weapon(weapon_item) -> void:
 	if equipped_weapon.get_child_count() > 0:
 		print("Player is already equipping weapon")
 	else:
+		if "modifiers" in weapon_item:
+			add_modifiers(weapon_item.modifiers)
+			
+		var weapon_resource_path = weapon_item.weapon_resource_path
+		var weapon_packed_scene_path = weapon_item.packed_scene_path
 		var weapon_stats = load(weapon_resource_path)
 		var new_player_weapon : PackedScene = load(weapon_packed_scene_path)
 		var new_player_weapon_instance = new_player_weapon.instantiate()
@@ -75,40 +85,78 @@ func add_weapon(weapon_resource_path:String, weapon_packed_scene_path:String) ->
 			new_player_weapon_instance.auto_firing = last_autofiring_state
 		
 		equipped_weapon.add_child(new_player_weapon_instance)
+		
+		equipped_weapon_item = weapon_item
 
 func clear_weapon():
+	remove_modifiers(equipped_weapon_item.modifiers)
 	for n in equipped_weapon.get_children():
 		last_autofiring_state = n.auto_firing
 		equipped_weapon.remove_child(n)
 		n.queue_free() 
 
-func add_hat(hat_packed_scene_path: String) -> void:
-	if equipped_hat.get_child_count() > 0:
+	equipped_weapon_item = {}
+
+func add_hat(hat_item) -> void:
+	if equipped_hat_item:
 		print("Player is already equipping hat")
 	
 	else:
-		var new_player_hat : PackedScene = load(hat_packed_scene_path)
-		var new_player_hat_instance = new_player_hat.instantiate()
-		equipped_hat.add_child(new_player_hat_instance)
+		if "modifiers" in hat_item:
+			add_modifiers(hat_item.modifiers)
+			
+		if "packed_scene_path" in hat_item:
+			var new_player_hat : PackedScene = load(hat_item.packed_scene_path)
+			var new_player_hat_instance = new_player_hat.instantiate()
+			equipped_hat.add_child(new_player_hat_instance)
+		equipped_hat_item = hat_item
 
-func add_ability(ability_packed_scene_path: String) -> void:
-	if equipped_ability.get_child_count() > 0:
+func add_ability(ability_item) -> void:
+	if equipped_ability_item:
 		print("Player is already equipping ability")
 	
 	else:
-		var new_player_ability : PackedScene = load(ability_packed_scene_path)
-		var new_player_ability_instance = new_player_ability.instantiate()
-		equipped_ability.add_child(new_player_ability_instance)
+		if "modifiers" in ability_item:
+			add_modifiers(ability_item.modifiers)
+			
+		if "packed_scene_path" in ability_item:
+			var new_player_ability : PackedScene = load(ability_item.packed_scene_path)
+			var new_player_ability_instance = new_player_ability.instantiate()
+			equipped_ability.add_child(new_player_ability_instance)
+		equipped_ability_item = ability_item
 		
 func clear_hat():
+	remove_modifiers(equipped_hat_item.modifiers)
 	for n in equipped_hat.get_children():
 		equipped_hat.remove_child(n)
 		n.queue_free() 
+	equipped_hat_item = {}
 		
 func clear_ability():
+	remove_modifiers(equipped_ability_item.modifiers)
 	for n in equipped_ability.get_children():
 		equipped_ability.remove_child(n)
 		n.queue_free() 
+	equipped_ability_item = {}
+
+func add_modifiers(modifiers: Array):
+	for m in modifiers:
+		var m_name = m[0]
+		var m_amount = m[1]
+		print(get(m_name))		
+		set(m_name, get(m_name)+m_amount)
+		print(get(m_name))		
+	stat_change.emit()
+	
+func remove_modifiers(modifiers: Array):
+	for m in modifiers:
+		var m_name = m[0]
+		var m_amount = m[1]
+		print(get(m_name))
+		set(m_name, get(m_name)-m_amount)
+		print(get(m_name))
+	stat_change.emit()
+	
 
 
 

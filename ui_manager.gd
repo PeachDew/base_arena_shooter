@@ -11,6 +11,7 @@ func _ready() -> void:
 	player.playerstats_manager.level_change.connect(on_level_change)
 	player.playerstats_manager.hp_change.connect(on_hp_change)
 	player.playerstats_manager.player_loaded.connect(on_player_loaded)
+	player.stat_change.connect(on_hp_change)
 	
 	on_player_loaded()
 
