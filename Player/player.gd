@@ -23,6 +23,8 @@ extends CharacterBody2D
 @onready var playerstats_manager := $PlayerStatsManager
 @onready var player_hurtbox := $PlayerHurtbox
 @onready var iframes_timer := $IFrames_Timer
+@onready var equipped_hat := $EquippedHat
+@onready var equipped_ability := $EquippedAbility
 @onready var equipped_weapon := $EquippedWeapon
 
 
@@ -78,6 +80,34 @@ func clear_weapon():
 	for n in equipped_weapon.get_children():
 		last_autofiring_state = n.auto_firing
 		equipped_weapon.remove_child(n)
+		n.queue_free() 
+
+func add_hat(hat_packed_scene_path: String) -> void:
+	if equipped_hat.get_child_count() > 0:
+		print("Player is already equipping hat")
+	
+	else:
+		var new_player_hat : PackedScene = load(hat_packed_scene_path)
+		var new_player_hat_instance = new_player_hat.instantiate()
+		equipped_hat.add_child(new_player_hat_instance)
+
+func add_ability(ability_packed_scene_path: String) -> void:
+	if equipped_ability.get_child_count() > 0:
+		print("Player is already equipping ability")
+	
+	else:
+		var new_player_ability : PackedScene = load(ability_packed_scene_path)
+		var new_player_ability_instance = new_player_ability.instantiate()
+		equipped_ability.add_child(new_player_ability_instance)
+		
+func clear_hat():
+	for n in equipped_hat.get_children():
+		equipped_hat.remove_child(n)
+		n.queue_free() 
+		
+func clear_ability():
+	for n in equipped_ability.get_children():
+		equipped_ability.remove_child(n)
 		n.queue_free() 
 
 

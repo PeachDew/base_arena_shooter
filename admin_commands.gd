@@ -32,10 +32,7 @@ func _physics_process(_delta: float) -> void:
 		add_child(spawned_enemy)
 	
 	if Input.is_action_just_pressed("ADMIN_add_weapon"):
-		player.add_weapon(
-			"res://Art/loot/fire_staff_stats.tres",
-			"res://Art/loot/fire_staff.tscn"
-		)
+		items_manager.put_item(ItemsDatabase.items[2], "WeaponSlot")
 	
 	if Input.is_action_just_pressed("ADMIN_start_spawner"):
 		#test_monster_spawn.start_spawning()

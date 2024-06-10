@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlyopp7jvba72"]
+
+[ext_resource type="Script" path="res://Objects/Hats/beggar_hat.gd" id="1_iryt0"]
+
+[node name="BeggarHat" type="Node2D"]
+script = ExtResource("1_iryt0")
