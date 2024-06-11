@@ -1,6 +1,14 @@
 extends Node
 
 var items:= {
+	'template': {
+		"id": null,
+		"name": null,
+		"sprite": null,
+		"type": null,
+		"modifiers": null,
+		"packed_scene_path":null,
+	},
 	
 	# Hats
 	1: {
@@ -20,6 +28,16 @@ var items:= {
 		"modifiers": [],
 		"weapon_resource_path": "res://Art/loot/fire_staff_stats.tres",
 		"packed_scene_path": "res://Art/loot/fire_staff.tscn"
-	}
+	},
+	
+	# Abilities
+	3: {
+		"id": 3,
+		"name": "Flash Bolt",
+		"sprite": load("res://Art/abilities/flash_bolt.png"),
+		"type": 2,
+		"modifiers": [],
+		"packed_scene_path": "res://Objects/Abilities/flash_bolt.tscn",
+	},
 }
 

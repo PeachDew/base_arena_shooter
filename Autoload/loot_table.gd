@@ -3,7 +3,8 @@ extends Node
 var loot_tables:= {
 	"common_monster": {
 		1: 30,
-		2: 30
+		2: 30,
+		3: 0,
 	}
 }
 

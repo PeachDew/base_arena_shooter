@@ -1,11 +1,13 @@
 extends CharacterBody2D
 class_name Bullet
 
-var weapon_stats : Resource
-var speed : float
-var damage : float
-var max_pierce : int
-
+@export var weapon_stats : Resource
+@export var speed : float
+@export var damage : float
+@export var max_pierce : int
+@export var projectile_texture_path : String
+@export var projectile_texture_rotation : float
+@export var projectile_scale : float = 1.0
 var curr_pierce := 0
 
 @export var hurtbox : HurtBox
@@ -15,6 +17,10 @@ func _ready() -> void:
 		speed = weapon_stats.speed
 		damage = weapon_stats.damage
 		max_pierce = weapon_stats.max_pierce
+	
+	$Hurtbox/Sprite2D.texture = load(projectile_texture_path)
+	$Hurtbox/Sprite2D.rotation = projectile_texture_rotation
+	$Hurtbox/Sprite2D.scale = Vector2(projectile_scale, projectile_scale)
 		
 	if hurtbox:
 		hurtbox.hit_hitbox.connect(on_hitbox_hit)
