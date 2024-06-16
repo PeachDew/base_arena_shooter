@@ -26,6 +26,7 @@ func _ready() -> void:
 		enemy_hpbar.visible = true
 	else:
 		enemy_hpbar.visible = false
+	
 		
 func on_damaged(attack: Attack):
 	if curr_hp > 0:

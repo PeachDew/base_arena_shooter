@@ -5,22 +5,29 @@ class_name Projectile
 # 0 = straight line
 # NOT IMPLEMENTED 1 = arc 
 var trajectory := 0
-var DUMMY_SPEED := 200.0
+var speed
+var damage : float
 
 @onready var hurtbox : Area2D = $Projectile_Area2D
 
 signal hit_hitbox
 
 func _ready() -> void:
-	hurtbox.area_entered.connect(on_hurtbox_body_entered)
+	hurtbox.area_entered.connect(on_hurtbox_area_entered)
 	
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	
 	var direction = Vector2.RIGHT.rotated(rotation)
-	var speed = DUMMY_SPEED
 	velocity = direction*speed
+	move_and_slide()
 	
-func on_hurtbox_body_entered(body):
-	print("Projectile hitting a body!!")
-	hit_hitbox.emit()
-
+func on_hurtbox_area_entered(area):
+	if area is Hitbox:
+		
+		var attack := Attack.new()
+		attack.damage = damage
+		# get hitbox to emit "damaged" signal
+		area.take_damage(attack)
+		#hit_hitbox.emit()
+	else:
+		print(area)

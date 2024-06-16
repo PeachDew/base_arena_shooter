@@ -1,5 +1,5 @@
 extends Node2D
-class_name Projectile
+class_name Projectile_OLD
 
 @export var cooldown := 0.2
 @export var projectile_scene_file_path := "res://Objects/Weapons/bullet.tscn"

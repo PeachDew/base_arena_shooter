@@ -40,12 +40,19 @@ var last_autofiring_state = -1
 
 signal stat_change
 
+@onready var prototype_weapon := $Prototype_PlayerWeapon
+
 func _ready() -> void:
 	player_hurtbox.body_entered.connect(on_body_entered_player_hurtbox)
 	player_hurtbox.body_exited.connect(on_body_exited_player_hurtbox)
 	iframes_timer.one_shot = true
 	iframes_timer.wait_time = iframes_seconds
 	iframes_timer.timeout.connect(on_iframes_timer_timeout)
+	
+	prototype_weapon.add_projectile_child.connect(on_add_projectile_child)
+
+func on_add_projectile_child(proj_instance):
+	add_child(proj_instance)
 	
 func _physics_process(_delta: float) -> void:
 	if damageable and enemies_in_hurtbox:
