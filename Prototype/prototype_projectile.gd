@@ -26,8 +26,5 @@ func on_hurtbox_area_entered(area):
 		
 		var attack := Attack.new()
 		attack.damage = damage
-		# get hitbox to emit "damaged" signal
+		# function take_damage emits "damaged" signal
 		area.take_damage(attack)
-		#hit_hitbox.emit()
-	else:
-		print(area)

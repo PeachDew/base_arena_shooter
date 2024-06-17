@@ -31,8 +31,8 @@ func _physics_process(delta: float) -> void:
 	velocity = direction*speed
 	
 	var collision := move_and_collide(velocity*delta)
-	if collision:
-		queue_free()
+	#if collision:
+		#queue_free()
 		
 func on_hitbox_hit():
 	curr_pierce += 1

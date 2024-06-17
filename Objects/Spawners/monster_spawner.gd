@@ -4,7 +4,7 @@ extends Node2D
 @export var spawn_cooldown := 1.0 #seconds
 @export var spawn_amount := 1
 @export var spawn_radius := 100.0
-@export var autostart := false
+@export var autostart := true
 
 @onready var spawn_cooldown_timer := $SpawnCooldownTimer
 
