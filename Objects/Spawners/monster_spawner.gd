@@ -2,7 +2,7 @@ extends Node2D
 
 @export var enemy_scene : PackedScene = preload("res://Objects/Enemy_2/enemy_2.tscn")
 @export var spawn_cooldown := 1.0 #seconds
-@export var spawn_amount := 1
+@export var spawn_amount := 2
 @export var spawn_radius := 100.0
 @export var autostart := true
 

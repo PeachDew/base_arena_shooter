@@ -177,6 +177,8 @@ func put_item(item, slot_name):
 	if !inventory[slot_name]:
 		inventory[slot_name] = item
 		inventoryui_node.get_node(str(slot_name)).texture = item.sprite
+	else: 
+		print("ITEMS_MANAGER: WARNING: attempting to put_item into NON EMPTY slot.")
 	
 	if "Loot" in slot_name:
 		if last_shown_lootbag.loot_dict[slot_name]:

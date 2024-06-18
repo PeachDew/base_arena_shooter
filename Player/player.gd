@@ -54,7 +54,7 @@ func _ready() -> void:
 func on_add_projectile_child(proj_instance):
 	add_child(proj_instance)
 	# make projectile a sibling so it has independent movement
-	proj_instance.reparent(get_parent())
+	proj_instance.reparent(owner)
 	
 func _physics_process(_delta: float) -> void:
 	if damageable and enemies_in_hurtbox:

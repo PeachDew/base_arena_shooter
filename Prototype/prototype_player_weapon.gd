@@ -4,9 +4,11 @@ class_name Weapon
 @export var projectile_configs : Array = [
 	{
 		"projectile_packed_scene": load("res://Prototype/prototype_projectile.tscn"),
-		"cooldown": 1.4,
+		"cooldown": 0.2,
 		"speed": 300,
 		"damage": 40,
+		"max_pierce": 5,
+		"lifetime": 1.0,
 		"rotation": 0.0,
 		"start_delay": 0.5,
 	},
@@ -15,6 +17,8 @@ class_name Weapon
 		"cooldown": 0.7,
 		"speed": 500,
 		"damage": 5,
+		"max_pierce": 1,		
+		"lifetime": 1.5,
 		"rotation": 0.7,
 		"start_delay": 0.0,
 	},
@@ -51,11 +55,14 @@ func start_firing():
 				tim.start()
 
 func on_timer_timeout(projectile_config: Dictionary):
-	var projectile_packed_scene_instance = projectile_config.projectile_packed_scene.instantiate()
-	projectile_packed_scene_instance.speed = projectile_config.speed
+	var projectile_instance = projectile_config.projectile_packed_scene.instantiate()
+	projectile_instance.speed = projectile_config.speed
 	
 	var mouse_direction := get_global_mouse_position() - global_position
-	projectile_packed_scene_instance.rotation = projectile_config.rotation + mouse_direction.angle()
-	projectile_packed_scene_instance.damage = projectile_config.damage
-	add_projectile_child.emit(projectile_packed_scene_instance)
+	projectile_instance.rotation = projectile_config.rotation + mouse_direction.angle()
+	
+	projectile_instance.damage = projectile_config.damage
+	projectile_instance.max_pierce = projectile_config.max_pierce
+	projectile_instance.lifetime = projectile_config.lifetime
+	add_projectile_child.emit(projectile_instance)
 	

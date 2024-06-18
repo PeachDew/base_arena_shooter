@@ -21,3 +21,5 @@ shape = SubResource("CapsuleShape2D_opqae")
 [node name="ProjectileSprite" type="Sprite2D" parent="Projectile_Area2D"]
 rotation = 1.5708
 texture = ExtResource("2_i6kjf")
+
+[node name="Projectile_Lifetime_Timer" type="Timer" parent="."]
