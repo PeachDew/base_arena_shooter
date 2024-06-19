@@ -40,7 +40,7 @@ var last_autofiring_state = -1
 
 signal stat_change
 
-@onready var prototype_weapon := $Prototype_PlayerWeapon
+
 
 func _ready() -> void:
 	player_hurtbox.body_entered.connect(on_body_entered_player_hurtbox)
@@ -48,8 +48,6 @@ func _ready() -> void:
 	iframes_timer.one_shot = true
 	iframes_timer.wait_time = iframes_seconds
 	iframes_timer.timeout.connect(on_iframes_timer_timeout)
-	
-	prototype_weapon.add_projectile_child.connect(on_add_projectile_child)
 
 func on_add_projectile_child(proj_instance):
 	add_child(proj_instance)
@@ -83,17 +81,13 @@ func add_weapon(weapon_item) -> void:
 	else:
 		if "modifiers" in weapon_item:
 			add_modifiers(weapon_item.modifiers)
-			
-		var weapon_resource_path = weapon_item.weapon_resource_path
-		var weapon_packed_scene_path = weapon_item.packed_scene_path
-		var weapon_stats = load(weapon_resource_path)
-		var new_player_weapon : PackedScene = load(weapon_packed_scene_path)
-		var new_player_weapon_instance = new_player_weapon.instantiate()
-		new_player_weapon_instance.weapon_stats = weapon_stats
-		if typeof(last_autofiring_state) == TYPE_BOOL:
-			new_player_weapon_instance.auto_firing = last_autofiring_state
 		
-		equipped_weapon.add_child(new_player_weapon_instance)
+		var new_weapon_instance: Weapon = Weapon.new()
+		new_weapon_instance.projectile_config_ids = weapon_item.projectile_config_ids
+		new_weapon_instance.add_projectile_child.connect(on_add_projectile_child)
+		if typeof(last_autofiring_state) == TYPE_BOOL:
+			new_weapon_instance.auto_firing = last_autofiring_state
+		equipped_weapon.add_child(new_weapon_instance)
 		
 		equipped_weapon_item = weapon_item
 

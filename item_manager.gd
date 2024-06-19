@@ -66,7 +66,7 @@ var last_shown_lootbag : Area2D
 func _ready() -> void:
 	inventoryui_node.item_moved.connect(on_item_moved)
 	
-	#put_item(ItemsDatabase.items[2], "WeaponSlot")
+	put_item(ItemsDatabase.items["W0T"], "WeaponSlot")
 	
 func _physics_process(_delta: float) -> void:
 

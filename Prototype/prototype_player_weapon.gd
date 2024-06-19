@@ -1,60 +1,37 @@
 extends Node2D
 class_name Weapon
 
-@export var projectile_configs : Array = [
-	{
-		"projectile_packed_scene": load("res://Prototype/prototype_projectile.tscn"),
-		"cooldown": 0.2,
-		"speed": 300,
-		"damage": 40,
-		"max_pierce": 5,
-		"lifetime": 1.0,
-		"rotation": 0.0,
-		"start_delay": 0.5,
-	},
-	{
-		"projectile_packed_scene": load("res://Prototype/prototype_projectile.tscn"),
-		"cooldown": 0.7,
-		"speed": 500,
-		"damage": 5,
-		"max_pierce": 1,		
-		"lifetime": 1.5,
-		"rotation": 0.7,
-		"start_delay": 0.0,
-	},
-]
+@export var projectile_config_ids : Array
 
-var timers : Array = []
+var projectile_configs := []
+
+var timers_to_start : Array = []
+var timers_to_stop : Array = []
 
 signal add_projectile_child
 
+var auto_firing := false
+
+var test_timers : Array = []
+
 func _ready() -> void:
-	
-	#Create a timer for each projectile
-	for pc in projectile_configs:
-		var new_timer := Timer.new()
-		new_timer.wait_time = pc.cooldown
-		add_child(new_timer)
-		timers.append(new_timer)
-		new_timer.timeout.connect(on_timer_timeout.bind(pc))
+	for id in projectile_config_ids:
+		projectile_configs.append(ProjectileConfigs.configs[id])
+		test_timers.append(0)
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	for i in range(len(test_timers)):
+		test_timers[i] += delta
 	if Input.is_action_pressed("primary_fire"):
-		start_firing()
+		shoot_if_can(delta)
 	
-	else:
-		stop_firing()
-	
-func stop_firing():
-	for tim in timers:
-		tim.stop()
-		
-func start_firing():
-	for tim in timers:
-			if tim.is_stopped():
-				tim.start()
+func shoot_if_can(delta):
+	for i in range(len(test_timers)):
+		if test_timers[i] > projectile_configs[i].cooldown:
+			fire_projectile_at_cursor(projectile_configs[i])
+			test_timers[i] = 0
 
-func on_timer_timeout(projectile_config: Dictionary):
+func fire_projectile_at_cursor(projectile_config: Dictionary):
 	var projectile_instance = projectile_config.projectile_packed_scene.instantiate()
 	projectile_instance.speed = projectile_config.speed
 	
@@ -65,4 +42,4 @@ func on_timer_timeout(projectile_config: Dictionary):
 	projectile_instance.max_pierce = projectile_config.max_pierce
 	projectile_instance.lifetime = projectile_config.lifetime
 	add_projectile_child.emit(projectile_instance)
-	
+

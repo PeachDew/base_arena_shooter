@@ -1,8 +1,7 @@
-[gd_scene load_steps=24 format=3 uid="uid://hoc8wacnty4h"]
+[gd_scene load_steps=23 format=3 uid="uid://hoc8wacnty4h"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_rtain"]
 [ext_resource type="Texture2D" uid="uid://dl7lclc7wwoa6" path="res://Art/swim_art/1 Woodcutter/Idle.png" id="2_ms10f"]
-[ext_resource type="PackedScene" uid="uid://c2dqas46hraix" path="res://Prototype/prototype_player_weapon.tscn" id="2_ue2d6"]
 [ext_resource type="Script" path="res://Player/player_movement.gd" id="3_hf5p4"]
 [ext_resource type="Texture2D" uid="uid://riobjpk8ga8l" path="res://Art/swim_art/1 Woodcutter/Swim.png" id="5_h74ps"]
 [ext_resource type="Script" path="res://Player/player_animation.gd" id="5_pmraa"]
@@ -119,8 +118,6 @@ radius = 66.3702
 position = Vector2(7.96, -6.475)
 collision_mask = 32
 script = ExtResource("1_rtain")
-
-[node name="Prototype_PlayerWeapon" parent="." instance=ExtResource("2_ue2d6")]
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
 position = Vector2(-8.03, 14.36)

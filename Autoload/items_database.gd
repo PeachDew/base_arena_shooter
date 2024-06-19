@@ -11,8 +11,8 @@ var items:= {
 	},
 	
 	# Hats
-	1: {
-		"id": 1,
+	"H01": {
+		"id": "H01",
 		"name": "Beggar's Hat",
 		"sprite": load("res://Art/loot/beggarhat.png"),
 		"type": 1,
@@ -20,19 +20,27 @@ var items:= {
 	},
 	
 	# Weapons
-	2: {
-		"id": 2,
+	"W01": {
+		"id": "W01",
 		"name": "Fire Staff",
 		"sprite": load("res://Art/loot/fire_staff.png"),
 		"type": 3,
 		"modifiers": [],
-		"weapon_resource_path": "res://Art/loot/fire_staff_stats.tres",
-		"packed_scene_path": "res://Art/loot/fire_staff.tscn"
+		"projectile_config_ids" : ["F0"]
+	},
+	
+	"W0T": {
+		"id": "W0T",
+		"name": "Prototype Staff",
+		"sprite": load("res://Art/swim_art/1 Woodcutter/Hurt2.png"),
+		"type": 3,
+		"modifiers": [],
+		"projectile_config_ids" : ["P0","P1"]
 	},
 	
 	# Abilities
-	3: {
-		"id": 3,
+	"A01": {
+		"id": "A01",
 		"name": "Flash Bolt",
 		"sprite": load("res://Art/abilities/flash_bolt.png"),
 		"type": 2,
