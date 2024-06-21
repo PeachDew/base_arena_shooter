@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://xpabdbn0jhvs"]
+
+[ext_resource type="PackedScene" uid="uid://58ntcl5jbx5o" path="res://UIScenes/ui_manager.tscn" id="1_d8nun"]
+[ext_resource type="PackedScene" uid="uid://du0adsu8h6e8m" path="res://HelperNodeScenes/enemy_manager.tscn" id="2_x2h7g"]
+[ext_resource type="PackedScene" uid="uid://cg36f7ahykqxw" path="res://HelperNodeScenes/items_manager.tscn" id="3_5rhrb"]
+[ext_resource type="PackedScene" uid="uid://d2i1fpad0uybc" path="res://Objects/Spawners/monster_spawner.tscn" id="4_pjp8s"]
+
+[node name="FirstAreaName" type="Node2D"]
+
+[node name="UIManager" parent="." instance=ExtResource("1_d8nun")]
+
+[node name="EnemyManager" parent="." instance=ExtResource("2_x2h7g")]
+
+[node name="ItemsManager" parent="." instance=ExtResource("3_5rhrb")]
+
+[node name="MonsterSpawn" parent="." instance=ExtResource("4_pjp8s")]
+position = Vector2(344, 559)

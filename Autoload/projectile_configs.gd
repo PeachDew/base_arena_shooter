@@ -16,7 +16,7 @@ var configs : Dictionary = {
 	"P0" :
 	{
 		"projectile_packed_scene": load("res://Prototype/prototype_projectile.tscn"),
-		"cooldown": 1.0,
+		"cooldown": 0.5,
 		"speed": 500,
 		"damage": 40,
 		"max_pierce": 5,
@@ -27,7 +27,7 @@ var configs : Dictionary = {
 	"P1" :
 	{
 		"projectile_packed_scene": load("res://Prototype/prototype_projectile.tscn"),
-		"cooldown": 1.0,
+		"cooldown": 0.5,
 		"speed": 300,
 		"damage": 5,
 		"max_pierce": 1,		

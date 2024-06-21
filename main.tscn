@@ -1,19 +1,13 @@
-[gd_scene load_steps=17 format=3 uid="uid://c230d3kp4fgk6"]
+[gd_scene load_steps=11 format=3 uid="uid://c230d3kp4fgk6"]
 
 [ext_resource type="PackedScene" uid="uid://hoc8wacnty4h" path="res://Player/player.tscn" id="1_1c26b"]
 [ext_resource type="Script" path="res://admin_commands.gd" id="1_4jdlq"]
 [ext_resource type="Texture2D" uid="uid://b7kt5rqscnj5u" path="res://Art/Free CC0 Top Down Tileset Pixel Art/Tilesets/tileset_gray.png" id="2_0soaj"]
 [ext_resource type="Script" path="res://Player/player_camera.gd" id="3_6tn4k"]
-[ext_resource type="Script" path="res://enemy_manager.gd" id="5_p4by0"]
-[ext_resource type="PackedScene" uid="uid://blt677eo2k0jl" path="res://Objects/Misc/xp_bar.tscn" id="6_5vyas"]
-[ext_resource type="Script" path="res://ui_manager.gd" id="6_oyqrp"]
-[ext_resource type="PackedScene" uid="uid://dphy3gtxgspow" path="res://UIScenes/pause_scene.tscn" id="8_njjaa"]
-[ext_resource type="Texture2D" uid="uid://d3t6a44drsoke" path="res://Art/ui/over_hp_player.png" id="9_1r0fw"]
-[ext_resource type="Script" path="res://Objects/Misc/hpbar.gd" id="9_xapjv"]
-[ext_resource type="Texture2D" uid="uid://dc6nxv30400io" path="res://Art/ui/progress_hp.png" id="10_vv8mx"]
-[ext_resource type="PackedScene" uid="uid://bprmbisj0m7n4" path="res://UIScenes/inventory_ui.tscn" id="12_fqh2y"]
-[ext_resource type="Script" path="res://item_manager.gd" id="14_5o44h"]
-[ext_resource type="PackedScene" uid="uid://d2i1fpad0uybc" path="res://Objects/Spawners/monster_spawner.tscn" id="14_sgjie"]
+[ext_resource type="PackedScene" uid="uid://du0adsu8h6e8m" path="res://HelperNodeScenes/enemy_manager.tscn" id="5_8dpcu"]
+[ext_resource type="PackedScene" uid="uid://58ntcl5jbx5o" path="res://UIScenes/ui_manager.tscn" id="6_gr5o2"]
+[ext_resource type="PackedScene" uid="uid://cg36f7ahykqxw" path="res://HelperNodeScenes/items_manager.tscn" id="7_s3ptg"]
+[ext_resource type="PackedScene" uid="uid://nux7eimswkmm" path="res://Objects/Portals/first_area_portal.tscn" id="8_yycr8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_03rxl"]
 texture = ExtResource("2_0soaj")
@@ -422,59 +416,14 @@ y_sort_enabled = true
 position = Vector2(0, 0)
 scale = Vector2(1.5, 1.5)
 
-[node name="EnemyManager" type="Node" parent="."]
-script = ExtResource("5_p4by0")
+[node name="EnemyManager" parent="." instance=ExtResource("5_8dpcu")]
 
-[node name="UIManager" type="CanvasLayer" parent="."]
-script = ExtResource("6_oyqrp")
+[node name="UIManager" parent="." instance=ExtResource("6_gr5o2")]
 
-[node name="XPBar" parent="UIManager" instance=ExtResource("6_5vyas")]
-metadata/_edit_use_anchors_ = true
+[node name="ItemsManager" parent="." instance=ExtResource("7_s3ptg")]
 
-[node name="PauseMenu" parent="UIManager" instance=ExtResource("8_njjaa")]
-offset_left = 6.0
-offset_top = -36.0
-offset_right = 46.0
-offset_bottom = 4.0
+[node name="FirstAreaPortal" parent="." instance=ExtResource("8_yycr8")]
+position = Vector2(0, -127.81)
+scale = Vector2(4.335, 4.335)
 
-[node name="HPBar" type="TextureProgressBar" parent="UIManager"]
-offset_left = -396.0
-offset_top = -113.0
-offset_right = -236.0
-offset_bottom = -68.0
-scale = Vector2(5, 5)
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture_over = ExtResource("9_1r0fw")
-texture_progress = ExtResource("10_vv8mx")
-script = ExtResource("9_xapjv")
-
-[node name="HPNumber" type="RichTextLabel" parent="UIManager/HPBar"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 31.0
-offset_top = -3.90001
-offset_right = 152.0
-offset_bottom = 20.1
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.3, 0.3)
-bbcode_enabled = true
-text = "100/100
-"
-
-[node name="InventoryUI" parent="UIManager" instance=ExtResource("12_fqh2y")]
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 295.0
-offset_bottom = 260.0
-
-[node name="ItemsManager" type="Node" parent="."]
-script = ExtResource("14_5o44h")
-
-[node name="MonsterSpawn" parent="." instance=ExtResource("14_sgjie")]
-position = Vector2(-306.667, 118)
+[node name="World" type="Node2D" parent="."]

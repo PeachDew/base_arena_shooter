@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://58ntcl5jbx5o"]
+
+[ext_resource type="Script" path="res://ui_manager.gd" id="1_xcx0m"]
+[ext_resource type="PackedScene" uid="uid://blt677eo2k0jl" path="res://Objects/Misc/xp_bar.tscn" id="2_a48yt"]
+[ext_resource type="PackedScene" uid="uid://dphy3gtxgspow" path="res://UIScenes/pause_scene.tscn" id="3_y45gh"]
+[ext_resource type="Texture2D" uid="uid://d3t6a44drsoke" path="res://Art/ui/over_hp_player.png" id="4_1a3rt"]
+[ext_resource type="Texture2D" uid="uid://dc6nxv30400io" path="res://Art/ui/progress_hp.png" id="5_uk6dm"]
+[ext_resource type="Script" path="res://Objects/Misc/hpbar.gd" id="6_8pyil"]
+[ext_resource type="PackedScene" uid="uid://bprmbisj0m7n4" path="res://UIScenes/inventory_ui.tscn" id="7_o1dt0"]
+
+[node name="UIManager" type="CanvasLayer"]
+script = ExtResource("1_xcx0m")
+
+[node name="XPBar" parent="." instance=ExtResource("2_a48yt")]
+metadata/_edit_use_anchors_ = true
+
+[node name="PauseMenu" parent="." instance=ExtResource("3_y45gh")]
+offset_left = 6.0
+offset_top = -36.0
+offset_right = 46.0
+offset_bottom = 4.0
+
+[node name="HPBar" type="TextureProgressBar" parent="."]
+offset_left = -396.0
+offset_top = -113.0
+offset_right = -236.0
+offset_bottom = -68.0
+scale = Vector2(5, 5)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_over = ExtResource("4_1a3rt")
+texture_progress = ExtResource("5_uk6dm")
+script = ExtResource("6_8pyil")
+
+[node name="HPNumber" type="RichTextLabel" parent="HPBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 31.0
+offset_top = -3.90001
+offset_right = 152.0
+offset_bottom = 20.1
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+bbcode_enabled = true
+text = "100/100
+"
+
+[node name="InventoryUI" parent="." instance=ExtResource("7_o1dt0")]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 295.0
+offset_bottom = 260.0
