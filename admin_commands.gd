@@ -2,20 +2,18 @@ extends Node2D
 
 var enemy1_scene : PackedScene = preload("res://Objects/Enemy_1/enemy_1.tscn")
 var enemy2_scene : PackedScene = preload("res://Objects/Enemy_2/enemy_2.tscn")
-var enemymanager : EnemyManager
+
 var items_manager : ItemsManager
 var ui_manager
 
 var spawned_enemies := 0
-@onready var player = $Player
-@onready var player_camera = $PlayerCamera
-@onready var test_monster_spawn = $MonsterSpawn
+@onready var player = $World/Player
+
+#@onready var test_monster_spawn = $MonsterSpawn
 
 func _ready() -> void:
-	enemymanager = $EnemyManager
 	ui_manager = $UIManager
 	items_manager = $ItemsManager
-	child_entered_tree.connect(enemymanager.on_child_entered_tree)
 	child_entered_tree.connect(items_manager.on_child_entered_tree)
 
 func _physics_process(_delta: float) -> void:
@@ -29,16 +27,16 @@ func _physics_process(_delta: float) -> void:
 		var spawned_enemy = es.instantiate()
 		spawned_enemy.position = get_local_mouse_position()
 		
-		add_child(spawned_enemy)
+		$World.add_child(spawned_enemy)
 	
 	if Input.is_action_just_pressed("ADMIN_add_weapon"):
 		items_manager.put_item(ItemsDatabase.items[2], "WeaponSlot")
 	
-	if Input.is_action_just_pressed("ADMIN_start_spawner"):
-		#test_monster_spawn.start_spawning()
-		test_monster_spawn.spawn_circle_enemies()
-	if Input.is_action_just_pressed("ADMIN_stop_spawner"):
-		test_monster_spawn.stop_spawning()
+	#if Input.is_action_just_pressed("ADMIN_start_spawner"):
+		##test_monster_spawn.start_spawning()
+		#test_monster_spawn.spawn_circle_enemies()
+	#if Input.is_action_just_pressed("ADMIN_stop_spawner"):
+		#test_monster_spawn.stop_spawning()
 	
 	
 var small_xp : PackedScene = preload("res://Objects/Misc/xp_orb_small.tscn")
@@ -49,9 +47,6 @@ func on_enemy_death(enemy_info : Dictionary) -> void:
 	spawned_small_xp.position.y = enemy_info.y
 	spawned_small_xp.xp_value = enemy_info.xp
 	call_deferred("add_child",spawned_small_xp)
-	#
 
-	
-	
 
 

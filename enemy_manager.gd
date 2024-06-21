@@ -5,11 +5,11 @@ func on_child_entered_tree(body) -> void:
 	if body is Enemy:
 		if not body.is_node_ready():
 			await body.ready
-		print(body)
 		body.enemy_death.connect(on_enemy_death)
 
 var small_xp : PackedScene = preload("res://Objects/Misc/xp_orb_small.tscn")
 var common_loot_bag : PackedScene = preload("res://Objects/Misc/common_loot_bag.tscn")
+
 func on_enemy_death(enemy_info : Dictionary) -> void:
 	# spawn a small xp orb
 	var spawned_small_xp : RigidBody2D = small_xp.instantiate() 

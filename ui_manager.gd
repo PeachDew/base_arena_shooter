@@ -1,10 +1,10 @@
 extends CanvasLayer
 
-@onready var player := get_owner().get_node("Player")
+@onready var player := $"../World/Player"
 @onready var xp_bar = $XPBar
 @onready var pause_menu = $PauseMenu
 @onready var hp_bar = $HPBar
-
+@onready var loading = $LoadingUI
 
 func _ready() -> void:
 	player.playerstats_manager.xp_change.connect(on_xp_change)
@@ -13,7 +13,16 @@ func _ready() -> void:
 	player.playerstats_manager.player_loaded.connect(on_player_loaded)
 	player.stat_change.connect(on_hp_change)
 	
+	loading.pause_world.connect(on_pause_world)
+	loading.unpause_world.connect(on_unpause_world)
+	
 	on_player_loaded()
+
+func on_pause_world():
+	$"../World".process_mode = Node.PROCESS_MODE_DISABLED
+	
+func on_unpause_world():
+	$"../World".process_mode = Node.PROCESS_MODE_INHERIT
 
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):

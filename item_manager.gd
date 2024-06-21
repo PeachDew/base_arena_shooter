@@ -55,7 +55,7 @@ var loot_node_names : Array = [
 var loot_background_name := "LootUIBackground"
 
 @onready var inventoryui_node = $"../UIManager/InventoryUI"
-@onready var player = $"../Player"
+@onready var player = $"../World/Player"
 
 var player_on_lootbag := 0
 var lootbags_in_contact_with_player := []

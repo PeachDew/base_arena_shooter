@@ -23,9 +23,9 @@ func _physics_process(delta: float) -> void:
 	for i in range(len(test_timers)):
 		test_timers[i] += delta
 	if Input.is_action_pressed("primary_fire"):
-		shoot_if_can(delta)
+		shoot_if_can()
 	
-func shoot_if_can(delta):
+func shoot_if_can():
 	for i in range(len(test_timers)):
 		if test_timers[i] > projectile_configs[i].cooldown:
 			fire_projectile_at_cursor(projectile_configs[i])
