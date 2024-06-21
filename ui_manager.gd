@@ -6,6 +6,8 @@ extends CanvasLayer
 @onready var hp_bar = $HPBar
 @onready var loading = $LoadingUI
 
+signal proceed_change_scene
+
 func _ready() -> void:
 	player.playerstats_manager.xp_change.connect(on_xp_change)
 	player.playerstats_manager.level_change.connect(on_level_change)
@@ -23,6 +25,8 @@ func on_pause_world():
 	
 func on_unpause_world():
 	$"../World".process_mode = Node.PROCESS_MODE_INHERIT
+	proceed_change_scene.emit()
+	
 
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):

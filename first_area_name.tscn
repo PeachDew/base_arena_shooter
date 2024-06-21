@@ -1,17 +1,53 @@
-[gd_scene load_steps=5 format=3 uid="uid://xpabdbn0jhvs"]
+[gd_scene load_steps=2 format=3 uid="uid://xpabdbn0jhvs"]
 
-[ext_resource type="PackedScene" uid="uid://58ntcl5jbx5o" path="res://UIScenes/ui_manager.tscn" id="1_d8nun"]
-[ext_resource type="PackedScene" uid="uid://du0adsu8h6e8m" path="res://HelperNodeScenes/enemy_manager.tscn" id="2_x2h7g"]
-[ext_resource type="PackedScene" uid="uid://cg36f7ahykqxw" path="res://HelperNodeScenes/items_manager.tscn" id="3_5rhrb"]
-[ext_resource type="PackedScene" uid="uid://d2i1fpad0uybc" path="res://Objects/Spawners/monster_spawner.tscn" id="4_pjp8s"]
+[ext_resource type="PackedScene" uid="uid://h10owepq4qt2" path="res://Objects/Enemy_1/enemy_1.tscn" id="1_71k62"]
 
 [node name="FirstAreaName" type="Node2D"]
 
-[node name="UIManager" parent="." instance=ExtResource("1_d8nun")]
+[node name="Enemy" parent="." instance=ExtResource("1_71k62")]
+position = Vector2(233, -20)
 
-[node name="EnemyManager" parent="." instance=ExtResource("2_x2h7g")]
+[node name="Enemy2" parent="." instance=ExtResource("1_71k62")]
+position = Vector2(45, 103)
 
-[node name="ItemsManager" parent="." instance=ExtResource("3_5rhrb")]
+[node name="Enemy3" parent="." instance=ExtResource("1_71k62")]
+position = Vector2(-84, -103)
 
-[node name="MonsterSpawn" parent="." instance=ExtResource("4_pjp8s")]
-position = Vector2(344, 559)
+[node name="Enemy4" parent="." instance=ExtResource("1_71k62")]
+position = Vector2(-68, 196)
+
+[node name="Enemy5" parent="." instance=ExtResource("1_71k62")]
+position = Vector2(-101, 29)
+
+[node name="Enemy6" parent="." instance=ExtResource("1_71k62")]
+position = Vector2(75, 194)
+
+[node name="Enemy7" parent="." instance=ExtResource("1_71k62")]
+position = Vector2(84, -69)
+
+[node name="Enemy8" parent="." instance=ExtResource("1_71k62")]
+position = Vector2(135, 87)
+
+[node name="Enemy9" parent="." instance=ExtResource("1_71k62")]
+position = Vector2(-127, 105)
+
+[node name="Enemy10" parent="." instance=ExtResource("1_71k62")]
+position = Vector2(-127, 105)
+
+[node name="Enemy11" parent="." instance=ExtResource("1_71k62")]
+position = Vector2(-127, 105)
+
+[node name="Enemy12" parent="." instance=ExtResource("1_71k62")]
+position = Vector2(-127, 105)
+
+[node name="Enemy13" parent="." instance=ExtResource("1_71k62")]
+position = Vector2(-127, 105)
+
+[node name="Enemy14" parent="." instance=ExtResource("1_71k62")]
+position = Vector2(-127, 105)
+
+[node name="Enemy15" parent="." instance=ExtResource("1_71k62")]
+position = Vector2(-127, 105)
+
+[node name="Enemy16" parent="." instance=ExtResource("1_71k62")]
+position = Vector2(-127, 105)

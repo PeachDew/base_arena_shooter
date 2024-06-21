@@ -40,8 +40,6 @@ var last_autofiring_state = -1
 
 signal stat_change
 
-
-
 func _ready() -> void:
 	player_hurtbox.body_entered.connect(on_body_entered_player_hurtbox)
 	player_hurtbox.body_exited.connect(on_body_exited_player_hurtbox)
@@ -52,7 +50,7 @@ func _ready() -> void:
 func on_add_projectile_child(proj_instance):
 	add_child(proj_instance)
 	# make projectile a sibling so it has independent movement
-	proj_instance.reparent(owner)
+	proj_instance.reparent(get_parent())
 	
 func _physics_process(_delta: float) -> void:
 	if damageable and enemies_in_hurtbox:

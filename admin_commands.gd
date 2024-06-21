@@ -9,12 +9,10 @@ var ui_manager
 var spawned_enemies := 0
 @onready var player = $World/Player
 
-#@onready var test_monster_spawn = $MonsterSpawn
 
 func _ready() -> void:
 	ui_manager = $UIManager
 	items_manager = $ItemsManager
-	child_entered_tree.connect(items_manager.on_child_entered_tree)
 
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ADMIN_spawn_enemy"):
@@ -27,7 +25,7 @@ func _physics_process(_delta: float) -> void:
 		var spawned_enemy = es.instantiate()
 		spawned_enemy.position = get_local_mouse_position()
 		
-		$World.add_child(spawned_enemy)
+		$World.region.add_child(spawned_enemy)
 	
 	if Input.is_action_just_pressed("ADMIN_add_weapon"):
 		items_manager.put_item(ItemsDatabase.items[2], "WeaponSlot")

@@ -83,10 +83,9 @@ func _physics_process(_delta: float) -> void:
 		disable_inv()
 		disable_loot_ui()
 
-func on_child_entered_tree(child)->void:
-	if child.is_in_group("lootbag"):
-		child.player_body_entered.connect(on_playerbody_entered_lootbag)
-		child.player_body_exited.connect(on_playerbody_exited_lootbag)
+func connect_lootbag(lootbag)->void:
+	lootbag.player_body_entered.connect(on_playerbody_entered_lootbag)
+	lootbag.player_body_exited.connect(on_playerbody_exited_lootbag)
 		
 func on_playerbody_entered_lootbag(lootnode_info)->void:
 	player_on_lootbag += 1
