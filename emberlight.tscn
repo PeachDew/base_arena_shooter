@@ -400,4 +400,3 @@ layer_0/tile_data = PackedInt32Array(655379, 393216, 4, 589843, 589824, 3, 52430
 
 [node name="FirstAreaPortal" parent="." instance=ExtResource("2_pfi31")]
 position = Vector2(0, -127.81)
-scale = Vector2(4.335, 4.335)

@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://xpabdbn0jhvs"]
+[gd_scene load_steps=4 format=3 uid="uid://xpabdbn0jhvs"]
 
 [ext_resource type="PackedScene" uid="uid://h10owepq4qt2" path="res://Objects/Enemy_1/enemy_1.tscn" id="1_71k62"]
+[ext_resource type="Script" path="res://first_area_name.gd" id="1_ji1j0"]
+[ext_resource type="PackedScene" uid="uid://nux7eimswkmm" path="res://Objects/Portals/first_area_portal.tscn" id="2_wv5o3"]
 
 [node name="FirstAreaName" type="Node2D"]
+script = ExtResource("1_ji1j0")
 
 [node name="Enemy" parent="." instance=ExtResource("1_71k62")]
 position = Vector2(233, -20)
@@ -51,3 +54,7 @@ position = Vector2(-127, 105)
 
 [node name="Enemy16" parent="." instance=ExtResource("1_71k62")]
 position = Vector2(-127, 105)
+
+[node name="FirstAreaPortal" parent="." instance=ExtResource("2_wv5o3")]
+position = Vector2(182, -108)
+destination_scene_path = "res://emberlight.tscn"

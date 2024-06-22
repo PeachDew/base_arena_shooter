@@ -7,9 +7,8 @@
 [ext_resource type="Script" path="res://Player/player_animation.gd" id="5_pmraa"]
 [ext_resource type="Script" path="res://Player/player_stats.gd" id="7_7e1x2"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wte35"]
-radius = 12.0127
-height = 24.0255
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ql0ih"]
+size = Vector2(17.8723, 29.7872)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r25rq"]
 atlas = ExtResource("2_ms10f")
@@ -120,10 +119,10 @@ collision_mask = 32
 script = ExtResource("1_rtain")
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
-position = Vector2(-8.03, 14.36)
-rotation = 1.5708
+position = Vector2(-7.46, 4.975)
 scale = Vector2(1.175, 1.175)
-shape = SubResource("CapsuleShape2D_wte35")
+shape = SubResource("RectangleShape2D_ql0ih")
+debug_color = Color(0.35258, 0.526266, 0.862807, 0.42)
 
 [node name="PlayerMovement" type="Node" parent="."]
 script = ExtResource("3_hf5p4")
