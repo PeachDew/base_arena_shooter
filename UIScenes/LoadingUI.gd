@@ -23,7 +23,6 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if loading:
 		loading_status = ResourceLoader.load_threaded_get_status(target_scene_path, progress)
-		print(target_scene_path)
 		match loading_status:
 			ResourceLoader.THREAD_LOAD_IN_PROGRESS:
 				progress_bar.value = progress[0] * 100 # Change the ProgressBar value
