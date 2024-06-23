@@ -6,6 +6,7 @@ class_name Enemy
 @export var speed := 50.0
 @export var contact_damage := 20
 @export var loot_table := "common_monster"
+@export var roll_loot_num := 1
 
 @onready var curr_hp := max_hp
 @onready var hitbox := $EnemyHitbox
@@ -35,7 +36,7 @@ func on_damaged(attack: Attack):
 		
 		if curr_hp <= 0:
 			curr_hp = 0
-			var loot = LootTable.roll_loottable(loot_table,1)
+			var loot = LootTable.roll_loottable(loot_table, roll_loot_num)
 			enemy_death.emit(
 				{
 					"x": position.x,

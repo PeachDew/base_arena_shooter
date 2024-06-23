@@ -47,4 +47,40 @@ var configs : Dictionary = {
 		"rotation": 0.0,
 		"start_delay": 0.0,
 	},
+	
+	"traineebow": 
+	{
+	"projectile_packed_scene": load("res://Objects/Projectiles/ProjectilePackedScenes/projectile_traineearrow.tscn"),
+	"cooldown": 0.4,
+	"speed": 350,
+	"damage": 10,
+	"max_pierce": 0,
+	"lifetime": 2.5,
+	"rotation": 0.0,
+	"start_delay": 0.0,
+	},
+	
+	"traineestaff": 
+	{
+	"projectile_packed_scene": load("res://Objects/Projectiles/ProjectilePackedScenes/projectile_traineebolt.tscn"),
+	"cooldown": 0.5,
+	"speed": 400,
+	"damage": 10,
+	"max_pierce": 0,
+	"lifetime": 1.5,
+	"rotation": 0.0,
+	"start_delay": 0.0,
+	},
+	
+	"traineeblade":
+	{
+	"projectile_packed_scene": load("res://Objects/Projectiles/ProjectilePackedScenes/projectile_traineeslash.tscn"),
+	"cooldown": 0.8,
+	"speed": 150,
+	"damage": 10,
+	"max_pierce": 0,
+	"lifetime": 1.0,
+	"rotation": 0.0,
+	"start_delay": 0.0,
+	},
 }
