@@ -387,6 +387,7 @@ terrain_set_0/terrain_0/color = Color(0.512162, 0.767857, 1, 1)
 sources/0 = SubResource("TileSetAtlasSource_03rxl")
 
 [node name="TownScene" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_8860g")
 
 [node name="TileMap" type="TileMap" parent="."]
