@@ -97,16 +97,16 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_wdase"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qxpka"]
+radius = 23.5976
 
 [node name="Enemy2" type="CharacterBody2D" groups=["Enemy"]]
 scale = Vector2(1.09, 1.09)
 collision_layer = 12
 collision_mask = 8
 script = ExtResource("1_kr3f8")
-max_hp = 50.0
 xp_drop = 100.0
-speed = 100.0
 contact_damage = 40
+roll_loot_num = 2
 
 [node name="FloorCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5.94)
@@ -151,3 +151,4 @@ collision_layer = 0
 [node name="EnemyChaseCollision" type="CollisionShape2D" parent="EnemyMovement/EnemyChaseRadius"]
 scale = Vector2(3.535, 3.535)
 shape = SubResource("CircleShape2D_qxpka")
+debug_color = Color(0.813553, 0.383151, 0.387443, 0.42)

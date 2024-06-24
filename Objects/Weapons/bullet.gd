@@ -30,7 +30,7 @@ func _physics_process(delta: float) -> void:
 	var direction = Vector2.RIGHT.rotated(rotation)
 	velocity = direction*speed
 	
-	var collision := move_and_collide(velocity*delta)
+	var _collision := move_and_collide(velocity*delta)
 	#if collision:
 		#queue_free()
 		

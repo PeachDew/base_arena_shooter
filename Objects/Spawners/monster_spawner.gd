@@ -3,9 +3,9 @@ extends Node2D
 var player : CharacterBody2D
 
 @export var enemy_scene : PackedScene = preload("res://Objects/Enemy_2/enemy_2.tscn")
-@export var spawn_cooldown := 1.0 #seconds
-@export var spawn_amount := 10
-@export var min_spawn_radius := 100.0
+@export var spawn_cooldown := 4.0 #seconds
+@export var spawn_amount := 1
+@export var min_spawn_radius := 200.0
 @export var max_spawn_radius := 100.0
 @export var autostart := true
 

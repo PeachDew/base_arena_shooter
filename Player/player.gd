@@ -2,7 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 # Movement Stats
-@export var speed := 500.0
+@export var speed := 100.0
 @export var max_speed := 1000.0
 @export var acceleration_time := 0.2
 @export var deceleration_time := 0.5
@@ -27,6 +27,7 @@ extends CharacterBody2D
 @onready var equipped_hat := $EquippedHat
 @onready var equipped_ability := $EquippedAbility
 @onready var equipped_weapon := $EquippedWeapon
+@onready var bare_weapon := $BareWeapon
 
 @export var equipped_hat_item := {}
 @export var equipped_ability_item := {}
@@ -46,6 +47,8 @@ func _ready() -> void:
 	iframes_timer.one_shot = true
 	iframes_timer.wait_time = iframes_seconds
 	iframes_timer.timeout.connect(on_iframes_timer_timeout)
+	bare_weapon.add_projectile_child.connect(on_add_projectile_child)
+
 
 func on_add_projectile_child(proj_instance):
 	add_child(proj_instance)
@@ -88,6 +91,9 @@ func add_weapon(weapon_item) -> void:
 		equipped_weapon.add_child(new_weapon_instance)
 		
 		equipped_weapon_item = weapon_item
+		
+		#disable bare weapon
+		bare_weapon.process_mode = Node.PROCESS_MODE_DISABLED
 
 func clear_weapon():
 	remove_modifiers(equipped_weapon_item.modifiers)
@@ -97,6 +103,7 @@ func clear_weapon():
 		n.queue_free() 
 
 	equipped_weapon_item = {}
+	bare_weapon.process_mode = Node.PROCESS_MODE_INHERIT
 
 func add_hat(hat_item) -> void:
 	if equipped_hat_item:

@@ -70,10 +70,11 @@ func _ready() -> void:
 	
 func _physics_process(_delta: float) -> void:
 
-	if Input.is_action_just_pressed("inventory"):
+	if Input.is_action_just_pressed("inventory"): # SHOULD THIS BE IN ITEMSMANAGER
 		inv_active = !inv_active
 	
 	if player_on_lootbag or inv_active:
+		inv_active = true
 		enable_inv()
 		if player_on_lootbag: 
 			enable_loot_ui()

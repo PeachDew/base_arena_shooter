@@ -2,9 +2,7 @@ extends Node
 
 var loot_tables:= {
 	"common_monster": {
-		"H01": 30,
-		"W01": 30,
-		"A01": 0,
+		"A01": 5,
 		"W02": 10,
 		"W03": 10,
 		"W04": 10,
@@ -22,7 +20,7 @@ func roll_loottable(loot_table_name: String, n: int) -> Array:
 		var roll = randi_range(1,100)
 		var possible_loot := []
 		for key in loot_items:
-			if loot_items[key] <= roll:
+			if loot_items[key] >= roll:
 				possible_loot.append(key)
 		
 		if possible_loot:

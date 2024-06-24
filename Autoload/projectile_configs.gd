@@ -53,7 +53,7 @@ var configs : Dictionary = {
 	"projectile_packed_scene": load("res://Objects/Projectiles/ProjectilePackedScenes/projectile_traineearrow.tscn"),
 	"cooldown": 0.4,
 	"speed": 350,
-	"damage": 10,
+	"damage": 2,
 	"max_pierce": 0,
 	"lifetime": 2.5,
 	"rotation": 0.0,
@@ -65,7 +65,7 @@ var configs : Dictionary = {
 	"projectile_packed_scene": load("res://Objects/Projectiles/ProjectilePackedScenes/projectile_traineebolt.tscn"),
 	"cooldown": 0.5,
 	"speed": 400,
-	"damage": 10,
+	"damage": 2,
 	"max_pierce": 0,
 	"lifetime": 1.5,
 	"rotation": 0.0,
@@ -77,10 +77,22 @@ var configs : Dictionary = {
 	"projectile_packed_scene": load("res://Objects/Projectiles/ProjectilePackedScenes/projectile_traineeslash.tscn"),
 	"cooldown": 0.8,
 	"speed": 150,
-	"damage": 10,
+	"damage": 3,
 	"max_pierce": 0,
-	"lifetime": 1.0,
+	"lifetime": 0.7,
 	"rotation": 0.0,
 	"start_delay": 0.0,
 	},
+	
+	"BW0" : # Basic Weapon 0
+	{
+		"projectile_packed_scene": load("res://Objects/Projectiles/ProjectilePackedScenes/projectile_basicweapon.tscn"),
+		"cooldown": 1.0,
+		"speed": 150,
+		"damage": 1,
+		"max_pierce": 0,
+		"lifetime": 0.8,
+		"rotation": 0.0,
+		"start_delay": 0.0,
+	}
 }
