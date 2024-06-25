@@ -86,37 +86,136 @@ metadata/_edit_use_anchors_ = true
 
 [node name="StatsUI" type="Control" parent="."]
 layout_mode = 3
-anchor_left = -0.11875
-anchor_top = -0.219444
-anchor_right = 0.110156
-anchor_bottom = 0.195833
-metadata/_edit_use_anchors_ = true
+anchors_preset = 0
+offset_left = -155.0
+offset_top = -139.0
+offset_right = 144.0
+offset_bottom = 142.0
 
 [node name="StatsBackground" type="TextureRect" parent="StatsUI"]
-layout_mode = 0
-offset_right = 57.0
-offset_bottom = 54.0
+layout_mode = 1
+offset_right = 50.0
+offset_bottom = 48.0
 scale = Vector2(5.84, 5.84)
 texture = ExtResource("11_j5lk0")
-stretch_mode = 5
-metadata/_edit_use_anchors_ = true
+stretch_mode = 4
 
-[node name="RichTextLabel" type="RichTextLabel" parent="StatsUI"]
+[node name="VBoxContainer" type="VBoxContainer" parent="StatsUI"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 19.0
+offset_right = 279.0
+offset_bottom = 260.0
+theme_override_constants/separation = 35
+
+[node name="vigor_container" type="HBoxContainer" parent="StatsUI/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32.58)
 layout_mode = 2
-offset_left = 19.0
-offset_top = 45.0
-offset_right = 125.0
-offset_bottom = 271.0
+
+[node name="vigor_label" type="RichTextLabel" parent="StatsUI/VBoxContainer/vigor_container"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_fonts/normal_font = ExtResource("12_j5yyt")
 theme_override_font_sizes/normal_font_size = 33
 bbcode_enabled = true
-text = "VIGOR
-
-POWER
-
-SPEED
-
-TEMPO"
+text = "VIGOR"
 metadata/_edit_use_anchors_ = true
+
+[node name="vigor_stat" type="RichTextLabel" parent="StatsUI/VBoxContainer/vigor_container"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("12_j5yyt")
+theme_override_font_sizes/normal_font_size = 33
+bbcode_enabled = true
+text = "23"
+metadata/_edit_use_anchors_ = true
+
+[node name="vigor_button" type="Button" parent="StatsUI/VBoxContainer/vigor_container"]
+layout_mode = 2
+text = "ADD"
+
+[node name="might_container" type="HBoxContainer" parent="StatsUI/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32.58)
+layout_mode = 2
+
+[node name="might_label" type="RichTextLabel" parent="StatsUI/VBoxContainer/might_container"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("12_j5yyt")
+theme_override_font_sizes/normal_font_size = 33
+bbcode_enabled = true
+text = "MIGHT"
+metadata/_edit_use_anchors_ = true
+
+[node name="might_stat" type="RichTextLabel" parent="StatsUI/VBoxContainer/might_container"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("12_j5yyt")
+theme_override_font_sizes/normal_font_size = 33
+bbcode_enabled = true
+text = "23"
+metadata/_edit_use_anchors_ = true
+
+[node name="might_button" type="Button" parent="StatsUI/VBoxContainer/might_container"]
+layout_mode = 2
+text = "ADD"
+
+[node name="speed_container" type="HBoxContainer" parent="StatsUI/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32.58)
+layout_mode = 2
+
+[node name="speed_label" type="RichTextLabel" parent="StatsUI/VBoxContainer/speed_container"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("12_j5yyt")
+theme_override_font_sizes/normal_font_size = 33
+bbcode_enabled = true
+text = "SPEED"
+metadata/_edit_use_anchors_ = true
+
+[node name="speed_stat" type="RichTextLabel" parent="StatsUI/VBoxContainer/speed_container"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("12_j5yyt")
+theme_override_font_sizes/normal_font_size = 33
+bbcode_enabled = true
+text = "23"
+metadata/_edit_use_anchors_ = true
+
+[node name="speed_button" type="Button" parent="StatsUI/VBoxContainer/speed_container"]
+layout_mode = 2
+text = "ADD"
+
+[node name="tempo_container" type="HBoxContainer" parent="StatsUI/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32.58)
+layout_mode = 2
+
+[node name="tempo_label" type="RichTextLabel" parent="StatsUI/VBoxContainer/tempo_container"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("12_j5yyt")
+theme_override_font_sizes/normal_font_size = 33
+bbcode_enabled = true
+text = "TEMPO"
+metadata/_edit_use_anchors_ = true
+
+[node name="tempo_stat" type="RichTextLabel" parent="StatsUI/VBoxContainer/tempo_container"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("12_j5yyt")
+theme_override_font_sizes/normal_font_size = 33
+bbcode_enabled = true
+text = "23"
+metadata/_edit_use_anchors_ = true
+
+[node name="tempo_button" type="Button" parent="StatsUI/VBoxContainer/tempo_container"]
+layout_mode = 2
+text = "ADD"

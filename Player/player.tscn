@@ -173,4 +173,4 @@ one_shot = true
 
 [node name="BareWeapon" type="Node2D" parent="."]
 script = ExtResource("7_f82vo")
-projectile_config_ids = Array[String](["BW0"])
+projectile_config_ids = ["BW0"]
