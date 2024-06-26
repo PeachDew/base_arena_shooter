@@ -43,7 +43,7 @@ var configs : Dictionary = {
 		"speed": 100,
 		"damage": 5,
 		"max_pierce": 2,
-		"lifetime": 1.0,
+		"lifetime": 3.0,
 		"rotation": 0.0,
 		"start_delay": 0.0,
 	},
