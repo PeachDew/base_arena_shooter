@@ -9,7 +9,6 @@ var ui_manager
 var spawned_enemies := 0
 @onready var player = $World/Player
 
-
 func _ready() -> void:
 	ui_manager = $UIManager
 	items_manager = $ItemsManager

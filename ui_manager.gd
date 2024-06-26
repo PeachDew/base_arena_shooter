@@ -5,17 +5,31 @@ extends CanvasLayer
 @onready var pause_menu = $PauseMenu
 @onready var hp_bar = $HPBar
 @onready var loading = $LoadingUI
+
 @onready var stats_ui := $StatsUI
+@onready var stats_reset_button : Button  = $StatsUI/VBoxContainer/reset_and_available/reset_button
+@onready var stats_available_points : Label  = $StatsUI/VBoxContainer/reset_and_available/available_label
+@onready var stats_vigor_button : Button  = $StatsUI/VBoxContainer/vigor_hbox_container/stat_button
+@onready var stats_might_button : Button = $StatsUI/VBoxContainer/might_hbox_container/stat_button
+@onready var stats_speed_button : Button = $StatsUI/VBoxContainer/speed_hbox_container/stat_button
+@onready var stats_tempo_button : Button = $StatsUI/VBoxContainer/tempo_hbox_container/stat_button
+
+@onready var stats_vigor_number : Label = $StatsUI/VBoxContainer/vigor_hbox_container/stat_number
+@onready var stats_might_number : Label = $StatsUI/VBoxContainer/might_hbox_container/stat_number
+@onready var stats_speed_number : Label = $StatsUI/VBoxContainer/speed_hbox_container/stat_number
+@onready var stats_tempo_number : Label = $StatsUI/VBoxContainer/tempo_hbox_container/stat_number
 # STATS UI https://www.youtube.com/watch?v=mt48R7QB1F4&t=10s
 
 signal proceed_change_scene
+
+signal reset_button_pressed
+signal add_stat_button_pressed
 
 func _ready() -> void:
 	player.playerstats_manager.xp_change.connect(on_xp_change)
 	player.playerstats_manager.level_change.connect(on_level_change)
 	player.playerstats_manager.hp_change.connect(on_hp_change)
 	player.playerstats_manager.player_loaded.connect(on_player_loaded)
-	player.stat_change.connect(on_hp_change)
 	
 	loading.pause_world.connect(on_pause_world)
 	loading.unpause_world.connect(on_unpause_world)
@@ -28,6 +42,12 @@ func _ready() -> void:
 	stats_ui.position.x += width*1.5/10
 	stats_ui.position.y += height*6/10
 	disable_stats()
+	
+	stats_reset_button.pressed.connect(on_reset_button_pressed)
+	stats_vigor_button.pressed.connect(on_add_stats_button_pressed.bind("vigor"))
+	stats_might_button.pressed.connect(on_add_stats_button_pressed.bind("might"))
+	stats_speed_button.pressed.connect(on_add_stats_button_pressed.bind("speed"))
+	stats_tempo_button.pressed.connect(on_add_stats_button_pressed.bind("tempo"))
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("stats_ui"):
@@ -35,6 +55,32 @@ func _input(event: InputEvent) -> void:
 			enable_stats()
 		else:
 			disable_stats()
+			
+func on_reset_button_pressed():
+	reset_button_pressed.emit()
+
+func on_add_stats_button_pressed(stat: String):
+	add_stat_button_pressed.emit(stat)
+
+func set_stat_value(stat: String, stat_val):
+	var number_node
+	match stat:
+		"vigor":
+			number_node = stats_vigor_number
+		"might":
+			number_node = stats_might_number
+		"speed":
+			number_node = stats_speed_number
+		"tempo":
+			number_node = stats_tempo_number
+		"available_statpoints":
+			number_node = stats_available_points
+	
+	if number_node:
+		number_node.text = str(stat_val)
+	else:
+		print("SHOULD NOT HAPPEN ERROR: set_stat_value()")
+
 
 func enable_stats():
 	stats_ui.process_mode = Node.PROCESS_MODE_INHERIT

@@ -55,6 +55,8 @@ var loot_node_names : Array = [
 var loot_background_name := "LootUIBackground"
 
 @onready var inventoryui_node = $"../UIManager/InventoryUI"
+@onready var playerstats_manager = $"../PlayerStatManager"
+@onready var ui_manager = $"../UIManager"
 @onready var player = $"../World/Player"
 
 var player_on_lootbag := 0
@@ -66,6 +68,8 @@ var last_shown_lootbag : Area2D
 func _ready() -> void:
 	inventoryui_node.item_moved.connect(on_item_moved)
 	
+	if not playerstats_manager.is_node_ready():
+		await playerstats_manager.ready
 	put_item(ItemsDatabase.items["W01"], "WeaponSlot")
 	
 func _physics_process(_delta: float) -> void:
@@ -160,11 +164,22 @@ func check_empty_lootbag():
 			update_lootnodes(lootbags_in_contact_with_player[0])
 
 func empty_itemslot(slot_name):
+	var ex_item = inventory[slot_name]
 	inventory[slot_name] = null
 	inventoryui_node.get_node(str(slot_name)).texture = null
 	
 	if "Loot" in slot_name:
 		last_shown_lootbag.loot_dict[slot_name] = null
+		
+	if (("modifiers" in ex_item)
+	and ("Weapon" in slot_name 
+	or "Hat" in slot_name
+	or "Ability" in slot_name)):
+		for stat_modifier in ex_item.modifiers:
+			var stat_name = stat_modifier[0] 
+			var stat_change = -1 * stat_modifier[1]
+			playerstats_manager.change_total_stat(stat_name, stat_change)
+		playerstats_manager.update_stats_ui()
 	
 	if "Weapon" in slot_name:
 		player.clear_weapon()
@@ -174,6 +189,16 @@ func empty_itemslot(slot_name):
 		player.clear_ability()
 
 func put_item(item, slot_name):
+	if (("modifiers" in item)
+	and ("Weapon" in slot_name 
+	or "Hat" in slot_name
+	or "Ability" in slot_name)):
+		for stat_modifier in item.modifiers:
+			var stat_name = stat_modifier[0] 
+			var stat_change = stat_modifier[1]
+			playerstats_manager.change_total_stat(stat_name, stat_change)
+		playerstats_manager.update_stats_ui()
+		
 	if !inventory[slot_name]:
 		inventory[slot_name] = item
 		inventoryui_node.get_node(str(slot_name)).texture = item.sprite

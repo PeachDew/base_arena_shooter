@@ -16,7 +16,7 @@ var items:= {
 		"name": "Beggar's Hat",
 		"sprite": load("res://Art/loot/beggarhat.png"),
 		"type": 1,
-		"modifiers": [["max_hp", 1000], ["speed", 1000]]
+		"modifiers": [],
 	},
 	
 	# Weapons
@@ -25,7 +25,7 @@ var items:= {
 		"name": "Fire Staff",
 		"sprite": load("res://Art/loot/fire_staff.png"),
 		"type": 3,
-		"modifiers": [],
+		"modifiers": [["tempo", 10],["might",1]],
 		"projectile_config_ids" : ["F0"]
 	},
 	"W02": {

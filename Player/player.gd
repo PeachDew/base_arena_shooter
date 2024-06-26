@@ -39,8 +39,6 @@ var enemies_in_hurtbox := 0
 
 var last_autofiring_state = -1
 
-signal stat_change
-
 func _ready() -> void:
 	player_hurtbox.body_entered.connect(on_body_entered_player_hurtbox)
 	player_hurtbox.body_exited.connect(on_body_exited_player_hurtbox)
@@ -72,7 +70,7 @@ func take_damage(damage: float) -> void:
 	playerstats_manager.change_hp(-1*damage)
 	damageable = false
 	iframes_timer.start()
-			
+	
 func on_iframes_timer_timeout()->void:
 	damageable = true
 	
@@ -80,9 +78,6 @@ func add_weapon(weapon_item) -> void:
 	if equipped_weapon.get_child_count() > 0:
 		print("Player is already equipping weapon")
 	else:
-		if "modifiers" in weapon_item:
-			add_modifiers(weapon_item.modifiers)
-		
 		var new_weapon_instance: Weapon = Weapon.new()
 		new_weapon_instance.projectile_config_ids = weapon_item.projectile_config_ids
 		new_weapon_instance.add_projectile_child.connect(on_add_projectile_child)
@@ -96,7 +91,6 @@ func add_weapon(weapon_item) -> void:
 		bare_weapon.process_mode = Node.PROCESS_MODE_DISABLED
 
 func clear_weapon():
-	remove_modifiers(equipped_weapon_item.modifiers)
 	for n in equipped_weapon.get_children():
 		last_autofiring_state = n.auto_firing
 		equipped_weapon.remove_child(n)
@@ -110,9 +104,6 @@ func add_hat(hat_item) -> void:
 		print("Player is already equipping hat")
 	
 	else:
-		if "modifiers" in hat_item:
-			add_modifiers(hat_item.modifiers)
-			
 		if "packed_scene_path" in hat_item:
 			var new_player_hat : PackedScene = load(hat_item.packed_scene_path)
 			var new_player_hat_instance = new_player_hat.instantiate()
@@ -124,8 +115,6 @@ func add_ability(ability_item) -> void:
 		print("Player is already equipping ability")
 	
 	else:
-		if "modifiers" in ability_item:
-			add_modifiers(ability_item.modifiers)
 			
 		if "packed_scene_path" in ability_item:
 			var new_player_ability : PackedScene = load(ability_item.packed_scene_path)
@@ -134,37 +123,16 @@ func add_ability(ability_item) -> void:
 		equipped_ability_item = ability_item
 		
 func clear_hat():
-	remove_modifiers(equipped_hat_item.modifiers)
 	for n in equipped_hat.get_children():
 		equipped_hat.remove_child(n)
 		n.queue_free() 
 	equipped_hat_item = {}
 		
 func clear_ability():
-	remove_modifiers(equipped_ability_item.modifiers)
 	for n in equipped_ability.get_children():
 		equipped_ability.remove_child(n)
 		n.queue_free() 
 	equipped_ability_item = {}
-
-func add_modifiers(modifiers: Array):
-	for m in modifiers:
-		var m_name = m[0]
-		var m_amount = m[1]
-		print(get(m_name))		
-		set(m_name, get(m_name)+m_amount)
-		print(get(m_name))		
-	stat_change.emit()
-	
-func remove_modifiers(modifiers: Array):
-	for m in modifiers:
-		var m_name = m[0]
-		var m_amount = m[1]
-		print(get(m_name))
-		set(m_name, get(m_name)-m_amount)
-		print(get(m_name))
-	stat_change.emit()
-	
 
 
 

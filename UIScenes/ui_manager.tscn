@@ -102,120 +102,161 @@ stretch_mode = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="StatsUI"]
 layout_mode = 0
-offset_left = 16.0
-offset_top = 19.0
-offset_right = 279.0
-offset_bottom = 260.0
-theme_override_constants/separation = 35
+offset_left = 22.0
+offset_top = 13.0
+offset_right = 271.0
+offset_bottom = 266.0
+theme_override_constants/separation = 16
 
-[node name="vigor_container" type="HBoxContainer" parent="StatsUI/VBoxContainer"]
-custom_minimum_size = Vector2(0, 32.58)
+[node name="vigor_hbox_container" type="HBoxContainer" parent="StatsUI/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 
-[node name="vigor_label" type="RichTextLabel" parent="StatsUI/VBoxContainer/vigor_container"]
+[node name="stat_label" type="Label" parent="StatsUI/VBoxContainer/vigor_hbox_container"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_fonts/normal_font = ExtResource("12_j5yyt")
-theme_override_font_sizes/normal_font_size = 33
-bbcode_enabled = true
+tooltip_text = "THIS IS YOUR HEALTHY STAT!!"
+mouse_filter = 0
+theme_override_fonts/font = ExtResource("12_j5yyt")
+theme_override_font_sizes/font_size = 30
 text = "VIGOR"
+vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="vigor_stat" type="RichTextLabel" parent="StatsUI/VBoxContainer/vigor_container"]
+[node name="stat_number" type="Label" parent="StatsUI/VBoxContainer/vigor_hbox_container"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_fonts/normal_font = ExtResource("12_j5yyt")
-theme_override_font_sizes/normal_font_size = 33
-bbcode_enabled = true
+theme_override_fonts/font = ExtResource("12_j5yyt")
+theme_override_font_sizes/font_size = 30
 text = "23"
+horizontal_alignment = 1
+vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="vigor_button" type="Button" parent="StatsUI/VBoxContainer/vigor_container"]
+[node name="stat_button" type="Button" parent="StatsUI/VBoxContainer/vigor_hbox_container"]
 layout_mode = 2
-text = "ADD"
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("12_j5yyt")
+theme_override_font_sizes/font_size = 25
+text = " + "
 
-[node name="might_container" type="HBoxContainer" parent="StatsUI/VBoxContainer"]
-custom_minimum_size = Vector2(0, 32.58)
+[node name="might_hbox_container" type="HBoxContainer" parent="StatsUI/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 
-[node name="might_label" type="RichTextLabel" parent="StatsUI/VBoxContainer/might_container"]
+[node name="stat_label" type="Label" parent="StatsUI/VBoxContainer/might_hbox_container"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_fonts/normal_font = ExtResource("12_j5yyt")
-theme_override_font_sizes/normal_font_size = 33
-bbcode_enabled = true
+theme_override_fonts/font = ExtResource("12_j5yyt")
+theme_override_font_sizes/font_size = 30
 text = "MIGHT"
+vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="might_stat" type="RichTextLabel" parent="StatsUI/VBoxContainer/might_container"]
+[node name="stat_number" type="Label" parent="StatsUI/VBoxContainer/might_hbox_container"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_fonts/normal_font = ExtResource("12_j5yyt")
-theme_override_font_sizes/normal_font_size = 33
-bbcode_enabled = true
+theme_override_fonts/font = ExtResource("12_j5yyt")
+theme_override_font_sizes/font_size = 30
 text = "23"
+horizontal_alignment = 1
+vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="might_button" type="Button" parent="StatsUI/VBoxContainer/might_container"]
+[node name="stat_button" type="Button" parent="StatsUI/VBoxContainer/might_hbox_container"]
 layout_mode = 2
-text = "ADD"
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("12_j5yyt")
+theme_override_font_sizes/font_size = 25
+text = " + "
 
-[node name="speed_container" type="HBoxContainer" parent="StatsUI/VBoxContainer"]
-custom_minimum_size = Vector2(0, 32.58)
+[node name="speed_hbox_container" type="HBoxContainer" parent="StatsUI/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 
-[node name="speed_label" type="RichTextLabel" parent="StatsUI/VBoxContainer/speed_container"]
+[node name="stat_label" type="Label" parent="StatsUI/VBoxContainer/speed_hbox_container"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_fonts/normal_font = ExtResource("12_j5yyt")
-theme_override_font_sizes/normal_font_size = 33
-bbcode_enabled = true
+theme_override_fonts/font = ExtResource("12_j5yyt")
+theme_override_font_sizes/font_size = 30
 text = "SPEED"
+vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="speed_stat" type="RichTextLabel" parent="StatsUI/VBoxContainer/speed_container"]
+[node name="stat_number" type="Label" parent="StatsUI/VBoxContainer/speed_hbox_container"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_fonts/normal_font = ExtResource("12_j5yyt")
-theme_override_font_sizes/normal_font_size = 33
-bbcode_enabled = true
+theme_override_fonts/font = ExtResource("12_j5yyt")
+theme_override_font_sizes/font_size = 30
 text = "23"
+horizontal_alignment = 1
+vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="speed_button" type="Button" parent="StatsUI/VBoxContainer/speed_container"]
+[node name="stat_button" type="Button" parent="StatsUI/VBoxContainer/speed_hbox_container"]
 layout_mode = 2
-text = "ADD"
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("12_j5yyt")
+theme_override_font_sizes/font_size = 25
+text = " + "
 
-[node name="tempo_container" type="HBoxContainer" parent="StatsUI/VBoxContainer"]
-custom_minimum_size = Vector2(0, 32.58)
+[node name="tempo_hbox_container" type="HBoxContainer" parent="StatsUI/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+theme_override_constants/separation = 0
 
-[node name="tempo_label" type="RichTextLabel" parent="StatsUI/VBoxContainer/tempo_container"]
+[node name="stat_label" type="Label" parent="StatsUI/VBoxContainer/tempo_hbox_container"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_fonts/normal_font = ExtResource("12_j5yyt")
-theme_override_font_sizes/normal_font_size = 33
-bbcode_enabled = true
+theme_override_fonts/font = ExtResource("12_j5yyt")
+theme_override_font_sizes/font_size = 30
 text = "TEMPO"
+vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="tempo_stat" type="RichTextLabel" parent="StatsUI/VBoxContainer/tempo_container"]
+[node name="stat_number" type="Label" parent="StatsUI/VBoxContainer/tempo_hbox_container"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_fonts/normal_font = ExtResource("12_j5yyt")
-theme_override_font_sizes/normal_font_size = 33
-bbcode_enabled = true
+theme_override_fonts/font = ExtResource("12_j5yyt")
+theme_override_font_sizes/font_size = 30
 text = "23"
+horizontal_alignment = 1
+vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="tempo_button" type="Button" parent="StatsUI/VBoxContainer/tempo_container"]
+[node name="stat_button" type="Button" parent="StatsUI/VBoxContainer/tempo_hbox_container"]
 layout_mode = 2
-text = "ADD"
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("12_j5yyt")
+theme_override_font_sizes/font_size = 25
+text = " + "
+
+[node name="reset_and_available" type="HBoxContainer" parent="StatsUI/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 13
+
+[node name="available_label" type="Label" parent="StatsUI/VBoxContainer/reset_and_available"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("12_j5yyt")
+theme_override_font_sizes/font_size = 30
+text = "5"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="reset_button" type="Button" parent="StatsUI/VBoxContainer/reset_and_available"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("12_j5yyt")
+theme_override_font_sizes/font_size = 20
+text = "RESET"
