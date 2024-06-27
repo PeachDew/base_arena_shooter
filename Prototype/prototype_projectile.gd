@@ -5,10 +5,10 @@ class_name Projectile
 # 0 = straight line
 # NOT IMPLEMENTED 1 = arc 
 var trajectory := 0
-var speed : float = -1
-var damage : float = -1
+var speed : float = -1.0
+var damage : float = -1.0
 var max_pierce : int = -1
-var lifetime : float = -1
+var lifetime : float = -1.0
 var curr_pierce := 0
 
 @onready var hurtbox : Area2D = $Projectile_Area2D

@@ -108,6 +108,7 @@ func on_xp_change()->void:
 func on_level_change()->void:
 	xp_bar.level_number.text = str(player.player_level)
 	
+	
 func on_hp_change()->void:
 	hp_bar.value = player.hp
 	hp_bar.max_value = player.max_hp

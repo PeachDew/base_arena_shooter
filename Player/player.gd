@@ -51,7 +51,14 @@ func _ready() -> void:
 func on_add_projectile_child(proj_instance):
 	add_child(proj_instance)
 	# make projectile a sibling so it has independent movement
+	
+	apply_might(proj_instance)
 	proj_instance.reparent(get_parent())
+
+func apply_might(proj_instance):
+	var might = PlayerStats.total_player_stats['might']
+	proj_instance.damage = proj_instance.damage * (1.0 + float(might)*2.0/100.0)
+
 	
 func _physics_process(_delta: float) -> void:
 	if damageable and enemies_in_hurtbox:

@@ -22,6 +22,8 @@ func add_xp(x: float) -> void:
 		player.max_xp = scale_xp(player.player_level)
 		player.player_level += 1
 		print("Now level "+str(player.player_level), " Current XP: ", str(player.cumulative_xp))
+		
+		# Add one stat point
 		level_change.emit()
 		
 func change_hp(x: float) -> void:
