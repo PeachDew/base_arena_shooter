@@ -27,7 +27,8 @@ func _physics_process(delta: float) -> void:
 	
 func shoot_if_can():
 	for i in range(len(test_timers)):
-		if test_timers[i] > projectile_configs[i].cooldown:
+		var cooldown_after_tempo = projectile_configs[i].cooldown - PlayerStats.get_tempo_bonus()
+		if test_timers[i] > cooldown_after_tempo:
 			fire_projectile_at_cursor(projectile_configs[i])
 			test_timers[i] = 0
 

@@ -17,6 +17,10 @@ func on_level_change():
 	PlayerStats.available_points += 1
 	update_stats_ui()
 
+func update_player_bonuses():
+	player.update_vigor_bonus()
+	player.update_speed_bonus()
+
 func on_uimanager_reset_button_pressed():
 	for key in PlayerStats.base_player_stats:
 		PlayerStats.available_points += PlayerStats.base_player_stats[key]
@@ -24,6 +28,7 @@ func on_uimanager_reset_button_pressed():
 		PlayerStats.base_player_stats[key] = 0
 	ui_manager.set_stat_value("available_statpoints", PlayerStats.available_points)
 	update_stats_ui()
+	update_player_bonuses()
 
 func on_uimanager_add_stat_button_pressed(stat):
 	if PlayerStats.available_points > 0:
@@ -31,7 +36,10 @@ func on_uimanager_add_stat_button_pressed(stat):
 		PlayerStats.total_player_stats[stat] += 1
 		ui_manager.set_stat_value(stat, PlayerStats.total_player_stats[stat])
 		PlayerStats.available_points -= 1
-		ui_manager.set_stat_value("available_statpoints", PlayerStats.available_points)
+		ui_manager.set_stat_value("available_statpoints", PlayerStats.available_points)	
+	
+	update_player_bonuses()	
+
 
 func update_stats_ui():
 	for key in PlayerStats.total_player_stats:

@@ -2,6 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 # Movement Stats
+@export var base_speed := 100.0
 @export var speed := 100.0
 @export var max_speed := 1000.0
 @export var acceleration_time := 0.2
@@ -15,6 +16,7 @@ extends CharacterBody2D
 @export var cumulative_xp := 0.0
 
 @export var hp := 100.0
+@export var base_max_hp := 100.0
 @export var max_hp := 100.0
 
 @export var iframes_seconds := 1.0
@@ -46,18 +48,23 @@ func _ready() -> void:
 	iframes_timer.wait_time = iframes_seconds
 	iframes_timer.timeout.connect(on_iframes_timer_timeout)
 	bare_weapon.add_projectile_child.connect(on_add_projectile_child)
+	
+	update_vigor_bonus()
+	update_speed_bonus()
 
+func update_vigor_bonus():
+	max_hp = base_max_hp + PlayerStats.get_vigor_bonus()
+	playerstats_manager.hp_change.emit()
+
+func update_speed_bonus():
+	speed = base_speed + PlayerStats.get_speed_bonus()
 
 func on_add_projectile_child(proj_instance):
 	add_child(proj_instance)
 	# make projectile a sibling so it has independent movement
 	
-	apply_might(proj_instance)
+	proj_instance.damage = PlayerStats.apply_might(proj_instance.damage)
 	proj_instance.reparent(get_parent())
-
-func apply_might(proj_instance):
-	var might = PlayerStats.total_player_stats['might']
-	proj_instance.damage = proj_instance.damage * (1.0 + float(might)*2.0/100.0)
 
 	
 func _physics_process(_delta: float) -> void:
