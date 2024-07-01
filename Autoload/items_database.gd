@@ -25,7 +25,7 @@ var items:= {
 		"name": "Fire Staff",
 		"sprite": load("res://Art/loot/fire_staff.png"),
 		"type": 3,
-		"modifiers": [["tempo", 10],["might",1]],
+		"modifiers": [["tempo", 3],["might", 1]],
 		"projectile_config_ids" : ["F0"]
 	},
 	"W02": {
@@ -33,7 +33,9 @@ var items:= {
 		"name": "Trainee's Blade",
 		"sprite": load("res://Art/loot/blades/traineesblade.png"),
 		"type": 3,
-		"modifiers": [],
+		"modifiers": [
+			["might",1],
+		],
 		"projectile_config_ids" : ["traineeblade"]
 	},
 	"W03": {
@@ -41,7 +43,9 @@ var items:= {
 		"name": "Trainee's Staff",
 		"sprite": load("res://Art/loot/blades/traineestwig.png"),
 		"type": 3,
-		"modifiers": [],
+		"modifiers": [
+			["tempo",1],
+		],
 		"projectile_config_ids" : ["traineestaff"]
 	},
 	"W04": {
@@ -49,7 +53,9 @@ var items:= {
 		"name": "Trainee's Bow",
 		"sprite": load("res://Art/loot/blades/traineesbow.png"),
 		"type": 3,
-		"modifiers": [],
+		"modifiers": [
+			["speed",1],
+		],
 		"projectile_config_ids" : ["traineebow"]
 	},
 	

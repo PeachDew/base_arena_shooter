@@ -21,6 +21,7 @@ LootTable="*res://Autoload/loot_table.gd"
 ItemsDatabase="*res://Autoload/items_database.gd"
 ProjectileConfigs="*res://Autoload/projectile_configs.gd"
 PlayerStats="*res://Autoload/playerstats.gd"
+AutoloadUI="*res://Autoload/autoload_ui.gd"
 
 [display]
 

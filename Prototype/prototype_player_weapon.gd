@@ -27,7 +27,7 @@ func _physics_process(delta: float) -> void:
 	
 func shoot_if_can():
 	for i in range(len(test_timers)):
-		var cooldown_after_tempo = projectile_configs[i].cooldown - PlayerStats.get_tempo_bonus()
+		var cooldown_after_tempo = projectile_configs[i].cooldown - PlayerStats.get_tempo_cooldown_bonus()
 		if test_timers[i] > cooldown_after_tempo:
 			fire_projectile_at_cursor(projectile_configs[i])
 			test_timers[i] = 0
@@ -37,8 +37,19 @@ func fire_projectile_at_cursor(projectile_config: Dictionary):
 	projectile_instance.speed = projectile_config.speed
 	
 	var mouse_direction := get_global_mouse_position() - global_position
-	projectile_instance.rotation = projectile_config.rotation + mouse_direction.angle()
 	
+	
+	projectile_instance.rotation = projectile_config.rotation + mouse_direction.angle()
+	if "spread_degrees" in projectile_config:
+		var random_radian_angle = randf_range(
+			-deg_to_rad(projectile_config.spread_degrees),
+			deg_to_rad(projectile_config.spread_degrees)
+		)
+		projectile_instance.rotation = (
+			random_radian_angle
+			+ projectile_instance.rotation
+		)
+		
 	projectile_instance.damage = projectile_config.damage
 	projectile_instance.max_pierce = projectile_config.max_pierce
 	projectile_instance.lifetime = projectile_config.lifetime

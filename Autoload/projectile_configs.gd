@@ -39,12 +39,13 @@ var configs : Dictionary = {
 	"F0": 
 	{
 		"projectile_packed_scene": load("res://Objects/Projectiles/ProjectilePackedScenes/firestaff_projectile.tscn"),
-		"cooldown": 0.1,
-		"speed": 100.0,
-		"damage": 5.0,
+		"cooldown": 0.22,
+		"speed": 200.0,
+		"damage": 2.0,
 		"max_pierce": 2,
 		"lifetime": 3.0,
 		"rotation": 0.0,
+		"spread_degrees": 30.0,
 		"start_delay": 0.0,
 	},
 	
@@ -57,6 +58,7 @@ var configs : Dictionary = {
 	"max_pierce": 0,
 	"lifetime": 2.5,
 	"rotation": 0.0,
+	"spread_degrees": 5,
 	"start_delay": 0.0,
 	},
 	
@@ -69,6 +71,7 @@ var configs : Dictionary = {
 	"max_pierce": 0,
 	"lifetime": 1.5,
 	"rotation": 0.0,
+	"spread_degrees": 8,
 	"start_delay": 0.0,
 	},
 	
@@ -81,6 +84,7 @@ var configs : Dictionary = {
 	"max_pierce": 0,
 	"lifetime": 0.7,
 	"rotation": 0.0,
+	"spread_degrees": 5,
 	"start_delay": 0.0,
 	},
 	

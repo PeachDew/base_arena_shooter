@@ -53,20 +53,25 @@ func _ready() -> void:
 	update_speed_bonus()
 
 func update_vigor_bonus():
-	max_hp = base_max_hp + PlayerStats.get_vigor_bonus()
+	max_hp = base_max_hp + PlayerStats.get_vigor_hp_bonus()
 	playerstats_manager.hp_change.emit()
 
 func update_speed_bonus():
-	speed = base_speed + PlayerStats.get_speed_bonus()
+	speed = base_speed + PlayerStats.get_speed_movementspeed_bonus()
+	
+func update_crit(proj_instance):
+	var crit_chance = PlayerStats.get_might_crit_bonus()
+	if randf() <= crit_chance:
+		proj_instance.damage *= 2.0
 
 func on_add_projectile_child(proj_instance):
 	add_child(proj_instance)
 	# make projectile a sibling so it has independent movement
 	
 	proj_instance.damage = PlayerStats.apply_might(proj_instance.damage)
+	update_crit(proj_instance)
 	proj_instance.reparent(get_parent())
 
-	
 func _physics_process(_delta: float) -> void:
 	if damageable and enemies_in_hurtbox:
 		take_damage(latest_incoming_damage)

@@ -8,6 +8,9 @@ class_name Enemy
 @export var loot_table := "common_monster"
 @export var roll_loot_num := 1
 
+@export var damage_number_y_offset := -50
+@export var damage_number_x_offset := -3
+
 @onready var curr_hp := max_hp
 @onready var hitbox := $EnemyHitbox
 @onready var enemy_hpbar := $EnemyHpBar
@@ -30,6 +33,10 @@ func _ready() -> void:
 	
 		
 func on_damaged(attack: Attack):
+	AutoloadUI.display_damage_number(
+		attack.damage, 
+		global_position + Vector2(damage_number_x_offset, damage_number_y_offset)
+	)
 	if curr_hp > 0:
 		curr_hp -= attack.damage
 		enemy_hp_change.emit(curr_hp)
