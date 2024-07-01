@@ -19,12 +19,15 @@ func display_damage_number(
 		
 		var color = "#FFF"
 		if is_critical:
-			color = "#B22"
+			color = "#ffc869"
+			damage_number_label.label_settings.outline_color = "#9c5800"			
+		else:
+			damage_number_label.label_settings.outline_color = "#000"
+			
 		
 		damage_number_label.label_settings.font_color = color
 		damage_number_label.label_settings.font = damage_font
 		damage_number_label.label_settings.font_size = 28
-		damage_number_label.label_settings.outline_color = "#000"
 		damage_number_label.label_settings.outline_size = 5
 		
 		call_deferred("add_child", damage_number_label)

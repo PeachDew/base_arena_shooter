@@ -18,8 +18,8 @@ extends Node
 func apply_might(num: float):
 	return num * (1.0 + float(total_player_stats['might'])*4.0/100.0)
 
-func get_might_crit_bonus():
-	return total_player_stats['might'] * 0.05
+func get_vigor_crit_bonus():
+	return total_player_stats['vigor'] * 0.05
 
 func get_vigor_hp_bonus():
 	return total_player_stats['vigor'] * 20.0

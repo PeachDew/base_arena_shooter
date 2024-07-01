@@ -11,6 +11,8 @@ var max_pierce : int = -1
 var lifetime : float = -1.0
 var curr_pierce := 0
 
+var is_crit = false
+
 @onready var hurtbox : Area2D = $Projectile_Area2D
 @onready var lifetime_timer : Timer = $Projectile_Lifetime_Timer
 
@@ -42,6 +44,7 @@ func on_hurtbox_area_entered(area):
 		
 		var attack := Attack.new()
 		attack.damage = damage
+		attack.is_crit = is_crit
 		# function take_damage emits "damaged" signal
 		area.take_damage(attack)
 		

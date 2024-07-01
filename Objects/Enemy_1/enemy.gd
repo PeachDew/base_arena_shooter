@@ -35,7 +35,8 @@ func _ready() -> void:
 func on_damaged(attack: Attack):
 	AutoloadUI.display_damage_number(
 		attack.damage, 
-		global_position + Vector2(damage_number_x_offset, damage_number_y_offset)
+		global_position + Vector2(damage_number_x_offset, damage_number_y_offset),
+		attack.is_crit
 	)
 	if curr_hp > 0:
 		curr_hp -= attack.damage

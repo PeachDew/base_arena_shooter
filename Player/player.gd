@@ -60,9 +60,10 @@ func update_speed_bonus():
 	speed = base_speed + PlayerStats.get_speed_movementspeed_bonus()
 	
 func update_crit(proj_instance):
-	var crit_chance = PlayerStats.get_might_crit_bonus()
+	var crit_chance = PlayerStats.get_vigor_crit_bonus()
 	if randf() <= crit_chance:
 		proj_instance.damage *= 2.0
+		proj_instance.is_crit = true
 
 func on_add_projectile_child(proj_instance):
 	add_child(proj_instance)
