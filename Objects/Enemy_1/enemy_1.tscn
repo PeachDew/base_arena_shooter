@@ -1,7 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://h10owepq4qt2"]
+[gd_scene load_steps=28 format=3 uid="uid://h10owepq4qt2"]
 
 [ext_resource type="Texture2D" uid="uid://d3jesry654ryr" path="res://Art/dino/DinoSprites - vita.png" id="1_6p4aw"]
 [ext_resource type="Script" path="res://Objects/Enemy_1/enemy.gd" id="1_esnu8"]
+[ext_resource type="Texture2D" uid="uid://dm38lg58210ju" path="res://Art/characters/monsters/plooty/plooty.png" id="2_g06l0"]
 [ext_resource type="Script" path="res://Objects/Enemy_1/enemy_1_hitbox.gd" id="2_oeg23"]
 [ext_resource type="Script" path="res://Objects/Enemy_1/enemy_animation.gd" id="3_edr4y"]
 [ext_resource type="Script" path="res://Objects/health_bar.gd" id="4_omui4"]
@@ -10,6 +11,22 @@
 [ext_resource type="Script" path="res://Objects/Enemy_1/enemy_movement.gd" id="7_gstmp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xqpvs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_npxla"]
+atlas = ExtResource("2_g06l0")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jf2ba"]
+atlas = ExtResource("2_g06l0")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wribo"]
+atlas = ExtResource("2_g06l0")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbqsj"]
+atlas = ExtResource("2_g06l0")
+region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aq7jx"]
 atlas = ExtResource("1_6p4aw")
@@ -55,6 +72,23 @@ region = Rect2(216, 0, 24, 24)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_npxla")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jf2ba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wribo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbqsj")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_aq7jx")
 }, {
 "duration": 1.0,
@@ -67,7 +101,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_hk483")
 }],
 "loop": true,
-"name": &"idle",
+"name": &"idleold",
 "speed": 8.0
 }, {
 "frames": [{
@@ -112,8 +146,9 @@ scale = Vector2(0.545, 0.545)
 shape = SubResource("CapsuleShape2D_xqpvs")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_vrvxy")
-animation = &"walk"
+animation = &"idle"
 autoplay = "idle"
 speed_scale = 1.36
 script = ExtResource("3_edr4y")
