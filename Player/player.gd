@@ -25,11 +25,13 @@ extends CharacterBody2D
 @onready var playerstats_manager := $PlayerStatsManager
 @onready var player_hurtbox := $PlayerHurtbox
 @onready var iframes_timer := $IFrames_Timer
+@onready var player_animation := $PlayerAnimation
 
 @onready var equipped_hat := $EquippedHat
 @onready var equipped_ability := $EquippedAbility
 @onready var equipped_weapon := $EquippedWeapon
 @onready var bare_weapon := $BareWeapon
+@onready var firing_position := $PlayerCenter/FiringPosition
 
 @export var equipped_hat_item := {}
 @export var equipped_ability_item := {}
@@ -66,12 +68,16 @@ func update_crit(proj_instance):
 		proj_instance.is_crit = true
 
 func on_add_projectile_child(proj_instance):
-	add_child(proj_instance)
-	# make projectile a sibling so it has independent movement
-	
 	proj_instance.damage = PlayerStats.apply_might(proj_instance.damage)
 	update_crit(proj_instance)
+	
+	add_child(proj_instance)
+	proj_instance.global_position = firing_position.global_position
+	# make projectile a sibling so it has independent movement
 	proj_instance.reparent(get_parent())
+
+func update_animation_speed():
+	player_animation.update_animation_speed()
 
 func _physics_process(_delta: float) -> void:
 	if damageable and enemies_in_hurtbox:

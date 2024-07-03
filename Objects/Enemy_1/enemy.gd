@@ -34,7 +34,7 @@ func _ready() -> void:
 		
 func on_damaged(attack: Attack):
 	AutoloadUI.display_damage_number(
-		attack.damage, 
+		int(attack.damage), 
 		global_position + Vector2(damage_number_x_offset, damage_number_y_offset),
 		attack.is_crit
 	)

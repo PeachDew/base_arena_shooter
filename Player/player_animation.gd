@@ -1,22 +1,46 @@
-extends Node
+extends Node2D
 
 @export var animated_sprite : AnimatedSprite2D
 @onready var player = get_owner()
 @onready var center = $"../PlayerCenter"
+@onready var firing_position = $"../PlayerCenter/FiringPosition"
 
 var blink_timer := 0.0
 var blink_interval := 0.09
-var is_visible := true
+var is_opaque := true
 
+var attack_animation_speed := 1.0
+var neutral_animation_speed := 1.0
+
+func _ready() -> void:
+	update_animation_speed()
+
+func update_animation_speed():
+	neutral_animation_speed = 1.0 + PlayerStats.get_speed_animation_bonus()
+	attack_animation_speed = 1.0 + PlayerStats.get_tempo_animation_bonus()
+	
 func _physics_process(_delta):
-	if player.velocity and center:
-		if player.velocity.x < 0:
-			center.scale.x = -1
-		else:
+	if Input.is_action_pressed("primary_fire"):
+		animated_sprite.set_speed_scale(attack_animation_speed)
+		if get_global_mouse_position().x > center.global_position.x:
 			center.scale.x = 1
-		animated_sprite.play("move")
+		else:
+			center.scale.x = -1
+		if player.velocity:
+			animated_sprite.play("attack_move")
+		else:
+			animated_sprite.play("attack")
 	else:
-		animated_sprite.play("idle")
+		animated_sprite.set_speed_scale(neutral_animation_speed)
+		if player.velocity and center:
+			if player.velocity.x < 0:
+				center.scale.x = -1
+			else:
+				center.scale.x = 1
+			animated_sprite.play("move")
+		else:
+			animated_sprite.play("idle")
+
 
 func _process(delta: float) -> void:
 	blink_timer += delta
@@ -24,8 +48,8 @@ func _process(delta: float) -> void:
 	if !player.damageable:
 		if blink_timer >= blink_interval:
 			blink_timer = 0.0
-			is_visible = !is_visible
-		if !is_visible:
+			is_opaque = !is_opaque
+		if !is_opaque:
 			animated_sprite.modulate.a = 0.5
 		else:
 			animated_sprite.modulate.a = 1

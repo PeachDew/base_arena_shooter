@@ -25,7 +25,28 @@ func get_vigor_hp_bonus():
 	return total_player_stats['vigor'] * 20.0
 
 func get_speed_movementspeed_bonus():
-	return total_player_stats['speed'] * 20.0
+	var base_multiplier = 15.0
+	var threshold = 20
+	var bonus
+	if total_player_stats['speed'] <= threshold:
+		bonus = total_player_stats['speed'] * base_multiplier
+	else:
+		var base_bonus = threshold * base_multiplier
+		var extra_levels = total_player_stats['speed'] - threshold
+		var diminishing_factor = 0.9  
+		var extra_bonus = (
+			base_multiplier 
+			* (1 - diminishing_factor**extra_levels) 
+			/ (1 - diminishing_factor)
+		)
+		bonus =  base_bonus + extra_bonus
+	return bonus
 	
 func get_tempo_cooldown_bonus():
-	return total_player_stats['tempo'] * 0.015
+	return total_player_stats['tempo'] * 0.004
+	
+func get_speed_animation_bonus():
+	return total_player_stats['speed'] * 0.01
+	
+func get_tempo_animation_bonus():
+	return total_player_stats['tempo'] * 0.03
