@@ -21,6 +21,7 @@ func update_player_bonuses():
 	player.update_vigor_bonus()
 	player.update_speed_bonus()
 	player.update_animation_speed()
+	PlayerStats.stat_updated.emit()
 
 func on_uimanager_reset_button_pressed():
 	for key in PlayerStats.base_player_stats:

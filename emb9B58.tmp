@@ -533,13 +533,11 @@ layer_0/tile_data = PackedInt32Array(655379, 393216, 4, 589843, 589824, 3, 52430
 [node name="FirstAreaPortal" parent="." instance=ExtResource("2_pfi31")]
 position = Vector2(0, -127.81)
 scale = Vector2(4, 4)
-disabled = false
 
 [node name="SecondAreaPortal" type="Area2D" parent="."]
 position = Vector2(106, -130)
 scale = Vector2(4, 4)
 script = ExtResource("4_gal47")
-stat_requirement = 10
 destination_scene_path = "res://second_area_name.tscn"
 metadata/_edit_group_ = true
 

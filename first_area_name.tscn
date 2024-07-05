@@ -8,8 +8,9 @@
 y_sort_enabled = true
 script = ExtResource("1_ji1j0")
 
-[node name="FirstAreaPortal" parent="." instance=ExtResource("2_wv5o3")]
+[node name="EmberlightPortal" parent="." instance=ExtResource("2_wv5o3")]
 position = Vector2(182, -108)
+disabled = false
 destination_scene_path = "res://emberlight.tscn"
 
 [node name="MonsterSpawner" parent="." instance=ExtResource("3_q3sog")]

@@ -15,6 +15,14 @@ extends Node
 	"tempo": 0
 }
 
+signal stat_updated
+
+func get_stat_sum():
+	var stats : int = 0
+	for k in total_player_stats:
+		stats += total_player_stats[k]
+	return stats
+
 func apply_might(num: float):
 	return num * (1.0 + float(total_player_stats['might'])*4.0/100.0)
 

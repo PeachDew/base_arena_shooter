@@ -29,7 +29,6 @@ func load_region(region_packed_scene_instance):
 		region_packed_scene_instance.send_player_to.connect(change_scene)
 		
 	if "player" in region_packed_scene_instance:
-		print("HAS PLAYER ATTRIBUTE")
 		region_packed_scene_instance.receive_player(player)
 
 	region_packed_scene_instance.child_entered_tree.connect(on_child_entered_region)
