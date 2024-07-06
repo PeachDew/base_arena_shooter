@@ -30,3 +30,4 @@ func receive_player(_pl):
 
 func on_PlayerStats_stat_updated():
 	check_portals_reqs()
+

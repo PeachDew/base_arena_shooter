@@ -522,6 +522,7 @@ y_sort_enabled = true
 script = ExtResource("1_8860g")
 
 [node name="TileMap" type="TileMap" parent="."]
+visible = false
 y_sort_enabled = true
 scale = Vector2(1.5, 1.5)
 tile_set = SubResource("TileSet_elqfi")
