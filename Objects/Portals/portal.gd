@@ -51,11 +51,17 @@ func add_portal_label():
 	if is_zero_approx(stat_requirement):
 		return null
 	var portal_req_label = Label.new()
-	#POSITOIN NOT WORKING!!
-	#portal_req_label.global_position = global_position
-	portal_req_label.text = str(stat_requirement)
+	
+	portal_req_label.position = position
+	
+	portal_req_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 
-	portal_req_label.z_index = 5 # in front of other sprites
+	portal_req_label.position.x -= portal_req_label.get_rect().size.x
+	portal_req_label.text = str(stat_requirement)
+	
+	portal_req_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+
+	portal_req_label.z_index = 6 # in front of other sprites
 	portal_req_label.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	
 	portal_req_label.label_settings = LabelSettings.new()
@@ -68,5 +74,7 @@ func add_portal_label():
 		
 	portal_req_label.label_settings.font_color = "#FFF"
 	
-	call_deferred("add_child", portal_req_label)
+	owner.call_deferred("add_child", portal_req_label)
+	print(portal_req_label.position)
+	print(portal_req_label.get_rect())
 	print("PORTAL LABEL ADDED")
