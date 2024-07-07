@@ -15,6 +15,8 @@ signal send_player_to
 @onready var portal_animated_sprite := $AnimatedSprite2D
 @onready var portal_label_font := load("res://Art/fonts/rainyhearts.ttf")
 
+var portal_req_label_node
+
 func _ready() -> void:
 	body_entered.connect(on_body_entered)
 	body_exited.connect(on_body_exited)
@@ -23,9 +25,14 @@ func _ready() -> void:
 	
 func _physics_process(delta: float) -> void:
 	if disabled:
+		if !portal_req_label_node:
+			add_portal_label()
 		modulate.v = 0.3
 		portal_animated_sprite.pause()
 	else:
+		if portal_req_label_node:
+			portal_req_label_node.queue_free()
+			portal_req_label_node = null
 		modulate.v = 1.0
 		if contains_player and curr_stay_time >= stay_time:
 			send_player_to.emit(destination_scene_path)
@@ -54,14 +61,17 @@ func add_portal_label():
 	
 	portal_req_label.position = position
 	
-	portal_req_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-
-	portal_req_label.position.x -= portal_req_label.get_rect().size.x
+	#CEMTERING LABEL OMGG
+	portal_req_label.grow_horizontal = Control.GROW_DIRECTION_BOTH
+	portal_req_label.anchor_left = 0.0
+	portal_req_label.anchor_right = 1.0
+	
+	portal_req_label.position.y -= 35
 	portal_req_label.text = str(stat_requirement)
 	
 	portal_req_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 
-	portal_req_label.z_index = 6 # in front of other sprites
+	portal_req_label.z_index = 5 # in front of other sprites
 	portal_req_label.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	
 	portal_req_label.label_settings = LabelSettings.new()
@@ -70,11 +80,9 @@ func add_portal_label():
 	
 	portal_req_label.label_settings.outline_color = "#000"
 	portal_req_label.label_settings.font_size = 17
-	portal_req_label.label_settings.outline_size = 3
+	portal_req_label.label_settings.outline_size = 1
 		
 	portal_req_label.label_settings.font_color = "#FFF"
+	portal_req_label_node = portal_req_label
 	
 	owner.call_deferred("add_child", portal_req_label)
-	print(portal_req_label.position)
-	print(portal_req_label.get_rect())
-	print("PORTAL LABEL ADDED")

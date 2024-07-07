@@ -539,9 +539,8 @@ disabled = false
 position = Vector2(106, -130)
 scale = Vector2(4, 4)
 script = ExtResource("4_gal47")
-stat_requirement = 10
+stat_requirement = 20
 destination_scene_path = "res://second_area_name.tscn"
-metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SecondAreaPortal"]
 sprite_frames = SubResource("SpriteFrames_m1k3l")
@@ -550,3 +549,12 @@ autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SecondAreaPortal"]
 shape = SubResource("CircleShape2D_22idg")
+
+[node name="Label" type="Label" parent="SecondAreaPortal"]
+anchors_preset = -1
+offset_left = -0.5
+offset_top = -11.5
+offset_right = 0.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
