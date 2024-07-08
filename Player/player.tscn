@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://hoc8wacnty4h"]
+[gd_scene load_steps=43 format=3 uid="uid://hoc8wacnty4h"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_rtain"]
 [ext_resource type="Texture2D" uid="uid://dl7lclc7wwoa6" path="res://Art/swim_art/1 Woodcutter/Idle.png" id="2_ms10f"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://Player/player_animation.gd" id="5_pmraa"]
 [ext_resource type="Script" path="res://Player/player_stats.gd" id="7_7e1x2"]
 [ext_resource type="Script" path="res://Prototype/prototype_player_weapon.gd" id="7_f82vo"]
+[ext_resource type="Script" path="res://hurtbox.gd" id="10_jcess"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ql0ih"]
 size = Vector2(17.8723, 29.7872)
@@ -240,12 +241,10 @@ size = Vector2(19, 31)
 radius = 66.3702
 
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(7.96, -6.475)
 collision_mask = 32
 script = ExtResource("1_rtain")
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
-position = Vector2(-7.46, 4.975)
 scale = Vector2(1.175, 1.175)
 shape = SubResource("RectangleShape2D_ql0ih")
 debug_color = Color(0.35258, 0.526266, 0.862807, 0.42)
@@ -258,23 +257,21 @@ script = ExtResource("5_pmraa")
 animated_sprite = NodePath("../PlayerCenter/AnimatedSprite2D")
 
 [node name="PlayerCenter" type="Marker2D" parent="."]
-position = Vector2(-7.395, 6.305)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PlayerCenter"]
-position = Vector2(-2.65, -0.305)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_1g71b")
 animation = &"attack_move"
 autoplay = "idle"
 
 [node name="FiringPosition" type="Marker2D" parent="PlayerCenter"]
-position = Vector2(10.395, -0.305)
+position = Vector2(16, 0)
 
 [node name="PlayerHurtbox" type="Area2D" parent="."]
 collision_mask = 12
+script = ExtResource("10_jcess")
 
 [node name="PlayerHurtboxCollisionShape" type="CollisionShape2D" parent="PlayerHurtbox"]
-position = Vector2(-7.46, 4.975)
 shape = SubResource("RectangleShape2D_0lgdj")
 
 [node name="PlayerStatsManager" type="Node" parent="."]
@@ -287,7 +284,6 @@ gravity_space_override = 1
 gravity_point = true
 
 [node name="PickupGravityCollision" type="CollisionShape2D" parent="PickupGravity"]
-position = Vector2(-7.96, 6.475)
 shape = SubResource("CircleShape2D_t7fct")
 debug_color = Color(0.982741, 0.0516402, 0.30941, 0.42)
 
@@ -295,11 +291,15 @@ debug_color = Color(0.982741, 0.0516402, 0.30941, 0.42)
 one_shot = true
 
 [node name="EquippedWeapon" type="Node2D" parent="."]
+visible = false
 
 [node name="EquippedHat" type="Node2D" parent="."]
+visible = false
 
 [node name="EquippedAbility" type="Node2D" parent="."]
+visible = false
 
 [node name="BareWeapon" type="Node2D" parent="."]
+visible = false
 script = ExtResource("7_f82vo")
 projectile_config_ids = ["BW0"]

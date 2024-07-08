@@ -45,7 +45,7 @@ var configs : Dictionary = {
 		"max_pierce": 2,
 		"lifetime": 3.0,
 		"rotation": 0.0,
-		"spread_degrees": 30.0,
+		"spread_degrees": 0.0,
 		"start_delay": 0.0,
 	},
 	
@@ -98,5 +98,18 @@ var configs : Dictionary = {
 		"lifetime": 0.8,
 		"rotation": 0.0,
 		"start_delay": 0.0,
-	}
+		
+	},
+	# Enemy Projectiles
+	"ET0" :
+	{
+		"projectile_packed_scene": load("res://Objects/EnemyProjectiles/enemy_projectile_test.tscn"),
+		"cooldown": 1.2,
+		"speed": 180.0,
+		"damage": 20.0,
+		"max_pierce": 0,
+		"lifetime": 1.0,
+		"rotation": 0.0,
+		"start_delay": 0.00,
+	},
 }

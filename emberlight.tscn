@@ -549,12 +549,3 @@ autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SecondAreaPortal"]
 shape = SubResource("CircleShape2D_22idg")
-
-[node name="Label" type="Label" parent="SecondAreaPortal"]
-anchors_preset = -1
-offset_left = -0.5
-offset_top = -11.5
-offset_right = 0.5
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2

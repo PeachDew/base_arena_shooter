@@ -40,8 +40,7 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 	
 func on_hurtbox_area_entered(area):
-	if area is Hitbox:
-		
+	if area is Hurtbox:
 		var attack := Attack.new()
 		attack.damage = damage
 		attack.is_crit = is_crit

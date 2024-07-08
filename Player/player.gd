@@ -32,18 +32,22 @@ extends CharacterBody2D
 @onready var equipped_weapon := $EquippedWeapon
 @onready var bare_weapon := $BareWeapon
 @onready var firing_position := $PlayerCenter/FiringPosition
+@onready var hurtbox := $PlayerHurtbox
 
 @export var equipped_hat_item := {}
 @export var equipped_ability_item := {}
 @export var equipped_weapon_item := {}
 
 var damageable = true
-var latest_incoming_damage:= 0.0
+var latest_incoming_attack : Attack
 var enemies_in_hurtbox := 0
 
 var last_autofiring_state = -1
 
 func _ready() -> void:
+	if hurtbox:
+		hurtbox.damaged.connect(take_damage)
+		
 	player_hurtbox.body_entered.connect(on_body_entered_player_hurtbox)
 	player_hurtbox.body_exited.connect(on_body_exited_player_hurtbox)
 	iframes_timer.one_shot = true
@@ -81,18 +85,19 @@ func update_animation_speed():
 
 func _physics_process(_delta: float) -> void:
 	if damageable and enemies_in_hurtbox:
-		take_damage(latest_incoming_damage)
+		take_damage(latest_incoming_attack)
 
 func on_body_entered_player_hurtbox(body)->void:
 	if body is Enemy:
-		latest_incoming_damage = body.contact_damage
+		latest_incoming_attack = body.contact_attack
 		enemies_in_hurtbox += 1
 		
 func on_body_exited_player_hurtbox(body)->void:
 	if body is Enemy:
 		enemies_in_hurtbox -= 1
 			
-func take_damage(damage: float) -> void:
+func take_damage(attack: Attack) -> void:
+	var damage = attack.damage
 	playerstats_manager.change_hp(-1*damage)
 	damageable = false
 	iframes_timer.start()
