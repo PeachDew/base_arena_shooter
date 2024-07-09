@@ -3,6 +3,7 @@ extends Node2D
 @onready var enemy_chase_radius : Area2D = $EnemyChaseRadius
 @onready var enemy_flip_marker : Marker2D = $EnemyFlipMarker
 @onready var enemy_attack_origin : Marker2D = $EnemyFlipMarker/EnemyAttackOrigin
+@onready var animated_sprite: AnimatedSprite2D = $EnemyFlipMarker/AnimatedSprite2D
 @onready var enemy_weapon : EnemyWeapon 
 
 @onready var enemy_attack_radius : Area2D
@@ -32,7 +33,14 @@ func _ready() -> void:
 		enemy_attack_radius.body_entered.connect(on_body_entered_enemy_attack_radius)
 		enemy_attack_radius.body_exited.connect(on_body_exited_enemy_attack_radius)
 		enemy_weapon.add_projectile_child.connect(on_add_projectile_child)
-	
+
+func handle_animation():
+	match state:
+		0:
+			animated_sprite.play("idle")
+		1:
+			animated_sprite.play("walk")
+		
 
 func _physics_process(_delta: float) -> void:
 	if state == 1:
@@ -42,6 +50,7 @@ func _physics_process(_delta: float) -> void:
 	elif state == 2:
 		attack_player()
 
+	handle_animation()
 	enemy_body.move_and_slide()
 		
 func on_body_entered_enemy_chase_radius(body):
@@ -87,7 +96,6 @@ func idle():
 func attack_player() -> void:
 	enemy_body.velocity = Vector2(0,0)
 	if attack_target:
-		
 		if attack_target.global_position.x > global_position.x:
 			enemy_flip_marker.scale.x = 1
 		else:
@@ -96,6 +104,8 @@ func attack_player() -> void:
 		print("THERE SHOULD BE AN ATTACK_TARGET CHECK ENEMYBEHAVIOR NODE")
 		
 func on_add_projectile_child(proj_instance):
+	animated_sprite.frame = 0
+	animated_sprite.play("attack")
 	add_child(proj_instance)
 	proj_instance.reparent(owner)
 	proj_instance.global_position = enemy_attack_origin.global_position

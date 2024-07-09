@@ -1,11 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://dslf0csjihj25"]
 
 [ext_resource type="Script" path="res://Prototype/prototype_projectile.gd" id="1_to2h4"]
-[ext_resource type="Texture2D" uid="uid://0gquy8novl7q" path="res://Art/weapons/bullet.png" id="2_f2p80"]
+[ext_resource type="Texture2D" uid="uid://dymw7fa4j8k08" path="res://Art/misc/projectiles/plooty_ranged_proj.png" id="2_muq4m"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qupbi"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_la53c"]
 radius = 4.0
-height = 16.0
 
 [node name="EnemyProjectile" type="CharacterBody2D"]
 script = ExtResource("1_to2h4")
@@ -15,10 +14,9 @@ collision_layer = 8
 
 [node name="ProjectileHurtbox" type="CollisionShape2D" parent="Projectile_Area2D"]
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_qupbi")
+shape = SubResource("CircleShape2D_la53c")
 
 [node name="ProjectileSprite" type="Sprite2D" parent="Projectile_Area2D"]
-rotation = 1.5708
-texture = ExtResource("2_f2p80")
+texture = ExtResource("2_muq4m")
 
 [node name="Projectile_Lifetime_Timer" type="Timer" parent="."]

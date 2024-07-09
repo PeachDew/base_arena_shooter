@@ -1,11 +1,11 @@
-[gd_scene load_steps=35 format=3 uid="uid://dft13hdivyxcp"]
+[gd_scene load_steps=38 format=3 uid="uid://dft13hdivyxcp"]
 
 [ext_resource type="Script" path="res://Objects/Enemy_1/enemy.gd" id="1_2rjvy"]
 [ext_resource type="Texture2D" uid="uid://dm38lg58210ju" path="res://Art/characters/monsters/plooty/plooty.png" id="2_5kk38"]
 [ext_resource type="Texture2D" uid="uid://d3jesry654ryr" path="res://Art/dino/DinoSprites - vita.png" id="3_7op41"]
 [ext_resource type="Texture2D" uid="uid://h2xnh1nk3yo1" path="res://Art/characters/monsters/plooty/plooty_move.png" id="4_3bact"]
-[ext_resource type="Script" path="res://Objects/Enemy_1/enemy_animation.gd" id="5_twgjk"]
 [ext_resource type="Script" path="res://Objects/Enemy_1/enemy_1_hitbox.gd" id="6_r0vg0"]
+[ext_resource type="Texture2D" uid="uid://dmtthvhcuwmyx" path="res://Art/characters/monsters/plooty/plooty_green_attack.png" id="7_fa84a"]
 [ext_resource type="Texture2D" uid="uid://dioi1q8e5un3a" path="res://Art/ui/Over_hp.png" id="7_wkcm4"]
 [ext_resource type="Texture2D" uid="uid://cucqo7hsarkgk" path="res://Art/ui/progress.png" id="8_bx545"]
 [ext_resource type="Script" path="res://Objects/health_bar.gd" id="9_v8mj0"]
@@ -22,6 +22,18 @@ radius = 14.455
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ftjju"]
 radius = 47.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jdxvm"]
+atlas = ExtResource("7_fa84a")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wrgjs"]
+atlas = ExtResource("7_fa84a")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fhlhj"]
+atlas = ExtResource("7_fa84a")
+region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_npxla"]
 atlas = ExtResource("2_5kk38")
@@ -93,6 +105,20 @@ region = Rect2(216, 0, 24, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_uaahh"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jdxvm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wrgjs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fhlhj")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_npxla")
@@ -224,10 +250,11 @@ debug_color = Color(0.709177, 0.481276, 0.201482, 0.42)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemyBehavior/EnemyFlipMarker"]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_uaahh")
-animation = &"walk"
+animation = &"attack"
 autoplay = "idle"
+frame = 2
+frame_progress = 1.0
 speed_scale = 1.36
-script = ExtResource("5_twgjk")
 
 [node name="EnemyAttackOrigin" type="Marker2D" parent="EnemyBehavior/EnemyFlipMarker"]
 position = Vector2(9.5, -3)

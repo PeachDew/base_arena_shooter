@@ -104,7 +104,7 @@ var configs : Dictionary = {
 	"ET0" :
 	{
 		"projectile_packed_scene": load("res://Objects/EnemyProjectiles/enemy_projectile_test.tscn"),
-		"cooldown": 1.2,
+		"cooldown": 0.3,
 		"speed": 180.0,
 		"damage": 20.0,
 		"max_pierce": 0,
