@@ -37,6 +37,10 @@ folder_colors={
 "res://Saves/": "yellow"
 }
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 move_left={

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2ovanbruwvg7"
-path="res://.godot/imported/mockup_blue.png-eead56daa8284014b8b6c0c091116b14.ctex"
+uid="uid://dqpv1r0ursoa5"
+path="res://.godot/imported/tileset - simplified transparent.png-00ed60911ab3e71a7c7c8f2007c8ba42.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Free CC0 Top Down Tileset Pixel Art/Mockups/mockup_blue.png"
-dest_files=["res://.godot/imported/mockup_blue.png-eead56daa8284014b8b6c0c091116b14.ctex"]
+source_file="res://Art/tilemap/Hana_Caraka_Cozy_Island/tileset - simplified transparent.png"
+dest_files=["res://.godot/imported/tileset - simplified transparent.png-00ed60911ab3e71a7c7c8f2007c8ba42.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbrngr5dd0prr"
-path="res://.godot/imported/mockup_purple.png-f3f199bdd7a6c69028e9aa4683e1f488.ctex"
+uid="uid://cf2gps100jlgq"
+path="res://.godot/imported/tileset_full.png-1693884d245dd92a39a271ae24199412.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Free CC0 Top Down Tileset Pixel Art/Mockups/mockup_purple.png"
-dest_files=["res://.godot/imported/mockup_purple.png-f3f199bdd7a6c69028e9aa4683e1f488.ctex"]
+source_file="res://Art/tilemap/Free CC0 Top Down Tileset Pixel Art/Tilesets/tileset_full.png"
+dest_files=["res://.godot/imported/tileset_full.png-1693884d245dd92a39a271ae24199412.ctex"]
 
 [params]
 

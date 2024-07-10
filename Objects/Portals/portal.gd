@@ -1,7 +1,7 @@
 extends Area2D
 class_name Portal
 
-var stay_time := 3.0
+@export var stay_time := 1.0
 var curr_stay_time := 0.0
 var contains_player := false
 

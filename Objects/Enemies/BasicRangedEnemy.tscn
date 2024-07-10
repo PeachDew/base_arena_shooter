@@ -1,15 +1,15 @@
 [gd_scene load_steps=38 format=3 uid="uid://dft13hdivyxcp"]
 
-[ext_resource type="Script" path="res://Objects/Enemy_1/enemy.gd" id="1_2rjvy"]
+[ext_resource type="Script" path="res://Objects/Enemies/enemy.gd" id="1_fyo1u"]
 [ext_resource type="Texture2D" uid="uid://dm38lg58210ju" path="res://Art/characters/monsters/plooty/plooty.png" id="2_5kk38"]
+[ext_resource type="Script" path="res://Objects/Enemies/enemy_hitbox.gd" id="2_lh4dc"]
 [ext_resource type="Texture2D" uid="uid://d3jesry654ryr" path="res://Art/dino/DinoSprites - vita.png" id="3_7op41"]
 [ext_resource type="Texture2D" uid="uid://h2xnh1nk3yo1" path="res://Art/characters/monsters/plooty/plooty_move.png" id="4_3bact"]
-[ext_resource type="Script" path="res://Objects/Enemy_1/enemy_1_hitbox.gd" id="6_r0vg0"]
+[ext_resource type="Script" path="res://Objects/Enemies/enemy_behavior.gd" id="6_j2dwf"]
 [ext_resource type="Texture2D" uid="uid://dmtthvhcuwmyx" path="res://Art/characters/monsters/plooty/plooty_green_attack.png" id="7_fa84a"]
 [ext_resource type="Texture2D" uid="uid://dioi1q8e5un3a" path="res://Art/ui/Over_hp.png" id="7_wkcm4"]
 [ext_resource type="Texture2D" uid="uid://cucqo7hsarkgk" path="res://Art/ui/progress.png" id="8_bx545"]
 [ext_resource type="Script" path="res://Objects/health_bar.gd" id="9_v8mj0"]
-[ext_resource type="Script" path="res://Objects/Enemy_1/enemy_movement.gd" id="10_rd0oa"]
 [ext_resource type="Script" path="res://Objects/Enemies/EnemyWeapon.gd" id="11_88cx0"]
 [ext_resource type="Script" path="res://hurtbox.gd" id="12_yurcs"]
 
@@ -195,7 +195,7 @@ animations = [{
 scale = Vector2(2, 2)
 collision_layer = 4
 collision_mask = 0
-script = ExtResource("1_2rjvy")
+script = ExtResource("1_fyo1u")
 
 [node name="FloorCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5.94)
@@ -206,7 +206,7 @@ shape = SubResource("CapsuleShape2D_8beuv")
 [node name="EnemyHitbox" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 0
-script = ExtResource("6_r0vg0")
+script = ExtResource("2_lh4dc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitbox"]
 scale = Vector2(1.215, 1.215)
@@ -223,8 +223,7 @@ texture_progress = ExtResource("8_bx545")
 script = ExtResource("9_v8mj0")
 
 [node name="EnemyBehavior" type="Node2D" parent="."]
-script = ExtResource("10_rd0oa")
-ranged = true
+script = ExtResource("6_j2dwf")
 
 [node name="EnemyChaseRadius" type="Area2D" parent="EnemyBehavior"]
 visible = false

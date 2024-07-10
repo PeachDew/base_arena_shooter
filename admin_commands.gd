@@ -1,7 +1,6 @@
 extends Node2D
 
 var enemy1_scene : PackedScene = preload("res://Objects/Enemies/BasicRangedEnemy.tscn")
-var enemy2_scene : PackedScene = preload("res://Objects/Enemy_2/enemy_2.tscn")
 
 var items_manager : ItemsManager
 var ui_manager

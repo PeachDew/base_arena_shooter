@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2o6d6aio1j46"
-path="res://.godot/imported/tileset_blue.png-f5a3929562b5a847c758f8d263155ec5.ctex"
+uid="uid://c62f38klbs3uo"
+path="res://.godot/imported/mockup_brown.png-6aedc948a1de14f161a485e2591ddf81.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Free CC0 Top Down Tileset Pixel Art/Tilesets/tileset_blue.png"
-dest_files=["res://.godot/imported/tileset_blue.png-f5a3929562b5a847c758f8d263155ec5.ctex"]
+source_file="res://Art/tilemap/Free CC0 Top Down Tileset Pixel Art/Mockups/mockup_brown.png"
+dest_files=["res://.godot/imported/mockup_brown.png-6aedc948a1de14f161a485e2591ddf81.ctex"]
 
 [params]
 

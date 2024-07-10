@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cyxmb30t5hut7"
-path="res://.godot/imported/cover700x400.png-f80b3df0a42b7847ee1a72d73cd3a8dd.ctex"
+uid="uid://xgkdpb58nkge"
+path="res://.godot/imported/props.png-37f60f55379bb7219396c087cf8c0321.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Free CC0 Top Down Tileset Pixel Art/Mockups/cover700x400.png"
-dest_files=["res://.godot/imported/cover700x400.png-f80b3df0a42b7847ee1a72d73cd3a8dd.ctex"]
+source_file="res://Art/tilemap/Hana_Caraka_Cozy_Island/props.png"
+dest_files=["res://.godot/imported/props.png-37f60f55379bb7219396c087cf8c0321.ctex"]
 
 [params]
 
