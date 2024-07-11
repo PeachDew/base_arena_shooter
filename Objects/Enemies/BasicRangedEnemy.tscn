@@ -18,10 +18,10 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_nh1ot"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nvdhg"]
-radius = 14.455
+radius = 20.5755
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ftjju"]
-radius = 47.0
+radius = 79.1581
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jdxvm"]
 atlas = ExtResource("7_fa84a")
@@ -192,7 +192,6 @@ animations = [{
 }]
 
 [node name="BasicRangedEnemy" type="CharacterBody2D"]
-scale = Vector2(2, 2)
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_fyo1u")
@@ -224,9 +223,9 @@ script = ExtResource("9_v8mj0")
 
 [node name="EnemyBehavior" type="Node2D" parent="."]
 script = ExtResource("6_j2dwf")
+ranged = true
 
 [node name="EnemyChaseRadius" type="Area2D" parent="EnemyBehavior"]
-visible = false
 modulate = Color(0.895674, 0.498548, 0.465915, 1)
 scale = Vector2(1.47, 1.47)
 collision_layer = 0
@@ -237,7 +236,6 @@ shape = SubResource("CircleShape2D_nvdhg")
 debug_color = Color(0.783868, 0.333588, 0.710875, 0.42)
 
 [node name="EnemyAttackRadius" type="Area2D" parent="EnemyBehavior"]
-visible = false
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyBehavior/EnemyAttackRadius"]
@@ -260,6 +258,7 @@ position = Vector2(9.5, -3)
 
 [node name="EnemyWeapon" type="Node2D" parent="EnemyBehavior"]
 script = ExtResource("11_88cx0")
+projectile_config_ids = Array[String](["ET0"])
 
 [node name="EnemyHurtbox" type="Area2D" parent="."]
 collision_layer = 4

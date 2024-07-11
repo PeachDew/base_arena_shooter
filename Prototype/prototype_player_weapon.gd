@@ -36,10 +36,7 @@ func fire_projectile_at_cursor(projectile_config: Dictionary):
 	var projectile_instance = projectile_config.projectile_packed_scene.instantiate()
 	projectile_instance.speed = projectile_config.speed
 	
-	var mouse_direction := get_global_mouse_position() - global_position
-	
-	
-	projectile_instance.rotation = projectile_config.rotation + mouse_direction.angle()
+	projectile_instance.rotation = projectile_config.rotation 
 	if "spread_degrees" in projectile_config:
 		var random_radian_angle = randf_range(
 			-deg_to_rad(projectile_config.spread_degrees),

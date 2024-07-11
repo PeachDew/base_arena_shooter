@@ -1,7 +1,7 @@
 extends Node2D
 class_name EnemyWeapon
 
-@export var projectile_config_ids : Array
+@export var projectile_config_ids : Array[String]
 
 var projectile_configs := []
 
@@ -18,6 +18,10 @@ var player_target
 var test_timers : Array = []
 
 func initialise_configs():
+	if len(projectile_config_ids) == 0:
+		print("ERROR Initialising config for ranged enemy weapon: len(projectile_config_ids) is 0.")
+		return 0
+		
 	for id in projectile_config_ids:
 		projectile_configs.append(ProjectileConfigs.configs[id])
 		test_timers.append(0)

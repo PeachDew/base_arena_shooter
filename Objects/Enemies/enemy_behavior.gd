@@ -28,8 +28,8 @@ func _ready() -> void:
 	if ranged:
 		enemy_attack_radius = $EnemyAttackRadius
 		enemy_weapon = $EnemyWeapon
-		enemy_weapon.projectile_config_ids = ["ET0"]
-		enemy_weapon.initialise_configs()
+		#enemy_weapon.projectile_config_ids = ["ET0"]
+		#enemy_weapon.initialise_configs()
 		enemy_attack_radius.body_entered.connect(on_body_entered_enemy_attack_radius)
 		enemy_attack_radius.body_exited.connect(on_body_exited_enemy_attack_radius)
 		enemy_weapon.add_projectile_child.connect(on_add_projectile_child)
@@ -106,8 +106,10 @@ func attack_player() -> void:
 func on_add_projectile_child(proj_instance):
 	animated_sprite.frame = 0
 	animated_sprite.play("attack")
-	add_child(proj_instance)
-	proj_instance.reparent(owner)
+	# owner is BasicRangedEnemy, 
+	# parent of owner will spawn bullet as sibling of enemy instance
+	owner.get_parent().add_child(proj_instance)
+	#proj_instance.reparent(owner)
 	proj_instance.global_position = enemy_attack_origin.global_position
 	var shoot_direction = attack_target.global_position - enemy_attack_origin.global_position
 	proj_instance.rotation += shoot_direction.angle()

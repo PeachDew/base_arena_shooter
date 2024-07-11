@@ -77,6 +77,8 @@ func on_add_projectile_child(proj_instance):
 	
 	add_child(proj_instance)
 	proj_instance.global_position = firing_position.global_position
+	var mouse_direction = get_global_mouse_position() - firing_position.global_position
+	proj_instance.rotation += mouse_direction.angle()
 	# make projectile a sibling so it has independent movement
 	proj_instance.reparent(get_parent())
 
