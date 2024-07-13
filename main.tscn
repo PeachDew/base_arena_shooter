@@ -6,8 +6,8 @@
 [ext_resource type="Script" path="res://Player/player_camera.gd" id="3_6tn4k"]
 [ext_resource type="PackedScene" uid="uid://du0adsu8h6e8m" path="res://HelperNodeScenes/enemy_manager.tscn" id="5_8dpcu"]
 [ext_resource type="PackedScene" uid="uid://58ntcl5jbx5o" path="res://UIScenes/ui_manager.tscn" id="6_gr5o2"]
-[ext_resource type="PackedScene" uid="uid://cg36f7ahykqxw" path="res://HelperNodeScenes/items_manager.tscn" id="7_s3ptg"]
 [ext_resource type="Script" path="res://player_stat_manager.gd" id="8_3ec8w"]
+[ext_resource type="Script" path="res://saves_manager.gd" id="9_yvu15"]
 
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
@@ -32,7 +32,8 @@ script = ExtResource("3_6tn4k")
 
 [node name="UIManager" parent="." instance=ExtResource("6_gr5o2")]
 
-[node name="ItemsManager" parent="." instance=ExtResource("7_s3ptg")]
-
 [node name="PlayerStatManager" type="Node" parent="."]
 script = ExtResource("8_3ec8w")
+
+[node name="SavesManager" type="Node" parent="."]
+script = ExtResource("9_yvu15")

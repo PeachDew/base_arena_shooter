@@ -22,12 +22,18 @@ ItemsDatabase="*res://Autoload/items_database.gd"
 ProjectileConfigs="*res://Autoload/projectile_configs.gd"
 PlayerStats="*res://Autoload/playerstats.gd"
 AutoloadUI="*res://Autoload/autoload_ui.gd"
+SaveSystem="*res://addons/save_system/save_system.gd"
+ItemsManager="*res://Autoload/items_manager.gd"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="canvas_items"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/save_system/plugin.cfg")
 
 [file_customization]
 

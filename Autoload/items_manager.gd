@@ -51,26 +51,26 @@ var loot_node_names : Array = [
 	"LootSlot6",
 ]
 
-var loot_background_name := "LootUIBackground"
-
-@onready var inventoryui_node = $"../UIManager/InventoryUI"
-@onready var playerstats_manager = $"../PlayerStatManager"
-@onready var ui_manager = $"../UIManager"
-@onready var player = $"../World/Player"
-
 var player_on_lootbag := 0
 var lootbags_in_contact_with_player := []
 var inv_active := false
 
 var last_shown_lootbag : Area2D
 
-func _ready() -> void:
-	inventoryui_node.item_moved.connect(on_item_moved)
-	
-	if not playerstats_manager.is_node_ready():
-		await playerstats_manager.ready
-	put_item(ItemsDatabase.items["W01"], "WeaponSlot")
-	
+signal change_inv_ui_texture
+signal update_stats
+signal update_stats_ui
+signal add_weapon
+signal clear_weapon
+signal add_hat
+signal clear_hat
+signal add_ability
+signal clear_ability
+signal enable_inv_sig
+signal disable_inv_sig
+signal enable_loot_sig
+signal disable_loot_sig
+
 func _physics_process(_delta: float) -> void:
 
 	if Input.is_action_just_pressed("inventory"): # SHOULD THIS BE IN ITEMSMANAGER
@@ -96,7 +96,7 @@ func on_playerbody_entered_lootbag(lootnode_info)->void:
 	lootbags_in_contact_with_player.append(lootnode_info.loot_node)
 	var loot_node = lootnode_info.loot_node
 	update_lootnodes(loot_node)
-	
+
 func update_lootnodes(loot_node):
 	last_shown_lootbag = loot_node
 	var loot_dict = loot_node.loot_dict
@@ -106,10 +106,11 @@ func update_lootnodes(loot_node):
 			if loot_item_id in ItemsDatabase.items:
 				var loot_item = ItemsDatabase.items[loot_item_id]
 				inventory[key] = loot_item
-				inventoryui_node.get_node(key).texture = loot_item.sprite
+				change_inv_ui_texture.emit(key, loot_item.sprite)
+				
 		else:
 			inventory[key] = null
-			inventoryui_node.get_node(key).texture = null
+			change_inv_ui_texture.emit(key, null)
 
 func on_playerbody_exited_lootbag(lootnode_info)->void:
 	player_on_lootbag -= 1
@@ -162,10 +163,11 @@ func check_empty_lootbag():
 		if len(lootbags_in_contact_with_player) > 0:
 			update_lootnodes(lootbags_in_contact_with_player[0])
 
+
 func empty_itemslot(slot_name):
 	var ex_item = inventory[slot_name]
 	inventory[slot_name] = null
-	inventoryui_node.get_node(str(slot_name)).texture = null
+	change_inv_ui_texture.emit(str(slot_name), null)
 	
 	if "Loot" in slot_name:
 		last_shown_lootbag.loot_dict[slot_name] = null
@@ -177,15 +179,14 @@ func empty_itemslot(slot_name):
 		for stat_modifier in ex_item.modifiers:
 			var stat_name = stat_modifier[0] 
 			var stat_change = -1 * stat_modifier[1]
-			playerstats_manager.change_total_stat(stat_name, stat_change)
-		playerstats_manager.update_stats_ui()
-	
+			update_stats.emit(stat_name, stat_change)
+			
 	if "Weapon" in slot_name:
-		player.clear_weapon()
+		clear_weapon.emit()
 	elif "Hat" in slot_name:
-		player.clear_hat()
+		clear_hat.emit()
 	elif "Ability" in slot_name:
-		player.clear_ability()
+		clear_ability.emit()
 
 func put_item(item, slot_name):
 	if (("modifiers" in item)
@@ -195,44 +196,38 @@ func put_item(item, slot_name):
 		for stat_modifier in item.modifiers:
 			var stat_name = stat_modifier[0] 
 			var stat_change = stat_modifier[1]
-			playerstats_manager.change_total_stat(stat_name, stat_change)
-		playerstats_manager.update_stats_ui()
+			
+			update_stats.emit(stat_name, stat_change)
+		update_stats_ui.emit()
 		
-	if !inventory[slot_name]:
+	if !inventory[slot_name]: # Slot is empty, proceed with putting
 		inventory[slot_name] = item
-		inventoryui_node.get_node(str(slot_name)).texture = item.sprite
+		change_inv_ui_texture.emit(str(slot_name), item.sprite)
 	else: 
 		print("ITEMS_MANAGER: WARNING: attempting to put_item into NON EMPTY slot.")
 	
-	if "Loot" in slot_name:
+	if "Loot" in slot_name: # Putting item into a lootbag
 		if last_shown_lootbag.loot_dict[slot_name]:
 			print("NEED TO INVESTIGATE: CANNOT OVERRIDE LOOT")
 		last_shown_lootbag.loot_dict[slot_name] = item.id
 	
 	if "Weapon" in slot_name:
-		player.add_weapon(item)
+		add_weapon.emit(item)
 	elif "Hat" in slot_name:
-		player.add_hat(item)
+		add_hat.emit(item)
 	elif "Ability" in slot_name:
-		player.add_ability(item)
+		add_ability.emit(item)
+
 
 func enable_inv():
-	inventoryui_node.process_mode = Node.PROCESS_MODE_INHERIT
-	inventoryui_node.show()
+	enable_inv_sig.emit()
 
 func disable_inv():
-	inventoryui_node.process_mode = Node.PROCESS_MODE_DISABLED
-	inventoryui_node.hide()
+	disable_inv_sig.emit()
 
 func disable_loot_ui():
-	inventoryui_node.get_node(loot_background_name).hide()
-	for lnames in loot_node_names:
-		inventoryui_node.get_node(lnames).set_process(PROCESS_MODE_DISABLED)
-		inventoryui_node.get_node(lnames).hide()
+	disable_loot_sig.emit()
 		
 func enable_loot_ui():
-	inventoryui_node.get_node(loot_background_name).show()
-	for lnames in loot_node_names:
-		inventoryui_node.get_node(lnames).set_process(PROCESS_MODE_INHERIT)
-		inventoryui_node.get_node(lnames).show()
+	enable_loot_sig.emit()
 

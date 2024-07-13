@@ -6,6 +6,8 @@ extends CanvasLayer
 @onready var hp_bar = $HPBar
 @onready var loading = $LoadingUI
 
+@onready var inv_ui = $InventoryUI
+
 @onready var stats_ui := $StatsUI
 @onready var stats_reset_button : Button  = $StatsUI/VBoxContainer/reset_and_available/reset_button
 @onready var stats_available_points : Label  = $StatsUI/VBoxContainer/reset_and_available/available_label
@@ -34,6 +36,9 @@ func _ready() -> void:
 	loading.pause_world.connect(on_pause_world)
 	loading.unpause_world.connect(on_unpause_world)
 	
+	ItemsManager.enable_inv_sig.connect(on_enable_inv_sig)
+	ItemsManager.disable_inv_sig.connect(on_disable_inv_sig)
+	
 	on_player_loaded()
 	
 	var width = stats_ui.get_viewport_rect().size[0]
@@ -48,6 +53,16 @@ func _ready() -> void:
 	stats_might_button.pressed.connect(on_add_stats_button_pressed.bind("might"))
 	stats_speed_button.pressed.connect(on_add_stats_button_pressed.bind("speed"))
 	stats_tempo_button.pressed.connect(on_add_stats_button_pressed.bind("tempo"))
+	
+
+
+func on_enable_inv_sig():
+	inv_ui.process_mode = Node.PROCESS_MODE_INHERIT
+	inv_ui.show()
+
+func on_disable_inv_sig():
+	inv_ui.process_mode = Node.PROCESS_MODE_DISABLED
+	inv_ui.hide()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("stats_ui"):
@@ -102,20 +117,20 @@ func _physics_process(_delta: float) -> void:
 		get_tree().paused = true
 
 func on_xp_change()->void: 
-	xp_bar.value = player.xp
-	xp_bar.max_value = player.max_xp
+	xp_bar.value = PlayerStats.xp
+	xp_bar.max_value = PlayerStats.max_xp
 	
 func on_level_change()->void:
-	xp_bar.level_number.text = str(player.player_level)
+	xp_bar.level_number.text = str(PlayerStats.player_level)
 
 func on_hp_change()->void:
-	hp_bar.value = player.hp
-	hp_bar.max_value = player.max_hp
-	hp_bar.hp_number.text = "[right]%s[/right]" % (str(player.hp)+"/"+str(player.max_hp))
+	hp_bar.value = PlayerStats.hp
+	hp_bar.max_value = PlayerStats.max_hp
+	hp_bar.hp_number.text = "[right]%s[/right]" % (str(PlayerStats.hp)+"/"+str(PlayerStats.max_hp))
 	
 func on_player_loaded()->void:
-	hp_bar.value = player.hp
-	hp_bar.max_value = player.max_hp
-	hp_bar.hp_number.text = "[right]%s[/right]" % (str(player.hp)+"/"+str(player.max_hp))
+	hp_bar.value = PlayerStats.hp
+	hp_bar.max_value = PlayerStats.max_hp
+	hp_bar.hp_number.text = "[right]%s[/right]" % (str(PlayerStats.hp)+"/"+str(PlayerStats.max_hp))
 
 

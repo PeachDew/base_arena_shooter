@@ -2,7 +2,6 @@ extends Node2D
 
 var enemy1_scene : PackedScene = preload("res://Objects/Enemies/BasicRangedEnemy.tscn")
 
-var items_manager : ItemsManager
 var ui_manager
 
 var spawned_enemies := 0
@@ -10,7 +9,6 @@ var spawned_enemies := 0
 
 func _ready() -> void:
 	ui_manager = $UIManager
-	items_manager = $ItemsManager
 
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ADMIN_spawn_enemy"):
@@ -21,9 +19,6 @@ func _physics_process(_delta: float) -> void:
 		spawned_enemy.position = get_local_mouse_position()
 		
 		$World.region.add_child(spawned_enemy)
-	
-	if Input.is_action_just_pressed("ADMIN_add_weapon"):
-		items_manager.put_item(ItemsDatabase.items[2], "WeaponSlot")
 	
 	#if Input.is_action_just_pressed("ADMIN_start_spawner"):
 		##test_monster_spawn.start_spawning()

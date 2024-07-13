@@ -9,9 +9,16 @@ func _ready() -> void:
 	ui_manager.reset_button_pressed.connect(on_uimanager_reset_button_pressed)
 	ui_manager.add_stat_button_pressed.connect(on_uimanager_add_stat_button_pressed)
 	
+	ItemsManager.update_stats.connect(on_ItemsManager_update_stats)
+	ItemsManager.update_stats_ui.connect(update_stats_ui)
+	
 	if not ui_manager.is_node_ready():
 		await ui_manager.ready
 	update_stats_ui()
+	
+func on_ItemsManager_update_stats(stat_name, stat_change):
+	change_total_stat(stat_name, stat_change)
+	
 	
 func on_level_change():
 	PlayerStats.available_points += 1
@@ -50,3 +57,4 @@ func update_stats_ui():
 
 func change_total_stat(stat_name, stat_value):
 	PlayerStats.total_player_stats[stat_name] += stat_value
+	update_stats_ui()

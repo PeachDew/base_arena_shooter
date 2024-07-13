@@ -1,5 +1,30 @@
 extends Node
 
+# Movement Stats
+@export var base_speed := 100.0
+@export var speed := 100.0
+@export var max_speed := 1000.0
+@export var acceleration_time := 0.2
+@export var deceleration_time := 0.5
+@export var switch_direction_bonus_mult := 0.01
+
+# XP Stats
+@export var player_level := 1
+@export var xp := 0.0
+@export var max_xp := 83.0
+@export var cumulative_xp := 0.0
+
+# HP Stats
+@export var hp := 100.0
+@export var base_max_hp := 100.0
+@export var max_hp := 100.0
+
+# Misc Stats
+@export var iframes_seconds := 1.0
+
+# VMST Stats 
+# (VIGOR MIGHT SPEED TEMPO)
+
 @export var available_points := 50
 @export var total_player_stats := {
 	"vigor": 0,
@@ -58,3 +83,33 @@ func get_speed_animation_bonus():
 	
 func get_tempo_animation_bonus():
 	return total_player_stats['tempo'] * 0.03
+	
+func get_player_stats_dict():
+	var player_stats_dict : Dictionary = {
+		"base_speed" : base_speed,
+		"speed" : speed,
+		"max_speed" : max_speed,
+		"acceleration_time" : acceleration_time,
+		"deceleration_time" : deceleration_time,
+		"switch_direction_bonus_mult" : switch_direction_bonus_mult,
+
+		# XP Stats
+		"player_level" : player_level,
+		"xp" : xp,
+		"max_xp" : max_xp,
+		"cumulative_xp" : cumulative_xp,
+
+		# HP Stats
+		"hp" : hp,
+		"base_max_hp" : base_max_hp,
+		"max_hp" : max_hp,
+
+		# Misc Stats
+		"iframes_seconds" : iframes_seconds,
+		
+		# VMST Stats
+		"available_points" : available_points,
+		"total_player_stats" : total_player_stats,
+		"base_player_stats" : base_player_stats,
+	}
+	return player_stats_dict

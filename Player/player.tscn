@@ -252,6 +252,9 @@ debug_color = Color(0.35258, 0.526266, 0.862807, 0.42)
 [node name="PlayerMovement" type="Node" parent="."]
 script = ExtResource("3_hf5p4")
 
+[node name="PlayerStatsManager" type="Node" parent="."]
+script = ExtResource("7_7e1x2")
+
 [node name="PlayerAnimation" type="Node2D" parent="." node_paths=PackedStringArray("animated_sprite")]
 script = ExtResource("5_pmraa")
 animated_sprite = NodePath("../PlayerCenter/AnimatedSprite2D")
@@ -273,9 +276,6 @@ script = ExtResource("10_jcess")
 
 [node name="PlayerHurtboxCollisionShape" type="CollisionShape2D" parent="PlayerHurtbox"]
 shape = SubResource("RectangleShape2D_0lgdj")
-
-[node name="PlayerStatsManager" type="Node" parent="."]
-script = ExtResource("7_7e1x2")
 
 [node name="PickupGravity" type="Area2D" parent="."]
 collision_layer = 0

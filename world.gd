@@ -4,7 +4,6 @@ extends Node2D
 @onready var player : CharacterBody2D = $Player
 @onready var player_camera : Camera2D = $PlayerCamera
 
-@onready var items_manager = $"../ItemsManager"
 @onready var ui_manager = $"../UIManager"
 
 @export var region_packed_scene_path : String = "res://emberlight.tscn"
@@ -14,6 +13,8 @@ func _ready() -> void:
 	enemymanager = $EnemyManager
 	enemymanager.spawn_in_region.connect(on_spawn_in_region)
 	player_camera.target = player
+	
+	
 	
 	initialise_region()
 
@@ -37,7 +38,7 @@ func on_child_entered_region(child):
 	if child is Enemy:
 		enemymanager.connect_enemy(child)
 	if child.is_in_group("lootbag"):
-		items_manager.connect_lootbag(child)
+		ItemsManager.connect_lootbag(child)
 		
 func on_spawn_in_region(node):
 	region.call_deferred("add_child",node)

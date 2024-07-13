@@ -14,21 +14,21 @@ func _ready() -> void:
 	player_loaded.emit()
 	
 func add_xp(x: float) -> void:
-	player.xp += x
-	player.cumulative_xp += x
+	PlayerStats.xp += x
+	PlayerStats.cumulative_xp += x
 	xp_change.emit()
-	while player.xp >= player.max_xp:
-		player.xp -= player.max_xp
-		player.max_xp = scale_xp(player.player_level)
-		player.player_level += 1
-		print("Now level "+str(player.player_level), " Current XP: ", str(player.cumulative_xp))
+	while PlayerStats.xp >= PlayerStats.max_xp:
+		PlayerStats.xp -= PlayerStats.max_xp
+		PlayerStats.max_xp = scale_xp(PlayerStats.player_level)
+		PlayerStats.player_level += 1
+		print("Now level "+str(PlayerStats.player_level), " Current XP: ", str(PlayerStats.cumulative_xp))
 		
 		# Add one stat point
 		level_change.emit()
 		
 func change_hp(x: float) -> void:
-	player.hp += x
-	player.hp = clamp(player.hp, 0, player.max_hp)
+	PlayerStats.hp += x
+	PlayerStats.hp = clamp(PlayerStats.hp, 0, PlayerStats.max_hp)
 	hp_change.emit()
 
 func scale_xp(curr_lvl: int) -> float: 

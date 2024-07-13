@@ -1,26 +1,6 @@
 class_name Player
 extends CharacterBody2D
 
-# Movement Stats
-@export var base_speed := 100.0
-@export var speed := 100.0
-@export var max_speed := 1000.0
-@export var acceleration_time := 0.2
-@export var deceleration_time := 0.5
-@export var switch_direction_bonus_mult := 0.01
-
-# XP Stats
-@export var player_level := 1
-@export var xp := 0.0
-@export var max_xp := 83.0
-@export var cumulative_xp := 0.0
-
-@export var hp := 100.0
-@export var base_max_hp := 100.0
-@export var max_hp := 100.0
-
-@export var iframes_seconds := 1.0
-
 # Nodes
 @onready var playerstats_manager := $PlayerStatsManager
 @onready var player_hurtbox := $PlayerHurtbox
@@ -51,19 +31,28 @@ func _ready() -> void:
 	player_hurtbox.body_entered.connect(on_body_entered_player_hurtbox)
 	player_hurtbox.body_exited.connect(on_body_exited_player_hurtbox)
 	iframes_timer.one_shot = true
-	iframes_timer.wait_time = iframes_seconds
+	iframes_timer.wait_time = PlayerStats.iframes_seconds
 	iframes_timer.timeout.connect(on_iframes_timer_timeout)
 	bare_weapon.add_projectile_child.connect(on_add_projectile_child)
 	
+	ItemsManager.clear_weapon.connect(clear_weapon)
+	ItemsManager.clear_hat.connect(clear_hat)
+	ItemsManager.clear_ability.connect(clear_ability)
+	
+	ItemsManager.add_weapon.connect(add_weapon)
+	ItemsManager.add_hat.connect(add_hat)
+	ItemsManager.add_ability.connect(add_ability)
+	
 	update_vigor_bonus()
 	update_speed_bonus()
+	
 
 func update_vigor_bonus():
-	max_hp = base_max_hp + PlayerStats.get_vigor_hp_bonus()
+	PlayerStats.max_hp = PlayerStats.base_max_hp + PlayerStats.get_vigor_hp_bonus()
 	playerstats_manager.hp_change.emit()
 
 func update_speed_bonus():
-	speed = base_speed + PlayerStats.get_speed_movementspeed_bonus()
+	PlayerStats.speed = PlayerStats.base_speed + PlayerStats.get_speed_movementspeed_bonus()
 	
 func update_crit(proj_instance):
 	var crit_chance = PlayerStats.get_vigor_crit_bonus()
