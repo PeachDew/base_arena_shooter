@@ -41,8 +41,8 @@ func _ready() -> void:
 func get_random_coordinate_rect_area2d():
 	var rect : Rect2 = rect_spawn_area_collision_shape.shape.get_rect()
 
-	var x = randi_range(position.x, position.x+rect.size.x) 
-	var y = randi_range(position.y, position.y+rect.size.y) 
+	var x = randf_range(position.x, position.x+rect.size.x) 
+	var y = randf_range(position.y, position.y+rect.size.y) 
 	return Vector2(x, y)
 
 func on_spawn_area_body_entered(body):
