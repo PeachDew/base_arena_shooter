@@ -42,11 +42,9 @@ theme_override_constants/separation = -4
 
 [node name="Char_1" parent="CharSelectContainer/VboxContainer" instance=ExtResource("2_cpg3n")]
 layout_mode = 2
-button_pressed = false
 
 [node name="Char_2" parent="CharSelectContainer/VboxContainer" instance=ExtResource("2_cpg3n")]
 layout_mode = 2
-button_pressed = false
 char_slot_num = 2
 
 [node name="AddCharButton" type="TextureButton" parent="."]

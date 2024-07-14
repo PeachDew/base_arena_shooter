@@ -45,11 +45,14 @@ func on_character_button_pressed(char_slot_num: int):
 	else:
 		play_button.disabled = false
 		
-		
-	
+	print(selected_button_index)
 	
 func on_add_char_button_pressed():
-	return
+	var char_button = load("res://UIScenes/character_button.tscn").instantiate()
+	char_button.char_slot_num = char_button_dict.keys().max() + 1
+	char_button_dict[char_button.char_slot_num] = char_button
+	char_button.pressed.connect(on_character_button_pressed.bind(char_button.char_slot_num))
+	char_select_vbox.add_child(char_button)
 	
 func on_play_button_pressed() -> void:
 	get_tree().change_scene_to_file(loading_scene_path)

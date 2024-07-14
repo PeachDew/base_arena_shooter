@@ -2,8 +2,8 @@ extends Node
 
 const SAVE_DIR = "user://saves/"
 
-# if slot unselected (eg. main menu) == 0
-@export var current_slot = 0
+# if slot unselected == -1
+@export var current_slot = -1
 
 @onready var slots_dicts = SaveSystem.get_var("slots_dicts")
 @onready var slots_states = SaveSystem.get_var("slots_states")
