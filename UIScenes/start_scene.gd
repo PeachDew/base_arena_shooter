@@ -53,7 +53,7 @@ func on_add_char_button_pressed():
 	char_button_dict[char_button.char_slot_num] = char_button
 	char_button.pressed.connect(on_character_button_pressed.bind(char_button.char_slot_num))
 	char_select_vbox.add_child(char_button)
-	
+
 func on_play_button_pressed() -> void:
 	get_tree().change_scene_to_file(loading_scene_path)
 	

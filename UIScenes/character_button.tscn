@@ -1,9 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://d2wyqjfb7b8sq"]
+[gd_scene load_steps=12 format=3 uid="uid://d2wyqjfb7b8sq"]
 
 [ext_resource type="Texture2D" uid="uid://yhm2gaxymor1" path="res://Art/ui/char_select/char_button_normal.png" id="1_jadua"]
 [ext_resource type="Texture2D" uid="uid://bs0rd1y74uk1d" path="res://Art/ui/char_select/char_button_selected.png" id="2_v0nyk"]
 [ext_resource type="Texture2D" uid="uid://scvem81luk1g" path="res://Art/ui/char_select/char_button_hover.png" id="3_0acy6"]
 [ext_resource type="Script" path="res://UIScenes/char_button.gd" id="4_xwcnu"]
+[ext_resource type="FontFile" uid="uid://duhl0exjcfl03" path="res://Art/fonts/rainyhearts.ttf" id="5_rdjvo"]
+[ext_resource type="Texture2D" uid="uid://bdweq83tfnkmv" path="res://Art/characters/charselect_ui/cs_starter.png" id="5_ywrci"]
+[ext_resource type="Texture2D" uid="uid://cjjmvo1nu7nk8" path="res://Art/ui/char_select/char_select_equip_background.png" id="6_ryj02"]
+[ext_resource type="Texture2D" uid="uid://bmnps5rngrdch" path="res://Art/ui/char_select/if_equip_bg.png" id="7_eqou8"]
+[ext_resource type="Texture2D" uid="uid://d05084hgqdggg" path="res://Art/loot/beggarhat.png" id="8_bnql1"]
+[ext_resource type="Texture2D" uid="uid://16wtcvsf8wd0" path="res://Art/loot/blades/traineesblade.png" id="9_m240u"]
+
+[sub_resource type="Theme" id="Theme_2w5d4"]
+default_font = ExtResource("5_rdjvo")
+default_font_size = 16
 
 [node name="Char_1" type="TextureButton"]
 toggle_mode = true
@@ -14,9 +24,107 @@ stretch_mode = 3
 script = ExtResource("4_xwcnu")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0492611
+anchor_top = 0.133333
+anchor_right = 0.955665
+anchor_bottom = 0.826667
+theme_override_constants/separation = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="CharPreview" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(88, 43)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="CharacterPreviewSprite" type="Sprite2D" parent="HBoxContainer/CharPreview"]
+position = Vector2(44, 26)
+texture = ExtResource("5_ywrci")
+
+[node name="EquipPreview" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(51, 0)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="EquipBackground" type="TextureRect" parent="HBoxContainer/EquipPreview"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+texture = ExtResource("6_ryj02")
 
-[node name="LevelLabel" type="Label" parent="HBoxContainer"]
+[node name="HatBG" type="TextureRect" parent="HBoxContainer/EquipPreview"]
+layout_mode = 0
+anchor_left = 0.0344828
+anchor_top = 0.0384615
+anchor_right = 0.42664
+anchor_bottom = 0.423077
+offset_right = -2.41379
+texture = ExtResource("7_eqou8")
+metadata/_edit_use_anchors_ = true
+
+[node name="Hat" type="TextureRect" parent="HBoxContainer/EquipPreview"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0392157
+anchor_top = 0.0384615
+anchor_right = 0.431373
+anchor_bottom = 0.423077
+texture = ExtResource("8_bnql1")
+metadata/_edit_use_anchors_ = true
+
+[node name="AbilityBG" type="TextureRect" parent="HBoxContainer/EquipPreview"]
+layout_mode = 0
+anchor_left = 0.0344828
+anchor_top = 0.576923
+anchor_right = 0.42664
+anchor_bottom = 0.961538
+offset_right = -2.41379
+texture = ExtResource("7_eqou8")
+metadata/_edit_use_anchors_ = true
+
+[node name="Ability" type="TextureRect" parent="HBoxContainer/EquipPreview"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0392157
+anchor_top = 0.576923
+anchor_right = 0.431373
+anchor_bottom = 0.961538
+metadata/_edit_use_anchors_ = true
+
+[node name="WeaponBG" type="TextureRect" parent="HBoxContainer/EquipPreview"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.568627
+anchor_top = 0.576923
+anchor_right = 0.960784
+anchor_bottom = 0.961538
+texture = ExtResource("7_eqou8")
+metadata/_edit_use_anchors_ = true
+
+[node name="Weapon" type="TextureRect" parent="HBoxContainer/EquipPreview"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.568627
+anchor_top = 0.576923
+anchor_right = 0.960784
+anchor_bottom = 0.961538
+texture = ExtResource("9_m240u")
+metadata/_edit_use_anchors_ = true
+
+[node name="LevelNumber" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(45, 0)
 layout_mode = 2
+mouse_filter = 1
+
+[node name="LevelLabel" type="Label" parent="HBoxContainer/LevelNumber"]
+layout_mode = 0
+offset_right = 37.0
+offset_bottom = 15.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme = SubResource("Theme_2w5d4")
+theme_override_colors/font_color = Color(0.294233, 0.198237, 0.0586277, 1)
+text = "LV: 23"
+horizontal_alignment = 2
+metadata/_edit_use_anchors_ = true

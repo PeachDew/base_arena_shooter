@@ -47,6 +47,10 @@ folder_colors={
 
 import/blender/enabled=false
 
+[gui]
+
+theme/default_font_subpixel_positioning=0
+
 [input]
 
 move_left={
