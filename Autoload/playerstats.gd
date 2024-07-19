@@ -1,6 +1,26 @@
 extends Node
 
 # Movement Stats
+const DEFAULT_BASE_SPEED := 100.0
+const DEFAULT_MAX_SPEED := 1000.0
+const DEFAULT_ACCELERATION_TIME := 0.2
+const DEFAULT_DECELERATION_TIME := 0.5
+const DEFAULT_SWITCH_DIRECTION_MULT := 0.01
+const DEFAULT_PLAYER_LVL := 1
+const DEFAULT_PLAYER_XP := 0.0
+const DEFAULT_MAX_XP := 83.0
+const DEFAULT_CUM_XP := 0.0
+const DEFAULT_HP := 100.0
+const DEFAULT_BASE_MAX_HP := 100.0
+const DEFAULT_IFRAMES_SECONDS := 1.0
+const DEFAULT_AVAILABLE_POINTS := 7
+const DEFAULT_PLAYER_STATS := {
+	"vigor": 0,
+	"might": 0,
+	"speed": 0,
+	"tempo": 0
+}
+
 @export var base_speed := 100.0
 @export var speed := 100.0
 @export var max_speed := 1000.0
@@ -111,5 +131,35 @@ func get_player_stats_dict():
 		"available_points" : available_points,
 		"total_player_stats" : total_player_stats,
 		"base_player_stats" : base_player_stats,
+	}
+	return player_stats_dict
+
+func get_default_player_stats_dict():
+	var player_stats_dict : Dictionary = {
+		"base_speed" : DEFAULT_BASE_SPEED,
+		"speed" : DEFAULT_BASE_SPEED,
+		"max_speed" : DEFAULT_MAX_SPEED,
+		"acceleration_time" : DEFAULT_ACCELERATION_TIME,
+		"deceleration_time" : DEFAULT_DECELERATION_TIME,
+		"switch_direction_bonus_mult" : DEFAULT_SWITCH_DIRECTION_MULT,
+
+		# XP Stats
+		"player_level" : DEFAULT_PLAYER_LVL,
+		"xp" : DEFAULT_PLAYER_XP,
+		"max_xp" : DEFAULT_MAX_XP,
+		"cumulative_xp" : DEFAULT_CUM_XP,
+
+		# HP Stats
+		"hp" : DEFAULT_HP,
+		"base_max_hp" : DEFAULT_BASE_MAX_HP,
+		"max_hp" : DEFAULT_BASE_MAX_HP,
+
+		# Misc Stats
+		"iframes_seconds" : DEFAULT_IFRAMES_SECONDS,
+		
+		# VMST Stats
+		"available_points" : DEFAULT_AVAILABLE_POINTS,
+		"total_player_stats" : DEFAULT_PLAYER_STATS,
+		"base_player_stats" : DEFAULT_PLAYER_STATS,
 	}
 	return player_stats_dict

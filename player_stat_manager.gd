@@ -12,13 +12,15 @@ func _ready() -> void:
 	ItemsManager.update_stats.connect(on_ItemsManager_update_stats)
 	ItemsManager.update_stats_ui.connect(update_stats_ui)
 	
+	
 	if not ui_manager.is_node_ready():
 		await ui_manager.ready
+		
+	ItemsManager.put_item(ItemsDatabase.items["W01"], "WeaponSlot")
 	update_stats_ui()
 	
 func on_ItemsManager_update_stats(stat_name, stat_change):
 	change_total_stat(stat_name, stat_change)
-	
 	
 func on_level_change():
 	PlayerStats.available_points += 1

@@ -14,8 +14,6 @@ func _ready() -> void:
 	enemymanager.spawn_in_region.connect(on_spawn_in_region)
 	player_camera.target = player
 	
-	
-	
 	initialise_region()
 
 func initialise_region():

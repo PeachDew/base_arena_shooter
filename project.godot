@@ -24,6 +24,7 @@ PlayerStats="*res://Autoload/playerstats.gd"
 AutoloadUI="*res://Autoload/autoload_ui.gd"
 SaveSystem="*res://addons/save_system/save_system.gd"
 ItemsManager="*res://Autoload/items_manager.gd"
+SavesManager="*res://Autoload/saves_manager.gd"
 
 [display]
 

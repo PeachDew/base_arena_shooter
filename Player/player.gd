@@ -45,7 +45,6 @@ func _ready() -> void:
 	
 	update_vigor_bonus()
 	update_speed_bonus()
-	
 
 func update_vigor_bonus():
 	PlayerStats.max_hp = PlayerStats.base_max_hp + PlayerStats.get_vigor_hp_bonus()
@@ -155,6 +154,3 @@ func clear_ability():
 		equipped_ability.remove_child(n)
 		n.queue_free() 
 	equipped_ability_item = {}
-
-
-

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d2wyqjfb7b8sq"]
+[gd_scene load_steps=10 format=3 uid="uid://d2wyqjfb7b8sq"]
 
 [ext_resource type="Texture2D" uid="uid://yhm2gaxymor1" path="res://Art/ui/char_select/char_button_normal.png" id="1_jadua"]
 [ext_resource type="Texture2D" uid="uid://bs0rd1y74uk1d" path="res://Art/ui/char_select/char_button_selected.png" id="2_v0nyk"]
@@ -8,8 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://bdweq83tfnkmv" path="res://Art/characters/charselect_ui/cs_starter.png" id="5_ywrci"]
 [ext_resource type="Texture2D" uid="uid://cjjmvo1nu7nk8" path="res://Art/ui/char_select/char_select_equip_background.png" id="6_ryj02"]
 [ext_resource type="Texture2D" uid="uid://bmnps5rngrdch" path="res://Art/ui/char_select/if_equip_bg.png" id="7_eqou8"]
-[ext_resource type="Texture2D" uid="uid://d05084hgqdggg" path="res://Art/loot/beggarhat.png" id="8_bnql1"]
-[ext_resource type="Texture2D" uid="uid://16wtcvsf8wd0" path="res://Art/loot/blades/traineesblade.png" id="9_m240u"]
 
 [sub_resource type="Theme" id="Theme_2w5d4"]
 default_font = ExtResource("5_rdjvo")
@@ -42,6 +40,19 @@ mouse_filter = 1
 position = Vector2(44, 26)
 texture = ExtResource("5_ywrci")
 
+[node name="CharName" type="Label" parent="HBoxContainer/CharPreview"]
+layout_direction = 3
+layout_mode = 0
+offset_left = 1.0
+offset_right = 52.0
+offset_bottom = 15.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme = SubResource("Theme_2w5d4")
+theme_override_colors/font_color = Color(0.294233, 0.198237, 0.0586277, 1)
+text = "Player 1"
+metadata/_edit_use_anchors_ = true
+
 [node name="EquipPreview" type="Control" parent="HBoxContainer"]
 custom_minimum_size = Vector2(51, 0)
 layout_mode = 2
@@ -54,6 +65,7 @@ offset_bottom = 40.0
 texture = ExtResource("6_ryj02")
 
 [node name="HatBG" type="TextureRect" parent="HBoxContainer/EquipPreview"]
+visible = false
 layout_mode = 0
 anchor_left = 0.0344828
 anchor_top = 0.0384615
@@ -70,10 +82,10 @@ anchor_left = 0.0392157
 anchor_top = 0.0384615
 anchor_right = 0.431373
 anchor_bottom = 0.423077
-texture = ExtResource("8_bnql1")
 metadata/_edit_use_anchors_ = true
 
 [node name="AbilityBG" type="TextureRect" parent="HBoxContainer/EquipPreview"]
+visible = false
 layout_mode = 0
 anchor_left = 0.0344828
 anchor_top = 0.576923
@@ -93,6 +105,7 @@ anchor_bottom = 0.961538
 metadata/_edit_use_anchors_ = true
 
 [node name="WeaponBG" type="TextureRect" parent="HBoxContainer/EquipPreview"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.568627
@@ -109,7 +122,6 @@ anchor_left = 0.568627
 anchor_top = 0.576923
 anchor_right = 0.960784
 anchor_bottom = 0.961538
-texture = ExtResource("9_m240u")
 metadata/_edit_use_anchors_ = true
 
 [node name="LevelNumber" type="Control" parent="HBoxContainer"]
@@ -125,6 +137,5 @@ size_flags_horizontal = 8
 size_flags_vertical = 0
 theme = SubResource("Theme_2w5d4")
 theme_override_colors/font_color = Color(0.294233, 0.198237, 0.0586277, 1)
-text = "LV: 23"
-horizontal_alignment = 2
+text = "LV: 1"
 metadata/_edit_use_anchors_ = true

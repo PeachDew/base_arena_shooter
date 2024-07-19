@@ -8,6 +8,8 @@ const SAVE_DIR = "user://saves/"
 @onready var slots_dicts = SaveSystem.get_var("slots_dicts")
 @onready var slots_states = SaveSystem.get_var("slots_states")
 
+var curr_player_name = null
+
 # Slots state
 # "0" = empty
 # "1" = occupied
@@ -38,7 +40,7 @@ func _ready() -> void:
 			}
 		)
 	
-	ItemsManager.put_item(ItemsDatabase.items["W01"], "WeaponSlot")
+	
 	get_save_dict()
 
 func create_new_save(slot_num: String):
@@ -65,5 +67,5 @@ func get_save_dict():
 	var player_stats_dict = PlayerStats.get_player_stats_dict()
 	var inv_dict = ItemsManager.inventory
 	
-	print(player_stats_dict)
-	print(inv_dict)
+	#print(player_stats_dict)
+	#print(inv_dict)

@@ -1,5 +1,26 @@
 extends Node
 
+var empty_inventory := {
+	"HatSlot": null, #null,
+	"AbilitySlot": null,
+	"WeaponSlot": null,
+	"Slot1": null,
+	"Slot2": null,
+	"Slot3": null,
+	"Slot4": null,
+	"Slot5": null,
+	"Slot6": null,
+	"Slot7": null,
+	"Slot8": null,
+	"Slot9": null,
+	"LootSlot1": null,
+	"LootSlot2": null,
+	"LootSlot3": null,
+	"LootSlot4": null,
+	"LootSlot5": null,
+	"LootSlot6": null,
+}
+
 @export var inventory := {
 	"HatSlot": null,
 	"AbilitySlot": null,
@@ -204,6 +225,7 @@ func put_item(item, slot_name):
 		inventory[slot_name] = item
 		change_inv_ui_texture.emit(str(slot_name), item.sprite)
 	else: 
+		print(inventory[slot_name])
 		print("ITEMS_MANAGER: WARNING: attempting to put_item into NON EMPTY slot.")
 	
 	if "Loot" in slot_name: # Putting item into a lootbag
@@ -217,7 +239,6 @@ func put_item(item, slot_name):
 		add_hat.emit(item)
 	elif "Ability" in slot_name:
 		add_ability.emit(item)
-
 
 func enable_inv():
 	enable_inv_sig.emit()

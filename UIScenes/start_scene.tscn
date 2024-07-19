@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://7dugcdvme1hy"]
+[gd_scene load_steps=5 format=3 uid="uid://7dugcdvme1hy"]
 
 [ext_resource type="Script" path="res://UIScenes/start_scene.gd" id="1_j8mob"]
-[ext_resource type="PackedScene" uid="uid://d2wyqjfb7b8sq" path="res://UIScenes/character_button.tscn" id="2_cpg3n"]
 [ext_resource type="Texture2D" uid="uid://bmy8hxgrpqko6" path="res://Art/ui/char_select/add_char_normal.png" id="5_gmi7e"]
 [ext_resource type="Texture2D" uid="uid://b1cibr2v22amm" path="res://Art/ui/char_select/add_char_selected.png" id="6_dvnf7"]
 [ext_resource type="Texture2D" uid="uid://hds6qjujc78j" path="res://Art/ui/char_select/add_char_hover.png" id="7_v04ey"]
@@ -39,13 +38,6 @@ metadata/_edit_use_anchors_ = true
 [node name="VboxContainer" type="VBoxContainer" parent="CharSelectContainer"]
 layout_mode = 2
 theme_override_constants/separation = -4
-
-[node name="Char_1" parent="CharSelectContainer/VboxContainer" instance=ExtResource("2_cpg3n")]
-layout_mode = 2
-
-[node name="Char_2" parent="CharSelectContainer/VboxContainer" instance=ExtResource("2_cpg3n")]
-layout_mode = 2
-char_slot_num = 2
 
 [node name="AddCharButton" type="TextureButton" parent="."]
 layout_mode = 2
