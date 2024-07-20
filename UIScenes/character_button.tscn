@@ -1,17 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://d2wyqjfb7b8sq"]
+[gd_scene load_steps=9 format=3 uid="uid://d2wyqjfb7b8sq"]
 
 [ext_resource type="Texture2D" uid="uid://yhm2gaxymor1" path="res://Art/ui/char_select/char_button_normal.png" id="1_jadua"]
 [ext_resource type="Texture2D" uid="uid://bs0rd1y74uk1d" path="res://Art/ui/char_select/char_button_selected.png" id="2_v0nyk"]
 [ext_resource type="Texture2D" uid="uid://scvem81luk1g" path="res://Art/ui/char_select/char_button_hover.png" id="3_0acy6"]
 [ext_resource type="Script" path="res://UIScenes/char_button.gd" id="4_xwcnu"]
-[ext_resource type="FontFile" uid="uid://duhl0exjcfl03" path="res://Art/fonts/rainyhearts.ttf" id="5_rdjvo"]
 [ext_resource type="Texture2D" uid="uid://bdweq83tfnkmv" path="res://Art/characters/charselect_ui/cs_starter.png" id="5_ywrci"]
 [ext_resource type="Texture2D" uid="uid://cjjmvo1nu7nk8" path="res://Art/ui/char_select/char_select_equip_background.png" id="6_ryj02"]
+[ext_resource type="Theme" uid="uid://b1tb3h6x4i01j" path="res://UIScenes/test_theme.tres" id="6_vsly4"]
 [ext_resource type="Texture2D" uid="uid://bmnps5rngrdch" path="res://Art/ui/char_select/if_equip_bg.png" id="7_eqou8"]
-
-[sub_resource type="Theme" id="Theme_2w5d4"]
-default_font = ExtResource("5_rdjvo")
-default_font_size = 16
 
 [node name="Char_1" type="TextureButton"]
 toggle_mode = true
@@ -42,15 +38,21 @@ texture = ExtResource("5_ywrci")
 
 [node name="CharName" type="Label" parent="HBoxContainer/CharPreview"]
 layout_direction = 3
-layout_mode = 0
-offset_left = 1.0
-offset_right = 52.0
-offset_bottom = 15.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0113636
+anchor_right = 0.875091
+anchor_bottom = 0.288
+offset_right = -0.00800323
+offset_bottom = 0.0239992
 size_flags_horizontal = 8
 size_flags_vertical = 0
-theme = SubResource("Theme_2w5d4")
+theme = ExtResource("6_vsly4")
 theme_override_colors/font_color = Color(0.294233, 0.198237, 0.0586277, 1)
-text = "Player 1"
+theme_override_font_sizes/font_size = 16
+text = "dsafdasadasdaf"
+clip_text = true
+text_overrun_behavior = 3
 metadata/_edit_use_anchors_ = true
 
 [node name="EquipPreview" type="Control" parent="HBoxContainer"]
@@ -135,7 +137,7 @@ offset_right = 37.0
 offset_bottom = 15.0
 size_flags_horizontal = 8
 size_flags_vertical = 0
-theme = SubResource("Theme_2w5d4")
+theme = ExtResource("6_vsly4")
 theme_override_colors/font_color = Color(0.294233, 0.198237, 0.0586277, 1)
 text = "LV: 1"
 metadata/_edit_use_anchors_ = true

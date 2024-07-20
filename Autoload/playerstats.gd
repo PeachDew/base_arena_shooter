@@ -104,6 +104,29 @@ func get_speed_animation_bonus():
 func get_tempo_animation_bonus():
 	return total_player_stats['tempo'] * 0.03
 	
+func initialise_player_stats(player_stats_dict: Dictionary):
+	base_speed = player_stats_dict.base_speed
+	speed = player_stats_dict.base_speed
+	max_speed = player_stats_dict.max_speed
+	acceleration_time = player_stats_dict.acceleration_time
+	deceleration_time = player_stats_dict.deceleration_time
+	switch_direction_bonus_mult = player_stats_dict.switch_direction_bonus_mult
+
+	player_level = player_stats_dict.player_level
+	xp = player_stats_dict.xp
+	max_xp = player_stats_dict.max_xp
+	cumulative_xp = player_stats_dict.cumulative_xp
+
+	hp = player_stats_dict.hp
+	base_max_hp = player_stats_dict.base_max_hp
+	max_hp = player_stats_dict.max_hp
+
+	iframes_seconds = player_stats_dict.iframes_seconds
+
+	available_points = player_stats_dict.available_points
+	total_player_stats = player_stats_dict.total_player_stats
+	base_player_stats = player_stats_dict.base_player_stats
+	
 func get_player_stats_dict():
 	var player_stats_dict : Dictionary = {
 		"base_speed" : base_speed,

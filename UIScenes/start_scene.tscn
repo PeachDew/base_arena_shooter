@@ -1,9 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://7dugcdvme1hy"]
+[gd_scene load_steps=9 format=3 uid="uid://7dugcdvme1hy"]
 
 [ext_resource type="Script" path="res://UIScenes/start_scene.gd" id="1_j8mob"]
-[ext_resource type="Texture2D" uid="uid://bmy8hxgrpqko6" path="res://Art/ui/char_select/add_char_normal.png" id="5_gmi7e"]
-[ext_resource type="Texture2D" uid="uid://b1cibr2v22amm" path="res://Art/ui/char_select/add_char_selected.png" id="6_dvnf7"]
-[ext_resource type="Texture2D" uid="uid://hds6qjujc78j" path="res://Art/ui/char_select/add_char_hover.png" id="7_v04ey"]
+[ext_resource type="Texture2D" uid="uid://ds5o1wycpyrk3" path="res://Art/ui/char_select/add_char_selected_right_normal.png" id="2_u1wp0"]
+[ext_resource type="Texture2D" uid="uid://bcbh0v5epojsm" path="res://Art/ui/char_select/add_char_selected_right_selected.png" id="3_0oq0q"]
+[ext_resource type="Texture2D" uid="uid://c8dfq1wc4t4kn" path="res://Art/ui/char_select/add_char_selected_right_hover.png" id="4_f7hsq"]
+[ext_resource type="Theme" uid="uid://b1tb3h6x4i01j" path="res://UIScenes/test_theme.tres" id="5_8o0oq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rd6fl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fvn6g"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a18m3"]
 
 [node name="StartScene" type="Control"]
 layout_mode = 3
@@ -48,10 +55,44 @@ anchor_bottom = 8.175
 offset_right = -203.0
 offset_bottom = -34.0
 scale = Vector2(2, 2)
-texture_normal = ExtResource("5_gmi7e")
-texture_pressed = ExtResource("6_dvnf7")
-texture_hover = ExtResource("7_v04ey")
+texture_normal = ExtResource("2_u1wp0")
+texture_pressed = ExtResource("3_0oq0q")
+texture_hover = ExtResource("4_f7hsq")
 stretch_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="TextEdit" type="LineEdit" parent="AddCharButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0738916
+anchor_top = 0.0588235
+anchor_right = 0.753695
+anchor_bottom = 0.970588
+theme = ExtResource("5_8o0oq")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_selected_color = Color(0.863794, 0.887116, 0.444464, 1)
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_rd6fl")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fvn6g")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_a18m3")
+text = "hello hello"
+caret_blink = true
+metadata/_edit_use_anchors_ = true
+
+[node name="NameExistsLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -10.7
+anchor_top = 8.25
+anchor_right = -1.1
+anchor_bottom = 9.1
+offset_right = -192.0
+offset_bottom = -17.0
+scale = Vector2(2, 2)
+theme = ExtResource("5_8o0oq")
+theme_override_colors/font_color = Color(1, 0.351683, 0.412833, 1)
+text = "Player name already exists!"
+horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="PlayButton" type="Button" parent="."]

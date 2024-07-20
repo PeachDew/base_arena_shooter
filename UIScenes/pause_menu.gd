@@ -1,10 +1,13 @@
 extends Control
 
 var paused := false
+@onready var save_button : Button = $SaveButton
+
 func _ready() -> void:
 	hide()
 
 func _physics_process(_delta: float) -> void:
+	save_button.pressed.connect(on_save_button_pressed)
 	
 	# This starts executing whenever game state is paused because of setting:
 	# Mode: "When Paused"
@@ -17,3 +20,6 @@ func _physics_process(_delta: float) -> void:
 			paused = false
 			hide()
 			get_tree().paused = false
+			
+func on_save_button_pressed():
+	SavesManager.save_game()

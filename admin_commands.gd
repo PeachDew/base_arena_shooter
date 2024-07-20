@@ -9,6 +9,10 @@ var spawned_enemies := 0
 
 func _ready() -> void:
 	ui_manager = $UIManager
+	
+	SavesManager.curr_player_name = SaveSystem.get_var("selected_button_name")
+	PlayerStats.initialise_player_stats(SaveSystem.get_var(SavesManager.curr_player_name+":playerstats"))
+	ItemsManager.initialise_inventory(SaveSystem.get_var(SavesManager.curr_player_name+":inventory"))
 
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ADMIN_spawn_enemy"):

@@ -127,7 +127,7 @@ func update_lootnodes(loot_node):
 			if loot_item_id in ItemsDatabase.items:
 				var loot_item = ItemsDatabase.items[loot_item_id]
 				inventory[key] = loot_item
-				change_inv_ui_texture.emit(key, loot_item.sprite)
+				change_inv_ui_texture.emit(key, load(loot_item.sprite_path))
 				
 		else:
 			inventory[key] = null
@@ -223,7 +223,7 @@ func put_item(item, slot_name):
 		
 	if !inventory[slot_name]: # Slot is empty, proceed with putting
 		inventory[slot_name] = item
-		change_inv_ui_texture.emit(str(slot_name), item.sprite)
+		change_inv_ui_texture.emit(str(slot_name), load(item.sprite_path))
 	else: 
 		print(inventory[slot_name])
 		print("ITEMS_MANAGER: WARNING: attempting to put_item into NON EMPTY slot.")
@@ -239,6 +239,11 @@ func put_item(item, slot_name):
 		add_hat.emit(item)
 	elif "Ability" in slot_name:
 		add_ability.emit(item)
+		
+func initialise_inventory(init_inv: Dictionary):
+	for key in init_inv:
+		if init_inv[key] and !("Loot" in key):
+			put_item(init_inv[key], key)
 
 func enable_inv():
 	enable_inv_sig.emit()

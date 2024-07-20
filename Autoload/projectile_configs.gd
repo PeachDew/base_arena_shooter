@@ -91,9 +91,9 @@ var configs : Dictionary = {
 	"BW0" : # Basic Weapon 0
 	{
 		"projectile_packed_scene": load("res://Objects/Projectiles/ProjectilePackedScenes/projectile_basicweapon.tscn"),
-		"cooldown": 1.0,
+		"cooldown": 0.3,
 		"speed": 150.0,
-		"damage": 1.0,
+		"damage": 10.0,
 		"max_pierce": 0,
 		"lifetime": 0.8,
 		"rotation": 0.0,

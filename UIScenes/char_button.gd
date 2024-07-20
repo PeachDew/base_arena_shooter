@@ -20,22 +20,22 @@ func _ready() -> void:
 	#)
 	pass
 	
-func set_char_name(set_name: String):
-	char_name.text =  set_name
+func set_char_name(player_name: String):
+	char_name.text =  player_name
 
 func set_level_number(number):
 	level_number.text = "LV: " + str(number)
 
-func set_slot_texture(slot: String, texture: Texture2D):
+func set_slot_texture(slot: String, sprite_path: String):
 	match slot:
 		"hat":
-			hat.texture = texture
+			hat.texture = load(sprite_path)
 			hatbg.show()
 		"ability":
-			ability.texture = texture
+			ability.texture = load(sprite_path)
 			abilitybg.show()
 		"weapon":
-			weapon.texture = texture
+			weapon.texture = load(sprite_path)
 			weaponbg.show()
 
 func clear_slot_texture(slot: String):

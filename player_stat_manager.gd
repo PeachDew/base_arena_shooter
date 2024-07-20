@@ -16,7 +16,6 @@ func _ready() -> void:
 	if not ui_manager.is_node_ready():
 		await ui_manager.ready
 		
-	ItemsManager.put_item(ItemsDatabase.items["W01"], "WeaponSlot")
 	update_stats_ui()
 	
 func on_ItemsManager_update_stats(stat_name, stat_change):
