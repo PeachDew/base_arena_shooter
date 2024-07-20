@@ -19,7 +19,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ak5g1"]
-radius = 20.8806
+radius = 6.08276
 
 [node name="XpOrbSmall" type="RigidBody2D"]
 collision_layer = 64
@@ -29,10 +29,11 @@ linear_damp = 5.351
 script = ExtResource("1_nslxp")
 
 [node name="GravityCollision" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_fbwqd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(4.245, 4.245)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_yne1y")
 
 [node name="PickupCollision" type="Area2D" parent="."]

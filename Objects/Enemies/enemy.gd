@@ -7,7 +7,7 @@ class_name Enemy
 @export var contact_damage := 20.0
 
 @export var loot_table := "common_monster"
-@export var roll_loot_num := 1
+@export var roll_loot_num := 2
 
 @export var damage_number_y_offset := -50
 @export var damage_number_x_offset := -3

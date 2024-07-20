@@ -51,7 +51,7 @@ func _ready() -> void:
 	check_save()
 	play_button.pressed.connect(on_play_button_pressed)
 	
-	create_char_select_buttons()
+	#create_char_select_buttons()
 	
 	if selected_button_name != "":
 		play_button.disabled = false
@@ -64,6 +64,9 @@ const CHAR_BUTTON_DICT_KEYS_STR := "char_button_dict_keys"
 const SELECTED_BUTTON_NAME_STR := "selected_button_name"
 
 func check_save():
+	if SaveSystem.has(SELECTED_BUTTON_NAME_STR):
+		selected_button_name = SaveSystem.get_var(SELECTED_BUTTON_NAME_STR)
+		
 	if SaveSystem.has(CHAR_BUTTON_DICT_KEYS_STR):
 		var char_button_dict_keys = SaveSystem.get_var(CHAR_BUTTON_DICT_KEYS_STR)
 		for cbdk in char_button_dict_keys:
@@ -72,27 +75,14 @@ func check_save():
 				SaveSystem.get_var(cbdk+":playerstats:player_level"),
 				SaveSystem.get_var(cbdk+":inventory")
 			)
+			
 			char_button_dict[cbdk] = char_button
 			
-	if SaveSystem.has(SELECTED_BUTTON_NAME_STR):
-		selected_button_name = SaveSystem.get_var(SELECTED_BUTTON_NAME_STR)
 	
 
 func save_char_select():
 	SaveSystem.set_var(CHAR_BUTTON_DICT_KEYS_STR, char_button_dict.keys())
 	SaveSystem.set_var(SELECTED_BUTTON_NAME_STR, selected_button_name)
-	
-func create_char_select_buttons():
-	for key in char_button_dict:
-		var char_button = char_button_dict[key]
-		char_select_vbox.add_child(char_button)
-		if key == selected_button_name:
-			char_button.button_pressed = true
-		else:
-			char_button.button_pressed = false
-			
-		char_button.pressed.connect(
-			on_character_button_pressed.bind(char_button.char_slot_name))
 
 func on_character_button_pressed(char_slot_name: String):
 	var button = char_button_dict[char_slot_name]
@@ -120,6 +110,10 @@ func add_char_child(
 	inventory: Dictionary):
 	# Instantiate new char button
 	var char_button : CharacterButton = load(char_button_packed_scene_path).instantiate()
+	if player_name == selected_button_name:
+		char_button.button_pressed = true
+	else:
+		char_button.button_pressed = false
 	
 	# Add child
 	char_select_vbox.add_child(char_button)

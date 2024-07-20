@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://Prototype/prototype_projectile.gd" id="1_0y06o"]
 [ext_resource type="Texture2D" uid="uid://cs65wf752wm3r" path="res://Art/loot/trainnesbladeprojectile.png" id="2_3oe33"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d0dq8"]
-radius = 6.0
-height = 12.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vq5fx"]
+radius = 4.4
+height = 18.4
 
 [node name="projectile_traineeslash" type="CharacterBody2D"]
 scale = Vector2(2.5, 2.5)
@@ -16,12 +16,11 @@ collision_layer = 2
 collision_mask = 4
 
 [node name="ProjectileHurtbox" type="CollisionShape2D" parent="Projectile_Area2D"]
-position = Vector2(1, 0)
-shape = SubResource("CapsuleShape2D_d0dq8")
+position = Vector2(-0.8, 0)
+shape = SubResource("CapsuleShape2D_vq5fx")
 
 [node name="ProjectileSprite" type="Sprite2D" parent="Projectile_Area2D"]
 position = Vector2(0.475, 0)
-rotation = 0.781907
 texture = ExtResource("2_3oe33")
 
 [node name="Projectile_Lifetime_Timer" type="Timer" parent="."]

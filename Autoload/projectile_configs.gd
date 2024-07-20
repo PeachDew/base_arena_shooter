@@ -75,6 +75,19 @@ var configs : Dictionary = {
 	"start_delay": 0.0,
 	},
 	
+	"t2staff":
+	{
+	"projectile_packed_scene": load("res://Objects/Projectiles/ProjectilePackedScenes/projectile_t2staff.tscn"),
+	"cooldown": 0.5,
+	"speed": 400.0,
+	"damage": 4.0,
+	"max_pierce": 0,
+	"lifetime": 1.5,
+	"rotation": 0.0,
+	"spread_degrees": 8,
+	"start_delay": 0.0,
+	},
+	
 	"traineeblade":
 	{
 	"projectile_packed_scene": load("res://Objects/Projectiles/ProjectilePackedScenes/projectile_traineeslash.tscn"),

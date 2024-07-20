@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://crxjp4m5lyn68"]
+
+[ext_resource type="Script" path="res://Prototype/prototype_projectile.gd" id="1_wjnm1"]
+[ext_resource type="Texture2D" uid="uid://cimi478rr58m7" path="res://Art/loot/Projectiles/staff/t2_staff_projectile.png" id="2_jkhyi"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g6h1p"]
+radius = 4.0
+height = 8.0
+
+[node name="projectile_t2staff" type="CharacterBody2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_wjnm1")
+
+[node name="Projectile_Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="ProjectileHurtbox" type="CollisionShape2D" parent="Projectile_Area2D"]
+position = Vector2(-0.15, 0)
+rotation = 1.5708
+scale = Vector2(0.91, 0.91)
+shape = SubResource("CapsuleShape2D_g6h1p")
+
+[node name="ProjectileSprite" type="Sprite2D" parent="Projectile_Area2D"]
+position = Vector2(-1.025, 0)
+rotation = 0.781907
+texture = ExtResource("2_jkhyi")
+
+[node name="Projectile_Lifetime_Timer" type="Timer" parent="."]

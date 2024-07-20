@@ -59,6 +59,17 @@ var items:= {
 		"projectile_config_ids" : ["traineebow"]
 	},
 	
+	"S02": {
+		"id": "S02",
+		"name": "Lukewarm Staff",
+		"sprite_path": "res://Art/loot/blades/t2_staff.png",
+		"type": 3,
+		"modifiers": [
+			["speed",2],
+		],
+		"projectile_config_ids" : ["t2staff"]
+	},
+	
 	"W0T": {
 		"id": "W0T",
 		"name": "Prototype Staff",
