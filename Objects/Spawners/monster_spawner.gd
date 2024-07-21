@@ -62,19 +62,20 @@ func set_player(pl):
 	player = pl
 
 func spawn_enemy():
-	var spawned_enemy = enemy_scene.instantiate()
-	var random_direction = Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0))
-	var random_radius = min_spawn_radius + randf() * max_spawn_radius
-	var spawn_position
-	match spawn_area_mode:
-		"rect_area2d":
-			spawn_position = get_random_coordinate_rect_area2d()
-		"player":
-			spawn_position = player.position + random_direction.normalized() * random_radius
+	if contained_enemies < max_enemies:
+		var spawned_enemy = enemy_scene.instantiate()
+		var random_direction = Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0))
+		var random_radius = min_spawn_radius + randf() * max_spawn_radius
+		var spawn_position
+		match spawn_area_mode:
+			"rect_area2d":
+				spawn_position = get_random_coordinate_rect_area2d()
+			"player":
+				spawn_position = player.position + random_direction.normalized() * random_radius
+			
+		spawned_enemy.global_position = spawn_position
 		
-	spawned_enemy.global_position = spawn_position
-	
-	get_owner().add_child.call_deferred(spawned_enemy)
+		get_owner().add_child.call_deferred(spawned_enemy)
 
 func start_spawning():
 	if spawn_cooldown_timer.is_stopped():

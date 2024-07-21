@@ -115,7 +115,15 @@ func on_unpause_world():
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause"): # SHOULD THIS BE IN UIMANAGER??
 		get_tree().paused = true
-
+		
+func update_xp_and_hp()->void:
+	xp_bar.value = PlayerStats.xp
+	xp_bar.max_value = PlayerStats.max_xp
+	xp_bar.level_number.text = str(PlayerStats.player_level)
+	hp_bar.value = PlayerStats.hp
+	hp_bar.max_value = PlayerStats.max_hp
+	hp_bar.hp_number.text = "[right]%s[/right]" % (str(PlayerStats.hp)+"/"+str(PlayerStats.max_hp))
+	
 func on_xp_change()->void: 
 	xp_bar.value = PlayerStats.xp
 	xp_bar.max_value = PlayerStats.max_xp

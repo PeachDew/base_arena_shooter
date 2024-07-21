@@ -326,6 +326,8 @@ destination_scene_path = "res://emberlight.tscn"
 position = Vector2(379, -53)
 
 [node name="Area2D" type="Area2D" parent="MonsterSpawner"]
+collision_layer = 0
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MonsterSpawner/Area2D"]
 position = Vector2(197, 110)
@@ -337,6 +339,8 @@ position = Vector2(-325, -390)
 metadata/_edit_group_ = true
 
 [node name="Area2D" type="Area2D" parent="MonsterSpawner2"]
+collision_layer = 0
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MonsterSpawner2/Area2D"]
 position = Vector2(197, 110)

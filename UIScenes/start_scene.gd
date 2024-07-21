@@ -77,8 +77,6 @@ func check_save():
 			)
 			
 			char_button_dict[cbdk] = char_button
-			
-	
 
 func save_char_select():
 	SaveSystem.set_var(CHAR_BUTTON_DICT_KEYS_STR, char_button_dict.keys())

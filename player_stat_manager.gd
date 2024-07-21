@@ -50,7 +50,6 @@ func on_uimanager_add_stat_button_pressed(stat):
 	
 	update_player_bonuses()	
 
-
 func update_stats_ui():
 	for key in PlayerStats.total_player_stats:
 		ui_manager.set_stat_value(key, PlayerStats.total_player_stats[key])

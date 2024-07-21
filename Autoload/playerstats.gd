@@ -45,7 +45,7 @@ const DEFAULT_PLAYER_STATS := {
 # VMST Stats 
 # (VIGOR MIGHT SPEED TEMPO)
 
-@export var available_points := 50
+@export var available_points := DEFAULT_AVAILABLE_POINTS
 @export var total_player_stats := {
 	"vigor": 0,
 	"might": 0,
@@ -124,8 +124,8 @@ func initialise_player_stats(player_stats_dict: Dictionary):
 	iframes_seconds = player_stats_dict.iframes_seconds
 
 	available_points = player_stats_dict.available_points
-	total_player_stats = player_stats_dict.total_player_stats
-	base_player_stats = player_stats_dict.base_player_stats
+	total_player_stats = player_stats_dict.base_player_stats.duplicate()
+	base_player_stats = player_stats_dict.base_player_stats.duplicate()
 	
 func get_player_stats_dict():
 	var player_stats_dict : Dictionary = {
@@ -152,7 +152,6 @@ func get_player_stats_dict():
 		
 		# VMST Stats
 		"available_points" : available_points,
-		"total_player_stats" : total_player_stats,
 		"base_player_stats" : base_player_stats,
 	}
 	return player_stats_dict
@@ -182,7 +181,6 @@ func get_default_player_stats_dict():
 		
 		# VMST Stats
 		"available_points" : DEFAULT_AVAILABLE_POINTS,
-		"total_player_stats" : DEFAULT_PLAYER_STATS,
 		"base_player_stats" : DEFAULT_PLAYER_STATS,
 	}
 	return player_stats_dict

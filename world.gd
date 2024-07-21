@@ -31,6 +31,7 @@ func load_region(region_packed_scene_instance):
 		region_packed_scene_instance.receive_player(player)
 
 	region_packed_scene_instance.child_entered_tree.connect(on_child_entered_region)
+	SavesManager.save_game()
 	
 func on_child_entered_region(child):
 	if child is Enemy:

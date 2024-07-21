@@ -2,17 +2,18 @@ extends Node2D
 
 var enemy1_scene : PackedScene = preload("res://Objects/Enemies/BasicRangedEnemy.tscn")
 
-var ui_manager
-
 var spawned_enemies := 0
 @onready var player = $World/Player
+@onready var stats_ui_manager = $PlayerStatManager
+@onready var ui_manager = $UIManager
 
 func _ready() -> void:
-	ui_manager = $UIManager
 	
 	SavesManager.curr_player_name = SaveSystem.get_var("selected_button_name")
 	PlayerStats.initialise_player_stats(SaveSystem.get_var(SavesManager.curr_player_name+":playerstats"))
 	ItemsManager.initialise_inventory(SaveSystem.get_var(SavesManager.curr_player_name+":inventory"))
+	stats_ui_manager.update_stats_ui()
+	ui_manager.update_xp_and_hp()
 
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ADMIN_spawn_enemy"):
