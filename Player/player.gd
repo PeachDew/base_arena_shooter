@@ -136,12 +136,15 @@ func add_ability(ability_item) -> void:
 		print("Player is already equipping ability")
 	
 	else:
+		var new_ability_instance: Ability = Ability.new()
+		new_ability_instance.projectile_config_ids = ability_item.projectile_config_ids
+		new_ability_instance.add_projectile_child.connect(on_add_projectile_child)
+		if typeof(last_autofiring_state) == TYPE_BOOL:
+			new_ability_instance.auto_firing = last_autofiring_state
 			
-		if "packed_scene_path" in ability_item:
-			var new_player_ability : PackedScene = load(ability_item.packed_scene_path)
-			var new_player_ability_instance = new_player_ability.instantiate()
-			equipped_ability.add_child(new_player_ability_instance)
+		equipped_ability.add_child(new_ability_instance)
 		equipped_ability_item = ability_item
+		
 		
 func clear_hat():
 	for n in equipped_hat.get_children():

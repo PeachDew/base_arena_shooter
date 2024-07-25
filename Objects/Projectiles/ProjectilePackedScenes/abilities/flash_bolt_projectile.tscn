@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://sflev2cxgv1e"]
+
+[ext_resource type="Script" path="res://Prototype/prototype_projectile.gd" id="1_8unnt"]
+[ext_resource type="Texture2D" uid="uid://b18erfjt7s8cw" path="res://Art/items/Projectiles/abilities/flash_bolt_projectile.png" id="2_ls1i6"]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_0r6hg"]
+points = PackedVector2Array(0, 0, 17.5, 3, 17.5, -3)
+
+[node name="Projectile" type="CharacterBody2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_8unnt")
+
+[node name="Projectile_Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="ProjectileHurtbox" type="CollisionShape2D" parent="Projectile_Area2D"]
+position = Vector2(-13, -3.38813e-21)
+scale = Vector2(0.91, 0.91)
+shape = SubResource("ConvexPolygonShape2D_0r6hg")
+
+[node name="ProjectileSprite" type="Sprite2D" parent="Projectile_Area2D"]
+position = Vector2(-4.025, 0)
+rotation = 0.781907
+texture = ExtResource("2_ls1i6")
+
+[node name="Projectile_Lifetime_Timer" type="Timer" parent="."]

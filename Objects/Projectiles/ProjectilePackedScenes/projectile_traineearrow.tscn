@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cj8m503d6fqx2"]
 
 [ext_resource type="Script" path="res://Prototype/prototype_projectile.gd" id="1_0d35o"]
-[ext_resource type="Texture2D" uid="uid://btubrwd67u4c5" path="res://Art/loot/traineesbowproj.png" id="2_mrhdf"]
+[ext_resource type="Texture2D" uid="uid://btubrwd67u4c5" path="res://Art/items/Projectiles/ranged/traineesbowproj.png" id="2_mrhdf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bptwc"]
 radius = 2.0

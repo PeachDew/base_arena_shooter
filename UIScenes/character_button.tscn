@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bs0rd1y74uk1d" path="res://Art/ui/char_select/char_button_selected.png" id="2_v0nyk"]
 [ext_resource type="Texture2D" uid="uid://scvem81luk1g" path="res://Art/ui/char_select/char_button_hover.png" id="3_0acy6"]
 [ext_resource type="Script" path="res://UIScenes/char_button.gd" id="4_xwcnu"]
-[ext_resource type="Texture2D" uid="uid://bdweq83tfnkmv" path="res://Art/characters/charselect_ui/cs_starter.png" id="5_ywrci"]
+[ext_resource type="Texture2D" uid="uid://bdweq83tfnkmv" path="res://Art/ui/char_select/cs_starter.png" id="5_ywrci"]
 [ext_resource type="Texture2D" uid="uid://cjjmvo1nu7nk8" path="res://Art/ui/char_select/char_select_equip_background.png" id="6_ryj02"]
 [ext_resource type="Theme" uid="uid://b1tb3h6x4i01j" path="res://UIScenes/test_theme.tres" id="6_vsly4"]
 [ext_resource type="Texture2D" uid="uid://bmnps5rngrdch" path="res://Art/ui/char_select/if_equip_bg.png" id="7_eqou8"]

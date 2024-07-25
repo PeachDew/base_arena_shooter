@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bprmbisj0m7n4"]
+[gd_scene load_steps=8 format=3 uid="uid://bprmbisj0m7n4"]
 
 [ext_resource type="Script" path="res://lootbag_ui.gd" id="1_jdk6x"]
 [ext_resource type="Texture2D" uid="uid://c1r5aqslsk4fk" path="res://Art/ui/INVENTORY.png" id="2_nuqfr"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://UIScenes/inv_slot.gd" id="3_townx"]
 [ext_resource type="Script" path="res://UIScenes/equip_slot.gd" id="3_y6im0"]
 [ext_resource type="Texture2D" uid="uid://de8vo0iod7lvt" path="res://Art/ui/one_inv_background.png" id="4_a4lfu"]
+[ext_resource type="Theme" uid="uid://b1tb3h6x4i01j" path="res://UIScenes/test_theme.tres" id="6_p2i40"]
 
 [node name="InventoryUI" type="Control"]
 process_mode = 4
@@ -150,6 +151,31 @@ offset_top = 1.0
 offset_right = 60.0
 offset_bottom = 61.0
 texture = ExtResource("4_a4lfu")
+
+[node name="AbilityCooldown" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 12.5
+offset_top = 114.26
+offset_right = 52.5
+offset_bottom = 154.26
+
+[node name="AbilityCooldownBG" type="TextureRect" parent="AbilityCooldown"]
+modulate = Color(1, 1, 1, 0.552941)
+layout_mode = 0
+offset_right = 60.0
+offset_bottom = 61.0
+texture = ExtResource("4_a4lfu")
+
+[node name="AbilityCooldownNumber" type="Label" parent="AbilityCooldown"]
+layout_mode = 0
+anchor_right = 1.525
+anchor_bottom = 1.525
+theme = ExtResource("6_p2i40")
+theme_override_font_sizes/font_size = 32
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="WeaponSlot" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(60, 60)

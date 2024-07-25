@@ -1,14 +1,13 @@
-[gd_scene load_steps=38 format=3 uid="uid://dft13hdivyxcp"]
+[gd_scene load_steps=27 format=3 uid="uid://dft13hdivyxcp"]
 
 [ext_resource type="Script" path="res://Objects/Enemies/enemy.gd" id="1_fyo1u"]
-[ext_resource type="Texture2D" uid="uid://dm38lg58210ju" path="res://Art/characters/monsters/plooty/plooty.png" id="2_5kk38"]
 [ext_resource type="Script" path="res://Objects/Enemies/enemy_hitbox.gd" id="2_lh4dc"]
-[ext_resource type="Texture2D" uid="uid://d3jesry654ryr" path="res://Art/dino/DinoSprites - vita.png" id="3_7op41"]
-[ext_resource type="Texture2D" uid="uid://h2xnh1nk3yo1" path="res://Art/characters/monsters/plooty/plooty_move.png" id="4_3bact"]
 [ext_resource type="Script" path="res://Objects/Enemies/enemy_behavior.gd" id="6_j2dwf"]
-[ext_resource type="Texture2D" uid="uid://dmtthvhcuwmyx" path="res://Art/characters/monsters/plooty/plooty_green_attack.png" id="7_fa84a"]
+[ext_resource type="Texture2D" uid="uid://dmtthvhcuwmyx" path="res://Art/characters/monsters/plooty/green/plooty_green_attack.png" id="7_rcdly"]
 [ext_resource type="Texture2D" uid="uid://dioi1q8e5un3a" path="res://Art/ui/Over_hp.png" id="7_wkcm4"]
+[ext_resource type="Texture2D" uid="uid://dm38lg58210ju" path="res://Art/characters/monsters/plooty/green/plooty.png" id="8_7g4i5"]
 [ext_resource type="Texture2D" uid="uid://cucqo7hsarkgk" path="res://Art/ui/progress.png" id="8_bx545"]
+[ext_resource type="Texture2D" uid="uid://h2xnh1nk3yo1" path="res://Art/characters/monsters/plooty/green/plooty_move.png" id="9_516hy"]
 [ext_resource type="Script" path="res://Objects/health_bar.gd" id="9_v8mj0"]
 [ext_resource type="Script" path="res://Objects/Enemies/EnemyWeapon.gd" id="11_88cx0"]
 [ext_resource type="Script" path="res://hurtbox.gd" id="12_yurcs"]
@@ -24,84 +23,44 @@ radius = 20.5755
 radius = 79.1581
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jdxvm"]
-atlas = ExtResource("7_fa84a")
+atlas = ExtResource("7_rcdly")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wrgjs"]
-atlas = ExtResource("7_fa84a")
+atlas = ExtResource("7_rcdly")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fhlhj"]
-atlas = ExtResource("7_fa84a")
+atlas = ExtResource("7_rcdly")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_npxla"]
-atlas = ExtResource("2_5kk38")
+atlas = ExtResource("8_7g4i5")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jf2ba"]
-atlas = ExtResource("2_5kk38")
+atlas = ExtResource("8_7g4i5")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wribo"]
-atlas = ExtResource("2_5kk38")
+atlas = ExtResource("8_7g4i5")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vbqsj"]
-atlas = ExtResource("2_5kk38")
+atlas = ExtResource("8_7g4i5")
 region = Rect2(48, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_aq7jx"]
-atlas = ExtResource("3_7op41")
-region = Rect2(0, 0, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mh121"]
-atlas = ExtResource("3_7op41")
-region = Rect2(24, 0, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vqecf"]
-atlas = ExtResource("3_7op41")
-region = Rect2(48, 0, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hk483"]
-atlas = ExtResource("3_7op41")
-region = Rect2(72, 0, 24, 24)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_we10c"]
-atlas = ExtResource("4_3bact")
+atlas = ExtResource("9_516hy")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0g8nb"]
-atlas = ExtResource("4_3bact")
+atlas = ExtResource("9_516hy")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t1tqp"]
-atlas = ExtResource("4_3bact")
+atlas = ExtResource("9_516hy")
 region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_oopot"]
-atlas = ExtResource("3_7op41")
-region = Rect2(96, 0, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k63vn"]
-atlas = ExtResource("3_7op41")
-region = Rect2(120, 0, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_83n86"]
-atlas = ExtResource("3_7op41")
-region = Rect2(144, 0, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cxshs"]
-atlas = ExtResource("3_7op41")
-region = Rect2(168, 0, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_j2x8v"]
-atlas = ExtResource("3_7op41")
-region = Rect2(192, 0, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6dtwr"]
-atlas = ExtResource("3_7op41")
-region = Rect2(216, 0, 24, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_uaahh"]
 animations = [{
@@ -138,23 +97,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_aq7jx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mh121")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vqecf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hk483")
-}],
-"loop": true,
-"name": &"idleold",
-"speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_we10c")
 }, {
 "duration": 1.0,
@@ -166,29 +108,6 @@ animations = [{
 "loop": true,
 "name": &"walk",
 "speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_oopot")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k63vn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_83n86")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cxshs")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_j2x8v")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6dtwr")
-}],
-"loop": true,
-"name": &"walk_old",
-"speed": 10.0
 }]
 
 [node name="BasicRangedEnemy" type="CharacterBody2D"]
@@ -248,10 +167,8 @@ debug_color = Color(0.709177, 0.481276, 0.201482, 0.42)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemyBehavior/EnemyFlipMarker"]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_uaahh")
-animation = &"attack"
+animation = &"walk"
 autoplay = "idle"
-frame = 2
-frame_progress = 1.0
 speed_scale = 1.36
 
 [node name="EnemyAttackOrigin" type="Marker2D" parent="EnemyBehavior/EnemyFlipMarker"]

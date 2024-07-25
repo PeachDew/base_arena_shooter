@@ -1,5 +1,14 @@
 extends Node
 
+const HAT_DIR := "res://Art/items/equipment/hats/"
+
+const WEAPONS_DIR := "res://Art/items/weapons/"
+const MAGIC_WEAPONS_DIR := WEAPONS_DIR + "magic/"
+const RANGED_WEAPONS_DIR := WEAPONS_DIR + "ranged/"
+const MELEE_WEAPONS_DIR := WEAPONS_DIR + "melee/"
+
+const ABILITIES_DIR := "res://Art/items/abilities/"
+
 var items:= {
 	'template': {
 		"id": null,
@@ -14,7 +23,7 @@ var items:= {
 	"H01": {
 		"id": "H01",
 		"name": "Beggar's Hat",
-		"sprite_path": "res://Art/loot/beggarhat.png",
+		"sprite_path": HAT_DIR+"beggarhat.png",
 		"type": 1,
 		"modifiers": [],
 	},
@@ -23,7 +32,7 @@ var items:= {
 	"W01": {
 		"id": "W01",
 		"name": "Fire Staff",
-		"sprite_path": "res://Art/loot/fire_staff.png",
+		"sprite_path": MAGIC_WEAPONS_DIR+"fire_staff.png",
 		"type": 3,
 		"modifiers": [["tempo", 3],["might", 1]],
 		"projectile_config_ids" : ["F0"]
@@ -31,7 +40,7 @@ var items:= {
 	"W02": {
 		"id": "W02",
 		"name": "Trainee's Blade",
-		"sprite_path": "res://Art/loot/blades/traineesblade.png",
+		"sprite_path": MELEE_WEAPONS_DIR+"traineesblade.png",
 		"type": 3,
 		"modifiers": [
 			["might",1],
@@ -41,7 +50,7 @@ var items:= {
 	"W03": {
 		"id": "W03",
 		"name": "Trainee's Staff",
-		"sprite_path": "res://Art/loot/blades/traineestwig.png",
+		"sprite_path": MAGIC_WEAPONS_DIR+"traineestwig.png",
 		"type": 3,
 		"modifiers": [
 			["tempo",1],
@@ -51,7 +60,7 @@ var items:= {
 	"W04": {
 		"id": "W04",
 		"name": "Trainee's Bow",
-		"sprite_path": "res://Art/loot/blades/traineesbow.png",
+		"sprite_path": RANGED_WEAPONS_DIR+"traineesbow.png",
 		"type": 3,
 		"modifiers": [
 			["speed",1],
@@ -62,7 +71,7 @@ var items:= {
 	"S02": {
 		"id": "S02",
 		"name": "Lukewarm Staff",
-		"sprite_path": "res://Art/loot/blades/t2_staff.png",
+		"sprite_path": MAGIC_WEAPONS_DIR+"t2_staff.png",
 		"type": 3,
 		"modifiers": [
 			["speed",2],
@@ -70,23 +79,16 @@ var items:= {
 		"projectile_config_ids" : ["t2staff"]
 	},
 	
-	"W0T": {
-		"id": "W0T",
-		"name": "Prototype Staff",
-		"sprite_path": "res://Art/swim_art/1 Woodcutter/Hurt2.png",
-		"type": 3,
-		"modifiers": [],
-		"projectile_config_ids" : ["P0","P1"]
-	},
-	
 	# Abilities
 	"A01": {
 		"id": "A01",
 		"name": "Flash Bolt",
-		"sprite_path": "res://Art/abilities/flash_bolt.png",
+		"sprite_path": ABILITIES_DIR+"flash_bolt.png",
 		"type": 2,
-		"modifiers": [],
-		"packed_scene_path": "res://Objects/Abilities/flash_bolt.tscn",
+		"modifiers": [
+			["tempo",1],
+		],
+		"projectile_config_ids" : ["A01"],
 	},
 }
 

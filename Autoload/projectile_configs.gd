@@ -10,6 +10,8 @@ extends Node
 #"rotation": ,
 #"start_delay": ,
 
+const ABILITIES_DIR := "res://Objects/Projectiles/ProjectilePackedScenes/abilities/"
+
 var configs : Dictionary = {
 	
 	# Prototype Weapon
@@ -121,6 +123,19 @@ var configs : Dictionary = {
 		"speed": 150.0,
 		"damage": 20.0,
 		"max_pierce": 0,
+		"lifetime": 1.0,
+		"rotation": 0.0,
+		"start_delay": 0.00,
+	},
+	
+	# Abilities
+	"A01" :
+	{
+		"projectile_packed_scene": load(ABILITIES_DIR+"flash_bolt_projectile.tscn"),
+		"cooldown": 3.0,
+		"speed": 1000.0,
+		"damage": 5.0,
+		"max_pierce": 3,
 		"lifetime": 1.0,
 		"rotation": 0.0,
 		"start_delay": 0.00,

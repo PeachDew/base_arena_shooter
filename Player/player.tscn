@@ -1,13 +1,11 @@
-[gd_scene load_steps=40 format=3 uid="uid://hoc8wacnty4h"]
+[gd_scene load_steps=26 format=3 uid="uid://hoc8wacnty4h"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_rtain"]
-[ext_resource type="Texture2D" uid="uid://dl7lclc7wwoa6" path="res://Art/swim_art/1 Woodcutter/Idle.png" id="2_ms10f"]
 [ext_resource type="Script" path="res://Player/player_movement.gd" id="3_hf5p4"]
 [ext_resource type="Texture2D" uid="uid://d3u7t0ujs1j8i" path="res://Art/characters/starter_char/starter_all.png" id="5_8qdir"]
-[ext_resource type="Texture2D" uid="uid://riobjpk8ga8l" path="res://Art/swim_art/1 Woodcutter/Swim.png" id="5_h74ps"]
 [ext_resource type="Script" path="res://Player/player_animation.gd" id="5_pmraa"]
+[ext_resource type="Script" path="res://Prototype/player_weapon.gd" id="7_0do7q"]
 [ext_resource type="Script" path="res://Player/player_stats.gd" id="7_7e1x2"]
-[ext_resource type="Script" path="res://Prototype/prototype_player_weapon.gd" id="7_f82vo"]
 [ext_resource type="Script" path="res://hurtbox.gd" id="10_jcess"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ql0ih"]
@@ -68,54 +66,6 @@ region = Rect2(0, 36, 18, 18)
 [sub_resource type="AtlasTexture" id="AtlasTexture_axl3a"]
 atlas = ExtResource("5_8qdir")
 region = Rect2(18, 36, 18, 18)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_r25rq"]
-atlas = ExtResource("2_ms10f")
-region = Rect2(0, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pqa28"]
-atlas = ExtResource("2_ms10f")
-region = Rect2(48, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_orm7g"]
-atlas = ExtResource("2_ms10f")
-region = Rect2(96, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_m3eax"]
-atlas = ExtResource("2_ms10f")
-region = Rect2(144, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b6hv3"]
-atlas = ExtResource("2_ms10f")
-region = Rect2(192, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8k26j"]
-atlas = ExtResource("2_ms10f")
-region = Rect2(240, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_soxah"]
-atlas = ExtResource("5_h74ps")
-region = Rect2(0, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_u8uch"]
-atlas = ExtResource("5_h74ps")
-region = Rect2(48, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hko14"]
-atlas = ExtResource("5_h74ps")
-region = Rect2(96, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ua0br"]
-atlas = ExtResource("5_h74ps")
-region = Rect2(144, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qgor3"]
-atlas = ExtResource("5_h74ps")
-region = Rect2(192, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cy2y4"]
-atlas = ExtResource("5_h74ps")
-region = Rect2(240, 0, 48, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1g71b"]
 animations = [{
@@ -179,52 +129,6 @@ animations = [{
 }],
 "loop": true,
 "name": &"move",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_r25rq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pqa28")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_orm7g")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_m3eax")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b6hv3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8k26j")
-}],
-"loop": true,
-"name": &"old_idle",
-"speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_soxah")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_u8uch")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hko14")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ua0br")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qgor3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cy2y4")
-}],
-"loop": true,
-"name": &"old_move",
 "speed": 5.0
 }]
 
@@ -295,5 +199,5 @@ visible = false
 
 [node name="BareWeapon" type="Node2D" parent="."]
 visible = false
-script = ExtResource("7_f82vo")
+script = ExtResource("7_0do7q")
 projectile_config_ids = ["BW0"]

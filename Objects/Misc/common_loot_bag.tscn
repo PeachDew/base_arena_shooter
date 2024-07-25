@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bvocp4m8prgeu"]
 
-[ext_resource type="Texture2D" uid="uid://kqu5paiwq8u2" path="res://Art/loot/bags/common_lootbag.png" id="1_8cixy"]
+[ext_resource type="Texture2D" uid="uid://kqu5paiwq8u2" path="res://Art/misc/bags/common_lootbag.png" id="1_8cixy"]
 [ext_resource type="Script" path="res://Objects/Misc/lootbag.gd" id="1_f6poe"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_trw6r"]
