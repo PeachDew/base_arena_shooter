@@ -35,8 +35,6 @@ func _process(_delta: float) -> void:
 				progress[0] = 0
 			ResourceLoader.THREAD_LOAD_INVALID_RESOURCE:
 				loading = false
-		
-
 
 func start_loading_ui(destination_scene_path: String):
 	target_scene_path = destination_scene_path

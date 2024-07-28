@@ -25,6 +25,8 @@ AutoloadUI="*res://Autoload/autoload_ui.gd"
 SaveSystem="*res://addons/save_system/save_system.gd"
 ItemsManager="*res://Autoload/items_manager.gd"
 SavesManager="*res://Autoload/saves_manager.gd"
+PATHS="*res://Autoload/PATHS.gd"
+ScenesManager="*res://Autoload/scenes_manager.gd"
 
 [display]
 
@@ -40,6 +42,7 @@ enabled=PackedStringArray("res://addons/save_system/plugin.cfg")
 
 folder_colors={
 "res://Art/": "red",
+"res://Autoload/": "yellow",
 "res://Player/": "blue",
 "res://Saves/": "yellow"
 }

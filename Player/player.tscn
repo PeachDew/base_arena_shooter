@@ -4,8 +4,8 @@
 [ext_resource type="Script" path="res://Player/player_movement.gd" id="3_hf5p4"]
 [ext_resource type="Texture2D" uid="uid://d3u7t0ujs1j8i" path="res://Art/characters/starter_char/starter_all.png" id="5_8qdir"]
 [ext_resource type="Script" path="res://Player/player_animation.gd" id="5_pmraa"]
-[ext_resource type="Script" path="res://Prototype/player_weapon.gd" id="7_0do7q"]
 [ext_resource type="Script" path="res://Player/player_stats.gd" id="7_7e1x2"]
+[ext_resource type="Script" path="res://Player/player_weapon.gd" id="7_l8q3j"]
 [ext_resource type="Script" path="res://hurtbox.gd" id="10_jcess"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ql0ih"]
@@ -199,5 +199,5 @@ visible = false
 
 [node name="BareWeapon" type="Node2D" parent="."]
 visible = false
-script = ExtResource("7_0do7q")
+script = ExtResource("7_l8q3j")
 projectile_config_ids = ["BW0"]

@@ -6,7 +6,7 @@ extends Node2D
 
 @onready var ui_manager = $"../UIManager"
 
-@export var region_packed_scene_path : String = "res://emberlight.tscn"
+@export var region_packed_scene_path : String = PATHS.EMBERLIGHT
 @export var region : Node2D
 
 func _ready() -> void:
@@ -42,11 +42,13 @@ func on_child_entered_region(child):
 func on_spawn_in_region(node):
 	region.call_deferred("add_child",node)
 
+signal resume_change_scene
+
 func change_scene(destination_scene_path: String):
 	ResourceLoader.load_threaded_request(destination_scene_path)
 	ui_manager.loading.start_loading_ui(destination_scene_path)
 	
-	await ui_manager.proceed_change_scene
+	await resume_change_scene
 	var loaded_packed_scene : PackedScene = ResourceLoader.load_threaded_get(destination_scene_path)
 	remove_child(get_child(0))
 	load_region(loaded_packed_scene.instantiate())

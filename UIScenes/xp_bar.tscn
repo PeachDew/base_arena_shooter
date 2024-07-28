@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://blt677eo2k0jl"]
 
 [ext_resource type="Texture2D" uid="uid://b4h0ls2cjqt2n" path="res://Art/ui/over_xp.png" id="1_ok76o"]
-[ext_resource type="Script" path="res://Objects/Misc/xpbar.gd" id="1_y8dpl"]
+[ext_resource type="Script" path="res://UIScenes/xpbar.gd" id="1_y8dpl"]
 [ext_resource type="Texture2D" uid="uid://pdxydw6lllym" path="res://Art/ui/progress_xp.png" id="2_t0fpn"]
 
 [node name="XPBar" type="TextureProgressBar"]

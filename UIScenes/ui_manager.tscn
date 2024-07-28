@@ -1,11 +1,11 @@
 [gd_scene load_steps=13 format=3 uid="uid://58ntcl5jbx5o"]
 
 [ext_resource type="Script" path="res://ui_manager.gd" id="1_xcx0m"]
-[ext_resource type="PackedScene" uid="uid://blt677eo2k0jl" path="res://Objects/Misc/xp_bar.tscn" id="2_a48yt"]
+[ext_resource type="PackedScene" uid="uid://blt677eo2k0jl" path="res://UIScenes/xp_bar.tscn" id="2_a48yt"]
 [ext_resource type="PackedScene" uid="uid://dphy3gtxgspow" path="res://UIScenes/pause_scene.tscn" id="3_y45gh"]
 [ext_resource type="Texture2D" uid="uid://d3t6a44drsoke" path="res://Art/ui/over_hp_player.png" id="4_1a3rt"]
 [ext_resource type="Texture2D" uid="uid://dc6nxv30400io" path="res://Art/ui/progress_hp.png" id="5_uk6dm"]
-[ext_resource type="Script" path="res://Objects/Misc/hpbar.gd" id="6_8pyil"]
+[ext_resource type="Script" path="res://UIScenes/player_hpbar.gd" id="6_8pyil"]
 [ext_resource type="PackedScene" uid="uid://bprmbisj0m7n4" path="res://UIScenes/inventory_ui.tscn" id="7_o1dt0"]
 [ext_resource type="Script" path="res://UIScenes/LoadingUI.gd" id="8_saxpn"]
 [ext_resource type="Texture2D" uid="uid://b4h0ls2cjqt2n" path="res://Art/ui/over_xp.png" id="9_y87r6"]

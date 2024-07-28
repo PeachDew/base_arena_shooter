@@ -2,14 +2,14 @@ extends Control
 
 @onready var play_button : Button = $PlayButton
 
-@export var loading_scene_path := "res://UIScenes/loading_scene.tscn"
+@export var loading_scene_path := PATHS.LOADING_PS
 
 @onready var char_select_vbox : VBoxContainer = $CharSelectContainer/VboxContainer
 @onready var add_char_button : TextureButton = $AddCharButton
 @onready var player_name_le : LineEdit = $AddCharButton/TextEdit
 @onready var name_exists_label : Label = $NameExistsLabel 
 
-const char_button_packed_scene_path := "res://UIScenes/character_button.tscn"
+const char_button_packed_scene_path := PATHS.CHAR_BUTTON_PS
 
 var char_button_dict : Dictionary = {}
 
@@ -166,4 +166,4 @@ func on_add_char_button_pressed():
 	save_char_select()
 
 func on_play_button_pressed() -> void:
-	get_tree().change_scene_to_file(loading_scene_path)
+	get_tree().change_scene_to_file(PATHS.LOADING_PS)

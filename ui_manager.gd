@@ -21,11 +21,13 @@ extends CanvasLayer
 @onready var stats_speed_number : Label = $StatsUI/VBoxContainer/speed_hbox_container/stat_number
 @onready var stats_tempo_number : Label = $StatsUI/VBoxContainer/tempo_hbox_container/stat_number
 # STATS UI https://www.youtube.com/watch?v=mt48R7QB1F4&t=10s
-
-signal proceed_change_scene
-
 signal reset_button_pressed
 signal add_stat_button_pressed
+
+signal pause_world
+signal unpause_world
+
+signal pausemenu_home_button_pressed
 
 func _ready() -> void:
 	player.playerstats_manager.xp_change.connect(on_xp_change)
@@ -54,7 +56,10 @@ func _ready() -> void:
 	stats_speed_button.pressed.connect(on_add_stats_button_pressed.bind("speed"))
 	stats_tempo_button.pressed.connect(on_add_stats_button_pressed.bind("tempo"))
 	
+	pause_menu.pausemenu_home_button_pressed.connect(on_pausemenu_home_button_pressed)
 
+func on_pausemenu_home_button_pressed():
+	pausemenu_home_button_pressed.emit()
 
 func on_enable_inv_sig():
 	inv_ui.process_mode = Node.PROCESS_MODE_INHERIT
@@ -96,7 +101,6 @@ func set_stat_value(stat: String, stat_val):
 	else:
 		print("SHOULD NOT HAPPEN ERROR: set_stat_value()")
 
-
 func enable_stats():
 	stats_ui.process_mode = Node.PROCESS_MODE_INHERIT
 	stats_ui.show()
@@ -106,16 +110,11 @@ func disable_stats():
 	stats_ui.hide()
 
 func on_pause_world():
-	$"../World".process_mode = Node.PROCESS_MODE_DISABLED
+	pause_world.emit()
 	
 func on_unpause_world():
-	$"../World".process_mode = Node.PROCESS_MODE_INHERIT
-	proceed_change_scene.emit()
+	unpause_world.emit()
 
-func _physics_process(_delta: float) -> void:
-	if Input.is_action_just_pressed("pause"): # SHOULD THIS BE IN UIMANAGER??
-		get_tree().paused = true
-		
 func update_xp_and_hp()->void:
 	xp_bar.value = PlayerStats.xp
 	xp_bar.max_value = PlayerStats.max_xp

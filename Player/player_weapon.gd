@@ -1,82 +1,54 @@
 extends Node2D
+class_name Weapon
 
-# Bullet origin: firing_position.global_position
-@onready var firing_position := $BulletSpawn
-@onready var weapon_timer := $Timer
-@onready var oneshot_timer := $OSTimer
+@export var projectile_config_ids : Array
 
-@export var weapon_stats : Resource
+var projectile_configs := []
 
-# indicates maximum spread
-var shooting_angle_modifier : float
+var timers_to_start : Array = []
+var timers_to_stop : Array = []
+
+signal add_projectile_child
+
 var auto_firing := false
 
-func _ready() -> void:	
-	oneshot_timer.one_shot = true
+var test_timers : Array = []
 
-	if weapon_stats:
-		weapon_timer.wait_time = weapon_stats.cooldown
-		oneshot_timer.wait_time = weapon_stats.cooldown
-		weapon_timer.timeout.connect(on_projectile_cooldown)
-		shooting_angle_modifier = weapon_stats.shooting_angle_modifier * PI / 180
-	else:
-		print("No resource attached to PlayerWeapon, freeing node")
-		queue_free()
-		
-	if auto_firing:
-		on_projectile_cooldown()
-		weapon_timer.start()
+func _ready() -> void:
+	for id in projectile_config_ids:
+		projectile_configs.append(ProjectileConfigs.configs[id])
+		test_timers.append(0)
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("autofire"):
-		if weapon_timer.is_stopped():
-			on_projectile_cooldown()
-			weapon_timer.start()
-			auto_firing = true
-		else:
-			weapon_timer.stop()
-			auto_firing = false
-
-func _physics_process(_delta: float) -> void:
-	if Input.is_action_just_pressed("primary_fire"):
-		if oneshot_timer.is_stopped() and !auto_firing:
-			on_projectile_cooldown()
-			oneshot_timer.start()
-			
-func find_nearest_enemy():
-	var nearest_enemy
-	var player_node : CharacterBody2D = get_parent().get_parent() # Weapon under Node2D "EquippedWeapon"
-
-	for e in get_tree().get_nodes_in_group("Enemy"):
-		var distance_to_e : float = player_node.position.distance_to(e.position)
-		if !nearest_enemy:
-			nearest_enemy = e
-		else:
-			if distance_to_e < player_node.position.distance_to(nearest_enemy.position):
-				nearest_enemy = e
-	return nearest_enemy
-		
-func on_projectile_cooldown():
-	var mouse_direction := get_global_mouse_position() - global_position
-	var nearest_e = find_nearest_enemy()
-	if nearest_e:
-		var enemy_direction : Vector2 = nearest_e.global_position - global_position
-		_fire_bullet(enemy_direction.angle())
-	else:
-		_fire_bullet(mouse_direction.angle())
-		
-func _fire_bullet(bullet_angle): 
-	# if float: is an angle
-	# if str: "mouse" takes angle from mouse to origin
-	if typeof(bullet_angle) == TYPE_STRING and bullet_angle == "mouse":
-		bullet_angle = (get_global_mouse_position() - global_position).angle()
+func _physics_process(delta: float) -> void:
+	for i in range(len(test_timers)):
+		test_timers[i] += delta
+	if Input.is_action_pressed("primary_fire"):
+		shoot_if_can()
 	
-	var loaded_bullet : PackedScene = load(weapon_stats.projectile_scene_file_path)
-	var spawned_bullet = loaded_bullet.instantiate()
-	spawned_bullet.weapon_stats = weapon_stats
-	spawned_bullet.global_position = firing_position.global_position
-	spawned_bullet.rotation = bullet_angle + randf_range(-1*shooting_angle_modifier, shooting_angle_modifier)
+func shoot_if_can():
+	for i in range(len(test_timers)):
+		var cooldown_after_tempo = projectile_configs[i].cooldown - PlayerStats.get_tempo_cooldown_bonus()
+		if test_timers[i] > cooldown_after_tempo:
+			fire_projectile_at_cursor(projectile_configs[i])
+			test_timers[i] = 0
+
+func fire_projectile_at_cursor(projectile_config: Dictionary):
+	var projectile_instance = projectile_config.projectile_packed_scene.instantiate()
+	projectile_instance.speed = projectile_config.speed
 	
-	# find way to prevent using get_tree().root
-	get_tree().root.add_child(spawned_bullet)
+	projectile_instance.rotation = projectile_config.rotation 
+	if "spread_degrees" in projectile_config:
+		var random_radian_angle = randf_range(
+			-deg_to_rad(projectile_config.spread_degrees),
+			deg_to_rad(projectile_config.spread_degrees)
+		)
+		projectile_instance.rotation = (
+			random_radian_angle
+			+ projectile_instance.rotation
+		)
+		
+	projectile_instance.damage = projectile_config.damage
+	projectile_instance.max_pierce = projectile_config.max_pierce
+	projectile_instance.lifetime = projectile_config.lifetime
+	add_projectile_child.emit(projectile_instance)
 

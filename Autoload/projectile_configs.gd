@@ -10,14 +10,12 @@ extends Node
 #"rotation": ,
 #"start_delay": ,
 
-const ABILITIES_DIR := "res://Objects/Projectiles/ProjectilePackedScenes/abilities/"
-
 var configs : Dictionary = {
 	
 	# Prototype Weapon
 	"P0" :
 	{
-		"projectile_packed_scene": load("res://Prototype/prototype_projectile.tscn"),
+		"projectile_packed_scene": load(PATHS.PROJ_P0),
 		"cooldown": 0.5,
 		"speed": 500,
 		"damage": 40,
@@ -28,7 +26,7 @@ var configs : Dictionary = {
 	},
 	"P1" :
 	{
-		"projectile_packed_scene": load("res://Prototype/prototype_projectile.tscn"),
+		"projectile_packed_scene": load(PATHS.PROJ_P0),
 		"cooldown": 0.5,
 		"speed": 300.0,
 		"damage": 5.0,
@@ -40,7 +38,7 @@ var configs : Dictionary = {
 	
 	"F0": 
 	{
-		"projectile_packed_scene": load("res://Objects/Projectiles/ProjectilePackedScenes/firestaff_projectile.tscn"),
+		"projectile_packed_scene": load(PATHS.PROJ_F0),
 		"cooldown": 0.22,
 		"speed": 200.0,
 		"damage": 2.0,
@@ -53,7 +51,7 @@ var configs : Dictionary = {
 	
 	"traineebow": 
 	{
-	"projectile_packed_scene": load("res://Objects/Projectiles/ProjectilePackedScenes/projectile_traineearrow.tscn"),
+	"projectile_packed_scene": load(PATHS.PROJ_TRAINEEBOW),
 	"cooldown": 0.4,
 	"speed": 350.0,
 	"damage": 2.0,
@@ -66,7 +64,7 @@ var configs : Dictionary = {
 	
 	"traineestaff": 
 	{
-	"projectile_packed_scene": load("res://Objects/Projectiles/ProjectilePackedScenes/projectile_traineebolt.tscn"),
+	"projectile_packed_scene": load(PATHS.PROJ_TRAINEESTAFF),
 	"cooldown": 0.5,
 	"speed": 400.0,
 	"damage": 2.0,
@@ -79,7 +77,7 @@ var configs : Dictionary = {
 	
 	"t2staff":
 	{
-	"projectile_packed_scene": load("res://Objects/Projectiles/ProjectilePackedScenes/projectile_t2staff.tscn"),
+	"projectile_packed_scene": load(PATHS.PROJ_T2STAFF),
 	"cooldown": 0.5,
 	"speed": 400.0,
 	"damage": 4.0,
@@ -92,7 +90,7 @@ var configs : Dictionary = {
 	
 	"traineeblade":
 	{
-	"projectile_packed_scene": load("res://Objects/Projectiles/ProjectilePackedScenes/projectile_traineeslash.tscn"),
+	"projectile_packed_scene": load(PATHS.PROJ_TRAINEEBLADE),
 	"cooldown": 0.8,
 	"speed": 150.0,
 	"damage": 3.0,
@@ -105,7 +103,7 @@ var configs : Dictionary = {
 	
 	"BW0" : # Basic Weapon 0
 	{
-		"projectile_packed_scene": load("res://Objects/Projectiles/ProjectilePackedScenes/projectile_basicweapon.tscn"),
+		"projectile_packed_scene": load(PATHS.PROJ_BWZERO),
 		"cooldown": 0.3,
 		"speed": 150.0,
 		"damage": 10.0,
@@ -118,7 +116,7 @@ var configs : Dictionary = {
 	# Enemy Projectiles
 	"ET0" :
 	{
-		"projectile_packed_scene": load("res://Objects/EnemyProjectiles/plooty_projectile.tscn"),
+		"projectile_packed_scene": load(PATHS.PROJ_ETZERO),
 		"cooldown": 1.0,
 		"speed": 150.0,
 		"damage": 20.0,
@@ -131,7 +129,7 @@ var configs : Dictionary = {
 	# Abilities
 	"A01" :
 	{
-		"projectile_packed_scene": load(ABILITIES_DIR+"flash_bolt_projectile.tscn"),
+		"projectile_packed_scene": load(PATHS.PROJ_A01),
 		"cooldown": 3.0,
 		"speed": 1000.0,
 		"damage": 5.0,

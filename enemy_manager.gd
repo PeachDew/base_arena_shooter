@@ -1,15 +1,15 @@
 extends Node
 class_name EnemyManager
 
+var small_xp : PackedScene = preload(PATHS.SMALL_XP_ORB_PS)
+var common_loot_bag : PackedScene = preload(PATHS.COMMON_LOOTBAG_PS)
+
+signal spawn_in_region
+
 func connect_enemy(enemy : Enemy) -> void:
 	if not enemy.is_node_ready():
 		await enemy.ready
 	enemy.enemy_death.connect(on_enemy_death)
-
-var small_xp : PackedScene = preload("res://Objects/Misc/xp_orb_small.tscn")
-var common_loot_bag : PackedScene = preload("res://Objects/Misc/common_loot_bag.tscn")
-
-signal spawn_in_region
 
 func on_enemy_death(enemy_info : Dictionary) -> void:
 	# spawn a small xp orb
