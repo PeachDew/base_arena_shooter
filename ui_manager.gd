@@ -30,10 +30,10 @@ signal unpause_world
 signal pausemenu_home_button_pressed
 
 func _ready() -> void:
-	player.playerstats_manager.xp_change.connect(on_xp_change)
-	player.playerstats_manager.level_change.connect(on_level_change)
-	player.playerstats_manager.hp_change.connect(on_hp_change)
-	player.playerstats_manager.player_loaded.connect(on_player_loaded)
+	PlayerStats.xp_change.connect(on_xp_change)
+	PlayerStats.level_change.connect(on_level_change)
+	PlayerStats.hp_change.connect(on_hp_change)
+	player.player_loaded.connect(on_player_loaded)
 	
 	loading.pause_world.connect(on_pause_world)
 	loading.unpause_world.connect(on_unpause_world)
@@ -119,8 +119,9 @@ func update_xp_and_hp()->void:
 	xp_bar.value = PlayerStats.xp
 	xp_bar.max_value = PlayerStats.max_xp
 	xp_bar.level_number.text = str(PlayerStats.player_level)
-	hp_bar.value = PlayerStats.hp
+	
 	hp_bar.max_value = PlayerStats.max_hp
+	hp_bar.value = PlayerStats.hp
 	hp_bar.hp_number.text = "[right]%s[/right]" % (str(PlayerStats.hp)+"/"+str(PlayerStats.max_hp))
 	
 func on_xp_change()->void: 

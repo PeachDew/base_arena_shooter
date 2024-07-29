@@ -153,6 +153,7 @@ offset_bottom = 61.0
 texture = ExtResource("4_a4lfu")
 
 [node name="AbilityCooldown" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 offset_left = 12.5
 offset_top = 114.26

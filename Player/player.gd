@@ -2,7 +2,6 @@ class_name Player
 extends CharacterBody2D
 
 # Nodes
-@onready var playerstats_manager := $PlayerStatsManager
 @onready var player_hurtbox := $PlayerHurtbox
 @onready var iframes_timer := $IFrames_Timer
 @onready var player_animation := $PlayerAnimation
@@ -24,7 +23,10 @@ var enemies_in_hurtbox := 0
 
 var last_autofiring_state = -1
 
+signal player_loaded
+
 func _ready() -> void:
+	player_loaded.emit()
 	if hurtbox:
 		hurtbox.damaged.connect(take_damage)
 		
@@ -43,16 +45,9 @@ func _ready() -> void:
 	ItemsManager.add_hat.connect(add_hat)
 	ItemsManager.add_ability.connect(add_ability)
 	
-	update_vigor_bonus()
-	update_speed_bonus()
+	PlayerStats.update_vigor_bonus()
+	PlayerStats.update_speed_bonus()
 
-func update_vigor_bonus():
-	PlayerStats.max_hp = PlayerStats.base_max_hp + PlayerStats.get_vigor_hp_bonus()
-	playerstats_manager.hp_change.emit()
-
-func update_speed_bonus():
-	PlayerStats.speed = PlayerStats.base_speed + PlayerStats.get_speed_movementspeed_bonus()
-	
 func update_crit(proj_instance):
 	var crit_chance = PlayerStats.get_vigor_crit_bonus()
 	if randf() <= crit_chance:
@@ -88,7 +83,7 @@ func on_body_exited_player_hurtbox(body)->void:
 			
 func take_damage(attack: Attack) -> void:
 	var damage = attack.damage
-	playerstats_manager.change_hp(-1*damage)
+	PlayerStats.change_hp(-1*damage)
 	damageable = false
 	iframes_timer.start()
 	

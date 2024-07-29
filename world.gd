@@ -9,6 +9,8 @@ extends Node2D
 @export var region_packed_scene_path : String = PATHS.EMBERLIGHT
 @export var region : Node2D
 
+signal resume_change_scene
+
 func _ready() -> void:
 	enemymanager = $EnemyManager
 	enemymanager.spawn_in_region.connect(on_spawn_in_region)
@@ -42,12 +44,11 @@ func on_child_entered_region(child):
 func on_spawn_in_region(node):
 	region.call_deferred("add_child",node)
 
-signal resume_change_scene
-
 func change_scene(destination_scene_path: String):
 	ResourceLoader.load_threaded_request(destination_scene_path)
+	print("Start loading UI")
 	ui_manager.loading.start_loading_ui(destination_scene_path)
-	
+	print("Finish loading UI")
 	await resume_change_scene
 	var loaded_packed_scene : PackedScene = ResourceLoader.load_threaded_get(destination_scene_path)
 	remove_child(get_child(0))

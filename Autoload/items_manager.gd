@@ -191,8 +191,11 @@ func empty_itemslot(slot_name):
 	change_inv_ui_texture.emit(str(slot_name), null)
 	
 	if "Loot" in slot_name:
-		last_shown_lootbag.loot_dict[slot_name] = null
-		
+		if last_shown_lootbag:
+			last_shown_lootbag.loot_dict[slot_name] = null
+	
+	if !ex_item:
+		return true
 	if (("modifiers" in ex_item)
 	and ("Weapon" in slot_name 
 	or "Hat" in slot_name
@@ -208,6 +211,10 @@ func empty_itemslot(slot_name):
 		clear_hat.emit()
 	elif "Ability" in slot_name:
 		clear_ability.emit()
+
+func reset_inventory():
+	for slot in inventory:
+		empty_itemslot(slot)
 
 func put_item(item, slot_name):
 	if (("modifiers" in item)

@@ -15,14 +15,18 @@ func _ready() -> void:
 	
 	# IF PLAYER GO BACK TO HOME AND THEN LOG IN, ITEMS MANAGER IS ALREADY INITIALISED AND 
 	# RE INNITIALISING BREAKS THINGS
+	PlayerStats.reset_player_stats()
 	PlayerStats.initialise_player_stats(SaveSystem.get_var(SavesManager.curr_player_name+":playerstats"))
+	
+	ItemsManager.reset_inventory()
 	ItemsManager.initialise_inventory(SaveSystem.get_var(SavesManager.curr_player_name+":inventory"))
 	
-	stats_ui_manager.update_stats_ui()
+	stats_ui_manager.update_VMST_stats_ui()
 	
 	ui_manager.pausemenu_home_button_pressed.connect(on_pausemenu_home_button_pressed)
 	ui_manager.pause_world.connect(on_ui_manager_pause_world)
 	ui_manager.unpause_world.connect(on_ui_manager_unpause_world)
+	
 	ui_manager.update_xp_and_hp()
 
 func on_pausemenu_home_button_pressed():

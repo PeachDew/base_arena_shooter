@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Player/player_movement.gd" id="3_hf5p4"]
 [ext_resource type="Texture2D" uid="uid://d3u7t0ujs1j8i" path="res://Art/characters/starter_char/starter_all.png" id="5_8qdir"]
 [ext_resource type="Script" path="res://Player/player_animation.gd" id="5_pmraa"]
-[ext_resource type="Script" path="res://Player/player_stats.gd" id="7_7e1x2"]
+[ext_resource type="Script" path="res://Mechanics/hp_regen.gd" id="7_0k3q8"]
 [ext_resource type="Script" path="res://Player/player_weapon.gd" id="7_l8q3j"]
 [ext_resource type="Script" path="res://hurtbox.gd" id="10_jcess"]
 
@@ -150,9 +150,6 @@ debug_color = Color(0.35258, 0.526266, 0.862807, 0.42)
 [node name="PlayerMovement" type="Node" parent="."]
 script = ExtResource("3_hf5p4")
 
-[node name="PlayerStatsManager" type="Node" parent="."]
-script = ExtResource("7_7e1x2")
-
 [node name="PlayerAnimation" type="Node2D" parent="." node_paths=PackedStringArray("animated_sprite")]
 script = ExtResource("5_pmraa")
 animated_sprite = NodePath("../PlayerCenter/AnimatedSprite2D")
@@ -201,3 +198,6 @@ visible = false
 visible = false
 script = ExtResource("7_l8q3j")
 projectile_config_ids = ["BW0"]
+
+[node name="HPRegen" type="Node" parent="."]
+script = ExtResource("7_0k3q8")

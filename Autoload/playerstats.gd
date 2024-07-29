@@ -60,7 +60,33 @@ const DEFAULT_PLAYER_STATS := {
 	"tempo": 0
 }
 
-signal stat_updated
+signal stats_updated
+
+signal xp_change
+signal level_change
+signal hp_change
+	
+func add_xp(x: float) -> void:
+	xp += x
+	cumulative_xp += x
+	xp_change.emit()
+	while xp >= max_xp:
+		xp -= max_xp
+		max_xp = scale_xp(player_level)
+		player_level += 1
+		print("Now level "+str(player_level), " Current XP: ", str(cumulative_xp))
+		
+		# Add one stat point
+		level_change.emit()
+		
+func change_hp(x: float) -> void:
+	hp += x
+	hp = clamp(hp, 0, max_hp)
+	hp_change.emit()
+
+func scale_xp(curr_lvl: int) -> float: 
+	var scaled_xp = 0.25* (float(curr_lvl)+ 300.0* (2.0**(float(curr_lvl)/7.0) ) )
+	return scaled_xp
 
 func get_stat_sum():
 	var stats : int = 0
@@ -95,6 +121,13 @@ func get_speed_movementspeed_bonus():
 		bonus =  base_bonus + extra_bonus
 	return bonus
 	
+func update_vigor_bonus():
+	max_hp = base_max_hp + get_vigor_hp_bonus()
+	hp_change.emit()
+
+func update_speed_bonus():
+	speed = base_speed + get_speed_movementspeed_bonus()
+
 func get_tempo_cooldown_bonus():
 	return total_player_stats['tempo'] * 0.004
 	
@@ -103,6 +136,9 @@ func get_speed_animation_bonus():
 	
 func get_tempo_animation_bonus():
 	return total_player_stats['tempo'] * 0.03
+
+func reset_player_stats():
+	initialise_player_stats(get_default_player_stats_dict())
 	
 func initialise_player_stats(player_stats_dict: Dictionary):
 	base_speed = player_stats_dict.base_speed

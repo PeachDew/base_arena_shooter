@@ -12,7 +12,7 @@ func _ready() -> void:
 	for p in portals:
 		p.send_player_to.connect(on_send_player_to)
 	
-	PlayerStats.stat_updated.connect(on_PlayerStats_stat_updated)
+	PlayerStats.stats_updated.connect(on_PlayerStats_stats_updated)
 	
 func on_send_player_to(destination_scene_path: String):
 	send_player_to.emit(destination_scene_path)
@@ -28,6 +28,6 @@ func check_portals_reqs():
 func receive_player(_pl):
 	check_portals_reqs()
 
-func on_PlayerStats_stat_updated():
+func on_PlayerStats_stats_updated():
 	check_portals_reqs()
 
