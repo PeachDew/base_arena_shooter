@@ -17,6 +17,7 @@
 script = ExtResource("1_xcx0m")
 
 [node name="XPBar" parent="." instance=ExtResource("2_a48yt")]
+step = 0.05
 metadata/_edit_use_anchors_ = true
 
 [node name="PauseMenu" parent="." instance=ExtResource("3_y45gh")]

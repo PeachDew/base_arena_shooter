@@ -42,6 +42,11 @@ func on_child_entered_region(child):
 		
 func on_spawn_in_region(node):
 	region.call_deferred("add_child",node)
+	if node is Orb:
+		var impulse_magnitude = 250.0
+		var random_angle = randf() * 2 * PI
+		var impulse = Vector2(cos(random_angle), sin(random_angle)) * impulse_magnitude
+		node.apply_central_impulse(impulse)
 
 func change_scene(destination_scene_path: String):
 	ResourceLoader.load_threaded_request(destination_scene_path)

@@ -156,7 +156,7 @@ func initialise_player_stats(player_stats_dict: Dictionary):
 	cumulative_xp = player_stats_dict.cumulative_xp
 
 	base_max_hp = player_stats_dict.base_max_hp
-	max_hp = player_stats_dict.max_hp
+	max_hp = player_stats_dict.max_hp # set max_hp before hp
 	hp = player_stats_dict.hp
 	if hp > max_hp:
 		hp = max_hp

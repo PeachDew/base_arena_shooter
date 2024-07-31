@@ -123,10 +123,14 @@ func update_xp_and_hp()->void:
 	hp_bar.max_value = PlayerStats.max_hp
 	hp_bar.value = PlayerStats.hp
 	hp_bar.hp_number.text = "[right]%s[/right]" % (str(PlayerStats.hp)+"/"+str(PlayerStats.max_hp))
-	
+
 func on_xp_change()->void: 
-	xp_bar.value = PlayerStats.xp
+	var xp_tween = self.create_tween()
 	xp_bar.max_value = PlayerStats.max_xp
+	xp_tween.tween_property(
+		xp_bar, "value", PlayerStats.xp, 1.0
+	).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+	xp_bar.value = PlayerStats.xp
 	
 func on_level_change()->void:
 	xp_bar.level_number.text = str(PlayerStats.player_level)

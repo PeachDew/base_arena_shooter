@@ -21,8 +21,6 @@ func _ready() -> void:
 	PlayerStats.initialise_player_stats(SaveSystem.get_var(SavesManager.curr_player_name+":playerstats"))
 	ItemsManager.initialise_inventory(SaveSystem.get_var(SavesManager.curr_player_name+":inventory"))
 	
-	print(PlayerStats.hp)
-	
 	stats_ui_manager.update_VMST_stats_ui()
 	
 	ui_manager.pausemenu_home_button_pressed.connect(on_pausemenu_home_button_pressed)

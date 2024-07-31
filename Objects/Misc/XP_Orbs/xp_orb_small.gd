@@ -1,6 +1,8 @@
 extends RigidBody2D
+class_name Orb
 
 var xp_value : float
+
 @onready var pickup_area := $PickupCollision
 
 signal player_pickup
