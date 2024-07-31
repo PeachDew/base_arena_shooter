@@ -57,3 +57,4 @@ func update_VMST_stats_ui():
 func change_total_stat(stat_name, stat_value):
 	PlayerStats.total_player_stats[stat_name] += stat_value
 	update_VMST_stats_ui()
+

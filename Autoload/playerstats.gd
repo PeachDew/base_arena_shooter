@@ -123,6 +123,8 @@ func get_speed_movementspeed_bonus():
 	
 func update_vigor_bonus():
 	max_hp = base_max_hp + get_vigor_hp_bonus()
+	if hp > max_hp:
+		hp = max_hp
 	hp_change.emit()
 
 func update_speed_bonus():
@@ -153,15 +155,19 @@ func initialise_player_stats(player_stats_dict: Dictionary):
 	max_xp = player_stats_dict.max_xp
 	cumulative_xp = player_stats_dict.cumulative_xp
 
-	hp = player_stats_dict.hp
 	base_max_hp = player_stats_dict.base_max_hp
 	max_hp = player_stats_dict.max_hp
+	hp = player_stats_dict.hp
+	if hp > max_hp:
+		hp = max_hp
 
 	iframes_seconds = player_stats_dict.iframes_seconds
 
 	available_points = player_stats_dict.available_points
 	total_player_stats = player_stats_dict.base_player_stats.duplicate()
 	base_player_stats = player_stats_dict.base_player_stats.duplicate()
+	
+	update_speed_bonus()
 	
 func get_player_stats_dict():
 	var player_stats_dict : Dictionary = {

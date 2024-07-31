@@ -1,6 +1,6 @@
 [gd_scene load_steps=29 format=3 uid="uid://dvdmih1s7q881"]
 
-[ext_resource type="Script" path="res://emberlight.gd" id="1_8860g"]
+[ext_resource type="Script" path="res://region.gd" id="1_8860g"]
 [ext_resource type="PackedScene" uid="uid://nux7eimswkmm" path="res://Objects/Portals/first_area_portal.tscn" id="2_pfi31"]
 [ext_resource type="Texture2D" uid="uid://bqsdp4x41ocin" path="res://Art/tilemap/Hana_Caraka_Cozy_Island/tileset_simplified.png" id="2_t7xae"]
 [ext_resource type="Script" path="res://Objects/Portals/portal.gd" id="4_gal47"]

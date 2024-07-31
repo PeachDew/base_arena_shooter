@@ -15,11 +15,13 @@ func _ready() -> void:
 	
 	# IF PLAYER GO BACK TO HOME AND THEN LOG IN, ITEMS MANAGER IS ALREADY INITIALISED AND 
 	# RE INNITIALISING BREAKS THINGS
-	PlayerStats.reset_player_stats()
-	PlayerStats.initialise_player_stats(SaveSystem.get_var(SavesManager.curr_player_name+":playerstats"))
+	ItemsManager.reset_inventory() # emptying inventory might mess with stats
+	PlayerStats.reset_player_stats() # reset the messed up stats
 	
-	ItemsManager.reset_inventory()
+	PlayerStats.initialise_player_stats(SaveSystem.get_var(SavesManager.curr_player_name+":playerstats"))
 	ItemsManager.initialise_inventory(SaveSystem.get_var(SavesManager.curr_player_name+":inventory"))
+	
+	print(PlayerStats.hp)
 	
 	stats_ui_manager.update_VMST_stats_ui()
 	
@@ -54,13 +56,7 @@ func _physics_process(_delta: float) -> void:
 		var spawned_enemy = es.instantiate()
 		spawned_enemy.position = get_local_mouse_position()
 		
-		$World.region.add_child(spawned_enemy)
-	
-	#if Input.is_action_just_pressed("ADMIN_start_spawner"):
-		##test_monster_spawn.start_spawning()
-		#test_monster_spawn.spawn_circle_enemies()
-	#if Input.is_action_just_pressed("ADMIN_stop_spawner"):
-		#test_monster_spawn.stop_spawning()
+		world.region.add_child(spawned_enemy)
 	
 	
 func on_enemy_death(enemy_info : Dictionary) -> void:

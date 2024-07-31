@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://xpabdbn0jhvs"]
 
-[ext_resource type="Script" path="res://first_area_name.gd" id="1_n8pex"]
+[ext_resource type="Script" path="res://region.gd" id="1_8ca6n"]
 [ext_resource type="Texture2D" uid="uid://bqsdp4x41ocin" path="res://Art/tilemap/Hana_Caraka_Cozy_Island/tileset_simplified.png" id="2_j2arp"]
 [ext_resource type="PackedScene" uid="uid://nux7eimswkmm" path="res://Objects/Portals/first_area_portal.tscn" id="3_geq2u"]
 [ext_resource type="PackedScene" uid="uid://d2i1fpad0uybc" path="res://Objects/Spawners/monster_spawner.tscn" id="4_i5q1p"]
@@ -309,7 +309,7 @@ size = Vector2(397, 223)
 
 [node name="PlootyPits" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_n8pex")
+script = ExtResource("1_8ca6n")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_ja87s")

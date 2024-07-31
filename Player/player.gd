@@ -44,11 +44,8 @@ func _ready() -> void:
 	ItemsManager.add_weapon.connect(add_weapon)
 	ItemsManager.add_hat.connect(add_hat)
 	ItemsManager.add_ability.connect(add_ability)
-	
-	PlayerStats.update_vigor_bonus()
-	PlayerStats.update_speed_bonus()
 
-func update_crit(proj_instance):
+func update_crit(proj_instance): # Updates the crit chance given input projectile
 	var crit_chance = PlayerStats.get_vigor_crit_bonus()
 	if randf() <= crit_chance:
 		proj_instance.damage *= 2.0
@@ -65,7 +62,9 @@ func on_add_projectile_child(proj_instance):
 	# make projectile a sibling so it has independent movement
 	proj_instance.reparent(get_parent())
 
-func update_animation_speed():
+func update_animation_speed(): 
+	# Player animation node will update both firing 
+ 	# and movement animation speeds
 	player_animation.update_animation_speed()
 
 func _physics_process(_delta: float) -> void:

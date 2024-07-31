@@ -166,4 +166,5 @@ func on_add_char_button_pressed():
 	save_char_select()
 
 func on_play_button_pressed() -> void:
+	# Loading scene's default destination is MAIN
 	get_tree().change_scene_to_file(PATHS.LOADING_PS)

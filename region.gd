@@ -1,14 +1,19 @@
 extends Node2D
+class_name Region
 
-@onready var fa_portal = $FirstAreaPortal
-@onready var sa_portal = $SecondAreaPortal
-
-var portals
+var portals = []
 var player
+
+var monster_spawners = []
 
 signal send_player_to
 func _ready() -> void:
-	portals = [fa_portal, sa_portal]
+	for c in get_children():
+		if c is Portal:
+			portals.append(c)
+		if c is MonsterSpawner:
+			monster_spawners.append(c)
+			
 	for p in portals:
 		p.send_player_to.connect(on_send_player_to)
 	
@@ -25,9 +30,17 @@ func check_portals_reqs():
 		else:
 			p.disabled = true
 			
-func receive_player(_pl):
+func receive_player(pl):
+	player = pl
 	check_portals_reqs()
+	for ms in monster_spawners:
+		ms.set_player(player)
 
 func on_PlayerStats_stats_updated():
 	check_portals_reqs()
-
+	
+func remove_enemies():
+	for c in get_children():
+		if c is Enemy:
+			#c.call_deferred("queue_free")
+			c.queue_free()

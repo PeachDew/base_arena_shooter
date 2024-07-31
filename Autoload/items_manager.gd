@@ -191,7 +191,7 @@ func empty_itemslot(slot_name):
 	change_inv_ui_texture.emit(str(slot_name), null)
 	
 	if "Loot" in slot_name:
-		if last_shown_lootbag:
+		if is_instance_valid(last_shown_lootbag):
 			last_shown_lootbag.loot_dict[slot_name] = null
 	
 	if !ex_item:

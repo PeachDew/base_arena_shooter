@@ -10,7 +10,7 @@ func _ready() -> void:
 	
 func on_pickup_area_body_entered(body):
 	if body is Player:
-		body.playerstats_manager.add_xp(xp_value)
+		PlayerStats.add_xp(xp_value)
 		queue_free() 
 
 

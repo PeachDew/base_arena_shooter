@@ -18,7 +18,6 @@ func _ready() -> void:
 		get_tree().paused = false
 	
 func _process(_delta: float) -> void:
-	print("HELLOOOO")
 	loading_status = ResourceLoader.load_threaded_get_status(target_scene_path, progress)
 	
 	match loading_status:
