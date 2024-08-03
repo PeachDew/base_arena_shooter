@@ -22,6 +22,7 @@ extends Control
 ]
 
 @onready var loot_ui_background = $LootUIBackground
+@onready var ability_cooldown_ui = $AbilityCooldown
 
 var loot_node_names : Array = [
 	"LootSlot1",
@@ -48,8 +49,9 @@ func _ready() -> void:
 	
 	ItemsManager.enable_loot_sig.connect(on_enable_loot_sig)
 	ItemsManager.disable_loot_sig.connect(on_disable_loot_sig)
-	
-	
+
+func show_ability_cooldown(cooldown_num: int):
+	ability_cooldown_ui.set_cooldown_label(cooldown_num)
 
 func on_item_moved(move_dict: Dictionary):
 	ItemsManager.on_item_moved(move_dict)

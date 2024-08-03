@@ -25,6 +25,8 @@ var last_autofiring_state = -1
 
 signal player_loaded
 
+signal activate_ability_cooldown_ui
+
 func _ready() -> void:
 	player_loaded.emit()
 	if hurtbox:
@@ -133,12 +135,15 @@ func add_ability(ability_item) -> void:
 		var new_ability_instance: Ability = Ability.new()
 		new_ability_instance.projectile_config_ids = ability_item.projectile_config_ids
 		new_ability_instance.add_projectile_child.connect(on_add_projectile_child)
+		new_ability_instance.activate_ability_coolown_ui.connect(on_activate_ability_cooldown_ui)
 		if typeof(last_autofiring_state) == TYPE_BOOL:
 			new_ability_instance.auto_firing = last_autofiring_state
 			
 		equipped_ability.add_child(new_ability_instance)
 		equipped_ability_item = ability_item
-		
+
+func on_activate_ability_cooldown_ui(time_left: float):
+	ItemsManager.activate_ability_cooldown_ui.emit(time_left)
 		
 func clear_hat():
 	for n in equipped_hat.get_children():

@@ -8,29 +8,36 @@ var projectile_configs := []
 var timers_to_start : Array = []
 var timers_to_stop : Array = []
 
-signal add_projectile_child
 
 var auto_firing := false
 
-var test_timers : Array = []
+var test_timer : float = 0.0
+
+signal add_projectile_child
+signal activate_ability_coolown_ui
 
 func _ready() -> void:
+	if len(projectile_config_ids) > 1:
+		push_warning("Abilities with multiple projectile config ids will use cooldown of first projectile")
 	for id in projectile_config_ids:
 		projectile_configs.append(ProjectileConfigs.configs[id])
-		test_timers.append(0)
+	
+	var cooldown_after_tempo = projectile_configs[0].cooldown - PlayerStats.get_tempo_cooldown_bonus()
+	activate_ability_coolown_ui.emit(cooldown_after_tempo)
 
 func _physics_process(delta: float) -> void:
-	for i in range(len(test_timers)):
-		test_timers[i] += delta
+	test_timer += delta
 	if Input.is_action_just_pressed("ability"):
 		shoot_if_can()
 	
 func shoot_if_can():
-	for i in range(len(test_timers)):
-		var cooldown_after_tempo = projectile_configs[i].cooldown - PlayerStats.get_tempo_cooldown_bonus()
-		if test_timers[i] > cooldown_after_tempo:
+	var cooldown_after_tempo = projectile_configs[0].cooldown - PlayerStats.get_tempo_cooldown_bonus()
+	if test_timer > cooldown_after_tempo:
+		activate_ability_coolown_ui.emit(cooldown_after_tempo)
+		for i in range(len(projectile_configs)):
 			fire_projectile_at_cursor(projectile_configs[i])
-			test_timers[i] = 0
+		test_timer = 0.0
+		
 
 func fire_projectile_at_cursor(projectile_config: Dictionary):
 	var projectile_instance = projectile_config.projectile_packed_scene.instantiate()

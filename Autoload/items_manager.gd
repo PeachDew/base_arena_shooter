@@ -91,6 +91,7 @@ signal enable_inv_sig
 signal disable_inv_sig
 signal enable_loot_sig
 signal disable_loot_sig
+signal activate_ability_cooldown_ui
 
 func _physics_process(_delta: float) -> void:
 
