@@ -24,6 +24,7 @@ func _input(event: InputEvent) -> void:
 		if PlayerStats.ult_charge >= 100.0:
 			PlayerStats.ult_charge = 0.0
 			use_ultimate()
+			PlayerStats.ult_charge_change.emit()
 	
 func use_ultimate():
 	for i in range(len(projectile_configs)):

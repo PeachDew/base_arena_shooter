@@ -60,10 +60,10 @@ const DEFAULT_PLAYER_STATS := {
 	"tempo": 0
 }
 
-@export var ult_charge_rate = 10.0 # THIS NOT SAVED IN SAVESMANAGER YET
+@export var ult_charge_rate = 50.0 # THIS NOT SAVED IN SAVESMANAGER YET
 var ult_charge = 0.0
 var charging_ult = false
-const STOP_ULT_CHARGE_COOLDOWN = 2.0
+const STOP_ULT_CHARGE_COOLDOWN = 1.0
 var stop_ult_timer : float = 0.0
 
 signal stats_updated

@@ -18,8 +18,10 @@ func _physics_process(delta: float) -> void:
 			counting_down = false
 			hide()
 		else:
-			var time_left = snapped(cooldown - time_since_start, 0.1)
-			cooldown_label.text = str(time_left)
+			var time_left = str(snapped(cooldown - time_since_start, 0.1))
+			if !("." in time_left):
+				time_left += ".0"
+			cooldown_label.text = time_left
 	
 	else:
 		time_since_start = 0.0
