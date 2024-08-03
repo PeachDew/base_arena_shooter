@@ -138,4 +138,33 @@ var configs : Dictionary = {
 		"rotation": 0.0,
 		"start_delay": 0.00,
 	},
+	
+	#Ultimates
+	"U_METEOR_STRIKE_1": {
+		"projectile_packed_scene": load(PATHS.PROJ_METEOR_STRIKE),
+		"speed": 200.0,
+		"damage": 10.0,
+		"max_pierce": 0,
+		"lifetime": 3.0,
+		"rotation": -15.0,
+		"start_delay": 0.00,
+	},
+	"U_METEOR_STRIKE_2": {
+		"projectile_packed_scene": load(PATHS.PROJ_METEOR_STRIKE),
+		"speed": 200.0,
+		"damage": 10.0,
+		"max_pierce": 1,
+		"lifetime": 3.0,
+		"rotation": 0.0,
+		"start_delay": 0.00,
+	},
+	"U_METEOR_STRIKE_3": {
+		"projectile_packed_scene": load(PATHS.PROJ_METEOR_STRIKE),
+		"speed": 200.0,
+		"damage": 10.0,
+		"max_pierce": 0,
+		"lifetime": 3.0,
+		"rotation": 15.0,
+		"start_delay": 0.00,
+	}
 }

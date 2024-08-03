@@ -43,8 +43,10 @@ func on_damaged(attack: Attack):
 		global_position + Vector2(damage_number_x_offset, damage_number_y_offset),
 		attack.is_crit
 	)
-	if curr_hp > 0:
+	if curr_hp >= 0:
 		curr_hp -= attack.damage
+		if attack.damage > 0:
+			PlayerStats.damage_dealt.emit()
 		enemy_hp_change.emit(curr_hp)
 		
 		if curr_hp <= 0:
@@ -59,3 +61,6 @@ func on_damaged(attack: Attack):
 				}
 			)
 			queue_free()
+	
+	else:
+		push_warning("Enemy with negative hp: " + str(curr_hp) + " is being attacked.")

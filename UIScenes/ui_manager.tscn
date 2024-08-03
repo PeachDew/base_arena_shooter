@@ -16,6 +16,14 @@
 [node name="UIManager" type="CanvasLayer"]
 script = ExtResource("1_xcx0m")
 
+[node name="UltBar" type="ProgressBar" parent="."]
+anchors_preset = -1
+anchor_left = -0.273438
+anchor_top = -0.0236111
+anchor_right = 0.275
+anchor_bottom = 0.0291667
+metadata/_edit_use_anchors_ = true
+
 [node name="XPBar" parent="." instance=ExtResource("2_a48yt")]
 step = 0.05
 metadata/_edit_use_anchors_ = true

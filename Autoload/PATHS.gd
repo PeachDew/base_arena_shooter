@@ -30,3 +30,6 @@ const PROJ_A01 := ABILITIES_PROJ_PS_DIR + "flash_bolt_projectile.tscn"
 ### enemy projectiles ###
 const PROJ_ETZERO := ENEMY_PROJ_PS_DIR + "plooty_projectile.tscn"
 
+### ultimates ###
+const PROJ_METEOR_STRIKE := PROJ_PS_DIR +  "projectile_meteor_strike.tscn"
+

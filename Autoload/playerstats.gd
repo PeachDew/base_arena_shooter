@@ -60,12 +60,35 @@ const DEFAULT_PLAYER_STATS := {
 	"tempo": 0
 }
 
+@export var ult_charge_rate = 10.0 # THIS NOT SAVED IN SAVESMANAGER YET
+var ult_charge = 0.0
+var charging_ult = false
+const STOP_ULT_CHARGE_COOLDOWN = 2.0
+var stop_ult_timer : float = 0.0
+
 signal stats_updated
+signal damage_dealt
 
 signal xp_change
 signal level_change
 signal hp_change
-	
+signal ult_charge_change
+
+func _ready() -> void:
+	damage_dealt.connect(on_damage_dealt)
+
+func on_damage_dealt():
+	charging_ult = true
+	stop_ult_timer = 0.0
+
+func _physics_process(delta: float) -> void:
+	if charging_ult:
+		ult_charge += ult_charge_rate * delta
+		ult_charge_change.emit()
+	stop_ult_timer += delta
+	if stop_ult_timer > STOP_ULT_CHARGE_COOLDOWN:
+		charging_ult = false
+
 func add_xp(x: float) -> void:
 	xp += x
 	cumulative_xp += x

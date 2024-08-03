@@ -4,6 +4,8 @@ extends CanvasLayer
 @onready var xp_bar = $XPBar
 @onready var pause_menu = $PauseMenu
 @onready var hp_bar = $HPBar
+@onready var ult_bar = $UltBar
+
 @onready var loading = $LoadingUI
 
 @onready var inv_ui = $InventoryUI
@@ -30,9 +32,11 @@ signal unpause_world
 signal pausemenu_home_button_pressed
 
 func _ready() -> void:
+	initialise_ult_bar()
 	PlayerStats.xp_change.connect(on_xp_change)
 	PlayerStats.level_change.connect(on_level_change)
 	PlayerStats.hp_change.connect(on_hp_change)
+	PlayerStats.ult_charge_change.connect(update_ult_bar)
 	player.player_loaded.connect(on_player_loaded)
 	
 	loading.pause_world.connect(on_pause_world)
@@ -57,6 +61,18 @@ func _ready() -> void:
 	stats_tempo_button.pressed.connect(on_add_stats_button_pressed.bind("tempo"))
 	
 	pause_menu.pausemenu_home_button_pressed.connect(on_pausemenu_home_button_pressed)
+
+func initialise_ult_bar():
+	var width = ult_bar.get_viewport_rect().size[0]
+	var height = ult_bar.get_viewport_rect().size[1]
+	
+	ult_bar.position.x += width/3
+	ult_bar.position.y += height*8/10
+	
+	ult_bar.value = PlayerStats.ult_charge
+
+func update_ult_bar():
+	ult_bar.value = PlayerStats.ult_charge
 
 func on_pausemenu_home_button_pressed():
 	pausemenu_home_button_pressed.emit()

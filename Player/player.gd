@@ -9,6 +9,9 @@ extends CharacterBody2D
 @onready var equipped_hat := $EquippedHat
 @onready var equipped_ability := $EquippedAbility
 @onready var equipped_weapon := $EquippedWeapon
+
+@onready var equipped_class := $EquippedClass
+
 @onready var bare_weapon := $BareWeapon
 @onready var firing_position := $PlayerCenter/FiringPosition
 @onready var hurtbox := $PlayerHurtbox
@@ -38,6 +41,9 @@ func _ready() -> void:
 	iframes_timer.wait_time = PlayerStats.iframes_seconds
 	iframes_timer.timeout.connect(on_iframes_timer_timeout)
 	bare_weapon.add_projectile_child.connect(on_add_projectile_child)
+	
+	if equipped_class.ultimate_node:
+		equipped_class.ultimate_node.add_projectile_child.connect(on_add_projectile_child)
 	
 	ItemsManager.clear_weapon.connect(clear_weapon)
 	ItemsManager.clear_hat.connect(clear_hat)

@@ -1,9 +1,11 @@
-[gd_scene load_steps=26 format=3 uid="uid://hoc8wacnty4h"]
+[gd_scene load_steps=28 format=3 uid="uid://hoc8wacnty4h"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_rtain"]
 [ext_resource type="Script" path="res://Player/player_movement.gd" id="3_hf5p4"]
 [ext_resource type="Texture2D" uid="uid://d3u7t0ujs1j8i" path="res://Art/characters/starter_char/starter_all.png" id="5_8qdir"]
 [ext_resource type="Script" path="res://Player/player_animation.gd" id="5_pmraa"]
+[ext_resource type="Script" path="res://Player/equipped_class.gd" id="6_jw1dr"]
+[ext_resource type="Script" path="res://Player/ultimate.gd" id="6_pl5pe"]
 [ext_resource type="Script" path="res://Mechanics/hp_regen.gd" id="7_0k3q8"]
 [ext_resource type="Script" path="res://Player/player_weapon.gd" id="7_l8q3j"]
 [ext_resource type="Script" path="res://hurtbox.gd" id="10_jcess"]
@@ -193,6 +195,14 @@ visible = false
 
 [node name="EquippedAbility" type="Node2D" parent="."]
 visible = false
+
+[node name="EquippedClass" type="Node2D" parent="."]
+script = ExtResource("6_jw1dr")
+
+[node name="Mage" type="Node2D" parent="EquippedClass"]
+
+[node name="Ultimate" type="Node2D" parent="EquippedClass/Mage"]
+script = ExtResource("6_pl5pe")
 
 [node name="BareWeapon" type="Node2D" parent="."]
 visible = false
