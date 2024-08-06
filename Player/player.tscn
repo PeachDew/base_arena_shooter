@@ -1,11 +1,10 @@
-[gd_scene load_steps=28 format=3 uid="uid://hoc8wacnty4h"]
+[gd_scene load_steps=30 format=3 uid="uid://hoc8wacnty4h"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_rtain"]
 [ext_resource type="Script" path="res://Player/player_movement.gd" id="3_hf5p4"]
 [ext_resource type="Texture2D" uid="uid://d3u7t0ujs1j8i" path="res://Art/characters/starter_char/starter_all.png" id="5_8qdir"]
 [ext_resource type="Script" path="res://Player/player_animation.gd" id="5_pmraa"]
 [ext_resource type="Script" path="res://Player/equipped_class.gd" id="6_jw1dr"]
-[ext_resource type="Script" path="res://Player/ultimate.gd" id="6_pl5pe"]
 [ext_resource type="Script" path="res://Mechanics/hp_regen.gd" id="7_0k3q8"]
 [ext_resource type="Script" path="res://Player/player_weapon.gd" id="7_l8q3j"]
 [ext_resource type="Script" path="res://hurtbox.gd" id="10_jcess"]
@@ -134,6 +133,24 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Curve" id="Curve_wubc4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.844749, 0.714286), -1.88342, -1.88342, 0, 0, Vector2(1, 0), -1.76811, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_r4urv"]
+curve = SubResource("Curve_wubc4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kxjus"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(1, 0.5, 2)
+emission_shape = 2
+emission_sphere_radius = 15.57
+gravity = Vector3(0, -200, 0)
+scale_min = 2.5
+scale_max = 2.5
+scale_curve = SubResource("CurveTexture_r4urv")
+color = Color(0.937255, 1, 1, 1)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0lgdj"]
 size = Vector2(19, 31)
 
@@ -157,6 +174,7 @@ script = ExtResource("5_pmraa")
 animated_sprite = NodePath("../PlayerCenter/AnimatedSprite2D")
 
 [node name="PlayerCenter" type="Marker2D" parent="."]
+y_sort_enabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PlayerCenter"]
 scale = Vector2(2, 2)
@@ -167,7 +185,17 @@ autoplay = "idle"
 [node name="FiringPosition" type="Marker2D" parent="PlayerCenter"]
 position = Vector2(16, 0)
 
+[node name="UltReadyParticles" type="GPUParticles2D" parent="PlayerCenter"]
+position = Vector2(0, 9)
+amount = 7
+process_material = SubResource("ParticleProcessMaterial_kxjus")
+speed_scale = 3.0
+randomness = 0.2
+
+[node name="MiscParticles" type="Node2D" parent="PlayerCenter"]
+
 [node name="PlayerHurtbox" type="Area2D" parent="."]
+visible = false
 collision_mask = 12
 script = ExtResource("10_jcess")
 
@@ -175,6 +203,7 @@ script = ExtResource("10_jcess")
 shape = SubResource("RectangleShape2D_0lgdj")
 
 [node name="PickupGravity" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 64
 gravity_space_override = 1
@@ -197,12 +226,8 @@ visible = false
 visible = false
 
 [node name="EquippedClass" type="Node2D" parent="."]
+visible = false
 script = ExtResource("6_jw1dr")
-
-[node name="Mage" type="Node2D" parent="EquippedClass"]
-
-[node name="Ultimate" type="Node2D" parent="EquippedClass/Mage"]
-script = ExtResource("6_pl5pe")
 
 [node name="BareWeapon" type="Node2D" parent="."]
 visible = false

@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://brr8668omy4ap"]
+
+[ext_resource type="Script" path="res://Projectile/projectile.gd" id="1_v71y5"]
+[ext_resource type="Texture2D" uid="uid://isqlic3latvl" path="res://Art/items/Projectiles/decashot_projectile.png" id="1_w7lr5"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_km77r"]
+radius = 1.5
+height = 14.0
+
+[node name="projectile_decashot" type="CharacterBody2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_v71y5")
+
+[node name="Projectile_Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="ProjectileHurtbox" type="CollisionShape2D" parent="Projectile_Area2D"]
+position = Vector2(-3, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_km77r")
+
+[node name="ProjectileSprite" type="Sprite2D" parent="Projectile_Area2D"]
+position = Vector2(-5, 0)
+rotation = 0.781907
+texture = ExtResource("1_w7lr5")
+
+[node name="Projectile_Lifetime_Timer" type="Timer" parent="."]

@@ -20,7 +20,7 @@ func update_animation_speed():
 	attack_animation_speed = 1.0 + PlayerStats.get_tempo_animation_bonus()
 	
 func _physics_process(_delta):
-	if Input.is_action_pressed("primary_fire"):
+	if Input.is_action_pressed("primary_fire") or Input.is_action_pressed("ultimate"):
 		animated_sprite.set_speed_scale(attack_animation_speed)
 		if get_global_mouse_position().x > center.global_position.x:
 			center.scale.x = 1

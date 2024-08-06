@@ -166,5 +166,15 @@ var configs : Dictionary = {
 		"lifetime": 3.0,
 		"rotation": 15.0,
 		"start_delay": 0.00,
-	}
+	},
+	
+	"U_DECASHOT": {
+		"projectile_packed_scene": load(PATHS.PROJ_DECASHOT),
+		"speed": 1000.0,
+		"damage": 20.0,
+		"max_pierce": 3,
+		"lifetime": 1.0,
+		"rotation": 0.0,
+		"start_delay": 0.00,
+	},
 }

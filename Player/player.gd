@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var player_hurtbox := $PlayerHurtbox
 @onready var iframes_timer := $IFrames_Timer
 @onready var player_animation := $PlayerAnimation
+@onready var ult_ready_particles := $PlayerCenter/UltReadyParticles
 
 @onready var equipped_hat := $EquippedHat
 @onready var equipped_ability := $EquippedAbility
@@ -15,6 +16,8 @@ extends CharacterBody2D
 @onready var bare_weapon := $BareWeapon
 @onready var firing_position := $PlayerCenter/FiringPosition
 @onready var hurtbox := $PlayerHurtbox
+
+@onready var misc_particles := $PlayerCenter/MiscParticles
 
 @export var equipped_hat_item := {}
 @export var equipped_ability_item := {}
@@ -44,6 +47,12 @@ func _ready() -> void:
 	
 	if equipped_class.ultimate_node:
 		equipped_class.ultimate_node.add_projectile_child.connect(on_add_projectile_child)
+		equipped_class.ultimate_node.set_misc_particles.connect(set_misc_particles)
+		
+	ult_ready_particles.emitting = false
+	
+	PlayerStats.ult_ready.connect(on_ult_ready)
+	equipped_class.ult_used.connect(on_ult_used)
 	
 	ItemsManager.clear_weapon.connect(clear_weapon)
 	ItemsManager.clear_hat.connect(clear_hat)
@@ -52,6 +61,22 @@ func _ready() -> void:
 	ItemsManager.add_weapon.connect(add_weapon)
 	ItemsManager.add_hat.connect(add_hat)
 	ItemsManager.add_ability.connect(add_ability)
+	
+	
+func set_misc_particles(packed_scene_paths: Array):
+	for c in misc_particles.get_children():
+		c.queue_free()
+	
+	for pcps in packed_scene_paths:
+		var loaded_packed_scene = load(pcps).instantiate()
+		loaded_packed_scene.emitting = true
+		misc_particles.call_deferred("add_child", loaded_packed_scene)
+
+func on_ult_ready():
+	ult_ready_particles.emitting = true
+
+func on_ult_used():
+	ult_ready_particles.emitting = false
 
 func update_crit(proj_instance): # Updates the crit chance given input projectile
 	var crit_chance = PlayerStats.get_vigor_crit_bonus()

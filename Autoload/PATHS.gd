@@ -10,6 +10,10 @@ const COMMON_LOOTBAG_PS := "res://Objects/Misc/Lootbags/common_loot_bag.tscn"
 const RANGED_PLOOTY_PS := "res://Objects/Enemies/BasicRangedEnemy.tscn"
 const EMBERLIGHT := "res://emberlight.tscn"
 
+## CLASSES ##
+const CLASS_PS_DIR := "res://Classes/"
+const CLASS_MAGE := CLASS_PS_DIR + "mage.tscn"
+const CLASS_ARCHER := CLASS_PS_DIR + "archer.tscn"
 
 ## PROJECTILES ##
 const PROJ_PS_DIR := "res://Objects/Projectiles/ProjectilePackedScenes/"
@@ -32,4 +36,8 @@ const PROJ_ETZERO := ENEMY_PROJ_PS_DIR + "plooty_projectile.tscn"
 
 ### ultimates ###
 const PROJ_METEOR_STRIKE := PROJ_PS_DIR +  "projectile_meteor_strike.tscn"
+const PROJ_DECASHOT := PROJ_PS_DIR + "projectile_decashot.tscn"
 
+### particles ###
+const PARTICLES_PS_DIR := "res://Particles/"
+const PARTICLES_SPARKLES_WHITE2GREEN := PARTICLES_PS_DIR + "particles_white2green_sparkles.tscn"

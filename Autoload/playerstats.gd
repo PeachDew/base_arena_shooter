@@ -73,6 +73,7 @@ signal xp_change
 signal level_change
 signal hp_change
 signal ult_charge_change
+signal ult_ready
 
 func _ready() -> void:
 	damage_dealt.connect(on_damage_dealt)
@@ -85,6 +86,8 @@ func _physics_process(delta: float) -> void:
 	if charging_ult:
 		ult_charge += ult_charge_rate * delta
 		ult_charge_change.emit()
+	if ult_charge >= 100.0:
+		ult_ready.emit()
 	stop_ult_timer += delta
 	if stop_ult_timer > STOP_ULT_CHARGE_COOLDOWN:
 		charging_ult = false
