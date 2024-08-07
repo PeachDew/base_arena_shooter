@@ -17,6 +17,8 @@ extends CharacterBody2D
 @onready var firing_position := $PlayerCenter/FiringPosition
 @onready var hurtbox := $PlayerHurtbox
 
+@onready var hp_regen_node := $HPRegen
+
 @onready var misc_particles := $PlayerCenter/MiscParticles
 
 @export var equipped_hat_item := {}
@@ -28,6 +30,8 @@ var latest_incoming_attack : Attack
 var enemies_in_hurtbox := 0
 
 var last_autofiring_state = -1
+
+var shot_particles : Array = []
 
 signal player_loaded
 
@@ -48,6 +52,7 @@ func _ready() -> void:
 	if equipped_class.ultimate_node:
 		equipped_class.ultimate_node.add_projectile_child.connect(on_add_projectile_child)
 		equipped_class.ultimate_node.set_misc_particles.connect(set_misc_particles)
+		equipped_class.ultimate_node.set_shot_particles.connect(on_set_shot_particles)
 		
 	ult_ready_particles.emitting = false
 	
@@ -61,14 +66,19 @@ func _ready() -> void:
 	ItemsManager.add_weapon.connect(add_weapon)
 	ItemsManager.add_hat.connect(add_hat)
 	ItemsManager.add_ability.connect(add_ability)
-	
+
+func on_set_shot_particles(particles_array: Array):
+	shot_particles = particles_array
 	
 func set_misc_particles(packed_scene_paths: Array):
+	#print(misc_particles.get_child_count())
 	for c in misc_particles.get_children():
-		c.queue_free()
+		c.emitting = false
+		if !c.finished.is_connected(c.queue_free):
+			c.finished.connect(c.queue_free)
 	
 	for pcps in packed_scene_paths:
-		var loaded_packed_scene = load(pcps).instantiate()
+		var loaded_packed_scene = pcps.instantiate()
 		loaded_packed_scene.emitting = true
 		misc_particles.call_deferred("add_child", loaded_packed_scene)
 
@@ -84,7 +94,7 @@ func update_crit(proj_instance): # Updates the crit chance given input projectil
 		proj_instance.damage *= 2.0
 		proj_instance.is_crit = true
 
-func on_add_projectile_child(proj_instance):
+func on_add_projectile_child(proj_instance, particles = shot_particles):
 	proj_instance.damage = PlayerStats.apply_might(proj_instance.damage)
 	update_crit(proj_instance)
 	
@@ -92,6 +102,10 @@ func on_add_projectile_child(proj_instance):
 	proj_instance.global_position = firing_position.global_position
 	var mouse_direction = get_global_mouse_position() - firing_position.global_position
 	proj_instance.rotation += mouse_direction.angle()
+	
+	if len(particles) > 0:
+		for p in particles:
+			proj_instance.add_child(p.instantiate())
 	# make projectile a sibling so it has independent movement
 	proj_instance.reparent(get_parent())
 

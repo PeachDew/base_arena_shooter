@@ -39,3 +39,7 @@ func _physics_process(delta: float) -> void:
 		curr_tick_time += delta
 	else: # so that when re-activated, immediately start regen
 		curr_tick_time = regen_tick_cooldown + 1.0
+
+func start_regen():
+	activated = true
+	curr_tick_time = regen_tick_cooldown + 1.0

@@ -56,5 +56,9 @@ func update_VMST_stats_ui():
 
 func change_total_stat(stat_name, stat_value):
 	PlayerStats.total_player_stats[stat_name] += stat_value
+	if stat_name == "vigor" and stat_value > 0: # If positive change to vigor
+		player.hp_regen_node.start_regen()
+	PlayerStats.update_speed_bonus()
+	PlayerStats.update_vigor_bonus()
 	update_VMST_stats_ui()
 

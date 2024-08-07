@@ -10,7 +10,6 @@
 [ext_resource type="Theme" uid="uid://b1tb3h6x4i01j" path="res://UIScenes/test_theme.tres" id="6_p2i40"]
 
 [node name="InventoryUI" type="Control"]
-process_mode = 4
 layout_mode = 3
 anchors_preset = 0
 offset_left = -295.0

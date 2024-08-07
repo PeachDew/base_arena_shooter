@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdohxat2vgqqr"]
+
+[ext_resource type="Material" uid="uid://n42vekwiw2vy" path="res://Particles/warrior_particles.tres" id="1_5yab8"]
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+process_material = ExtResource("1_5yab8")
+lifetime = 0.8

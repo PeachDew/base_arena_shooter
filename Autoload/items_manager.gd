@@ -200,7 +200,7 @@ func empty_itemslot(slot_name):
 	if (("modifiers" in ex_item)
 	and ("Weapon" in slot_name 
 	or "Hat" in slot_name
-	or "Ability" in slot_name)):
+	or "Ability" in slot_name)): # THIS MIGHT BE MORE APPROPRIATE IN PLAYERSTATS
 		for stat_modifier in ex_item.modifiers:
 			var stat_name = stat_modifier[0] 
 			var stat_change = -1 * stat_modifier[1]

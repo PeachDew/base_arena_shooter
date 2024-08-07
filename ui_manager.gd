@@ -78,11 +78,12 @@ func on_pausemenu_home_button_pressed():
 	pausemenu_home_button_pressed.emit()
 
 func on_enable_inv_sig():
-	inv_ui.process_mode = Node.PROCESS_MODE_INHERIT
+	#inv_ui.process_mode = Node.PROCESS_MODE_INHERIT 
 	inv_ui.show()
 
 func on_disable_inv_sig():
-	inv_ui.process_mode = Node.PROCESS_MODE_DISABLED
+	#inv_ui.process_mode = Node.PROCESS_MODE_DISABLED 
+	# dont need to disable, hidden ui cannot be interactable
 	inv_ui.hide()
 
 func _input(event: InputEvent) -> void:

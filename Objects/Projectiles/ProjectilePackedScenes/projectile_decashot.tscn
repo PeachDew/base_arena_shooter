@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://brr8668omy4ap"]
+[gd_scene load_steps=7 format=3 uid="uid://brr8668omy4ap"]
 
 [ext_resource type="Script" path="res://Projectile/projectile.gd" id="1_v71y5"]
 [ext_resource type="Texture2D" uid="uid://isqlic3latvl" path="res://Art/items/Projectiles/decashot_projectile.png" id="1_w7lr5"]
@@ -6,6 +6,22 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_km77r"]
 radius = 1.5
 height = 14.0
+
+[sub_resource type="Gradient" id="Gradient_crbvr"]
+offsets = PackedFloat32Array(0, 0.324607, 0.60733)
+colors = PackedColorArray(1, 1, 1, 1, 0.34902, 0.811765, 0.576471, 1, 0.34902, 0.811765, 0.576471, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_i68sn"]
+gradient = SubResource("Gradient_crbvr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pogmr"]
+particle_flag_disable_z = true
+angle_min = 45.0
+angle_max = 45.0
+gravity = Vector3(0, 0, 0)
+scale_min = 3.3
+scale_max = 3.3
+color_ramp = SubResource("GradientTexture1D_i68sn")
 
 [node name="projectile_decashot" type="CharacterBody2D"]
 scale = Vector2(2, 2)
@@ -26,3 +42,7 @@ rotation = 0.781907
 texture = ExtResource("1_w7lr5")
 
 [node name="Projectile_Lifetime_Timer" type="Timer" parent="."]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_pogmr")
