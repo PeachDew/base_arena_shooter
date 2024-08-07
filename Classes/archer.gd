@@ -11,4 +11,4 @@ func _ready() -> void:
 		ultimate.projectile_configs.append(ProjectileConfigs.configs[id])
 	
 	ultimate.shots = 5
-	ultimate.has_shots_misc_particles = [PATHS.PARTICLES_SPARKLES_WHITE2GREEN]
+	ultimate.has_shots_misc_particles = [preload(PATHS.PARTICLES_SPARKLES_WHITE2GREEN)]

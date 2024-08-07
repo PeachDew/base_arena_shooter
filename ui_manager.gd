@@ -4,7 +4,9 @@ extends CanvasLayer
 @onready var xp_bar = $XPBar
 @onready var pause_menu = $PauseMenu
 @onready var hp_bar = $HPBar
+
 @onready var ult_bar = $UltBar
+@onready var ult_text = $UltText
 
 @onready var loading = $LoadingUI
 
@@ -67,12 +69,26 @@ func initialise_ult_bar():
 	var height = ult_bar.get_viewport_rect().size[1]
 	
 	ult_bar.position.x += width/3
-	ult_bar.position.y += height*8/10
+	ult_bar.position.y += height*9/10
+	ult_text.position.x += width/3
+	ult_text.position.y += height*9/10
+	ult_animation.position.x += width/3
+	ult_animation.position.y += height*9/10
 	
 	ult_bar.value = PlayerStats.ult_charge
 
+@onready var ult_animation = $UltAnimation
 func update_ult_bar():
 	ult_bar.value = PlayerStats.ult_charge
+	ult_text.text = str(clamp(int(PlayerStats.ult_charge),0,100))
+	
+	if ult_bar.value >= 100.0:
+		if !ult_animation.visible:
+			ult_animation.show()
+			ult_animation.frame = 0
+			ult_animation.play("default")
+	else:
+		ult_animation.hide()
 
 func on_pausemenu_home_button_pressed():
 	pausemenu_home_button_pressed.emit()
