@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://58ntcl5jbx5o"]
+[gd_scene load_steps=56 format=3 uid="uid://58ntcl5jbx5o"]
 
 [ext_resource type="Script" path="res://ui_manager.gd" id="1_xcx0m"]
 [ext_resource type="PackedScene" uid="uid://blt677eo2k0jl" path="res://UIScenes/xp_bar.tscn" id="2_a48yt"]
@@ -10,7 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://dc6nxv30400io" path="res://Art/ui/progress_hp.png" id="5_uk6dm"]
 [ext_resource type="Texture2D" uid="uid://dubekjla6jv75" path="res://Art/ui/ult_charged_animation.png" id="5_x3n4c"]
 [ext_resource type="Script" path="res://UIScenes/player_hpbar.gd" id="6_8pyil"]
+[ext_resource type="Texture2D" uid="uid://c6jaok3i40d0d" path="res://Art/ui/ult_left_bar.png" id="6_gd6rc"]
 [ext_resource type="PackedScene" uid="uid://bprmbisj0m7n4" path="res://UIScenes/inventory_ui.tscn" id="7_o1dt0"]
+[ext_resource type="Script" path="res://UIScenes/ult_left_bar.gd" id="7_xiig0"]
 [ext_resource type="Script" path="res://UIScenes/LoadingUI.gd" id="8_saxpn"]
 [ext_resource type="Texture2D" uid="uid://b4h0ls2cjqt2n" path="res://Art/ui/over_xp.png" id="9_y87r6"]
 [ext_resource type="Texture2D" uid="uid://pdxydw6lllym" path="res://Art/ui/progress_xp.png" id="10_l0xxf"]
@@ -308,9 +310,20 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="UltAnimation" type="AnimatedSprite2D" parent="."]
-position = Vector2(-269, -99)
+position = Vector2(-269, -98)
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_3mys5")
+
+[node name="UltLeftBar" type="TextureProgressBar" parent="."]
+offset_left = -344.0
+offset_top = -173.0
+offset_right = -319.0
+offset_bottom = -148.0
+scale = Vector2(6, 6)
+step = 0.0
+value = 100.0
+texture_progress = ExtResource("6_gd6rc")
+script = ExtResource("7_xiig0")
 
 [node name="XPBar" parent="." instance=ExtResource("2_a48yt")]
 step = 0.05

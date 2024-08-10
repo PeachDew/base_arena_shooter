@@ -66,6 +66,9 @@ var charging_ult = false
 const STOP_ULT_CHARGE_COOLDOWN = 1.0
 var stop_ult_timer : float = 0.0
 
+var buff_time_left : float = 0.0
+var shots_left : int = 0
+
 signal stats_updated
 signal damage_dealt
 
@@ -75,12 +78,25 @@ signal hp_change
 signal ult_charge_change
 signal ult_ready
 
+signal buff_time_set
+signal shots_left_set
+
 func _ready() -> void:
 	damage_dealt.connect(on_damage_dealt)
 
 func on_damage_dealt():
 	charging_ult = true
 	stop_ult_timer = 0.0
+
+func set_buff_time(bt: float):
+	if bt > 0.0:
+		PlayerStats.buff_time_left = bt
+		buff_time_set.emit(bt)
+
+func set_shots_left(sl: int):
+	if sl > 0:
+		PlayerStats.shots_left = sl
+		shots_left_set.emit(sl)
 
 func _physics_process(delta: float) -> void:
 	if charging_ult:

@@ -11,15 +11,17 @@ signal set_misc_particles
 signal set_shot_particles
 
 var shots : int = -1
-var shots_left : int = -1
 var has_shots_misc_particles := [] 
 
 var buff_active : bool = false
 var buff_time : float = 0.0
 var buffs := []
-var buff_curr_time : float = 0.0
 var has_buffs_misc_particles := []
 var buff_projectile_particles := []
+
+func _ready() -> void:
+	PlayerStats.buff_time_left = 0.0
+	PlayerStats.shots_left = 0
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ultimate"):
@@ -31,37 +33,37 @@ func _input(event: InputEvent) -> void:
 			use_ultimate()
 	
 	if event.is_action_pressed("primary_fire"):
-		if shots_left > 0:
+		if PlayerStats.shots_left > 0:
 			if len(projectile_configs) == 0:
 				push_warning("Has shots_left but empty projectile_configs")
 			else:
 				for i in range(len(projectile_configs)):
 					fire_projectile_at_cursor(projectile_configs[i])
-				shots_left -= 1
-				if shots_left <= 0:
+				PlayerStats.shots_left -= 1 
+				if PlayerStats.shots_left <= 0:
 					set_misc_particles.emit([])
 
 func _physics_process(delta: float) -> void:
 	if buff_active:
-		buff_curr_time += delta
-		if buff_curr_time > buff_time:
+		PlayerStats.buff_time_left -= delta
+		if PlayerStats.buff_time_left < 0.0:
 			remove_buffs()
 	
 func use_ultimate():
-	if buff_time:
-		buff_curr_time = 0.0
+	if buff_time > 0.0:
+		PlayerStats.set_buff_time(buff_time)
 		buff_active = true
 		add_buffs()
-	if shots:
-		shots_left = shots
-		if len(has_shots_misc_particles) > 0 and shots_left > 0:
+	if shots > 0:
+		PlayerStats.set_shots_left(shots) # Shots left put in PlayerStats autoloaded script instead
+		if len(has_shots_misc_particles) > 0 and PlayerStats.shots_left > 0:
 			set_misc_particles.emit(has_shots_misc_particles)
 	else:
 		for i in range(len(projectile_configs)):
 			fire_projectile_at_cursor(projectile_configs[i])
 
 func add_buffs():
-	if len(has_buffs_misc_particles) > 0 and buff_curr_time < buff_time:
+	if len(has_buffs_misc_particles) > 0 and PlayerStats.buff_time_left > 0.0:
 		set_misc_particles.emit(has_buffs_misc_particles)
 	apply_modifiers(buffs)
 	

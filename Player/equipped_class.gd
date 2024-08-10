@@ -8,7 +8,7 @@ signal set_misc_particles
 
 func _ready() -> void:
 	
-	add_class(PATHS.CLASS_WARRIOR)
+	add_class(PATHS.CLASS_ARCHER)
 
 func add_class(class_packed_scene_path):
 	if get_child_count() > 0:

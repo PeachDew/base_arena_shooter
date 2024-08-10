@@ -7,6 +7,8 @@ extends CanvasLayer
 
 @onready var ult_bar = $UltBar
 @onready var ult_text = $UltText
+@onready var ult_left_bar = $UltLeftBar
+@onready var ult_animation = $UltAnimation
 
 @onready var loading = $LoadingUI
 
@@ -68,16 +70,20 @@ func initialise_ult_bar():
 	var width = ult_bar.get_viewport_rect().size[0]
 	var height = ult_bar.get_viewport_rect().size[1]
 	
+	
 	ult_bar.position.x += width/3
 	ult_bar.position.y += height*9/10
 	ult_text.position.x += width/3
 	ult_text.position.y += height*9/10
 	ult_animation.position.x += width/3
 	ult_animation.position.y += height*9/10
+	ult_left_bar.position.x += width/3
+	ult_left_bar.position.y += height*9/10
 	
 	ult_bar.value = PlayerStats.ult_charge
+	
+	
 
-@onready var ult_animation = $UltAnimation
 func update_ult_bar():
 	ult_bar.value = PlayerStats.ult_charge
 	ult_text.text = str(clamp(int(PlayerStats.ult_charge),0,100))
