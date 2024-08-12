@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://cijdo8xuub462"]
+
+[ext_resource type="Script" path="res://Objects/Misc/Coins/coin.gd" id="1_a14q1"]
+[ext_resource type="Texture2D" uid="uid://b76cqhfyilm2a" path="res://Art/misc/coin.png" id="2_kkck2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yvc5n"]
+radius = 13.0384
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_or0xw"]
+radius = 6.08276
+
+[node name="Coin" type="RigidBody2D"]
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("1_a14q1")
+
+[node name="GravityCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_yvc5n")
+
+[node name="PickupCollision" type="Area2D" parent="."]
+collision_layer = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupCollision"]
+shape = SubResource("CircleShape2D_or0xw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_kkck2")

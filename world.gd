@@ -42,8 +42,12 @@ func on_child_entered_region(child):
 		
 func on_spawn_in_region(node):
 	region.call_deferred("add_child",node)
-	if node is Orb:
-		var impulse_magnitude = 250.0
+	if node is Orb or node is Coin:
+		var impulse_magnitude
+		if node is Orb:
+			impulse_magnitude = randf_range(50.0, 350.0)
+		else:
+			impulse_magnitude = randf_range(10.0, 175.0) + node.additional_impulse
 		var random_angle = randf() * 2 * PI
 		var impulse = Vector2(cos(random_angle), sin(random_angle)) * impulse_magnitude
 		node.apply_central_impulse(impulse)

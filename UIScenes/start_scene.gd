@@ -44,7 +44,6 @@ const player_name_suggestions := [
 func _ready() -> void:
 	name_exists_label.hide()
 	player_name_le.text = player_name_suggestions[randi_range(0, len(player_name_suggestions)-1)]
-	#! DELETE THIS ONCE WORKING CHAR NAME
 	#!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	#SaveSystem.delete_all()
 	#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

@@ -5,8 +5,11 @@ const LOADING_PS : String = "res://UIScenes/loading_scene.tscn"
 const CHAR_BUTTON_PS : String = "res://UIScenes/character_button.tscn"
 const CHAR_SELECT_PS : String = "res://UIScenes/start_scene.tscn"
 
+## MATERIALS ##
 const SMALL_XP_ORB_PS : String = "res://Objects/Misc/XP_Orbs/xp_orb_small.tscn"
 const COMMON_LOOTBAG_PS : String = "res://Objects/Misc/Lootbags/common_loot_bag.tscn"
+const COIN_PS : String = "res://Objects/Misc/Coins/coin.tscn"
+
 const RANGED_PLOOTY_PS : String = "res://Objects/Enemies/BasicRangedEnemy.tscn"
 const EMBERLIGHT : String = "res://emberlight.tscn"
 

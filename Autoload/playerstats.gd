@@ -34,6 +34,9 @@ const DEFAULT_PLAYER_STATS := {
 @export var max_xp := 83.0
 @export var cumulative_xp := 0.0
 
+# Resource Stats
+@export var coins : int = 0
+
 # HP Stats
 @export var hp := 100.0
 @export var base_max_hp := 100.0
@@ -74,6 +77,7 @@ signal damage_dealt
 
 signal xp_change
 signal level_change
+signal coins_change
 signal hp_change
 signal ult_charge_change
 signal ult_ready
@@ -120,6 +124,10 @@ func add_xp(x: float) -> void:
 		
 		# Add one stat point
 		level_change.emit()
+
+func add_coin(c: int) -> void:
+	coins += c
+	coins_change.emit()
 		
 func change_hp(x: float) -> void:
 	hp += x
@@ -196,6 +204,7 @@ func initialise_player_stats(player_stats_dict: Dictionary):
 	xp = player_stats_dict.xp
 	max_xp = player_stats_dict.max_xp
 	cumulative_xp = player_stats_dict.cumulative_xp
+	coins = player_stats_dict.coins
 
 	base_max_hp = player_stats_dict.base_max_hp
 	max_hp = player_stats_dict.max_hp # set max_hp before hp
@@ -209,6 +218,9 @@ func initialise_player_stats(player_stats_dict: Dictionary):
 	total_player_stats = player_stats_dict.base_player_stats.duplicate()
 	base_player_stats = player_stats_dict.base_player_stats.duplicate()
 	
+	xp_change.emit()
+	level_change.emit()
+	coins_change.emit()
 	update_speed_bonus()
 	
 func get_player_stats_dict():
@@ -225,6 +237,9 @@ func get_player_stats_dict():
 		"xp" : xp,
 		"max_xp" : max_xp,
 		"cumulative_xp" : cumulative_xp,
+		
+		# Coins
+		"coins": coins,
 
 		# HP Stats
 		"hp" : hp,
@@ -254,6 +269,9 @@ func get_default_player_stats_dict():
 		"xp" : DEFAULT_PLAYER_XP,
 		"max_xp" : DEFAULT_MAX_XP,
 		"cumulative_xp" : DEFAULT_CUM_XP,
+		
+		# Resources
+		"coins": 0,
 
 		# HP Stats
 		"hp" : DEFAULT_HP,

@@ -92,10 +92,10 @@ var configs : Dictionary = {
 	{
 	"projectile_packed_scene": load(PATHS.PROJ_TRAINEEBLADE),
 	"cooldown": 0.8,
-	"speed": 150.0,
+	"speed": 400.0,
 	"damage": 7.0,
 	"max_pierce": 0,
-	"lifetime": 0.7,
+	"lifetime": 0.3,
 	"rotation": 0.0,
 	"spread_degrees": 5,
 	"start_delay": 0.0,

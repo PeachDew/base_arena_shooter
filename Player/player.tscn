@@ -155,7 +155,7 @@ color = Color(0.937255, 1, 1, 1)
 size = Vector2(19, 31)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t7fct"]
-radius = 66.3702
+radius = 50.04
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 32
@@ -203,7 +203,6 @@ script = ExtResource("10_jcess")
 shape = SubResource("RectangleShape2D_0lgdj")
 
 [node name="PickupGravity" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 64
 gravity_space_override = 1

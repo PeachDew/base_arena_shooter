@@ -10,6 +10,9 @@ extends CanvasLayer
 @onready var ult_left_bar = $UltLeftBar
 @onready var ult_animation = $UltAnimation
 
+@onready var coin_ui_hbox = $CoinUI
+@onready var coin_ui_label = $CoinUI/CoinLabel
+
 @onready var loading = $LoadingUI
 
 @onready var inv_ui = $InventoryUI
@@ -36,8 +39,13 @@ signal unpause_world
 signal pausemenu_home_button_pressed
 
 func _ready() -> void:
-	initialise_ult_bar()
+	# UI IS READY BEFORE WORLD IS READY, PLAYERSTATS INITIALISED WHEN WORLD IS READY
+	var width = ult_bar.get_viewport_rect().size[0]
+	var height = ult_bar.get_viewport_rect().size[1]
+	initialise_ult_bar(width, height)
+	initialise_coin_ui(width, height)
 	PlayerStats.xp_change.connect(on_xp_change)
+	PlayerStats.coins_change.connect(on_coins_change)
 	PlayerStats.level_change.connect(on_level_change)
 	PlayerStats.hp_change.connect(on_hp_change)
 	PlayerStats.ult_charge_change.connect(update_ult_bar)
@@ -51,9 +59,6 @@ func _ready() -> void:
 	
 	on_player_loaded()
 	
-	var width = stats_ui.get_viewport_rect().size[0]
-	var height = stats_ui.get_viewport_rect().size[1]
-	
 	stats_ui.position.x += width*1.5/10
 	stats_ui.position.y += height*6/10
 	disable_stats()
@@ -66,10 +71,14 @@ func _ready() -> void:
 	
 	pause_menu.pausemenu_home_button_pressed.connect(on_pausemenu_home_button_pressed)
 
-func initialise_ult_bar():
-	var width = ult_bar.get_viewport_rect().size[0]
-	var height = ult_bar.get_viewport_rect().size[1]
+func initialise_coin_ui(width: float, height: float):
+	coin_ui_hbox.position.x += width/3
+	coin_ui_hbox.position.y += height*9/10
+
+func on_coins_change():
+	coin_ui_label.text = str(PlayerStats.coins)
 	
+func initialise_ult_bar(width: float, height: float):
 	
 	ult_bar.position.x += width/3
 	ult_bar.position.y += height*9/10
@@ -81,7 +90,6 @@ func initialise_ult_bar():
 	ult_left_bar.position.y += height*9/10
 	
 	ult_bar.value = PlayerStats.ult_charge
-	
 	
 
 func update_ult_bar():
