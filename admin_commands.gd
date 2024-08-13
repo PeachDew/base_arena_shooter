@@ -1,6 +1,7 @@
 extends Node2D
 
 var enemy1_scene : PackedScene = preload(PATHS.RANGED_PLOOTY_PS)
+var charge_enemy_scene : PackedScene = preload(PATHS.CHARGE_PLOOTY_PS)
 var small_xp : PackedScene = preload(PATHS.SMALL_XP_ORB_PS)
 
 var spawned_enemies := 0
@@ -49,7 +50,7 @@ func _input(event: InputEvent) -> void:
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ADMIN_spawn_enemy"):
 		spawned_enemies += 1
-		var es = enemy1_scene
+		var es = charge_enemy_scene
 		
 		var spawned_enemy = es.instantiate()
 		spawned_enemy.position = get_local_mouse_position()

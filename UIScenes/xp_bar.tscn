@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://blt677eo2k0jl"]
 
-[ext_resource type="Texture2D" uid="uid://b4h0ls2cjqt2n" path="res://Art/ui/over_xp.png" id="1_ok76o"]
+[ext_resource type="Texture2D" uid="uid://bx7fs6jb0t57s" path="res://Art/ui/progress_xp_thin.png" id="1_7oaxn"]
 [ext_resource type="Script" path="res://UIScenes/xpbar.gd" id="1_y8dpl"]
-[ext_resource type="Texture2D" uid="uid://pdxydw6lllym" path="res://Art/ui/progress_xp.png" id="2_t0fpn"]
+[ext_resource type="Theme" uid="uid://b1tb3h6x4i01j" path="res://UIScenes/test_theme.tres" id="4_n2u6u"]
 
 [node name="XPBar" type="TextureProgressBar"]
 offset_left = -551.0
@@ -10,34 +10,20 @@ offset_top = -157.0
 offset_right = -391.0
 offset_bottom = -112.0
 scale = Vector2(6.935, 6.935)
-texture_over = ExtResource("1_ok76o")
-texture_progress = ExtResource("2_t0fpn")
+value = 100.0
+texture_progress = ExtResource("1_7oaxn")
 script = ExtResource("1_y8dpl")
 
-[node name="LevelText" type="RichTextLabel" parent="."]
-modulate = Color(0, 0, 0, 1)
+[node name="LevelText" type="Label" parent="."]
 layout_mode = 0
-offset_left = 13.0
-offset_top = 20.0
-offset_right = 75.0
-offset_bottom = 45.0
+offset_left = 11.8241
+offset_top = 16.0058
+offset_right = 99.8237
+offset_bottom = 46.0058
 scale = Vector2(0.22, 0.22)
-text = "LEVEL "
-
-[node name="LevelNumber" type="RichTextLabel" parent="."]
-modulate = Color(0, 0, 0, 1)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.496
-anchor_top = 0.5
-anchor_right = 0.496
-anchor_bottom = 0.5
-offset_left = -4.23383
-offset_top = -2.45674
-offset_right = 35.7662
-offset_bottom = 20.5433
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.22, 0.22)
-bbcode_enabled = true
-text = "1"
+theme = ExtResource("4_n2u6u")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.4)
+theme_override_font_sizes/font_size = 16
+text = "Level 1"
+vertical_alignment = 1

@@ -11,6 +11,7 @@ const COMMON_LOOTBAG_PS : String = "res://Objects/Misc/Lootbags/common_loot_bag.
 const COIN_PS : String = "res://Objects/Misc/Coins/coin.tscn"
 
 const RANGED_PLOOTY_PS : String = "res://Objects/Enemies/BasicRangedEnemy.tscn"
+const CHARGE_PLOOTY_PS : String = "res://Objects/Enemies/charging_plooty.tscn"
 const EMBERLIGHT : String = "res://emberlight.tscn"
 
 ## CLASSES ##

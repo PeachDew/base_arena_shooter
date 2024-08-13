@@ -1,6 +1,6 @@
 extends TextureProgressBar
 
-var level_number : RichTextLabel
+@onready var level_label : Label = $LevelText
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -12,6 +12,4 @@ func _ready() -> void:
 	position.x += width/2
 	position.y += height/10
 	
-	level_number = $LevelNumber
-	level_number.text ="[center]%s[/center]" % level_number.text
 	

@@ -3,7 +3,8 @@ extends CanvasLayer
 @onready var player := $"../World/Player"
 @onready var xp_bar = $XPBar
 @onready var pause_menu = $PauseMenu
-@onready var hp_bar = $HPBar
+@onready var hp_bar : TextureProgressBar = $HPBar
+@onready var hp_number : Label = $HPNumber
 
 @onready var ult_bar = $UltBar
 @onready var ult_text = $UltText
@@ -49,7 +50,7 @@ func _ready() -> void:
 	PlayerStats.level_change.connect(on_level_change)
 	PlayerStats.hp_change.connect(on_hp_change)
 	PlayerStats.ult_charge_change.connect(update_ult_bar)
-	player.player_loaded.connect(on_player_loaded)
+	player.player_loaded.connect(on_hp_change)
 	
 	loading.pause_world.connect(on_pause_world)
 	loading.unpause_world.connect(on_unpause_world)
@@ -57,11 +58,16 @@ func _ready() -> void:
 	ItemsManager.enable_inv_sig.connect(on_enable_inv_sig)
 	ItemsManager.disable_inv_sig.connect(on_disable_inv_sig)
 	
-	on_player_loaded()
+	on_hp_change()
 	
 	stats_ui.position.x += width*1.5/10
 	stats_ui.position.y += height*6/10
 	disable_stats()
+	
+	hp_bar.position.x += width/3
+	hp_bar.position.y += height*9/10
+	hp_number.position.x += width/3
+	hp_number.position.y += height*9/10
 	
 	stats_reset_button.pressed.connect(on_reset_button_pressed)
 	stats_vigor_button.pressed.connect(on_add_stats_button_pressed.bind("vigor"))
@@ -165,11 +171,9 @@ func on_unpause_world():
 func update_xp_and_hp()->void:
 	xp_bar.value = PlayerStats.xp
 	xp_bar.max_value = PlayerStats.max_xp
-	xp_bar.level_number.text = str(PlayerStats.player_level)
+	xp_bar.level_label.text = "Level " + str(PlayerStats.player_level)
 	
-	hp_bar.max_value = PlayerStats.max_hp
-	hp_bar.value = PlayerStats.hp
-	hp_bar.hp_number.text = "[right]%s[/right]" % (str(PlayerStats.hp)+"/"+str(PlayerStats.max_hp))
+	on_hp_change()
 
 func on_xp_change()->void: 
 	var xp_tween = self.create_tween()
@@ -180,16 +184,11 @@ func on_xp_change()->void:
 	xp_bar.value = PlayerStats.xp
 	
 func on_level_change()->void:
-	xp_bar.level_number.text = str(PlayerStats.player_level)
+	xp_bar.level_label.text = "Level " + str(PlayerStats.player_level)
 
 func on_hp_change()->void:
 	hp_bar.value = PlayerStats.hp
 	hp_bar.max_value = PlayerStats.max_hp
-	hp_bar.hp_number.text = "[right]%s[/right]" % (str(PlayerStats.hp)+"/"+str(PlayerStats.max_hp))
-	
-func on_player_loaded()->void:
-	hp_bar.value = PlayerStats.hp
-	hp_bar.max_value = PlayerStats.max_hp
-	hp_bar.hp_number.text = "[right]%s[/right]" % (str(PlayerStats.hp)+"/"+str(PlayerStats.max_hp))
+	hp_number.text = str(PlayerStats.hp) + "/" + str(PlayerStats.max_hp)
 
 

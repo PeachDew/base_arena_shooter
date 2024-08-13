@@ -1,10 +1,12 @@
 extends Node2D
+class_name EnemyBehavior
 
 @onready var enemy_chase_radius : Area2D = $EnemyChaseRadius
 @onready var enemy_flip_marker : Marker2D = $EnemyFlipMarker
 @onready var enemy_attack_origin : Marker2D = $EnemyFlipMarker/EnemyAttackOrigin
 @onready var animated_sprite: AnimatedSprite2D = $EnemyFlipMarker/AnimatedSprite2D
-@onready var enemy_weapon : EnemyWeapon 
+
+@export var enemy_weapon : EnemyWeapon
 
 @onready var enemy_attack_radius : Area2D
 @onready var enemy_body := get_owner()
@@ -13,6 +15,8 @@ var chase_target : Player
 var attack_target : Player
 
 @export var ranged := false
+
+@export var charge_body_attack : Node2D
 
 # states
 # 0 = idle, completely still
@@ -27,32 +31,51 @@ func _ready() -> void:
 	
 	if ranged:
 		enemy_attack_radius = $EnemyAttackRadius
-		enemy_weapon = $EnemyWeapon
 		#enemy_weapon.projectile_config_ids = ["ET0"]
 		#enemy_weapon.initialise_configs()
 		enemy_attack_radius.body_entered.connect(on_body_entered_enemy_attack_radius)
 		enemy_attack_radius.body_exited.connect(on_body_exited_enemy_attack_radius)
 		enemy_weapon.add_projectile_child.connect(on_add_projectile_child)
+	
+	if charge_body_attack:
+		charge_body_attack.launch_to.connect(on_charge_body_launch_to)
+		charge_body_attack.charge_attacking.connect(on_charge_attacking)
 
-func handle_animation():
+func handle_animation(): # attack played at on_add_projectile_child
 	match state:
 		0:
 			animated_sprite.play("idle")
 		1:
 			animated_sprite.play("walk")
-		
-
+			
 func _physics_process(_delta: float) -> void:
-	if state == 1:
-		chasing_target()
-	elif state == 0:
-		idle()
-	elif state == 2:
-		attack_player()
+	match state:
+		1:
+			chasing_target()
+		0:
+			idle()
+		2:
+			attack_player()
 
 	handle_animation()
 	enemy_body.move_and_slide()
+
+func on_charge_attacking(activate: bool):
+	if activate:
+		state = 3
+		enemy_body.velocity = Vector2(0,0)
+		animated_sprite.play("charging")
+	else:
+		state = 1
 		
+func on_charge_body_launch_to(target_position: Vector2, speed: float):
+	if animated_sprite.animation != "charge":
+		animated_sprite.play("charge")
+	enemy_body.velocity = (
+		enemy_body.position.direction_to(target_position) # direction
+		* speed # speed
+	)
+
 func on_body_entered_enemy_chase_radius(body):
 	if body is Player:
 		chase_target = body
@@ -65,10 +88,11 @@ func on_body_exited_enemy_chase_radius(body):
 
 func on_body_entered_enemy_attack_radius(body):
 	if body is Player:
-		enemy_weapon.player_target = body
-		enemy_weapon.firing = true
-		attack_target = body
-		state = 2
+		if state != 3:
+			enemy_weapon.player_target = body
+			enemy_weapon.firing = true
+			attack_target = body
+			state = 2
 
 func on_body_exited_enemy_attack_radius(body):
 	if body is Player:
@@ -80,15 +104,17 @@ func on_body_exited_enemy_attack_radius(body):
 			state = 0
 
 func chasing_target() -> void:
-	enemy_body.velocity = (
-		enemy_body.position.direction_to(chase_target.position) 
-		* enemy_body.speed
-	)
-	
-	if chase_target.global_position.x > global_position.x:
-		enemy_flip_marker.scale.x = 1
+	if !chase_target:
+		push_warning("Enemy is instructed to chase but no chase_target")
 	else:
-		enemy_flip_marker.scale.x = -1
+		enemy_body.velocity = (
+			enemy_body.position.direction_to(chase_target.position) 
+			* enemy_body.speed
+		)
+		if chase_target.global_position.x > global_position.x:
+			enemy_flip_marker.scale.x = 1
+		else:
+			enemy_flip_marker.scale.x = -1
 
 func idle():
 	enemy_body.velocity = Vector2(0,0)
@@ -109,9 +135,8 @@ func on_add_projectile_child(proj_instance):
 	# owner is BasicRangedEnemy, 
 	# parent of owner will spawn bullet as sibling of enemy instance
 	owner.get_parent().add_child(proj_instance)
-	#proj_instance.reparent(owner)
+	
 	proj_instance.global_position = enemy_attack_origin.global_position
 	var shoot_direction = attack_target.global_position - enemy_attack_origin.global_position
 	proj_instance.rotation += shoot_direction.angle()
 	
-	# make projectile a sibling so it has independent movement

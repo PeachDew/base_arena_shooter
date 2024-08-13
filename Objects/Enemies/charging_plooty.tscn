@@ -1,106 +1,117 @@
-[gd_scene load_steps=38 format=3 uid="uid://dft13hdivyxcp"]
+[gd_scene load_steps=41 format=3 uid="uid://bki3og7grhfo7"]
 
-[ext_resource type="Script" path="res://Objects/Enemies/enemy.gd" id="1_fyo1u"]
-[ext_resource type="Script" path="res://Objects/Enemies/enemy_hitbox.gd" id="2_lh4dc"]
-[ext_resource type="Script" path="res://Objects/Enemies/enemy_health_bar.gd" id="5_ii3ct"]
-[ext_resource type="Script" path="res://Objects/Enemies/enemy_behavior.gd" id="6_j2dwf"]
-[ext_resource type="Texture2D" uid="uid://dmtthvhcuwmyx" path="res://Art/characters/monsters/plooty/green/plooty_green_attack.png" id="7_rcdly"]
-[ext_resource type="Texture2D" uid="uid://dioi1q8e5un3a" path="res://Art/ui/Over_hp.png" id="7_wkcm4"]
-[ext_resource type="Texture2D" uid="uid://dm38lg58210ju" path="res://Art/characters/monsters/plooty/green/plooty.png" id="8_7g4i5"]
-[ext_resource type="Texture2D" uid="uid://cucqo7hsarkgk" path="res://Art/ui/progress.png" id="8_bx545"]
-[ext_resource type="Texture2D" uid="uid://h2xnh1nk3yo1" path="res://Art/characters/monsters/plooty/green/plooty_move.png" id="9_516hy"]
-[ext_resource type="Texture2D" uid="uid://cl4cd24cgpq3l" path="res://Art/characters/monsters/plooty/plooty_green_charge.png" id="9_k0kgl"]
-[ext_resource type="Texture2D" uid="uid://denyvqqxj0tg4" path="res://Art/characters/monsters/plooty/plooty_green_charging.png" id="10_8ik3e"]
-[ext_resource type="Script" path="res://Objects/Enemies/EnemyWeapon.gd" id="11_88cx0"]
-[ext_resource type="Script" path="res://hurtbox.gd" id="12_yurcs"]
+[ext_resource type="Script" path="res://Objects/Enemies/enemy.gd" id="1_soyj2"]
+[ext_resource type="Script" path="res://Objects/Enemies/enemy_hitbox.gd" id="2_ircfy"]
+[ext_resource type="Texture2D" uid="uid://dioi1q8e5un3a" path="res://Art/ui/Over_hp.png" id="3_p8mbs"]
+[ext_resource type="Texture2D" uid="uid://cucqo7hsarkgk" path="res://Art/ui/progress.png" id="4_fgnkl"]
+[ext_resource type="Script" path="res://Objects/Enemies/enemy_health_bar.gd" id="5_evlc3"]
+[ext_resource type="Script" path="res://Objects/Enemies/enemy_behavior.gd" id="6_gjb3e"]
+[ext_resource type="Script" path="res://Objects/Enemies/charge_body_attack.gd" id="7_yh8ru"]
+[ext_resource type="Texture2D" uid="uid://dmtthvhcuwmyx" path="res://Art/characters/monsters/plooty/green/plooty_green_attack.png" id="8_oh2sw"]
+[ext_resource type="Texture2D" uid="uid://cl4cd24cgpq3l" path="res://Art/characters/monsters/plooty/plooty_green_charge.png" id="9_g5inr"]
+[ext_resource type="Texture2D" uid="uid://denyvqqxj0tg4" path="res://Art/characters/monsters/plooty/plooty_green_charging.png" id="10_f6go4"]
+[ext_resource type="Texture2D" uid="uid://dm38lg58210ju" path="res://Art/characters/monsters/plooty/green/plooty.png" id="11_8n43t"]
+[ext_resource type="Texture2D" uid="uid://h2xnh1nk3yo1" path="res://Art/characters/monsters/plooty/green/plooty_move.png" id="12_05bxe"]
+[ext_resource type="Script" path="res://hurtbox.gd" id="14_kemy0"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8beuv"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y3mvr"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_nh1ot"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_u7c5t"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_nvdhg"]
+[sub_resource type="Curve" id="Curve_h73v4"]
+max_value = 500.0
+_data = [Vector2(0, 500), 0.0, 0.0, 0, 0, Vector2(0.131474, 500), 0.0, 0.0, 0, 0, Vector2(0.756972, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_rxmd2"]
+curve = SubResource("Curve_h73v4")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tav1t"]
+radius = 110.018
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8hwlg"]
 radius = 20.5755
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ftjju"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_x6eog"]
 radius = 79.1581
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jdxvm"]
-atlas = ExtResource("7_rcdly")
+atlas = ExtResource("8_oh2sw")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wrgjs"]
-atlas = ExtResource("7_rcdly")
+atlas = ExtResource("8_oh2sw")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fhlhj"]
-atlas = ExtResource("7_rcdly")
+atlas = ExtResource("8_oh2sw")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wfyaw"]
-atlas = ExtResource("9_k0kgl")
+atlas = ExtResource("9_g5inr")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_asig2"]
-atlas = ExtResource("9_k0kgl")
+atlas = ExtResource("9_g5inr")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l1age"]
-atlas = ExtResource("9_k0kgl")
+atlas = ExtResource("9_g5inr")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xj86u"]
-atlas = ExtResource("9_k0kgl")
+atlas = ExtResource("9_g5inr")
 region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0gwps"]
-atlas = ExtResource("9_k0kgl")
+atlas = ExtResource("9_g5inr")
 region = Rect2(64, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a8nnm"]
-atlas = ExtResource("10_8ik3e")
+atlas = ExtResource("10_f6go4")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bv4yg"]
-atlas = ExtResource("10_8ik3e")
+atlas = ExtResource("10_f6go4")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hxco3"]
-atlas = ExtResource("10_8ik3e")
+atlas = ExtResource("10_f6go4")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yqq81"]
-atlas = ExtResource("10_8ik3e")
+atlas = ExtResource("10_f6go4")
 region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_npxla"]
-atlas = ExtResource("8_7g4i5")
+atlas = ExtResource("11_8n43t")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jf2ba"]
-atlas = ExtResource("8_7g4i5")
+atlas = ExtResource("11_8n43t")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wribo"]
-atlas = ExtResource("8_7g4i5")
+atlas = ExtResource("11_8n43t")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vbqsj"]
-atlas = ExtResource("8_7g4i5")
+atlas = ExtResource("11_8n43t")
 region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_we10c"]
-atlas = ExtResource("9_516hy")
+atlas = ExtResource("12_05bxe")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0g8nb"]
-atlas = ExtResource("9_516hy")
+atlas = ExtResource("12_05bxe")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t1tqp"]
-atlas = ExtResource("9_516hy")
+atlas = ExtResource("12_05bxe")
 region = Rect2(32, 0, 16, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_uaahh"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_7267k"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -185,25 +196,25 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="BasicRangedEnemy" type="CharacterBody2D"]
+[node name="ChargingEnemy" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 0
-script = ExtResource("1_fyo1u")
+script = ExtResource("1_soyj2")
 
 [node name="FloorCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5.94)
 rotation = 1.5708
 scale = Vector2(0.545, 0.545)
-shape = SubResource("CapsuleShape2D_8beuv")
+shape = SubResource("CapsuleShape2D_y3mvr")
 
 [node name="EnemyHitbox" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 0
-script = ExtResource("2_lh4dc")
+script = ExtResource("2_ircfy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitbox"]
 scale = Vector2(1.215, 1.215)
-shape = SubResource("CircleShape2D_nh1ot")
+shape = SubResource("CircleShape2D_u7c5t")
 
 [node name="EnemyHpBar" type="TextureProgressBar" parent="."]
 offset_left = -13.0
@@ -211,14 +222,24 @@ offset_top = -19.0
 offset_right = 19.0
 offset_bottom = -3.0
 scale = Vector2(0.81, 0.81)
-texture_over = ExtResource("7_wkcm4")
-texture_progress = ExtResource("8_bx545")
-script = ExtResource("5_ii3ct")
+texture_over = ExtResource("3_p8mbs")
+texture_progress = ExtResource("4_fgnkl")
+script = ExtResource("5_evlc3")
 
-[node name="EnemyBehavior" type="Node2D" parent="." node_paths=PackedStringArray("enemy_weapon")]
-script = ExtResource("6_j2dwf")
-enemy_weapon = NodePath("EnemyWeapon")
-ranged = true
+[node name="EnemyBehavior" type="Node2D" parent="." node_paths=PackedStringArray("charge_body_attack")]
+script = ExtResource("6_gjb3e")
+charge_body_attack = NodePath("ChargeBodyAttack")
+
+[node name="ChargeBodyAttack" type="Node2D" parent="EnemyBehavior"]
+script = ExtResource("7_yh8ru")
+speed_curve = SubResource("CurveTexture_rxmd2")
+
+[node name="ChargeAttackArea" type="Area2D" parent="EnemyBehavior/ChargeBodyAttack"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyBehavior/ChargeBodyAttack/ChargeAttackArea"]
+shape = SubResource("CircleShape2D_tav1t")
+debug_color = Color(0.791477, 0.190865, 0.92886, 0.42)
 
 [node name="EnemyChaseRadius" type="Area2D" parent="EnemyBehavior"]
 modulate = Color(0.895674, 0.498548, 0.465915, 1)
@@ -227,21 +248,21 @@ collision_layer = 0
 
 [node name="EnemyChaseCollision" type="CollisionShape2D" parent="EnemyBehavior/EnemyChaseRadius"]
 scale = Vector2(3.695, 3.695)
-shape = SubResource("CircleShape2D_nvdhg")
+shape = SubResource("CircleShape2D_8hwlg")
 debug_color = Color(0.783868, 0.333588, 0.710875, 0.42)
 
 [node name="EnemyAttackRadius" type="Area2D" parent="EnemyBehavior"]
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyBehavior/EnemyAttackRadius"]
-shape = SubResource("CircleShape2D_ftjju")
+shape = SubResource("CircleShape2D_x6eog")
 debug_color = Color(0.709177, 0.481276, 0.201482, 0.42)
 
 [node name="EnemyFlipMarker" type="Marker2D" parent="EnemyBehavior"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemyBehavior/EnemyFlipMarker"]
 scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_uaahh")
+sprite_frames = SubResource("SpriteFrames_7267k")
 animation = &"charge"
 autoplay = "idle"
 speed_scale = 1.36
@@ -249,15 +270,10 @@ speed_scale = 1.36
 [node name="EnemyAttackOrigin" type="Marker2D" parent="EnemyBehavior/EnemyFlipMarker"]
 position = Vector2(9.5, -3)
 
-[node name="EnemyWeapon" type="Node2D" parent="EnemyBehavior"]
-script = ExtResource("11_88cx0")
-projectile_config_ids = Array[String](["ET0"])
-
 [node name="EnemyHurtbox" type="Area2D" parent="."]
 collision_layer = 4
-collision_mask = 0
-script = ExtResource("12_yurcs")
+script = ExtResource("14_kemy0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHurtbox"]
 scale = Vector2(1.215, 1.215)
-shape = SubResource("CircleShape2D_nh1ot")
+shape = SubResource("CircleShape2D_u7c5t")
