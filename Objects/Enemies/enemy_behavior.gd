@@ -17,6 +17,7 @@ var attack_target : Player
 @export var ranged := false
 
 @export var charge_body_attack : Node2D
+var charge_friction_curve_point : float = 0.0
 
 # states
 # 0 = idle, completely still
@@ -40,6 +41,7 @@ func _ready() -> void:
 	if charge_body_attack:
 		charge_body_attack.launch_to.connect(on_charge_body_launch_to)
 		charge_body_attack.charge_attacking.connect(on_charge_attacking)
+		charge_body_attack.aiming_charge.connect(on_aiming_charge)
 
 func handle_animation(): # attack played at on_add_projectile_child
 	match state:
@@ -48,7 +50,7 @@ func handle_animation(): # attack played at on_add_projectile_child
 		1:
 			animated_sprite.play("walk")
 			
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	match state:
 		1:
 			chasing_target()
@@ -56,6 +58,11 @@ func _physics_process(_delta: float) -> void:
 			idle()
 		2:
 			attack_player()
+		3:
+			if abs(enemy_body.velocity.x) > 0.01 && abs(enemy_body.velocity.y) > 0.01:
+				charge_friction_curve_point += delta
+				var friction = charge_body_attack.charge_friction_curve.curve.sample_baked(charge_friction_curve_point)
+				enemy_body.velocity = enemy_body.velocity.move_toward(Vector2.ZERO, delta*friction*10)
 
 	handle_animation()
 	enemy_body.move_and_slide()
@@ -67,13 +74,25 @@ func on_charge_attacking(activate: bool):
 		animated_sprite.play("charging")
 	else:
 		state = 1
+
+func on_aiming_charge(target_position: Vector2):
+	if animated_sprite.animation != "charging":
+		if animated_sprite.animation == "charge":
+			await animated_sprite.animation_finished
+		animated_sprite.play("charging")
+		
+	if target_position.x > global_position.x:
+		enemy_flip_marker.scale.x = 1
+	else:
+		enemy_flip_marker.scale.x = -1
 		
 func on_charge_body_launch_to(target_position: Vector2, speed: float):
 	if animated_sprite.animation != "charge":
 		animated_sprite.play("charge")
+	charge_friction_curve_point = 0.0
 	enemy_body.velocity = (
-		enemy_body.position.direction_to(target_position) # direction
-		* speed # speed
+		enemy_body.global_position.direction_to(target_position) # direction
+		* speed
 	)
 
 func on_body_entered_enemy_chase_radius(body):

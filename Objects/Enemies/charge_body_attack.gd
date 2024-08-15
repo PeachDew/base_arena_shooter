@@ -4,16 +4,15 @@ extends Node2D
 
 var attack_target = null
 
-@export var charge_seconds : float = 2.0
+@export var charge_seconds : float = 1.5
 var charging_timer : float = 0.0
 
-@export var speed_curve : CurveTexture
-var curve_point = 0.0
-
-var launch_destination = null
+@export var initial_charge_speed : float = 500.0
+@export var charge_friction_curve : CurveTexture
 
 signal launch_to
 signal charge_attacking
+signal aiming_charge
 
 func _ready() -> void:
 	charge_attack_area.body_entered.connect(on_caa_body_entered)
@@ -21,21 +20,18 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if attack_target is Player:
-		if launch_destination:
-			curve_point += delta
-			var launch_speed : float = speed_curve.curve.sample_baked(curve_point)
+		charging_timer += delta
+		if charging_timer > charge_seconds:
+			charging_timer = 0.0
 			launch_to.emit(
-				launch_destination, 
-				launch_speed
+				attack_target.global_position,
+				initial_charge_speed
 			)
-			if is_zero_approx(launch_speed): #launch finishes
-				launch_destination = null
-				charging_timer = 0.0
 		else:
-			charging_timer += delta
-			if charging_timer > charge_seconds:
-				# set launch destination
-				launch_destination = attack_target.position
+			# aiming plays charging animation, 
+			# only emit at end of aiming
+			aiming_charge.emit(attack_target.global_position)
+			
 	else:
 		charging_timer = 0.0
 	

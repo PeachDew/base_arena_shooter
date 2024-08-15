@@ -18,19 +18,19 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u7c5t"]
 
-[sub_resource type="Curve" id="Curve_h73v4"]
-max_value = 500.0
-_data = [Vector2(0, 500), 0.0, 0.0, 0, 0, Vector2(0.131474, 500), 0.0, 0.0, 0, 0, Vector2(0.756972, 0), 0.0, 0.0, 0, 0]
-point_count = 3
+[sub_resource type="Curve" id="Curve_2aaxq"]
+max_value = 220.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.243028, 204.236), 0.0, 0.0, 0, 0, Vector2(0.322709, 67.212), 0.0, 0.0, 0, 0, Vector2(1, 60.0501), 0.0, 0.0, 0, 0]
+point_count = 4
 
-[sub_resource type="CurveTexture" id="CurveTexture_rxmd2"]
-curve = SubResource("Curve_h73v4")
+[sub_resource type="CurveTexture" id="CurveTexture_r470d"]
+curve = SubResource("Curve_2aaxq")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tav1t"]
 radius = 110.018
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8hwlg"]
-radius = 20.5755
+radius = 28.907
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x6eog"]
 radius = 79.1581
@@ -232,7 +232,7 @@ charge_body_attack = NodePath("ChargeBodyAttack")
 
 [node name="ChargeBodyAttack" type="Node2D" parent="EnemyBehavior"]
 script = ExtResource("7_yh8ru")
-speed_curve = SubResource("CurveTexture_rxmd2")
+charge_friction_curve = SubResource("CurveTexture_r470d")
 
 [node name="ChargeAttackArea" type="Area2D" parent="EnemyBehavior/ChargeBodyAttack"]
 collision_layer = 0
@@ -252,6 +252,7 @@ shape = SubResource("CircleShape2D_8hwlg")
 debug_color = Color(0.783868, 0.333588, 0.710875, 0.42)
 
 [node name="EnemyAttackRadius" type="Area2D" parent="EnemyBehavior"]
+visible = false
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyBehavior/EnemyAttackRadius"]
@@ -263,7 +264,7 @@ debug_color = Color(0.709177, 0.481276, 0.201482, 0.42)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemyBehavior/EnemyFlipMarker"]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_7267k")
-animation = &"charge"
+animation = &"charging"
 autoplay = "idle"
 speed_scale = 1.36
 
