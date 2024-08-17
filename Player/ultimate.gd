@@ -27,10 +27,13 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ultimate"):
 		#use_ultimate()
 		if PlayerStats.ult_charge >= 100.0:
-			PlayerStats.ult_charge = 0.0
-			PlayerStats.ult_charge_change.emit()
-			ult_used.emit()
-			use_ultimate()
+			if buff_time > 0.0 and PlayerStats.buff_time_left > 0:
+				pass
+			else:
+				PlayerStats.ult_charge = 0.0
+				PlayerStats.ult_charge_change.emit()
+				ult_used.emit()
+				use_ultimate()
 	
 	if event.is_action_pressed("primary_fire"):
 		if PlayerStats.shots_left > 0:
@@ -66,15 +69,15 @@ func add_buffs():
 	if len(has_buffs_misc_particles) > 0 and PlayerStats.buff_time_left > 0.0:
 		set_misc_particles.emit(has_buffs_misc_particles)
 	apply_modifiers(buffs)
-	
 	set_shot_particles.emit(buff_projectile_particles)
 
 func remove_buffs():
-	buff_active = false
-	print("EMITTINGGG")
-	set_misc_particles.emit([])
-	apply_modifiers(buffs, true)
-	set_shot_particles.emit([])
+	if buff_active:
+		buff_active = false
+		print("EMITTINGGG")
+		set_misc_particles.emit([])
+		apply_modifiers(buffs, true)
+		set_shot_particles.emit([])
 	
 func apply_modifiers(modifiers: Array, remove: bool = false):
 	for stat_modifier in modifiers:

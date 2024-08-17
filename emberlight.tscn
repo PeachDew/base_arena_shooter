@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dvdmih1s7q881"]
+[gd_scene load_steps=32 format=3 uid="uid://dvdmih1s7q881"]
 
 [ext_resource type="Script" path="res://region.gd" id="1_8860g"]
 [ext_resource type="PackedScene" uid="uid://nux7eimswkmm" path="res://Objects/Portals/first_area_portal.tscn" id="2_pfi31"]
@@ -6,11 +6,9 @@
 [ext_resource type="Script" path="res://Objects/Portals/portal.gd" id="4_gal47"]
 [ext_resource type="Texture2D" uid="uid://dd65jd5lxmull" path="res://Art/misc/portals/portal_idle_blue.png" id="5_g4nro"]
 [ext_resource type="Texture2D" uid="uid://ddm8ctqpfuhte" path="res://Art/misc/portals/portal_going_blue.png" id="5_patvh"]
-[ext_resource type="Script" path="res://Objects/Misc/Statues/statue.gd" id="7_8ww7d"]
-[ext_resource type="Texture2D" uid="uid://chrkju6l8dxnw" path="res://Art/misc/statues/knight_statue.png" id="8_b32xv"]
-[ext_resource type="Texture2D" uid="uid://b6lyhkf0kk2lm" path="res://Art/misc/statues/statue_pad.png" id="8_tl24g"]
-[ext_resource type="Texture2D" uid="uid://dpvjv58xs8ahm" path="res://Art/misc/statues/ruined_statue.png" id="8_x42tu"]
-[ext_resource type="Theme" uid="uid://b1tb3h6x4i01j" path="res://UIScenes/test_theme.tres" id="9_2m7bd"]
+[ext_resource type="PackedScene" uid="uid://b5tt3a7pr42qc" path="res://Objects/Misc/Statues/knight_statue.tscn" id="7_xnbbw"]
+[ext_resource type="Texture2D" uid="uid://b46o15kj4sn12" path="res://Art/misc/statues/mage_statue.png" id="8_i16xr"]
+[ext_resource type="Texture2D" uid="uid://bd0kvy2hmicyi" path="res://Art/misc/statues/mage_statue_ruined.png" id="9_8ap0l"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_lmkcg"]
 tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 2, 1, 131072, 0, 65537, 131072, 2)
@@ -507,14 +505,12 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_22idg"]
 radius = 6.01644
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_386dw"]
-size = Vector2(32, 32)
-
 [node name="TownScene" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_8860g")
 
 [node name="TileMap" type="TileMap" parent="."]
+z_index = -1
 tile_set = SubResource("TileSet_6gpbm")
 format = 2
 layer_0/z_index = -1
@@ -541,34 +537,11 @@ autoplay = "idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SecondAreaPortal"]
 shape = SubResource("CircleShape2D_22idg")
 
-[node name="Statue" type="Area2D" parent="."]
-y_sort_enabled = true
-collision_layer = 0
-script = ExtResource("7_8ww7d")
-built_texture = ExtResource("8_b32xv")
-unbuilt_texture = ExtResource("8_x42tu")
+[node name="KnightStatue" parent="." instance=ExtResource("7_xnbbw")]
 
-[node name="StatueTexture" type="Sprite2D" parent="Statue"]
-position = Vector2(2, -31)
-scale = Vector2(4, 4)
-texture = ExtResource("8_x42tu")
-offset = Vector2(0, -6.95)
-
-[node name="StatuePadCollision" type="CollisionShape2D" parent="Statue"]
-shape = SubResource("RectangleShape2D_386dw")
-
-[node name="PadTexture" type="Sprite2D" parent="Statue"]
-z_index = -1
-texture = ExtResource("8_tl24g")
-
-[node name="BuildUI" type="VBoxContainer" parent="Statue"]
-z_index = 1
-offset_left = 17.0
-offset_top = -44.0
-offset_right = 102.0
-offset_bottom = -21.0
-
-[node name="BuildStatueButton" type="Button" parent="Statue/BuildUI"]
-layout_mode = 2
-theme = ExtResource("9_2m7bd")
-text = "Build Statue"
+[node name="MageStatue" parent="." instance=ExtResource("7_xnbbw")]
+position = Vector2(-141, -1)
+attune_class = "res://Classes/mage.tscn"
+built_texture = ExtResource("8_i16xr")
+unbuilt_texture = ExtResource("9_8ap0l")
+statue_name = "MageStatue"

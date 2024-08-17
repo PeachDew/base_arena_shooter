@@ -1,0 +1,109 @@
+[gd_scene load_steps=9 format=3 uid="uid://b5tt3a7pr42qc"]
+
+[ext_resource type="Script" path="res://Objects/Misc/Statues/statue.gd" id="1_qqjjj"]
+[ext_resource type="Texture2D" uid="uid://chrkju6l8dxnw" path="res://Art/misc/statues/knight_statue.png" id="2_mhuva"]
+[ext_resource type="Texture2D" uid="uid://dpvjv58xs8ahm" path="res://Art/misc/statues/ruined_statue.png" id="3_pr120"]
+[ext_resource type="Texture2D" uid="uid://b6lyhkf0kk2lm" path="res://Art/misc/statues/statue_pad.png" id="4_xxdaw"]
+[ext_resource type="Theme" uid="uid://b1tb3h6x4i01j" path="res://UIScenes/test_theme.tres" id="5_u4sag"]
+[ext_resource type="Texture2D" uid="uid://b76cqhfyilm2a" path="res://Art/misc/coin.png" id="6_7oo7y"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bsntk"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(1, 0.7, 1)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 37.0
+emission_ring_inner_radius = 0.0
+gravity = Vector3(0, -180, 0)
+scale_min = 1.5
+scale_max = 2.5
+hue_variation_min = 0.95
+hue_variation_max = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_386dw"]
+size = Vector2(32, 32)
+
+[node name="KnightStatue" type="Area2D"]
+y_sort_enabled = true
+position = Vector2(-72, -1)
+collision_layer = 0
+script = ExtResource("1_qqjjj")
+built_texture = ExtResource("2_mhuva")
+unbuilt_texture = ExtResource("3_pr120")
+
+[node name="AttunedParticles" type="GPUParticles2D" parent="."]
+y_sort_enabled = true
+position = Vector2(1, -24)
+amount = 37
+process_material = SubResource("ParticleProcessMaterial_bsntk")
+
+[node name="StatueTexture" type="Sprite2D" parent="."]
+position = Vector2(2, -31)
+scale = Vector2(4, 4)
+texture = ExtResource("3_pr120")
+offset = Vector2(0, -6.95)
+
+[node name="StatuePadCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_386dw")
+
+[node name="PadTexture" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("4_xxdaw")
+
+[node name="BuildUI" type="VBoxContainer" parent="."]
+visible = false
+z_index = 1
+offset_left = 22.0
+offset_top = -68.0
+offset_right = 107.0
+offset_bottom = -45.0
+metadata/_edit_group_ = true
+
+[node name="BuildStatueButton" type="Button" parent="BuildUI"]
+layout_mode = 2
+theme = ExtResource("5_u4sag")
+text = "Build Statue"
+
+[node name="UpgradeAttuneUI" type="VBoxContainer" parent="."]
+z_index = 1
+offset_left = 22.0
+offset_top = -83.0
+offset_right = 139.0
+offset_bottom = -33.0
+metadata/_edit_group_ = true
+metadata/_edit_use_anchors_ = true
+
+[node name="AttuneButton" type="Button" parent="UpgradeAttuneUI"]
+layout_mode = 2
+theme = ExtResource("5_u4sag")
+text = "Attune"
+
+[node name="UpgradeHbox" type="HBoxContainer" parent="UpgradeAttuneUI"]
+layout_mode = 2
+
+[node name="UpgradeButton" type="Button" parent="UpgradeAttuneUI/UpgradeHbox"]
+layout_mode = 2
+theme = ExtResource("5_u4sag")
+text = "Upgrade"
+
+[node name="Label" type="Label" parent="UpgradeAttuneUI/UpgradeHbox"]
+layout_mode = 2
+theme = ExtResource("5_u4sag")
+text = "100"
+
+[node name="CoinPicture" type="TextureRect" parent="UpgradeAttuneUI/UpgradeHbox"]
+layout_mode = 2
+texture = ExtResource("6_7oo7y")
+expand_mode = 2
+
+[node name="LevelLabel" type="Label" parent="."]
+z_index = 1
+offset_left = -22.0
+offset_top = -110.0
+offset_right = 23.0
+offset_bottom = -87.0
+theme = ExtResource("5_u4sag")
+text = "Level 0"
+horizontal_alignment = 1
+vertical_alignment = 1

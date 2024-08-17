@@ -50,6 +50,9 @@ func _ready() -> void:
 	PlayerStats.level_change.connect(on_level_change)
 	PlayerStats.hp_change.connect(on_hp_change)
 	PlayerStats.ult_charge_change.connect(update_ult_bar)
+	
+	PlayerStats.player_stats_initialised.connect(on_player_stats_initialised)
+	
 	player.player_loaded.connect(on_hp_change)
 	
 	loading.pause_world.connect(on_pause_world)
@@ -76,6 +79,11 @@ func _ready() -> void:
 	stats_tempo_button.pressed.connect(on_add_stats_button_pressed.bind("tempo"))
 	
 	pause_menu.pausemenu_home_button_pressed.connect(on_pausemenu_home_button_pressed)
+	
+	update_ult_bar() 
+
+func on_player_stats_initialised():
+	update_ult_bar()
 
 func initialise_coin_ui(width: float, height: float):
 	coin_ui_hbox.position.x += width/3

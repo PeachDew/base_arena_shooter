@@ -49,14 +49,14 @@ func _ready() -> void:
 	iframes_timer.timeout.connect(on_iframes_timer_timeout)
 	bare_weapon.add_projectile_child.connect(on_add_projectile_child)
 	
-	if equipped_class.ultimate_node:
-		equipped_class.ultimate_node.add_projectile_child.connect(on_add_projectile_child)
-		equipped_class.ultimate_node.set_misc_particles.connect(set_misc_particles)
-		equipped_class.ultimate_node.set_shot_particles.connect(on_set_shot_particles)
+	equipped_class.add_projectile_child.connect(on_add_projectile_child)
+	equipped_class.set_misc_particles.connect(set_misc_particles)
+	equipped_class.set_shot_particles.connect(on_set_shot_particles)
 		
 	ult_ready_particles.emitting = false
 	
 	PlayerStats.ult_ready.connect(on_ult_ready)
+	PlayerStats.player_stats_initialised.connect(on_player_stats_initialised)
 	equipped_class.ult_used.connect(on_ult_used)
 	
 	ItemsManager.clear_weapon.connect(clear_weapon)
@@ -66,6 +66,10 @@ func _ready() -> void:
 	ItemsManager.add_weapon.connect(add_weapon)
 	ItemsManager.add_hat.connect(add_hat)
 	ItemsManager.add_ability.connect(add_ability)
+
+func on_player_stats_initialised():
+	if PlayerStats.attuned_class:
+		equipped_class.add_class(PlayerStats.attuned_class)
 
 func on_set_shot_particles(particles_array: Array):
 	shot_particles = particles_array

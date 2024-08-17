@@ -72,6 +72,8 @@ var stop_ult_timer : float = 0.0
 var buff_time_left : float = 0.0
 var shots_left : int = 0
 
+@export var attuned_class : String = ""
+
 signal stats_updated
 signal damage_dealt
 
@@ -82,15 +84,22 @@ signal hp_change
 signal ult_charge_change
 signal ult_ready
 
+signal player_stats_initialised
+
 signal buff_time_set
 signal shots_left_set
+
+signal add_class
+signal clear_class
+signal class_changed
 
 func _ready() -> void:
 	damage_dealt.connect(on_damage_dealt)
 
 func on_damage_dealt():
-	charging_ult = true
-	stop_ult_timer = 0.0
+	if attuned_class:
+		charging_ult = true
+		stop_ult_timer = 0.0
 
 func set_buff_time(bt: float):
 	if bt > 0.0:
@@ -205,6 +214,8 @@ func initialise_player_stats(player_stats_dict: Dictionary):
 	max_xp = player_stats_dict.max_xp
 	cumulative_xp = player_stats_dict.cumulative_xp
 	coins = player_stats_dict.coins
+	
+	attuned_class = player_stats_dict.attuned_class
 
 	base_max_hp = player_stats_dict.base_max_hp
 	max_hp = player_stats_dict.max_hp # set max_hp before hp
@@ -218,9 +229,12 @@ func initialise_player_stats(player_stats_dict: Dictionary):
 	total_player_stats = player_stats_dict.base_player_stats.duplicate()
 	base_player_stats = player_stats_dict.base_player_stats.duplicate()
 	
+	ult_charge = 0.0
+	
 	xp_change.emit()
 	level_change.emit()
 	coins_change.emit()
+	player_stats_initialised.emit()
 	update_speed_bonus()
 	
 func get_player_stats_dict():
@@ -240,6 +254,9 @@ func get_player_stats_dict():
 		
 		# Coins
 		"coins": coins,
+		
+		# Class
+		"attuned_class": attuned_class,
 
 		# HP Stats
 		"hp" : hp,
@@ -272,6 +289,8 @@ func get_default_player_stats_dict():
 		
 		# Resources
 		"coins": 0,
+		
+		"attuned_class": "",
 
 		# HP Stats
 		"hp" : DEFAULT_HP,
