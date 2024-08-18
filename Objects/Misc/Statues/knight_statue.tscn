@@ -52,7 +52,6 @@ z_index = -1
 texture = ExtResource("4_xxdaw")
 
 [node name="BuildUI" type="VBoxContainer" parent="."]
-visible = false
 z_index = 1
 offset_left = 22.0
 offset_top = -68.0
@@ -60,12 +59,26 @@ offset_right = 107.0
 offset_bottom = -45.0
 metadata/_edit_group_ = true
 
-[node name="BuildStatueButton" type="Button" parent="BuildUI"]
+[node name="BuildHbox" type="HBoxContainer" parent="BuildUI"]
+layout_mode = 2
+
+[node name="BuildStatueButton" type="Button" parent="BuildUI/BuildHbox"]
 layout_mode = 2
 theme = ExtResource("5_u4sag")
-text = "Build Statue"
+text = "Build"
+
+[node name="BuildCostLabel" type="Label" parent="BuildUI/BuildHbox"]
+layout_mode = 2
+theme = ExtResource("5_u4sag")
+text = "NA"
+
+[node name="CoinPicture" type="TextureRect" parent="BuildUI/BuildHbox"]
+layout_mode = 2
+texture = ExtResource("6_7oo7y")
+expand_mode = 2
 
 [node name="UpgradeAttuneUI" type="VBoxContainer" parent="."]
+visible = false
 z_index = 1
 offset_left = 22.0
 offset_top = -83.0

@@ -541,7 +541,6 @@ shape = SubResource("CircleShape2D_22idg")
 
 [node name="MageStatue" parent="." instance=ExtResource("7_xnbbw")]
 position = Vector2(-141, -1)
-attune_class = "res://Classes/mage.tscn"
 built_texture = ExtResource("8_i16xr")
 unbuilt_texture = ExtResource("9_8ap0l")
-statue_name = "MageStatue"
+statue_id = "statue_1"

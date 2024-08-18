@@ -18,9 +18,14 @@ func _ready() -> void:
 	# RE INNITIALISING BREAKS THINGS
 	ItemsManager.reset_inventory() # emptying inventory might mess with stats
 	PlayerStats.reset_player_stats() # reset the messed up stats
+	print("After reset_player")
+	print(PlayerStats.statue_dict)
 	
+	print(SaveSystem.get_var(SavesManager.curr_player_name+":playerstats").statue_dict)
 	PlayerStats.initialise_player_stats(SaveSystem.get_var(SavesManager.curr_player_name+":playerstats"))
 	ItemsManager.initialise_inventory(SaveSystem.get_var(SavesManager.curr_player_name+":inventory"))
+	print("After initialise_player")
+	print(PlayerStats.statue_dict)
 	
 	stats_ui_manager.update_VMST_stats_ui()
 	
