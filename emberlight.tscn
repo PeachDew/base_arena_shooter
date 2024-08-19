@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dvdmih1s7q881"]
+[gd_scene load_steps=33 format=3 uid="uid://dvdmih1s7q881"]
 
 [ext_resource type="Script" path="res://region.gd" id="1_8860g"]
 [ext_resource type="PackedScene" uid="uid://nux7eimswkmm" path="res://Objects/Portals/first_area_portal.tscn" id="2_pfi31"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b5tt3a7pr42qc" path="res://Objects/Misc/Statues/knight_statue.tscn" id="7_xnbbw"]
 [ext_resource type="Texture2D" uid="uid://b46o15kj4sn12" path="res://Art/misc/statues/mage_statue.png" id="8_i16xr"]
 [ext_resource type="Texture2D" uid="uid://bd0kvy2hmicyi" path="res://Art/misc/statues/mage_statue_ruined.png" id="9_8ap0l"]
+[ext_resource type="PackedScene" uid="uid://8i2smhedxkhr" path="res://Objects/Misc/Statues/archer_statue.tscn" id="10_rf5uv"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_lmkcg"]
 tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 2, 1, 131072, 0, 65537, 131072, 2)
@@ -538,9 +539,13 @@ autoplay = "idle"
 shape = SubResource("CircleShape2D_22idg")
 
 [node name="KnightStatue" parent="." instance=ExtResource("7_xnbbw")]
+position = Vector2(-72, 0)
 
 [node name="MageStatue" parent="." instance=ExtResource("7_xnbbw")]
-position = Vector2(-141, -1)
+position = Vector2(-141, 0)
 built_texture = ExtResource("8_i16xr")
 unbuilt_texture = ExtResource("9_8ap0l")
 statue_id = "statue_1"
+
+[node name="ArcherStatue" parent="." instance=ExtResource("10_rf5uv")]
+position = Vector2(-211, 0)

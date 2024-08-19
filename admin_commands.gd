@@ -18,16 +18,13 @@ func _ready() -> void:
 	# RE INNITIALISING BREAKS THINGS
 	ItemsManager.reset_inventory() # emptying inventory might mess with stats
 	PlayerStats.reset_player_stats() # reset the messed up stats
-	print("After reset_player")
-	print(PlayerStats.statue_dict)
 	
 	print(SaveSystem.get_var(SavesManager.curr_player_name+":playerstats").statue_dict)
 	PlayerStats.initialise_player_stats(SaveSystem.get_var(SavesManager.curr_player_name+":playerstats"))
 	ItemsManager.initialise_inventory(SaveSystem.get_var(SavesManager.curr_player_name+":inventory"))
-	print("After initialise_player")
-	print(PlayerStats.statue_dict)
 	
-	stats_ui_manager.update_VMST_stats_ui()
+	PlayerStats.apply_attuned_statue_buffs()
+	PlayerStats.update_VMST_stats_ui.emit()
 	
 	ui_manager.pausemenu_home_button_pressed.connect(on_pausemenu_home_button_pressed)
 	ui_manager.pause_world.connect(on_ui_manager_pause_world)
@@ -53,6 +50,7 @@ func _input(event: InputEvent) -> void:
 		get_tree().paused = true
 
 func _physics_process(_delta: float) -> void:
+	
 	if Input.is_action_just_pressed("ADMIN_spawn_enemy"):
 		spawned_enemies += 1
 		var es = charge_enemy_scene

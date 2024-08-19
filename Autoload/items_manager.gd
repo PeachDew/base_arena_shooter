@@ -80,7 +80,6 @@ var last_shown_lootbag : Area2D
 
 signal change_inv_ui_texture
 signal update_stats
-signal update_stats_ui
 signal add_weapon
 signal clear_weapon
 signal add_hat
@@ -226,8 +225,8 @@ func put_item(item, slot_name):
 			var stat_name = stat_modifier[0] 
 			var stat_change = stat_modifier[1]
 			
-			update_stats.emit(stat_name, stat_change)
-		update_stats_ui.emit()
+			PlayerStats.update_stats(stat_name, stat_change)
+		#PlayerStats.update_VMST_stats_ui.emit()
 		
 	if !inventory[slot_name]: # Slot is empty, proceed with putting
 		inventory[slot_name] = item

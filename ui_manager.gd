@@ -105,6 +105,8 @@ func initialise_ult_bar(width: float, height: float):
 	
 	ult_bar.value = PlayerStats.ult_charge
 	
+	PlayerStats.update_VMST_stats_ui.connect(update_VMST_stats_ui)
+	
 
 func update_ult_bar():
 	ult_bar.value = PlayerStats.ult_charge
@@ -182,6 +184,11 @@ func update_xp_and_hp()->void:
 	xp_bar.level_label.text = "Level " + str(PlayerStats.player_level)
 	
 	on_hp_change()
+
+func update_VMST_stats_ui():
+	for key in PlayerStats.total_player_stats:
+		set_stat_value(key, PlayerStats.total_player_stats[key])
+	set_stat_value("available_statpoints", PlayerStats.available_points)
 
 func on_xp_change()->void: 
 	var xp_tween = self.create_tween()

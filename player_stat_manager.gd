@@ -9,20 +9,17 @@ func _ready() -> void:
 	ui_manager.reset_button_pressed.connect(on_uimanager_reset_button_pressed)
 	ui_manager.add_stat_button_pressed.connect(on_uimanager_add_stat_button_pressed)
 	
-	ItemsManager.update_stats.connect(on_ItemsManager_update_stats)
-	ItemsManager.update_stats_ui.connect(update_VMST_stats_ui)
+	#ItemsManager.update_stats_ui.connect(update_VMST_stats_ui)
 	
 	if not ui_manager.is_node_ready():
 		await ui_manager.ready
 		
-	update_VMST_stats_ui()
+	PlayerStats.update_VMST_stats_ui.emit()
 	
-func on_ItemsManager_update_stats(stat_name, stat_change):
-	change_total_stat(stat_name, stat_change)
 	
 func on_level_change():
 	PlayerStats.available_points += 1
-	update_VMST_stats_ui()
+	PlayerStats.update_VMST_stats_ui.emit()
 
 func update_player_bonuses():
 	PlayerStats.update_vigor_bonus()
@@ -36,7 +33,7 @@ func on_uimanager_reset_button_pressed():
 		PlayerStats.total_player_stats[key] -= PlayerStats.base_player_stats[key]
 		PlayerStats.base_player_stats[key] = 0
 	ui_manager.set_stat_value("available_statpoints", PlayerStats.available_points)
-	update_VMST_stats_ui()
+	PlayerStats.update_VMST_stats_ui.emit()
 	update_player_bonuses()
 
 func on_uimanager_add_stat_button_pressed(stat):
@@ -49,16 +46,4 @@ func on_uimanager_add_stat_button_pressed(stat):
 	
 	update_player_bonuses()	
 
-func update_VMST_stats_ui():
-	for key in PlayerStats.total_player_stats:
-		ui_manager.set_stat_value(key, PlayerStats.total_player_stats[key])
-	ui_manager.set_stat_value("available_statpoints", PlayerStats.available_points)
-
-func change_total_stat(stat_name, stat_value):
-	PlayerStats.total_player_stats[stat_name] += stat_value
-	if stat_name == "vigor" and stat_value > 0: # If positive change to vigor
-		player.hp_regen_node.start_regen()
-	PlayerStats.update_speed_bonus()
-	PlayerStats.update_vigor_bonus()
-	update_VMST_stats_ui()
 

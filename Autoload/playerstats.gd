@@ -72,20 +72,27 @@ var stop_ult_timer : float = 0.0
 var buff_time_left : float = 0.0
 var shots_left : int = 0
 
-@export var attuned_class : String = ""
+@export var attuned_statue_id : String = ""
 
 const STATUES_INFO : Dictionary = {
 	"statue_0": {
 		"name": "KnightStatue",
 		"attune_class": PATHS.CLASS_WARRIOR,
+		"bonus_per_level": [
+			["vigor", 1]],
 	},
 	"statue_1": {
 		"name": "MageStatue",
 		"attune_class": PATHS.CLASS_MAGE,
+		"bonus_per_level": [
+			["might", 1]],
 	},
 	"statue_2": {
 		"name": "ArcherStatue",
 		"attune_class": PATHS.CLASS_ARCHER,
+		"bonus_per_level": [
+			["tempo", 0.5],
+			["speed", 0.5]],
 	},
 }
 
@@ -120,11 +127,45 @@ signal add_class
 signal clear_class
 signal class_changed
 
+signal start_regen
+
+signal update_VMST_stats_ui
+
 func _ready() -> void:
 	damage_dealt.connect(on_damage_dealt)
 
+func clear_attuned_statue_buffs():
+	if attuned_statue_id:
+		for bonus in STATUES_INFO[attuned_statue_id].bonus_per_level:
+			var bonus_name: String = bonus[0]
+			var bonus_amount: float = bonus[1] * statue_dict[attuned_statue_id].level
+			var floored_bonus_amount: int = int(bonus_amount) 
+			
+			update_stats(bonus_name, -1*floored_bonus_amount)
+
+func apply_attuned_statue_buffs():
+	if attuned_statue_id:
+		for bonus in STATUES_INFO[attuned_statue_id].bonus_per_level:
+			var bonus_name: String = bonus[0]
+			var bonus_amount: float = bonus[1] * statue_dict[attuned_statue_id].level
+			var floored_bonus_amount: int = int(bonus_amount) 
+			
+			update_stats(bonus_name, floored_bonus_amount)
+
+func increment_statue_level(statue_id: String):
+	if statue_id in statue_dict:
+		if statue_id == attuned_statue_id:
+			if statue_dict[statue_id].level > 0:
+				clear_attuned_statue_buffs()
+		statue_dict[statue_id].level += 1
+		
+		if statue_id == attuned_statue_id:
+			apply_attuned_statue_buffs()
+	else:
+		push_warning("increment_statue_level called with invalid statue_id")
+
 func on_damage_dealt():
-	if attuned_class:
+	if attuned_statue_id:
 		charging_ult = true
 		stop_ult_timer = 0.0
 
@@ -225,6 +266,14 @@ func get_speed_animation_bonus():
 func get_tempo_animation_bonus():
 	return total_player_stats['tempo'] * 0.03
 
+func update_stats(stat_name: String, stat_change: int) -> void:
+	total_player_stats[stat_name] += stat_change
+	if stat_name == "vigor" and stat_change > 0: # If positive change to vigor
+		start_regen.emit()
+	PlayerStats.update_speed_bonus()
+	PlayerStats.update_vigor_bonus()
+	update_VMST_stats_ui.emit()
+
 func reset_player_stats():
 	initialise_player_stats(get_default_player_stats_dict())
 	
@@ -242,7 +291,7 @@ func initialise_player_stats(player_stats_dict: Dictionary):
 	cumulative_xp = player_stats_dict.cumulative_xp
 	coins = player_stats_dict.coins
 	
-	attuned_class = player_stats_dict.attuned_class
+	attuned_statue_id = player_stats_dict.attuned_statue_id
 
 	base_max_hp = player_stats_dict.base_max_hp
 	max_hp = player_stats_dict.max_hp # set max_hp before hp
@@ -285,7 +334,7 @@ func get_player_stats_dict():
 		"coins": coins,
 		
 		# Class
-		"attuned_class": attuned_class,
+		"attuned_statue_id": attuned_statue_id,
 
 		# HP Stats
 		"hp" : hp,
@@ -323,7 +372,7 @@ func get_default_player_stats_dict():
 		# Resources
 		"coins": 0,
 		
-		"attuned_class": "",
+		"attuned_statue_id": "",
 
 		# HP Stats
 		"hp" : DEFAULT_HP,

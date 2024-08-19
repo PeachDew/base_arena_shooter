@@ -59,6 +59,8 @@ func _ready() -> void:
 	PlayerStats.player_stats_initialised.connect(on_player_stats_initialised)
 	equipped_class.ult_used.connect(on_ult_used)
 	
+	PlayerStats.start_regen.connect(on_start_regen)
+	
 	ItemsManager.clear_weapon.connect(clear_weapon)
 	ItemsManager.clear_hat.connect(clear_hat)
 	ItemsManager.clear_ability.connect(clear_ability)
@@ -67,9 +69,13 @@ func _ready() -> void:
 	ItemsManager.add_hat.connect(add_hat)
 	ItemsManager.add_ability.connect(add_ability)
 
+func on_start_regen()-> void:
+	hp_regen_node.start_regen()
+
 func on_player_stats_initialised():
-	if PlayerStats.attuned_class:
-		equipped_class.add_class(PlayerStats.attuned_class)
+	if PlayerStats.attuned_statue_id:
+		var attuned_class = PlayerStats.STATUES_INFO[PlayerStats.attuned_statue_id].attune_class
+		equipped_class.add_class(attuned_class)
 
 func on_set_shot_particles(particles_array: Array):
 	shot_particles = particles_array
