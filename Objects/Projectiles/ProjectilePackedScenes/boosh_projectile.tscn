@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://b872qem6qlcv6"]
+
+[ext_resource type="Script" path="res://Projectile/projectile.gd" id="1_cucej"]
+[ext_resource type="Texture2D" uid="uid://2s7s4xfldy8u" path="res://Art/items/Projectiles/enemy/boosh_ranged_proj.png" id="2_sgkgh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ifsgv"]
+radius = 4.0
+
+[node name="BooshProjectile" type="CharacterBody2D"]
+script = ExtResource("1_cucej")
+
+[node name="Projectile_Area2D" type="Area2D" parent="."]
+collision_layer = 8
+
+[node name="ProjectileHurtbox" type="CollisionShape2D" parent="Projectile_Area2D"]
+rotation = 1.5708
+shape = SubResource("CircleShape2D_ifsgv")
+
+[node name="ProjectileSprite" type="Sprite2D" parent="Projectile_Area2D"]
+texture = ExtResource("2_sgkgh")
+
+[node name="Projectile_Lifetime_Timer" type="Timer" parent="."]

@@ -1,7 +1,6 @@
-[gd_scene load_steps=38 format=3 uid="uid://dft13hdivyxcp"]
+[gd_scene load_steps=37 format=3 uid="uid://dft13hdivyxcp"]
 
 [ext_resource type="Script" path="res://Objects/Enemies/enemy.gd" id="1_fyo1u"]
-[ext_resource type="Script" path="res://Objects/Enemies/enemy_hitbox.gd" id="2_lh4dc"]
 [ext_resource type="Script" path="res://Objects/Enemies/enemy_health_bar.gd" id="5_ii3ct"]
 [ext_resource type="Script" path="res://Objects/Enemies/enemy_behavior.gd" id="6_j2dwf"]
 [ext_resource type="Texture2D" uid="uid://dmtthvhcuwmyx" path="res://Art/characters/monsters/plooty/green/plooty_green_attack.png" id="7_rcdly"]
@@ -15,8 +14,6 @@
 [ext_resource type="Script" path="res://hurtbox.gd" id="12_yurcs"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8beuv"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_nh1ot"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nvdhg"]
 radius = 20.5755
@@ -185,6 +182,8 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_nh1ot"]
+
 [node name="BasicRangedEnemy" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 0
@@ -196,15 +195,6 @@ rotation = 1.5708
 scale = Vector2(0.545, 0.545)
 shape = SubResource("CapsuleShape2D_8beuv")
 
-[node name="EnemyHitbox" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 0
-script = ExtResource("2_lh4dc")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitbox"]
-scale = Vector2(1.215, 1.215)
-shape = SubResource("CircleShape2D_nh1ot")
-
 [node name="EnemyHpBar" type="TextureProgressBar" parent="."]
 offset_left = -13.0
 offset_top = -19.0
@@ -215,9 +205,8 @@ texture_over = ExtResource("7_wkcm4")
 texture_progress = ExtResource("8_bx545")
 script = ExtResource("5_ii3ct")
 
-[node name="EnemyBehavior" type="Node2D" parent="." node_paths=PackedStringArray("enemy_weapon")]
+[node name="EnemyBehavior" type="Node2D" parent="."]
 script = ExtResource("6_j2dwf")
-enemy_weapon = NodePath("EnemyWeapon")
 ranged = true
 
 [node name="EnemyChaseRadius" type="Area2D" parent="EnemyBehavior"]

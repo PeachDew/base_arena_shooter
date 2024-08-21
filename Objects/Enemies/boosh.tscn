@@ -1,10 +1,10 @@
-[gd_scene load_steps=35 format=3 uid="uid://dpbt0sv4yoleq"]
+[gd_scene load_steps=38 format=3 uid="uid://dpbt0sv4yoleq"]
 
 [ext_resource type="Script" path="res://Objects/Enemies/enemy.gd" id="1_a4uxi"]
-[ext_resource type="Script" path="res://Objects/Enemies/enemy_hitbox.gd" id="2_cjju2"]
 [ext_resource type="Texture2D" uid="uid://dioi1q8e5un3a" path="res://Art/ui/Over_hp.png" id="3_ldyk5"]
 [ext_resource type="Texture2D" uid="uid://cucqo7hsarkgk" path="res://Art/ui/progress.png" id="4_3dals"]
 [ext_resource type="Script" path="res://Objects/Enemies/enemy_health_bar.gd" id="5_er4hl"]
+[ext_resource type="Texture2D" uid="uid://bs26hj00qnme4" path="res://Art/characters/monsters/boosh/boosh_attack.png" id="6_2mkyo"]
 [ext_resource type="Script" path="res://Objects/Enemies/enemy_behavior.gd" id="6_c8wuu"]
 [ext_resource type="Texture2D" uid="uid://cl4cd24cgpq3l" path="res://Art/characters/monsters/plooty/plooty_green_charge.png" id="8_dbov4"]
 [ext_resource type="Texture2D" uid="uid://ymtwhdys3onx" path="res://Art/characters/monsters/boosh/boosh_idle.png" id="9_1fugc"]
@@ -13,15 +13,26 @@
 [ext_resource type="Script" path="res://Objects/Enemies/EnemyWeapon.gd" id="12_ecefb"]
 [ext_resource type="Script" path="res://hurtbox.gd" id="13_i4bpj"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pci1d"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_4h5ru"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4s3ua"]
+size = Vector2(36.6974, 51.376)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3vvpk"]
-radius = 20.5755
+radius = 55.2346
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ldkuc"]
-radius = 79.1581
+radius = 246.1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_80s7f"]
+atlas = ExtResource("6_2mkyo")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y26b4"]
+atlas = ExtResource("6_2mkyo")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6iq2"]
+atlas = ExtResource("6_2mkyo")
+region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wfyaw"]
 atlas = ExtResource("8_dbov4")
@@ -93,7 +104,16 @@ region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8jbar"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_80s7f")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_y26b4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6iq2")
+}],
 "loop": false,
 "name": &"attack",
 "speed": 5.0
@@ -176,25 +196,20 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sggny"]
+size = Vector2(23.0453, 16.4609)
+
 [node name="Boosh" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_a4uxi")
+max_hp = 100.0
 
 [node name="FloorCollision" type="CollisionShape2D" parent="."]
-position = Vector2(0, 5.94)
+position = Vector2(-4.76837e-07, 4)
 rotation = 1.5708
 scale = Vector2(0.545, 0.545)
-shape = SubResource("CapsuleShape2D_pci1d")
-
-[node name="EnemyHitbox" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 0
-script = ExtResource("2_cjju2")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitbox"]
-scale = Vector2(1.215, 1.215)
-shape = SubResource("CircleShape2D_4h5ru")
+shape = SubResource("RectangleShape2D_4s3ua")
 
 [node name="EnemyHpBar" type="TextureProgressBar" parent="."]
 offset_left = -13.0
@@ -206,9 +221,9 @@ texture_over = ExtResource("3_ldyk5")
 texture_progress = ExtResource("4_3dals")
 script = ExtResource("5_er4hl")
 
-[node name="EnemyBehavior" type="Node2D" parent="." node_paths=PackedStringArray("enemy_weapon")]
+[node name="EnemyBehavior" type="Node2D" parent="."]
 script = ExtResource("6_c8wuu")
-enemy_weapon = NodePath("")
+ranged = true
 
 [node name="EnemyChaseRadius" type="Area2D" parent="EnemyBehavior"]
 modulate = Color(0.895674, 0.498548, 0.465915, 1)
@@ -232,16 +247,16 @@ debug_color = Color(0.709177, 0.481276, 0.201482, 0.42)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemyBehavior/EnemyFlipMarker"]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_8jbar")
-animation = &"walk"
+animation = &"attack"
 autoplay = "idle"
 speed_scale = 1.36
 
 [node name="EnemyAttackOrigin" type="Marker2D" parent="EnemyBehavior/EnemyFlipMarker"]
-position = Vector2(9.5, -3)
+position = Vector2(9.925, 8.985)
 
 [node name="EnemyWeapon" type="Node2D" parent="EnemyBehavior"]
 script = ExtResource("12_ecefb")
-projectile_config_ids = Array[String](["ET0"])
+projectile_config_ids = Array[String](["BOOSH_STRAIGHT", "BOOSH_LEFT", "BOOSH_RIGHT"])
 
 [node name="EnemyHurtbox" type="Area2D" parent="."]
 collision_layer = 4
@@ -249,5 +264,7 @@ collision_mask = 0
 script = ExtResource("13_i4bpj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHurtbox"]
+position = Vector2(0, 4)
 scale = Vector2(1.215, 1.215)
-shape = SubResource("CircleShape2D_4h5ru")
+shape = SubResource("RectangleShape2D_sggny")
+debug_color = Color(0, 0.648736, 0.170622, 0.42)

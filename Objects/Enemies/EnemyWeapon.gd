@@ -23,22 +23,22 @@ func initialise_configs():
 		return 0
 		
 	for id in projectile_config_ids:
-		projectile_configs.append(ProjectileConfigs.configs[id])
-		test_timers.append(0)
+		var pc = ProjectileConfigs.configs[id]
+		projectile_configs.append(pc)
+		test_timers.append(0-pc.start_delay)
 
 func _ready() -> void:
 	initialise_configs()
 
 func _physics_process(delta: float) -> void:
-	for i in range(len(test_timers)):
-		test_timers[i] += delta
 	if firing:
+		for i in range(len(test_timers)):
+			test_timers[i] += delta
 		shoot_if_can()
 	
 func shoot_if_can():
 	for i in range(len(test_timers)):
-		var cooldown_after_tempo = projectile_configs[i].cooldown
-		if test_timers[i] > cooldown_after_tempo:
+		if test_timers[i] > projectile_configs[i].cooldown:
 			fire_projectile_at_player(projectile_configs[i])
 			test_timers[i] = 0
 
@@ -46,7 +46,7 @@ func fire_projectile_at_player(projectile_config: Dictionary):
 	var projectile_instance = projectile_config.projectile_packed_scene.instantiate()
 	projectile_instance.speed = projectile_config.speed
 	
-	projectile_instance.rotation = projectile_config.rotation
+	projectile_instance.rotation = deg_to_rad(projectile_config.rotation)
 	if "spread_degrees" in projectile_config:
 		var random_radian_angle = randf_range(
 			-deg_to_rad(projectile_config.spread_degrees),

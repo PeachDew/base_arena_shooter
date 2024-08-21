@@ -6,7 +6,7 @@ class_name EnemyBehavior
 @onready var enemy_attack_origin : Marker2D = $EnemyFlipMarker/EnemyAttackOrigin
 @onready var animated_sprite: AnimatedSprite2D = $EnemyFlipMarker/AnimatedSprite2D
 
-@export var enemy_weapon : EnemyWeapon
+var enemy_weapon : EnemyWeapon
 
 @onready var enemy_attack_radius : Area2D
 @onready var enemy_body := get_owner()
@@ -31,14 +31,14 @@ func _ready() -> void:
 	enemy_chase_radius.body_exited.connect(on_body_exited_enemy_chase_radius)
 	
 	if ranged:
+		enemy_weapon = $EnemyWeapon
 		enemy_attack_radius = $EnemyAttackRadius
-		#enemy_weapon.projectile_config_ids = ["ET0"]
-		#enemy_weapon.initialise_configs()
 		enemy_attack_radius.body_entered.connect(on_body_entered_enemy_attack_radius)
 		enemy_attack_radius.body_exited.connect(on_body_exited_enemy_attack_radius)
 		enemy_weapon.add_projectile_child.connect(on_add_projectile_child)
 	
 	if charge_body_attack:
+		enemy_attack_radius = $EnemyAttackRadius
 		charge_body_attack.launch_to.connect(on_charge_body_launch_to)
 		charge_body_attack.charge_attacking.connect(on_charge_attacking)
 		charge_body_attack.aiming_charge.connect(on_aiming_charge)
@@ -97,8 +97,11 @@ func on_charge_body_launch_to(target_position: Vector2, speed: float):
 
 func on_body_entered_enemy_chase_radius(body):
 	if body is Player:
-		chase_target = body
-		state = 1
+		if body in enemy_attack_radius.get_overlapping_bodies():
+			state = 2
+		else:
+			chase_target = body
+			state = 1
 		
 func on_body_exited_enemy_chase_radius(body):
 	if body is Player:
@@ -118,6 +121,7 @@ func on_body_exited_enemy_attack_radius(body):
 		enemy_weapon.firing = false
 		attack_target = null
 		if body in enemy_chase_radius.get_overlapping_bodies():
+			chase_target = body
 			state = 1
 		else:
 			state = 0

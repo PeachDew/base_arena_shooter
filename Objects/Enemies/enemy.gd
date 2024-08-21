@@ -17,7 +17,7 @@ class_name Enemy
 
 @onready var contact_attack := Attack.new()
 @onready var curr_hp := max_hp
-@onready var hitbox := $EnemyHitbox
+#@onready var hitbox := $EnemyHitbox
 @onready var hurtbox := $EnemyHurtbox
 @onready var enemy_hpbar := $EnemyHpBar
 

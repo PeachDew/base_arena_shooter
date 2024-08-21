@@ -126,6 +126,42 @@ var configs : Dictionary = {
 		"start_delay": 0.00,
 	},
 	
+	"BOOSH_STRAIGHT" :
+	{
+		"projectile_packed_scene": load(PATHS.PROJ_BOOSH),
+		"cooldown": 2.0,
+		"speed": 300.0,
+		"damage": 5.0,
+		"max_pierce": 0,
+		"lifetime": 2.0,
+		"rotation": 0.0,
+		"start_delay": 0.0,
+	},
+	
+	"BOOSH_LEFT" :
+	{
+		"projectile_packed_scene": load(PATHS.PROJ_BOOSH),
+		"cooldown": 2.0,
+		"speed": 350.0,
+		"damage": 5.0,
+		"max_pierce": 0,
+		"lifetime": 2.0,
+		"rotation": 19.0,
+		"start_delay": 1.0,
+	},
+	
+	"BOOSH_RIGHT" :
+	{
+		"projectile_packed_scene": load(PATHS.PROJ_BOOSH),
+		"cooldown": 2.0,
+		"speed": 350.0,
+		"damage": 5.0,
+		"max_pierce": 0,
+		"lifetime": 1.0,
+		"rotation": -19.0,
+		"start_delay": 1.0,
+	},
+	
 	# Abilities
 	"A01" :
 	{

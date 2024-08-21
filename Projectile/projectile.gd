@@ -19,6 +19,7 @@ var is_crit = false
 signal hit_hitbox
 
 func _ready() -> void:
+	scale = Vector2(2,2)
 	hurtbox.area_entered.connect(on_hurtbox_area_entered)
 	check_projectile_ready()
 	lifetime_timer.wait_time = lifetime
