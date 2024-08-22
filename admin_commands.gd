@@ -19,7 +19,7 @@ func _ready() -> void:
 	ItemsManager.reset_inventory() # emptying inventory might mess with stats
 	PlayerStats.reset_player_stats() # reset the messed up stats
 	
-	print(SaveSystem.get_var(SavesManager.curr_player_name+":playerstats").statue_dict)
+	#print(SaveSystem.get_var(SavesManager.curr_player_name+":playerstats").statue_dict)
 	PlayerStats.initialise_player_stats(SaveSystem.get_var(SavesManager.curr_player_name+":playerstats"))
 	ItemsManager.initialise_inventory(SaveSystem.get_var(SavesManager.curr_player_name+":inventory"))
 	

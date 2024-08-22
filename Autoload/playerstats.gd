@@ -291,7 +291,8 @@ func initialise_player_stats(player_stats_dict: Dictionary):
 	cumulative_xp = player_stats_dict.cumulative_xp
 	coins = player_stats_dict.coins
 	
-	attuned_statue_id = player_stats_dict.attuned_statue_id
+	if "attune_statue_id" in player_stats_dict:
+		attuned_statue_id = player_stats_dict.attuned_statue_id
 
 	base_max_hp = player_stats_dict.base_max_hp
 	max_hp = player_stats_dict.max_hp # set max_hp before hp
@@ -307,7 +308,8 @@ func initialise_player_stats(player_stats_dict: Dictionary):
 	
 	ult_charge = 0.0
 	
-	statue_dict = player_stats_dict.statue_dict
+	if "statue_dict" in player_stats_dict:
+		statue_dict = player_stats_dict.statue_dict
 	
 	xp_change.emit()
 	level_change.emit()
