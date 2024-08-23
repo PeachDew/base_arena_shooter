@@ -276,7 +276,7 @@ func update_stats(stat_name: String, stat_change: int) -> void:
 
 func reset_player_stats():
 	initialise_player_stats(get_default_player_stats_dict())
-	
+
 func initialise_player_stats(player_stats_dict: Dictionary):
 	base_speed = player_stats_dict.base_speed
 	speed = player_stats_dict.base_speed
@@ -291,8 +291,6 @@ func initialise_player_stats(player_stats_dict: Dictionary):
 	cumulative_xp = player_stats_dict.cumulative_xp
 	coins = player_stats_dict.coins
 	
-	if "attune_statue_id" in player_stats_dict:
-		attuned_statue_id = player_stats_dict.attuned_statue_id
 
 	base_max_hp = player_stats_dict.base_max_hp
 	max_hp = player_stats_dict.max_hp # set max_hp before hp
@@ -308,8 +306,17 @@ func initialise_player_stats(player_stats_dict: Dictionary):
 	
 	ult_charge = 0.0
 	
-	if "statue_dict" in player_stats_dict:
+	# When accesing newly created attributes, previous saves' dicts might not 
+	# contain new attribute. Now we use default value if att_name not found.
+	if "attune_statue_id" in player_stats_dict:
+		attuned_statue_id = player_stats_dict.attuned_statue_id
+	else:
+		attuned_statue_id = get_default_player_stats_dict().attuned_statue_id
+	
+	if "statue_dict" in player_stats_dict: 
 		statue_dict = player_stats_dict.statue_dict
+	else:
+		statue_dict = get_default_player_stats_dict().statue_dict
 	
 	xp_change.emit()
 	level_change.emit()

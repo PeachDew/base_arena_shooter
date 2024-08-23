@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8uisiij5ohhc"]
+
+[ext_resource type="Script" path="res://Projectile/projectile.gd" id="1_7ldmm"]
+[ext_resource type="Texture2D" uid="uid://b16dlma4tr06b" path="res://Art/items/Projectiles/enemy/dococo_coconut_proj.png" id="2_yo6t4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7xf6b"]
+radius = 3.0
+
+[node name="Dococo_Coconut_Projectile" type="CharacterBody2D"]
+scale = Vector2(3, 3)
+script = ExtResource("1_7ldmm")
+
+[node name="Projectile_Area2D" type="Area2D" parent="."]
+collision_layer = 8
+
+[node name="ProjectileHurtbox" type="CollisionShape2D" parent="Projectile_Area2D"]
+rotation = 1.5708
+shape = SubResource("CircleShape2D_7xf6b")
+
+[node name="ProjectileSprite" type="Sprite2D" parent="Projectile_Area2D"]
+position = Vector2(0, -0.455)
+texture = ExtResource("2_yo6t4")
+
+[node name="Projectile_Lifetime_Timer" type="Timer" parent="."]

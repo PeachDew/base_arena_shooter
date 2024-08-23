@@ -39,6 +39,7 @@ const PROJ_A01 : String = ABILITIES_PROJ_PS_DIR + "flash_bolt_projectile.tscn"
 ### enemy projectiles ###
 const PROJ_ETZERO : String = ENEMY_PROJ_PS_DIR + "plooty_projectile.tscn"
 const PROJ_BOOSH : String = ENEMY_PROJ_PS_DIR + "boosh_projectile.tscn"
+const PROJ_DOCOCO : String = ENEMY_PROJ_PS_DIR + "dococo_coconut_proj.tscn"
 
 ### ultimates ###
 const PROJ_METEOR_STRIKE : String = PROJ_PS_DIR +  "projectile_meteor_strike.tscn"

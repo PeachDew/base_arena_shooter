@@ -1,0 +1,181 @@
+[gd_scene load_steps=26 format=3 uid="uid://4y5n600urtrl"]
+
+[ext_resource type="Script" path="res://Objects/Enemies/enemy.gd" id="1_q2c85"]
+[ext_resource type="Texture2D" uid="uid://dioi1q8e5un3a" path="res://Art/ui/Over_hp.png" id="2_5pugb"]
+[ext_resource type="Texture2D" uid="uid://cucqo7hsarkgk" path="res://Art/ui/progress.png" id="3_7wtgp"]
+[ext_resource type="Script" path="res://Objects/Enemies/enemy_health_bar.gd" id="4_2k1wd"]
+[ext_resource type="Script" path="res://Objects/Enemies/enemy_behavior.gd" id="5_c0aan"]
+[ext_resource type="Texture2D" uid="uid://b55pgmooap2nd" path="res://Art/characters/monsters/dococo/dococo_attack.png" id="6_1u508"]
+[ext_resource type="Texture2D" uid="uid://bvepryjbdl4rj" path="res://Art/characters/monsters/dococo/dococo_idle.png" id="7_fnxi0"]
+[ext_resource type="Texture2D" uid="uid://byw140kdllrbi" path="res://Art/characters/monsters/dococo/dococo_move.png" id="8_t6vdw"]
+[ext_resource type="Script" path="res://Objects/Enemies/EnemyWeapon.gd" id="9_4w51w"]
+[ext_resource type="Script" path="res://hurtbox.gd" id="10_qqawf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s8vcw"]
+size = Vector2(36.6974, 51.376)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_35asl"]
+radius = 55.2346
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w31n0"]
+radius = 99.0404
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3tq50"]
+atlas = ExtResource("6_1u508")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dxprs"]
+atlas = ExtResource("6_1u508")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8btot"]
+atlas = ExtResource("6_1u508")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_75xal"]
+atlas = ExtResource("6_1u508")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_na50t"]
+atlas = ExtResource("7_fnxi0")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3jl11"]
+atlas = ExtResource("7_fnxi0")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tvho0"]
+atlas = ExtResource("7_fnxi0")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16max"]
+atlas = ExtResource("8_t6vdw")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rbonv"]
+atlas = ExtResource("8_t6vdw")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_02e3e"]
+atlas = ExtResource("8_t6vdw")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cpx38"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3tq50")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dxprs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8btot")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_75xal")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_na50t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3jl11")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tvho0")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_16max")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rbonv")
+}, {
+"duration": 0.3,
+"texture": SubResource("AtlasTexture_02e3e")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nox8q"]
+size = Vector2(23.0453, 16.4609)
+
+[node name="Dococo" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_q2c85")
+
+[node name="FloorCollision" type="CollisionShape2D" parent="."]
+position = Vector2(-4.76837e-07, 4)
+rotation = 1.5708
+scale = Vector2(0.545, 0.545)
+shape = SubResource("RectangleShape2D_s8vcw")
+
+[node name="EnemyHpBar" type="TextureProgressBar" parent="."]
+offset_left = -13.0
+offset_top = -19.0
+offset_right = 19.0
+offset_bottom = -3.0
+scale = Vector2(0.81, 0.81)
+texture_over = ExtResource("2_5pugb")
+texture_progress = ExtResource("3_7wtgp")
+script = ExtResource("4_2k1wd")
+
+[node name="EnemyBehavior" type="Node2D" parent="."]
+script = ExtResource("5_c0aan")
+ranged = true
+
+[node name="EnemyChaseRadius" type="Area2D" parent="EnemyBehavior"]
+modulate = Color(0.895674, 0.498548, 0.465915, 1)
+scale = Vector2(1.47, 1.47)
+collision_layer = 0
+
+[node name="EnemyChaseCollision" type="CollisionShape2D" parent="EnemyBehavior/EnemyChaseRadius"]
+scale = Vector2(3.695, 3.695)
+shape = SubResource("CircleShape2D_35asl")
+debug_color = Color(0.783868, 0.333588, 0.710875, 0.42)
+
+[node name="EnemyAttackRadius" type="Area2D" parent="EnemyBehavior"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyBehavior/EnemyAttackRadius"]
+shape = SubResource("CircleShape2D_w31n0")
+debug_color = Color(0.709177, 0.481276, 0.201482, 0.42)
+
+[node name="EnemyFlipMarker" type="Marker2D" parent="EnemyBehavior"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemyBehavior/EnemyFlipMarker"]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_cpx38")
+animation = &"attack"
+autoplay = "idle"
+speed_scale = 1.36
+
+[node name="EnemyAttackOrigin" type="Marker2D" parent="EnemyBehavior/EnemyFlipMarker"]
+position = Vector2(4.38, -12.49)
+
+[node name="EnemyWeapon" type="Node2D" parent="EnemyBehavior"]
+script = ExtResource("9_4w51w")
+projectile_config_ids = Array[String](["DOCOCO_COCONUT"])
+
+[node name="EnemyHurtbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("10_qqawf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHurtbox"]
+position = Vector2(0, 4)
+scale = Vector2(1.215, 1.215)
+shape = SubResource("RectangleShape2D_nox8q")
+debug_color = Color(0, 0.648736, 0.170622, 0.42)

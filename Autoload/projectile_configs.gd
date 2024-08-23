@@ -162,6 +162,17 @@ var configs : Dictionary = {
 		"start_delay": 1.0,
 	},
 	
+	"DOCOCO_COCONUT": {
+		"projectile_packed_scene": load(PATHS.PROJ_DOCOCO),
+		"cooldown": 0.5,
+		"speed": 100.0,
+		"damage": 15.0,
+		"max_pierce": 0,
+		"lifetime": 2.0,
+		"rotation": 0.0,
+		"start_delay": 0.0,
+	},
+	
 	# Abilities
 	"A01" :
 	{
