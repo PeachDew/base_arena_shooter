@@ -21,21 +21,22 @@ signal hit_hitbox
 func _ready() -> void:
 	scale = Vector2(2,2)
 	hurtbox.area_entered.connect(on_hurtbox_area_entered)
-	check_projectile_ready()
-	lifetime_timer.wait_time = lifetime
-	lifetime_timer.timeout.connect(on_lifetime_timer_timeout)
-	lifetime_timer.start()
+	if check_valid_projectile():
+		lifetime_timer.wait_time = lifetime
+		lifetime_timer.timeout.connect(on_lifetime_timer_timeout)
+		lifetime_timer.start()
 
-func check_projectile_ready():
+func check_valid_projectile():
 	if speed == -1 or damage == -1 or max_pierce == -1 or lifetime == -1:
 		print("PROTOTYPE PROJECTILE: instance has an unasssigned attribute.")
 		queue_free()
+		return false
+	return true
 
 func on_lifetime_timer_timeout():
 	queue_free()
 	
 func _physics_process(_delta: float) -> void:
-	
 	var direction = Vector2.RIGHT.rotated(rotation)
 	velocity = direction*speed
 	move_and_slide()

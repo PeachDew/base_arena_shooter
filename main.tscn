@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c230d3kp4fgk6"]
+[gd_scene load_steps=9 format=3 uid="uid://c230d3kp4fgk6"]
 
 [ext_resource type="PackedScene" uid="uid://hoc8wacnty4h" path="res://Player/player.tscn" id="1_1c26b"]
 [ext_resource type="Script" path="res://admin_commands.gd" id="1_4jdlq"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://du0adsu8h6e8m" path="res://HelperNodeScenes/enemy_manager.tscn" id="5_8dpcu"]
 [ext_resource type="PackedScene" uid="uid://58ntcl5jbx5o" path="res://UIScenes/ui_manager.tscn" id="6_gr5o2"]
 [ext_resource type="Script" path="res://player_stat_manager.gd" id="8_3ec8w"]
+[ext_resource type="PackedScene" uid="uid://b841nqghmjgl" path="res://Projectile/bomb.tscn" id="8_p76du"]
 
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
@@ -33,3 +34,5 @@ script = ExtResource("3_6tn4k")
 
 [node name="PlayerStatManager" type="Node" parent="."]
 script = ExtResource("8_3ec8w")
+
+[node name="Bomb" parent="." instance=ExtResource("8_p76du")]
