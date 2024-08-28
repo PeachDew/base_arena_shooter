@@ -10,8 +10,13 @@ const SMALL_XP_ORB_PS : String = "res://Objects/Misc/XP_Orbs/xp_orb_small.tscn"
 const COMMON_LOOTBAG_PS : String = "res://Objects/Misc/Lootbags/common_loot_bag.tscn"
 const COIN_PS : String = "res://Objects/Misc/Coins/coin.tscn"
 
-const RANGED_PLOOTY_PS : String = "res://Objects/Enemies/BasicRangedEnemy.tscn"
-const CHARGE_PLOOTY_PS : String = "res://Objects/Enemies/charging_plooty.tscn"
+## ENEMIES
+const ENEMY_DIR : String = "res://Objects/Enemies/"
+const RANGED_PLOOTY_PS : String = ENEMY_DIR+"BasicRangedEnemy.tscn"
+const CHARGE_PLOOTY_PS : String = ENEMY_DIR+"charging_plooty.tscn"
+const DOCOCO_PS : String = ENEMY_DIR+"dococo.tscn"
+
+## WORLDS
 const EMBERLIGHT : String = "res://emberlight.tscn"
 
 ## CLASSES ##

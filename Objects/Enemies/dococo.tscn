@@ -114,8 +114,11 @@ size = Vector2(23.0453, 16.4609)
 
 [node name="Dococo" type="CharacterBody2D"]
 collision_layer = 4
-collision_mask = 0
+collision_mask = 4
 script = ExtResource("1_q2c85")
+one_xp_orb_value = 6.0
+one_coin_value = 2
+contact_damage = 2.0
 
 [node name="FloorCollision" type="CollisionShape2D" parent="."]
 position = Vector2(-4.76837e-07, 4)

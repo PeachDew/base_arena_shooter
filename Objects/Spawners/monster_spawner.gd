@@ -3,7 +3,11 @@ class_name MonsterSpawner
 
 var player : CharacterBody2D
 
-@export var enemy_scene : PackedScene = preload("res://Objects/Enemies/BasicRangedEnemy.tscn")
+@export var enemy_scenes : Array[PackedScene] = [
+	preload(PATHS.RANGED_PLOOTY_PS),
+	preload(PATHS.CHARGE_PLOOTY_PS),
+	preload(PATHS.DOCOCO_PS)
+]
 @export var spawn_cooldown := 10 #seconds
 @export var spawn_amount := 1
 @export var initial_spawn_amount := 2
@@ -63,7 +67,7 @@ func set_player(pl):
 
 func spawn_enemy():
 	if contained_enemies < max_enemies:
-		var spawned_enemy = enemy_scene.instantiate()
+		var spawned_enemy = enemy_scenes.pick_random().instantiate()
 		var random_direction = Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0))
 		var random_radius = min_spawn_radius + randf() * max_spawn_radius
 		var spawn_position
@@ -88,7 +92,7 @@ func spawn_circle_enemies(num_enemies: int = 10) -> void:
 	var angle_step := 2 * PI / num_enemies
 
 	while angle < 2 * PI:
-		var spawned_enemy = enemy_scene.instantiate()
+		var spawned_enemy = enemy_scenes.pick_random().instantiate()
 		var spawn_position = position + Vector2(cos(angle), sin(angle)) * max_spawn_radius
 		spawned_enemy.global_position = spawn_position
 		get_owner().add_child.call_deferred(spawned_enemy)

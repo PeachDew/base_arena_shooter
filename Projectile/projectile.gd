@@ -16,6 +16,10 @@ var is_crit = false
 @onready var hurtbox : Area2D = $Projectile_Area2D
 @onready var lifetime_timer : Timer = $Projectile_Lifetime_Timer
 
+@export var explode_on_death : bool = false
+@export var explode_animation : AnimatedSprite2D
+@export var explode_area : Area2D
+
 signal hit_hitbox
 
 func _ready() -> void:
@@ -35,6 +39,22 @@ func check_valid_projectile():
 
 func on_lifetime_timer_timeout():
 	queue_free()
+	if explode_on_death: # TODO: Explode when colliding with something
+		explode()
+
+func explode():
+	if !explode_animation or !explode_area:
+		push_warning("projectile explode() called but no explode animation or area_2d.")
+		return false
+	explode_animation.frame = 0
+	explode_animation.play()
+	
+	for ar in explode_area.get_overlapping_areas():
+		if ar is Hurtbox:
+			var attack := Attack.new()
+			attack.damage = damage
+			ar.take_damage(attack)
+	return true
 	
 func _physics_process(_delta: float) -> void:
 	var direction = Vector2.RIGHT.rotated(rotation)
@@ -52,3 +72,5 @@ func on_hurtbox_area_entered(area):
 		curr_pierce += 1
 		if curr_pierce > max_pierce:
 			queue_free()
+			if explode_on_death:
+				explode()
