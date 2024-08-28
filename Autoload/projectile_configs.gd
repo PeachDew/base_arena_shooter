@@ -164,9 +164,9 @@ var configs : Dictionary = {
 	
 	"DOCOCO_COCONUT": {
 		"projectile_packed_scene": load(PATHS.PROJ_DOCOCO),
-		"cooldown": 0.5,
+		"cooldown": 5.0,
 		"speed": 100.0,
-		"damage": 15.0,
+		"damage": 10.0,
 		"max_pierce": 0,
 		"lifetime": 2.0,
 		"rotation": 0.0,

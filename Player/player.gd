@@ -15,6 +15,7 @@ extends CharacterBody2D
 
 @onready var bare_weapon := $BareWeapon
 @onready var firing_position := $PlayerCenter/FiringPosition
+@onready var throw_bomb_at := $PlayerCenter/ThrowBombAt
 @onready var hurtbox := $PlayerHurtbox
 
 @onready var hp_regen_node := $HPRegen

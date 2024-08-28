@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://4y5n600urtrl"]
+[gd_scene load_steps=27 format=3 uid="uid://4y5n600urtrl"]
 
 [ext_resource type="Script" path="res://Objects/Enemies/enemy.gd" id="1_q2c85"]
 [ext_resource type="Texture2D" uid="uid://dioi1q8e5un3a" path="res://Art/ui/Over_hp.png" id="2_5pugb"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bvepryjbdl4rj" path="res://Art/characters/monsters/dococo/dococo_idle.png" id="7_fnxi0"]
 [ext_resource type="Texture2D" uid="uid://byw140kdllrbi" path="res://Art/characters/monsters/dococo/dococo_move.png" id="8_t6vdw"]
 [ext_resource type="Script" path="res://Objects/Enemies/EnemyWeapon.gd" id="9_4w51w"]
+[ext_resource type="PackedScene" uid="uid://b841nqghmjgl" path="res://Projectile/bomb.tscn" id="10_m4ppw"]
 [ext_resource type="Script" path="res://hurtbox.gd" id="10_qqawf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s8vcw"]
@@ -168,6 +169,11 @@ position = Vector2(4.38, -12.49)
 [node name="EnemyWeapon" type="Node2D" parent="EnemyBehavior"]
 script = ExtResource("9_4w51w")
 projectile_config_ids = Array[String](["DOCOCO_COCONUT"])
+
+[node name="Bomb" parent="EnemyBehavior/EnemyWeapon" instance=ExtResource("10_m4ppw")]
+scale = Vector2(3, 3)
+cooldown = 0.4
+warning_duration = 1.1
 
 [node name="EnemyHurtbox" type="Area2D" parent="."]
 collision_layer = 4

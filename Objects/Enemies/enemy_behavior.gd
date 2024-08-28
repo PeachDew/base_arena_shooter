@@ -36,6 +36,7 @@ func _ready() -> void:
 		enemy_attack_radius.body_entered.connect(on_body_entered_enemy_attack_radius)
 		enemy_attack_radius.body_exited.connect(on_body_exited_enemy_attack_radius)
 		enemy_weapon.add_projectile_child.connect(on_add_projectile_child)
+		enemy_weapon.throw_bomb_at_player.connect(on_throw_bomb_at_player)
 	
 	if charge_body_attack:
 		enemy_attack_radius = $EnemyAttackRadius
@@ -162,4 +163,13 @@ func on_add_projectile_child(proj_instance):
 	proj_instance.global_position = enemy_attack_origin.global_position
 	var shoot_direction = attack_target.global_position - enemy_attack_origin.global_position
 	proj_instance.rotation += shoot_direction.angle()
+
+func on_throw_bomb_at_player(bomb: Bomb):
+	animated_sprite.frame = 0
+	animated_sprite.play("attack")
+	
+	bomb.top_level = true
+	bomb.bomb_origin = enemy_attack_origin.global_position
+	bomb.bomb_destination = attack_target.throw_bomb_at.global_position
+	bomb.throw_bomb()
 	

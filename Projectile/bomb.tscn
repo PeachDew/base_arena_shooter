@@ -91,24 +91,77 @@ radius = 6.5
 scale = Vector2(2, 2)
 script = ExtResource("1_vepkx")
 
-[node name="BombArea2D" type="Area2D" parent="."]
+[node name="ProjectileSprite_1" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("4_rny7i")
+offset = Vector2(0, -0.51)
+
+[node name="ProjectileSprite_2" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("4_rny7i")
+offset = Vector2(0, -0.51)
+
+[node name="ProjectileSprite_3" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("4_rny7i")
+offset = Vector2(0, -0.51)
+
+[node name="BombArea_1" type="Area2D" parent="."]
 collision_layer = 0
 
-[node name="WarningAreaAnimation" type="AnimatedSprite2D" parent="BombArea2D"]
+[node name="WarningAreaAnimation" type="AnimatedSprite2D" parent="BombArea_1"]
+z_index = -1
 sprite_frames = SubResource("SpriteFrames_ojmjq")
 animation = &"warn_area"
 
-[node name="ExplosionAnimation" type="AnimatedSprite2D" parent="BombArea2D"]
+[node name="ExplosionAnimation" type="AnimatedSprite2D" parent="BombArea_1"]
+z_index = -1
+scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_fibjw")
 animation = &"explode"
 frame = 2
 frame_progress = 1.0
 
-[node name="ProjectileHitbox" type="CollisionShape2D" parent="BombArea2D"]
+[node name="ProjectileHitbox" type="CollisionShape2D" parent="BombArea_1"]
 rotation = 1.5708
 shape = SubResource("CircleShape2D_3gup4")
 
-[node name="ProjectileSprite" type="Sprite2D" parent="."]
-scale = Vector2(2, 2)
-texture = ExtResource("4_rny7i")
-offset = Vector2(0, -0.51)
+[node name="BombArea_2" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="WarningAreaAnimation" type="AnimatedSprite2D" parent="BombArea_2"]
+z_index = -1
+sprite_frames = SubResource("SpriteFrames_ojmjq")
+animation = &"warn_area"
+
+[node name="ExplosionAnimation" type="AnimatedSprite2D" parent="BombArea_2"]
+z_index = -1
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_fibjw")
+animation = &"explode"
+frame = 2
+frame_progress = 1.0
+
+[node name="ProjectileHitbox" type="CollisionShape2D" parent="BombArea_2"]
+rotation = 1.5708
+shape = SubResource("CircleShape2D_3gup4")
+
+[node name="BombArea_3" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="WarningAreaAnimation" type="AnimatedSprite2D" parent="BombArea_3"]
+z_index = -1
+sprite_frames = SubResource("SpriteFrames_ojmjq")
+animation = &"warn_area"
+
+[node name="ExplosionAnimation" type="AnimatedSprite2D" parent="BombArea_3"]
+z_index = -1
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_fibjw")
+animation = &"explode"
+frame = 2
+frame_progress = 1.0
+
+[node name="ProjectileHitbox" type="CollisionShape2D" parent="BombArea_3"]
+rotation = 1.5708
+shape = SubResource("CircleShape2D_3gup4")
