@@ -10,6 +10,7 @@ height = 8.0
 [node name="projectile_t2staff" type="CharacterBody2D"]
 scale = Vector2(2, 2)
 script = ExtResource("1_wjnm1")
+explode_on_death = true
 
 [node name="Projectile_Area2D" type="Area2D" parent="."]
 collision_layer = 2

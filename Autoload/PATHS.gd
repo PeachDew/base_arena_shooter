@@ -38,6 +38,10 @@ const PROJ_T2STAFF : String = PROJ_PS_DIR + "projectile_t2staff.tscn"
 const PROJ_TRAINEEBLADE : String = PROJ_PS_DIR + "projectile_traineeslash.tscn"
 const PROJ_BWZERO : String = PROJ_PS_DIR + "projectile_basicweapon.tscn"
 
+## EXPLOSIONS ##
+const PROJ_EXPLOSIONS_PS_DIR : String = "res://Objects/Projectiles/ProjectileExplosionPackedScenes/"
+const EXPLOSION_TEST : String = PROJ_EXPLOSIONS_PS_DIR+"test_projectile_explosion.tscn"
+
 ### abilities ###
 const PROJ_A01 : String = ABILITIES_PROJ_PS_DIR + "flash_bolt_projectile.tscn"
 

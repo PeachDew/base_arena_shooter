@@ -13,12 +13,12 @@ var curr_pierce := 0
 
 var is_crit = false
 
+@export var explode_on_death : bool = false
+@export var explosion_packed_scene_path : String = PATHS.EXPLOSION_TEST
+var explosion_packed_scene : PackedScene
+
 @onready var hurtbox : Area2D = $Projectile_Area2D
 @onready var lifetime_timer : Timer = $Projectile_Lifetime_Timer
-
-@export var explode_on_death : bool = false
-@export var explode_animation : AnimatedSprite2D
-@export var explode_area : Area2D
 
 signal hit_hitbox
 
@@ -29,6 +29,10 @@ func _ready() -> void:
 		lifetime_timer.wait_time = lifetime
 		lifetime_timer.timeout.connect(on_lifetime_timer_timeout)
 		lifetime_timer.start()
+	
+	if explode_on_death:
+		if explosion_packed_scene_path:
+			explosion_packed_scene = load(explosion_packed_scene_path)
 
 func check_valid_projectile():
 	if speed == -1 or damage == -1 or max_pierce == -1 or lifetime == -1:
@@ -38,23 +42,9 @@ func check_valid_projectile():
 	return true
 
 func on_lifetime_timer_timeout():
+	if explode_on_death: 
+		spawn_projectile_explosion()
 	queue_free()
-	if explode_on_death: # TODO: Explode when colliding with something
-		explode()
-
-func explode():
-	if !explode_animation or !explode_area:
-		push_warning("projectile explode() called but no explode animation or area_2d.")
-		return false
-	explode_animation.frame = 0
-	explode_animation.play()
-	
-	for ar in explode_area.get_overlapping_areas():
-		if ar is Hurtbox:
-			var attack := Attack.new()
-			attack.damage = damage
-			ar.take_damage(attack)
-	return true
 	
 func _physics_process(_delta: float) -> void:
 	var direction = Vector2.RIGHT.rotated(rotation)
@@ -71,6 +61,13 @@ func on_hurtbox_area_entered(area):
 		
 		curr_pierce += 1
 		if curr_pierce > max_pierce:
-			queue_free()
 			if explode_on_death:
-				explode()
+				spawn_projectile_explosion()
+			queue_free()
+			
+func spawn_projectile_explosion() -> void:
+	var projectile_explosion : ProjectileExplosion = explosion_packed_scene.instantiate()
+	projectile_explosion.scale = scale
+	projectile_explosion.global_position = position
+	get_parent().call_deferred("add_child", projectile_explosion)
+	projectile_explosion.explode(damage)
