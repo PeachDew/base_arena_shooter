@@ -28,11 +28,16 @@ func _ready() -> void:
 	build_button.pressed.connect(on_build_button_pressed)
 	upgrade_button.pressed.connect(on_upgrade_button_pressed)
 	attune_button.pressed.connect(on_attune_button_pressed)
+	
 	PlayerStats.player_stats_initialised.connect(update_statue_level)
 	PlayerStats.player_stats_initialised.connect(update_attune_button)
 	PlayerStats.player_stats_initialised.connect(update_built_status)
-	
 	PlayerStats.class_changed.connect(update_attune_button)
+	
+	if statue_id in PlayerStats.statue_dict:
+		update_built_status()
+		update_attune_button()
+		update_statue_level()
 	
 	build_ui.hide()
 	upgrade_attune_ui.hide()

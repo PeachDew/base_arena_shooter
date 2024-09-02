@@ -39,10 +39,9 @@ func _ready() -> void:
 		enemy_weapon.throw_bomb_at_player.connect(on_throw_bomb_at_player)
 	
 	if charge_body_attack:
-		enemy_attack_radius = $EnemyAttackRadius
 		charge_body_attack.launch_to.connect(on_charge_body_launch_to)
 		charge_body_attack.charge_attacking.connect(on_charge_attacking)
-		charge_body_attack.aiming_charge.connect(on_aiming_charge)
+		charge_body_attack.check_chase.connect(on_check_chase)
 
 func handle_animation(): # attack played at on_add_projectile_child
 	match state:
@@ -68,25 +67,21 @@ func _physics_process(delta: float) -> void:
 	handle_animation()
 	enemy_body.move_and_slide()
 
-func on_charge_attacking(activate: bool):
-	if activate:
-		state = 3
-		enemy_body.velocity = Vector2(0,0)
-		animated_sprite.play("charging")
-	else:
-		state = 1
-
-func on_aiming_charge(target_position: Vector2):
-	if animated_sprite.animation != "charging":
-		if animated_sprite.animation == "charge":
-			await animated_sprite.animation_finished
-		animated_sprite.play("charging")
-		
-	if target_position.x > global_position.x:
+func on_charge_attacking(activate: bool, target: Player):
+	if target.position.x > global_position.x:
 		enemy_flip_marker.scale.x = 1
 	else:
 		enemy_flip_marker.scale.x = -1
 		
+	if activate:
+		state = 3
+		enemy_body.velocity = Vector2(0,0)
+		if animated_sprite.animation != "charging":
+			animated_sprite.play("charging")
+	else:
+		chase_target = target
+		state = 1
+
 func on_charge_body_launch_to(target_position: Vector2, speed: float):
 	if animated_sprite.animation != "charge":
 		animated_sprite.play("charge")
@@ -95,14 +90,16 @@ func on_charge_body_launch_to(target_position: Vector2, speed: float):
 		enemy_body.global_position.direction_to(target_position) # direction
 		* speed
 	)
+func on_check_chase():
+	for ob in enemy_chase_radius.get_overlapping_bodies():
+		if ob is Player:
+			chase_target = ob
+			state = 1
 
 func on_body_entered_enemy_chase_radius(body):
 	if body is Player:
-		if body in enemy_attack_radius.get_overlapping_bodies():
-			state = 2
-		else:
-			chase_target = body
-			state = 1
+		chase_target = body
+		state = 1
 		
 func on_body_exited_enemy_chase_radius(body):
 	if body is Player:
@@ -126,6 +123,7 @@ func on_body_exited_enemy_attack_radius(body):
 			state = 1
 		else:
 			state = 0
+
 
 func chasing_target() -> void:
 	if !chase_target:

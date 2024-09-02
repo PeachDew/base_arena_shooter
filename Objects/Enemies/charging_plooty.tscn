@@ -27,10 +27,10 @@ point_count = 4
 curve = SubResource("Curve_2aaxq")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tav1t"]
-radius = 110.018
+radius = 79.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8hwlg"]
-radius = 28.907
+radius = 42.1667
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x6eog"]
 radius = 79.1581

@@ -4,13 +4,14 @@ class_name ProjectileExplosion
 @onready var explode_animation : AnimatedSprite2D = $ExplosionAnimatedSprite2D
 @onready var explode_area : Area2D = $ExplosionArea
 
+var damage : float = 0.0
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#top_level = true
 	explode_animation.hide()
 	explode_animation.animation_finished.connect(on_explode_animation_animation_finished)
 
-func explode(damage: float):
+func explode():
 	await ready
 	if !explode_animation or !explode_area:
 		push_warning("projectile explode() called but no explode animation or area_2d.")

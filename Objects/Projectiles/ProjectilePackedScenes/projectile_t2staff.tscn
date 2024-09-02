@@ -7,10 +7,15 @@
 radius = 4.0
 height = 8.0
 
-[node name="projectile_t2staff" type="CharacterBody2D"]
+[node name="projectile_t2staff" type="CharacterBody2D" node_paths=PackedStringArray("explosion_spawn_marker")]
 scale = Vector2(2, 2)
 script = ExtResource("1_wjnm1")
 explode_on_death = true
+explosion_spawn_marker = NodePath("ExplosionSpawnMarker")
+
+[node name="ExplosionSpawnMarker" type="Marker2D" parent="."]
+modulate = Color(0.377327, 0.744646, 0, 1)
+position = Vector2(5, 0)
 
 [node name="Projectile_Area2D" type="Area2D" parent="."]
 collision_layer = 2

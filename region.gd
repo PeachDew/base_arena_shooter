@@ -35,6 +35,7 @@ func receive_player(pl):
 	check_portals_reqs()
 	for ms in monster_spawners:
 		ms.set_player(player)
+	
 
 func on_PlayerStats_stats_updated():
 	check_portals_reqs()

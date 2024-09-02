@@ -16,11 +16,18 @@ func _ready() -> void:
 	enemymanager.spawn_in_region.connect(on_spawn_in_region)
 	player_camera.target = player
 	
+	WorldManager.spawn_explosion.connect(on_world_manager_spawn_explosion)
+	
 	initialise_region()
 
 func initialise_region():
 	var region_packed_scene_instance = load(region_packed_scene_path).instantiate()
 	load_region(region_packed_scene_instance)
+
+func on_world_manager_spawn_explosion(explosion: ProjectileExplosion, position_vector: Vector2):
+	call_deferred("add_child", explosion)
+	explosion.position = position_vector
+	explosion.explode()
 
 func load_region(region_packed_scene_instance):
 	add_child(region_packed_scene_instance)

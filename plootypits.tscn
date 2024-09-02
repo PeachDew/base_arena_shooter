@@ -324,6 +324,7 @@ destination_scene_path = "res://emberlight.tscn"
 
 [node name="MonsterSpawner" parent="." instance=ExtResource("4_i5q1p")]
 position = Vector2(379, -53)
+spawn_cooldown = 7
 
 [node name="Area2D" type="Area2D" parent="MonsterSpawner"]
 collision_layer = 0
@@ -336,6 +337,7 @@ debug_color = Color(0.830681, 0.3561, 0.443157, 0.42)
 
 [node name="MonsterSpawner2" parent="." instance=ExtResource("4_i5q1p")]
 position = Vector2(-325, -390)
+spawn_cooldown = 7
 metadata/_edit_group_ = true
 
 [node name="Area2D" type="Area2D" parent="MonsterSpawner2"]

@@ -15,6 +15,7 @@ var is_crit = false
 
 @export var explode_on_death : bool = false
 @export var explosion_packed_scene_path : String = PATHS.EXPLOSION_TEST
+@export var explosion_spawn_marker : Marker2D
 var explosion_packed_scene : PackedScene
 
 @onready var hurtbox : Area2D = $Projectile_Area2D
@@ -68,6 +69,10 @@ func on_hurtbox_area_entered(area):
 func spawn_projectile_explosion() -> void:
 	var projectile_explosion : ProjectileExplosion = explosion_packed_scene.instantiate()
 	projectile_explosion.scale = scale
-	projectile_explosion.global_position = position
-	get_parent().call_deferred("add_child", projectile_explosion)
-	projectile_explosion.explode(damage)
+	projectile_explosion.damage = damage
+	projectile_explosion.rotation_degrees = randi_range(0, 360)
+	if explosion_spawn_marker:
+		WorldManager.spawn_explosion.emit(projectile_explosion, explosion_spawn_marker.global_position)
+	else:
+		push_warning("Explosion Spawn Position not set.")
+		WorldManager.spawn_explosion.emit(projectile_explosion, global_position)

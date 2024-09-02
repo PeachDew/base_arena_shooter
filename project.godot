@@ -27,6 +27,7 @@ ItemsManager="*res://Autoload/items_manager.gd"
 SavesManager="*res://Autoload/saves_manager.gd"
 PATHS="*res://Autoload/PATHS.gd"
 ScenesManager="*res://Autoload/scenes_manager.gd"
+WorldManager="*res://Autoload/world_manager.gd"
 
 [display]
 
