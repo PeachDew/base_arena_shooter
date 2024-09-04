@@ -6,10 +6,13 @@ class_name ProjectileExplosion
 
 var damage : float = 0.0
 
+var explode_animation_finished : bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	explode_animation.hide()
-	explode_animation.animation_finished.connect(on_explode_animation_animation_finished)
+	explode_animation.animation_finished.connect(on_explode_animation_finished)
+	explode_area.area_entered.connect(on_explode_area_entered)
 
 func explode():
 	await ready
@@ -22,14 +25,14 @@ func explode():
 	print("PLAYING ANIMATION")
 	explode_animation.play("explode")
 	
-	for ar in explode_area.get_overlapping_areas():
-		if ar is Hurtbox:
-			var attack := Attack.new()
-			attack.damage = damage
-			ar.take_damage(attack)
 	return true
 
-func on_explode_animation_animation_finished() -> void:
-	print("QUEUE FREEING")
+func on_explode_animation_finished() -> void:
 	queue_free()
+
+func on_explode_area_entered(area: Area2D) -> void:
+	if area is Hurtbox:
+		var attack := Attack.new()
+		attack.damage = damage
+		area.take_damage(attack)
 
