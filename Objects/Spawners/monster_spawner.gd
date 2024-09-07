@@ -36,10 +36,10 @@ func _ready() -> void:
 	spawn_cooldown_timer.wait_time = spawn_cooldown
 	spawn_cooldown_timer.timeout.connect(on_spawn_cooldown_timer_timeout)
 	
-	if initial_spawn_amount > 0:
-		for i in initial_spawn_amount:
-			spawn_enemy()
 	if autostart:
+		if initial_spawn_amount > 0:
+			for i in initial_spawn_amount:
+				spawn_enemy()
 		spawn_cooldown_timer.start()
 
 func get_random_coordinate_rect_area2d():

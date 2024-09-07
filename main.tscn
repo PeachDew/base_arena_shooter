@@ -23,7 +23,7 @@ scale = Vector2(1.295, 1.295)
 
 [node name="PlayerCamera" type="Camera2D" parent="World"]
 scale = Vector2(1.5, 1.5)
-zoom = Vector2(1.3, 1.3)
+zoom = Vector2(2.5, 2.5)
 script = ExtResource("3_6tn4k")
 
 [node name="EnemyManager" parent="World" instance=ExtResource("5_8dpcu")]

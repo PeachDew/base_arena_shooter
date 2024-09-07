@@ -1,0 +1,97 @@
+[gd_scene load_steps=15 format=3 uid="uid://b24012u1bfovd"]
+
+[ext_resource type="Script" path="res://Grass.gd" id="1_wie1r"]
+[ext_resource type="Texture2D" uid="uid://bseqrppc6o14c" path="res://Art/environment/tall_grass_01.png" id="2_qfr5q"]
+[ext_resource type="Texture2D" uid="uid://dkj3y2qp4boa" path="res://Art/environment/tall_grass_sway_left.png" id="3_68fyo"]
+[ext_resource type="Texture2D" uid="uid://brc7tc8mfu6u1" path="res://Art/environment/tall_grass_sway_right.png" id="4_erdnd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_75t5v"]
+atlas = ExtResource("2_qfr5q")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gecia"]
+atlas = ExtResource("2_qfr5q")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e0yy7"]
+atlas = ExtResource("3_68fyo")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_esmi2"]
+atlas = ExtResource("3_68fyo")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i266e"]
+atlas = ExtResource("3_68fyo")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kf80n"]
+atlas = ExtResource("4_erdnd")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1x2vk"]
+atlas = ExtResource("4_erdnd")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khtpf"]
+atlas = ExtResource("4_erdnd")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fie04"]
+animations = [{
+"frames": [{
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_75t5v")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_gecia")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_e0yy7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_esmi2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i266e")
+}],
+"loop": false,
+"name": &"sway_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_kf80n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1x2vk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khtpf")
+}],
+"loop": false,
+"name": &"sway_right",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w2gy3"]
+size = Vector2(11.5, 5.5)
+
+[node name="Grass" type="Area2D"]
+scale = Vector2(2, 2)
+collision_layer = 0
+script = ExtResource("1_wie1r")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_fie04")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.25, 5.25)
+shape = SubResource("RectangleShape2D_w2gy3")
