@@ -10,7 +10,7 @@
 [ext_resource type="Script" path="res://hurtbox.gd" id="10_jcess"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ql0ih"]
-size = Vector2(17.8723, 29.7872)
+size = Vector2(11.9149, 6.80851)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qlb5e"]
 atlas = ExtResource("5_8qdir")
@@ -158,10 +158,11 @@ size = Vector2(19, 31)
 radius = 50.04
 
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 32
+collision_mask = 288
 script = ExtResource("1_rtain")
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6)
 scale = Vector2(1.175, 1.175)
 shape = SubResource("RectangleShape2D_ql0ih")
 debug_color = Color(0.35258, 0.526266, 0.862807, 0.42)
@@ -177,10 +178,12 @@ animated_sprite = NodePath("../PlayerCenter/AnimatedSprite2D")
 y_sort_enabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PlayerCenter"]
+position = Vector2(0, 4.12)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_1g71b")
 animation = &"move"
 autoplay = "idle"
+offset = Vector2(0, -4.12)
 
 [node name="FiringPosition" type="Marker2D" parent="PlayerCenter"]
 position = Vector2(16, 0)

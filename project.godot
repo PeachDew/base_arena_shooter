@@ -159,6 +159,7 @@ enemy_charge={
 2d_physics/layer_5="Object"
 2d_physics/layer_6="Walls"
 2d_physics/layer_7="Pickups"
+2d_physics/layer_9="IMMOVABLES"
 
 [physics]
 

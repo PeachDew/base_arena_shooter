@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://cl0eiukvjd6c"]
+
+[ext_resource type="Texture2D" uid="uid://bsqsnkn3jsev4" path="res://Art/environment/rock_idle_01.png" id="1_04ax4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wbwma"]
+size = Vector2(58, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kw0fr"]
+atlas = ExtResource("1_04ax4")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mc6j7"]
+atlas = ExtResource("1_04ax4")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ioei3"]
+animations = [{
+"frames": [{
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_kw0fr")
+}, {
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_mc6j7")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Stone" type="StaticBody2D"]
+collision_layer = 256
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -22)
+shape = SubResource("RectangleShape2D_wbwma")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -37)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_ioei3")
+animation = &"idle"
+autoplay = "idle"

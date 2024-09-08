@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://xpabdbn0jhvs"]
+[gd_scene load_steps=17 format=3 uid="uid://xpabdbn0jhvs"]
 
 [ext_resource type="Script" path="res://region.gd" id="1_8ca6n"]
 [ext_resource type="Texture2D" uid="uid://bqsdp4x41ocin" path="res://Art/tilemap/Hana_Caraka_Cozy_Island/tileset_simplified.png" id="2_j2arp"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://nux7eimswkmm" path="res://Objects/Portals/first_area_portal.tscn" id="3_geq2u"]
 [ext_resource type="PackedScene" uid="uid://d2i1fpad0uybc" path="res://Objects/Spawners/monster_spawner.tscn" id="4_i5q1p"]
 [ext_resource type="PackedScene" uid="uid://b24012u1bfovd" path="res://Objects/Environment/grass.tscn" id="6_l183n"]
+[ext_resource type="PackedScene" uid="uid://cl0eiukvjd6c" path="res://Objects/Environment/stone.tscn" id="7_27uax"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_lmkcg"]
 tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 2, 1, 131072, 0, 65537, 131072, 2)
@@ -604,3 +605,11 @@ position = Vector2(443, -198)
 
 [node name="Grass10" parent="." instance=ExtResource("6_l183n")]
 position = Vector2(451, -182)
+
+[node name="Stone" parent="." instance=ExtResource("7_27uax")]
+
+[node name="Stone2" parent="." instance=ExtResource("7_27uax")]
+position = Vector2(297, 175)
+
+[node name="Stone3" parent="." instance=ExtResource("7_27uax")]
+position = Vector2(-86, -58)
