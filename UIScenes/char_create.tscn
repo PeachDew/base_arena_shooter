@@ -1,0 +1,111 @@
+[gd_scene load_steps=6 format=3 uid="uid://bvwlosnb46nxj"]
+
+[ext_resource type="Texture2D" uid="uid://dx43ks17yf0d2" path="res://Art/ui/right_arrow_normal.png" id="1_6y17i"]
+[ext_resource type="PackedScene" uid="uid://bavu4ca8grige" path="res://Player/player_sprites.tscn" id="1_fv0l8"]
+[ext_resource type="Script" path="res://UIScenes/char_create.gd" id="1_g0tfu"]
+[ext_resource type="Texture2D" uid="uid://b20mkp6thmg7j" path="res://Art/ui/right_arrow_pressed.png" id="2_2cvx5"]
+[ext_resource type="Texture2D" uid="uid://iq53d64ko8i" path="res://Art/ui/right_arrow_hover.png" id="3_sif51"]
+
+[node name="PlayerCreate" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g0tfu")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -121.0
+offset_top = -120.0
+offset_right = 280.0
+offset_bottom = 105.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.259294, 0.259294, 0.259294, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.0
+offset_top = -51.5
+offset_right = 88.0
+offset_bottom = 51.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="PlayerNameLineEdit" type="LineEdit" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Player Name"
+
+[node name="EyeSection" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Left_button" type="TextureButton" parent="HBoxContainer/VBoxContainer/EyeSection"]
+layout_mode = 2
+texture_normal = ExtResource("1_6y17i")
+texture_pressed = ExtResource("2_2cvx5")
+texture_hover = ExtResource("3_sif51")
+flip_h = true
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/EyeSection"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Eye Color"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Right_button" type="TextureButton" parent="HBoxContainer/VBoxContainer/EyeSection"]
+layout_mode = 2
+texture_normal = ExtResource("1_6y17i")
+texture_pressed = ExtResource("2_2cvx5")
+texture_hover = ExtResource("3_sif51")
+
+[node name="HairSection" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Left_button" type="TextureButton" parent="HBoxContainer/VBoxContainer/HairSection"]
+layout_mode = 2
+texture_normal = ExtResource("1_6y17i")
+texture_pressed = ExtResource("2_2cvx5")
+texture_hover = ExtResource("3_sif51")
+flip_h = true
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/HairSection"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Hair Color"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Right_button" type="TextureButton" parent="HBoxContainer/VBoxContainer/HairSection"]
+layout_mode = 2
+texture_normal = ExtResource("1_6y17i")
+texture_pressed = ExtResource("2_2cvx5")
+texture_hover = ExtResource("3_sif51")
+
+[node name="CreateCharButton" type="Button" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.781363, 0.678895, 0, 1)
+text = "Create Character!"
+
+[node name="Control" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="PlayerSprites" parent="HBoxContainer/Control" instance=ExtResource("1_fv0l8")]
+position = Vector2(96.81, 63.435)
+scale = Vector2(5, 5)
