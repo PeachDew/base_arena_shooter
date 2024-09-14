@@ -47,9 +47,6 @@ func _ready() -> void:
 	hair_sprite = $Hair
 	eye_sprite = $Eyes
 	
-	set_eye_color(3)
-	set_hair_color(12)
-	
 	animation_player.play("idle")
 
 func set_eye_color(i: int):

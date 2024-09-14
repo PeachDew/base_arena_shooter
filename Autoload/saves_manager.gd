@@ -16,12 +16,14 @@ func save_game():
 	else:
 		var player_inv = ItemsManager.inventory
 		var player_stats = PlayerStats.get_player_stats_dict()
+		var appearance = SaveSystem.get_var(curr_player_name+":appearance")
 	
 		SaveSystem.set_var(
 			curr_player_name,
 			{
 				"inventory": null,
 				"playerstats": null,
+				"appearance": appearance
 			}
 		)
 		SaveSystem.set_var(

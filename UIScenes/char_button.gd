@@ -13,6 +13,8 @@ class_name CharacterButton
 @onready var level_number = $HBoxContainer/LevelNumber/LevelLabel
 @onready var char_name = $HBoxContainer/CharPreview/CharName
 
+@onready var playersprites = $HBoxContainer/CharPreview/PlayerSprites
+
 func _ready() -> void:
 	#set_slot_texture(
 		#"hat",

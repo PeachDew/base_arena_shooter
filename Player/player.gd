@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var player_hurtbox := $PlayerHurtbox
 @onready var iframes_timer := $IFrames_Timer
 @onready var player_animation := $PlayerAnimation
+@onready var player_sprites : PlayerSprites = $PlayerCenter/PlayerSprites
 @onready var ult_ready_particles := $PlayerCenter/UltReadyParticles
 
 @onready var equipped_hat := $EquippedHat
@@ -69,6 +70,13 @@ func _ready() -> void:
 	ItemsManager.add_weapon.connect(add_weapon)
 	ItemsManager.add_hat.connect(add_hat)
 	ItemsManager.add_ability.connect(add_ability)
+	
+func set_appearance():
+	if SavesManager.curr_player_name:
+		print(SaveSystem.get_var(SavesManager.curr_player_name))
+		var appearance_dict : Dictionary = SaveSystem.get_var(SavesManager.curr_player_name+":appearance")
+		player_sprites.set_eye_color(appearance_dict['eyecolor_index'])
+		player_sprites.set_hair_color(appearance_dict['haircolor_index'])
 
 func on_start_regen()-> void:
 	hp_regen_node.start_regen()

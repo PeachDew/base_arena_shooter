@@ -1,4 +1,5 @@
 extends Control
+class_name UI_CharCreate
 
 var eye_color_index : int = 0
 var hair_color_index : int = 0
@@ -18,6 +19,9 @@ var hair_color_index : int = 0
 @onready var hair_right_button : TextureButton = $HBoxContainer/VBoxContainer/HairSection/Right_button
 
 @onready var create_char_button : Button = $HBoxContainer/VBoxContainer/CreateCharButton
+
+@onready var close_button : Button = $CloseButton
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player_preview.set_eye_color(eye_color_index)
@@ -32,6 +36,7 @@ func _ready() -> void:
 	hair_right_button.pressed.connect(on_hair_right_button_pressed)
 	
 	create_char_button.pressed.connect(on_create_char_button_pressed)
+	close_button.pressed.connect(on_close_button_pressed)
 
 func on_eye_left_button_pressed() -> void:
 	if eye_color_index == 0:
@@ -59,7 +64,19 @@ func on_hair_right_button_pressed() -> void:
 	hair_label.text = "Hair Color " + str(hair_color_index+1)
 	player_preview.set_hair_color(hair_color_index)
 
+signal create_char_button_pressed
 func on_create_char_button_pressed() -> void:
+	create_char_button_pressed.emit(
+		player_name_line_edit.text,
+		hair_color_index,
+		eye_color_index,
+		self
+	)
 	print(player_name_line_edit.text)
 	print(hair_color_index)
 	print(eye_color_index)
+
+signal close_button_pressed
+func on_close_button_pressed() -> void:
+	close_button_pressed.emit()
+	queue_free()

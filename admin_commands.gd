@@ -26,6 +26,8 @@ func _ready() -> void:
 	PlayerStats.apply_attuned_statue_buffs()
 	PlayerStats.update_VMST_stats_ui.emit()
 	
+	player.set_appearance()
+	
 	ui_manager.pausemenu_home_button_pressed.connect(on_pausemenu_home_button_pressed)
 	ui_manager.pause_world.connect(on_ui_manager_pause_world)
 	ui_manager.unpause_world.connect(on_ui_manager_unpause_world)
