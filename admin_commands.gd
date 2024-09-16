@@ -61,6 +61,8 @@ func _physics_process(_delta: float) -> void:
 		spawned_enemy.position = get_local_mouse_position()
 		
 		world.region.add_child(spawned_enemy)
+		
+		print(get_global_mouse_position())
 	
 	
 func on_enemy_death(enemy_info : Dictionary) -> void:

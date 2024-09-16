@@ -1,0 +1,159 @@
+[gd_scene load_steps=21 format=3 uid="uid://ba437a5xjgtdf"]
+
+[ext_resource type="Script" path="res://Objects/Enemies/boss.gd" id="1_y5nx6"]
+[ext_resource type="Texture2D" uid="uid://bgtcny4baxhf2" path="res://Art/characters/bosses/first_boss/firstboss.png" id="2_4g3e0"]
+[ext_resource type="Script" path="res://hurtbox.gd" id="3_iwpcv"]
+[ext_resource type="Texture2D" uid="uid://b8jayj1ik11c5" path="res://Art/ui/boss_under.png" id="3_ybfhy"]
+[ext_resource type="Texture2D" uid="uid://ds08igoljfyi0" path="res://Art/ui/boss_progress.png" id="4_b7cms"]
+[ext_resource type="Theme" uid="uid://b1tb3h6x4i01j" path="res://UIScenes/test_theme.tres" id="5_wad3m"]
+[ext_resource type="Texture2D" uid="uid://d1g38eiel1d5l" path="res://Art/ui/boss_hp_initialise.png" id="6_q5ojs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8inon"]
+atlas = ExtResource("6_q5ojs")
+region = Rect2(0, 0, 160, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ax3cx"]
+atlas = ExtResource("6_q5ojs")
+region = Rect2(160, 0, 160, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7n81d"]
+atlas = ExtResource("6_q5ojs")
+region = Rect2(320, 0, 160, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dvvsn"]
+atlas = ExtResource("6_q5ojs")
+region = Rect2(480, 0, 160, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pp60d"]
+atlas = ExtResource("6_q5ojs")
+region = Rect2(640, 0, 160, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6atj"]
+atlas = ExtResource("6_q5ojs")
+region = Rect2(800, 0, 160, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vrin"]
+atlas = ExtResource("6_q5ojs")
+region = Rect2(960, 0, 160, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u4xp4"]
+atlas = ExtResource("6_q5ojs")
+region = Rect2(1120, 0, 160, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7unpq"]
+atlas = ExtResource("6_q5ojs")
+region = Rect2(1280, 0, 160, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vior7"]
+atlas = ExtResource("6_q5ojs")
+region = Rect2(1440, 0, 160, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rtakj"]
+atlas = ExtResource("6_q5ojs")
+region = Rect2(1600, 0, 160, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v2js7"]
+atlas = ExtResource("6_q5ojs")
+region = Rect2(1760, 0, 160, 45)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0n2lr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8inon")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ax3cx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7n81d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dvvsn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pp60d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6atj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8vrin")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u4xp4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7unpq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vior7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rtakj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v2js7")
+}],
+"loop": false,
+"name": &"initialise",
+"speed": 15.0
+}]
+
+[node name="FirstBoss" type="CharacterBody2D"]
+script = ExtResource("1_y5nx6")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+scale = Vector2(4, 4)
+
+[node name="BossSprite" type="Sprite2D" parent="Marker2D"]
+texture = ExtResource("2_4g3e0")
+offset = Vector2(0, -22)
+
+[node name="Hurtbox" type="Area2D" parent="Marker2D"]
+collision_layer = 4
+script = ExtResource("3_iwpcv")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Marker2D/Hurtbox"]
+position = Vector2(0, -22)
+polygon = PackedVector2Array(-11, -21, 7, -21, 19, -10, 30, 10, 25, 16, 3, 22, -8, 22, -24, 11, -25, 0)
+
+[node name="Boss_HP" type="CanvasLayer" parent="."]
+
+[node name="HP_Bar" type="TextureProgressBar" parent="Boss_HP"]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -80.0
+offset_top = 30.0
+offset_right = 80.0
+offset_bottom = 75.0
+grow_horizontal = 2
+scale = Vector2(3, 3)
+pivot_offset = Vector2(80, 22.345)
+value = 100.0
+texture_under = ExtResource("3_ybfhy")
+texture_progress = ExtResource("4_b7cms")
+
+[node name="HP_Label" type="Label" parent="Boss_HP"]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 37.7
+offset_right = 20.0
+offset_bottom = 67.7
+grow_horizontal = 2
+theme = ExtResource("5_wad3m")
+theme_override_font_sizes/font_size = 32
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HP_Bar_Initialise" type="AnimatedSprite2D" parent="Boss_HP"]
+position = Vector2(640, 52.345)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_0n2lr")
+animation = &"initialise"

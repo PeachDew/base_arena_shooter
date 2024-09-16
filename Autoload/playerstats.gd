@@ -261,7 +261,7 @@ func get_tempo_cooldown_bonus():
 	return total_player_stats['tempo'] * 0.004
 	
 func get_speed_animation_bonus():
-	return total_player_stats['speed'] * 0.01
+	return total_player_stats['speed'] * 0.02
 	
 func get_tempo_animation_bonus():
 	return total_player_stats['tempo'] * 0.03

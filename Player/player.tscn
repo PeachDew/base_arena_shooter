@@ -175,7 +175,7 @@ scale_curve = SubResource("CurveTexture_r4urv")
 color = Color(0.937255, 1, 1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0lgdj"]
-size = Vector2(19, 31)
+size = Vector2(42, 60)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t7fct"]
 radius = 50.04
@@ -226,12 +226,15 @@ randomness = 0.2
 position = Vector2(0, 13.38)
 
 [node name="PlayerSprites" parent="PlayerCenter" instance=ExtResource("8_1gntw")]
+position = Vector2(0, 28.975)
+scale = Vector2(2, 2)
 
 [node name="PlayerHurtbox" type="Area2D" parent="."]
 collision_mask = 12
 script = ExtResource("10_jcess")
 
 [node name="PlayerHurtboxCollisionShape" type="CollisionShape2D" parent="PlayerHurtbox"]
+position = Vector2(-2, 2)
 shape = SubResource("RectangleShape2D_0lgdj")
 
 [node name="PickupGravity" type="Area2D" parent="."]
