@@ -33,6 +33,17 @@ var moving_to = null
 var player : Player
 
 signal boss_death
+var fire_cooldown_timer : float = 0.0
+var fire_cooldown : float = -1.0
+var fire_duration : float = -1.0
+var fire_duration_timer : float = 0.0
+
+var projectile_packed_scenes
+
+var movement_cutoff : float = -1.0
+var movement_cutoff_timer : float = 0.0
+
+signal owner_death
 
 func receive_player(pl: Player):
 	player = pl
@@ -57,20 +68,9 @@ func _ready() -> void:
 	hp_initialise_as2d.play("initialise")
 	
 	boss_hurtbox.damaged.connect(on_boss_hurtbox_damaged)
-	
-
-var fire_cooldown_timer : float = 0.0
-var fire_cooldown : float = -1.0
-var fire_duration : float = -1.0
-var fire_duration_timer : float = 0.0
-
-var projectile_packed_scenes
-
-var movement_cutoff : float = -1.0
-var movement_cutoff_timer : float = 0.0
 
 func _physics_process(delta: float) -> void:
-	if fire_duration > 0 and projectile_packed_scenes:
+	if fire_duration > 0 and projectile_packed_scenes and curr_hp>0:
 		fire_cooldown_timer += delta
 		fire_duration_timer += delta
 		
@@ -86,8 +86,8 @@ func _physics_process(delta: float) -> void:
 			fire_duration_timer = 0.0
 			projectile_packed_scenes = null
 			boss_pattern.finish_firing()
-		
-	if moving_to:
+	
+	if !(moving_to == null) and curr_hp>0:
 		if movement_cutoff > 0:
 			movement_cutoff_timer += delta
 		
@@ -138,23 +138,12 @@ func on_boss_hurtbox_damaged(attack: Attack):
 		update_hp_bar(-1*attack.damage)
 		
 		if curr_hp <= 0:
-			
 			curr_hp = 0
-			var loot = LootTable.roll_loottable(loot_table, roll_loot_num)
-			var num_orbs = randi_range(base_num_orbs[0], base_num_orbs[1])
-			var num_coins = randi_range(base_num_coins[0], base_num_coins[1])
-			boss_death.emit(
-				{
-					"x": position.x,
-					"y": position.y,
-					"xp": one_xp_orb_value,
-					"num_orbs": num_orbs + LootTable.get_bonus_consumables(),
-					"loot": loot,
-					"coins": one_coin_value,
-					"num_coins": num_coins + LootTable.get_bonus_consumables(),
-				}
-			)
-			queue_free()
+			owner_death.emit()
+			hp_texture_progressbar.hide()
+			hp_label.hide()
+			hp_initialise_as2d.show()
+			hp_initialise_as2d.play("fade_out")
 	
 	else:
 		push_warning("Enemy with negative hp: " + str(curr_hp) + " is being attacked.")
@@ -186,9 +175,26 @@ func move_to_player_position(gp: Vector2, cut_off: float):
 	movement_cutoff = cut_off
 	
 func on_hp_initialise_animation_finished() -> void:
-	hp_texture_progressbar.show()
-	hp_label.show()
-	hp_initialise_as2d.hide()
+	if hp_initialise_as2d.animation == "fade_out":
+		var loot = LootTable.roll_loottable(loot_table, roll_loot_num)
+		var num_orbs = randi_range(base_num_orbs[0], base_num_orbs[1])
+		var num_coins = randi_range(base_num_coins[0], base_num_coins[1])
+		boss_death.emit(
+			{
+				"x": position.x,
+				"y": position.y,
+				"xp": one_xp_orb_value,
+				"num_orbs": num_orbs + LootTable.get_bonus_consumables(),
+				"loot": loot,
+				"coins": one_coin_value,
+				"num_coins": num_coins + LootTable.get_bonus_consumables(),
+			}
+		)
+		queue_free()
+	else:
+		hp_texture_progressbar.show()
+		hp_label.show()
+		hp_initialise_as2d.hide()
 	
 ## Attacks
 func fire_projectiles(direction_degrees: float, projectile_configs : Array):
@@ -212,6 +218,9 @@ func fire_projectiles(direction_degrees: float, projectile_configs : Array):
 		projectile_instance.damage = pc.damage
 		projectile_instance.max_pierce = pc.max_pierce
 		projectile_instance.lifetime = pc.lifetime
+		
+		owner_death.connect(projectile_instance.queue_free) # When boss die delete alive projs
+		#TODO: would be nice to have projectile death animations
 		
 		if pc.start_delay == 0.0:
 			get_parent().add_child(projectile_instance)

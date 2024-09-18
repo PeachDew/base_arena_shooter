@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://ba437a5xjgtdf"]
+[gd_scene load_steps=30 format=3 uid="uid://ba437a5xjgtdf"]
 
 [ext_resource type="Script" path="res://Objects/Enemies/boss.gd" id="1_y5nx6"]
 [ext_resource type="Texture2D" uid="uid://bgtcny4baxhf2" path="res://Art/characters/bosses/first_boss/firstboss.png" id="2_4g3e0"]
@@ -7,7 +7,36 @@
 [ext_resource type="Texture2D" uid="uid://ds08igoljfyi0" path="res://Art/ui/boss_progress.png" id="4_b7cms"]
 [ext_resource type="Theme" uid="uid://b1tb3h6x4i01j" path="res://UIScenes/test_theme.tres" id="5_wad3m"]
 [ext_resource type="Texture2D" uid="uid://d1g38eiel1d5l" path="res://Art/ui/boss_hp_initialise.png" id="6_q5ojs"]
+[ext_resource type="Texture2D" uid="uid://dcdsx0fmekxjo" path="res://Art/ui/boss_hp_fade_out.png" id="7_kyva4"]
 [ext_resource type="Script" path="res://Objects/Bosses/boss_pattern.gd" id="8_evdat"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_djuxi"]
+atlas = ExtResource("7_kyva4")
+region = Rect2(0, 0, 360, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kw4c1"]
+atlas = ExtResource("7_kyva4")
+region = Rect2(360, 0, 360, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0b84t"]
+atlas = ExtResource("7_kyva4")
+region = Rect2(720, 0, 360, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sn2sc"]
+atlas = ExtResource("7_kyva4")
+region = Rect2(1080, 0, 360, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ujlu"]
+atlas = ExtResource("7_kyva4")
+region = Rect2(1440, 0, 360, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_km0il"]
+atlas = ExtResource("7_kyva4")
+region = Rect2(1800, 0, 360, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26fyb"]
+atlas = ExtResource("7_kyva4")
+region = Rect2(2160, 0, 360, 30)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2nq4j"]
 atlas = ExtResource("6_q5ojs")
@@ -61,6 +90,32 @@ region = Rect2(3960, 0, 360, 30)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_djuxi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kw4c1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0b84t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sn2sc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ujlu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_km0il")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26fyb")
+}],
+"loop": false,
+"name": &"fade_out",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_2nq4j")
 }, {
 "duration": 1.0,
@@ -103,10 +158,11 @@ animations = [{
 
 [node name="FirstBoss" type="CharacterBody2D"]
 script = ExtResource("1_y5nx6")
+max_hp = 50.0
 
 [node name="Boss_Pattern" type="Node" parent="."]
 script = ExtResource("8_evdat")
-actions_cycle = Array[String](["Idle,1.0", "moveplayer,0.0,0.0,0.5", "projectiles,TEST_BOSS_PHASE_2,-1.0,2.0", "move,-280,-100,0.5", "projectiles,TEST_BOSS_PHASE_1,1.0,8.0"])
+actions_cycle = Array[String](["Idle,1.0", "moveplayer,0.0,0.0,0.5", "projectiles,TEST_BOSS_PHASE_2,-1.0,2.0", "move,-280,-100,0.5", "projectiles,TEST_BOSS_PHASE_1,1.0,4.1", "projectiles_move,TEST_BOSS_PHASE_3, 0.8, 3.0, 337, 22, 3.0", "projectiles_move,TEST_BOSS_PHASE_3, 0.8, 3.0, -246, 22, 3.0"])
 
 [node name="Marker2D" type="Marker2D" parent="."]
 scale = Vector2(4, 4)
@@ -150,9 +206,7 @@ texture_progress_offset = Vector2(15.015, 0)
 position = Vector2(640, 55.215)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_0n2lr")
-animation = &"initialise"
-frame = 11
-frame_progress = 1.0
+animation = &"fade_out"
 
 [node name="HP_Label" type="Label" parent="Boss_HP"]
 anchors_preset = 5

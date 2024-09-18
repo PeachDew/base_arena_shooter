@@ -1,6 +1,7 @@
 extends Node
 
-const TEST_BOSS_PHASE_2_N_BULLETS : int = 20
+const TEST_BOSS_PHASE_2_N_BULLETS : float = 20.0
+const TEST_BOSS_PHASE_3_N_BULLETS : float = 10.0
 var configs : Dictionary = {
 	"TEST_BOSS_PHASE_1": 
 		[
@@ -77,14 +78,27 @@ var configs : Dictionary = {
 		],
 	"TEST_BOSS_PHASE_2":
 		range(TEST_BOSS_PHASE_2_N_BULLETS+1).map(
-			func(n):
+			func(n: float):
 				return {
 					"projectile_packed_scene": load(PATHS.PROJ_BOOSH),
 					"speed": 30.0,
 					"damage": 10.0,
 					"max_pierce": 0,
 					"lifetime": 13.0,
-					"rotation": n * (360/TEST_BOSS_PHASE_2_N_BULLETS),
+					"rotation": n * (360.0/TEST_BOSS_PHASE_2_N_BULLETS),
+					"start_delay": 0.0,
+					"aim_player": true,
+				}),
+	"TEST_BOSS_PHASE_3":
+		range(TEST_BOSS_PHASE_3_N_BULLETS+1).map(
+			func(n: float):
+				return {
+					"projectile_packed_scene": load(PATHS.PROJ_BOOSH),
+					"speed": 100.0,
+					"damage": 10.0,
+					"max_pierce": 0,
+					"lifetime": 8.0,
+					"rotation": n * (360.0/TEST_BOSS_PHASE_3_N_BULLETS),
 					"start_delay": 0.0,
 					"aim_player": true,
 				})

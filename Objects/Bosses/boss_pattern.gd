@@ -63,7 +63,6 @@ func start_action(action_string: String):
 			else:
 				push_warning("move command but len(action_info)!=3 (x,y,cutoff)")
 		"projectiles":
-			print(action_info)
 			if len(action_info) == 3:
 				var boss_pc_id : String = String(action_info[0])
 				var cooldown : float = float(action_info[1])
@@ -71,9 +70,26 @@ func start_action(action_string: String):
 				fire_done = false
 				
 				fire_projectiles.emit(boss_pc_id, cooldown, duration)
-				
 			else:
 				push_warning("projectile command but len(action_info)!=3 (config_id, cooldown, duration)")
+		"projectiles_move":
+			if len(action_info) == 6:
+				var boss_pc_id : String = String(action_info[0])
+				var cooldown : float = float(action_info[1])
+				var duration : float = float(action_info[2])
+				
+				var x : float =  float(action_info[3])
+				var y : float =  float(action_info[4])
+				var cut_off : float = float(action_info[5])
+				
+				move.emit(Vector2(x,y), cut_off)
+				fire_projectiles.emit(boss_pc_id, cooldown, duration)
+				move_done = false
+				fire_done = false
+				
+			else:
+				push_warning("projectile_move command but len(action_info)!=6 (boss_pc_id, cooldown, duration, x, y, cut_off)")
+		
 		_:
 			push_warning("Unrecognised action: "+ action)
 
