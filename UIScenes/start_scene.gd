@@ -101,8 +101,6 @@ func on_character_button_pressed(char_slot_name: String):
 		play_button.disabled = false
 	
 	save_char_select()
-	print(selected_button_name)
-	print(char_button_dict)
 	
 func add_char_child(
 	player_name: String, 
@@ -135,7 +133,6 @@ func add_char_child(
 	if inventory.HatSlot:
 		char_button.set_slot_texture("hat", inventory.HatSlot.sprite_path)
 	if inventory.WeaponSlot:
-		print(inventory.WeaponSlot)
 		char_button.set_slot_texture("weapon", inventory.WeaponSlot.sprite_path)
 	if inventory.AbilitySlot:
 		char_button.set_slot_texture("ability", inventory.AbilitySlot.sprite_path)

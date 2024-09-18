@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dvdmih1s7q881"]
+[gd_scene load_steps=33 format=3 uid="uid://dvdmih1s7q881"]
 
 [ext_resource type="Script" path="res://region.gd" id="1_8860g"]
 [ext_resource type="PackedScene" uid="uid://nux7eimswkmm" path="res://Objects/Portals/first_area_portal.tscn" id="2_pfi31"]
@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://b46o15kj4sn12" path="res://Art/misc/statues/mage_statue.png" id="8_i16xr"]
 [ext_resource type="Texture2D" uid="uid://bd0kvy2hmicyi" path="res://Art/misc/statues/mage_statue_ruined.png" id="9_8ap0l"]
 [ext_resource type="PackedScene" uid="uid://8i2smhedxkhr" path="res://Objects/Misc/Statues/archer_statue.tscn" id="10_rf5uv"]
-[ext_resource type="PackedScene" uid="uid://ba437a5xjgtdf" path="res://Objects/Bosses/first_boss.tscn" id="11_pu1ni"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_lmkcg"]
 tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 2, 1, 131072, 0, 65537, 131072, 2)
@@ -550,6 +549,3 @@ statue_id = "statue_1"
 
 [node name="ArcherStatue" parent="." instance=ExtResource("10_rf5uv")]
 position = Vector2(-211, 0)
-
-[node name="FirstBoss" parent="." instance=ExtResource("11_pu1ni")]
-position = Vector2(369, -15)

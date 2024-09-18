@@ -73,7 +73,6 @@ func _ready() -> void:
 	
 func set_appearance():
 	if SavesManager.curr_player_name:
-		print(SaveSystem.get_var(SavesManager.curr_player_name))
 		var appearance_dict : Dictionary = SaveSystem.get_var(SavesManager.curr_player_name+":appearance")
 		player_sprites.set_eye_color(appearance_dict['eyecolor_index'])
 		player_sprites.set_hair_color(appearance_dict['haircolor_index'])

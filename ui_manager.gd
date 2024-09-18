@@ -205,5 +205,8 @@ func on_hp_change()->void:
 	hp_bar.value = PlayerStats.hp
 	hp_bar.max_value = PlayerStats.max_hp
 	hp_number.text = str(PlayerStats.hp) + "/" + str(PlayerStats.max_hp)
+	
+func on_boss_death(_boss_info: Dictionary)->void:
+	xp_bar.show()
 
 

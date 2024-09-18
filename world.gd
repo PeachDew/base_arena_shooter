@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var enemymanager : Node
+@onready var enemymanager : EnemyManager
 @onready var player : CharacterBody2D = $Player
 @onready var player_camera : Camera2D = $PlayerCamera
 
@@ -19,6 +19,8 @@ func _ready() -> void:
 	WorldManager.spawn_explosion.connect(on_world_manager_spawn_explosion)
 	
 	initialise_region()
+	
+	spawn_boss_in_region(Vector2(0,0),"res://Objects/Bosses/first_boss.tscn")
 
 func initialise_region():
 	var region_packed_scene_instance = load(region_packed_scene_path).instantiate()
@@ -40,6 +42,20 @@ func load_region(region_packed_scene_instance):
 		region_packed_scene_instance.receive_player(player)
 
 	region_packed_scene_instance.child_entered_tree.connect(on_child_entered_region)
+
+func spawn_boss_in_region(gp: Vector2, boss_packed_scene_path: String):
+	if region and player:
+		var boss : Boss = load(boss_packed_scene_path).instantiate()
+		region.add_child(boss)
+		boss.global_position = gp
+		boss.boss_death.connect(enemymanager.on_enemy_death)
+		boss.receive_player(player)
+		if !ui_manager.xp_bar:
+			await ui_manager.ready
+			boss.boss_death.connect(ui_manager.on_boss_death)
+			ui_manager.xp_bar.hide()
+	else:
+		print("No Region to spawn boss in!")
 	
 func on_child_entered_region(child):
 	if child is Enemy:

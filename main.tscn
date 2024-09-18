@@ -19,11 +19,11 @@ script = ExtResource("2_cq71g")
 
 [node name="Player" parent="World" instance=ExtResource("1_1c26b")]
 y_sort_enabled = true
-scale = Vector2(1.295, 1.295)
+scale = Vector2(0.8, 0.8)
 
 [node name="PlayerCamera" type="Camera2D" parent="World"]
 scale = Vector2(1.5, 1.5)
-zoom = Vector2(2.5, 2.5)
+zoom = Vector2(1.5, 1.5)
 script = ExtResource("3_6tn4k")
 
 [node name="EnemyManager" parent="World" instance=ExtResource("5_8dpcu")]

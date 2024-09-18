@@ -2,15 +2,15 @@ extends CharacterBody2D
 class_name Enemy
 
 @export var max_hp := 10.0
-@export var one_xp_orb_value : float = 3.0
-@export var base_num_orbs : Array[int] = [3,4]
-@export var one_coin_value : int = 1
-@export var base_num_coins : Array[int] = [4,6]
 @export var speed := 50.0
 @export var contact_damage := 20.0
 
 @export var loot_table := "common_monster"
 @export var roll_loot_num := 2
+@export var one_xp_orb_value : float = 3.0
+@export var base_num_orbs : Array[int] = [3,4]
+@export var one_coin_value : int = 1
+@export var base_num_coins : Array[int] = [4,6]
 
 @export var damage_number_y_offset := -50
 @export var damage_number_x_offset := -3
@@ -62,10 +62,10 @@ func on_damaged(attack: Attack):
 					"x": position.x,
 					"y": position.y,
 					"xp": one_xp_orb_value,
-					"num_orbs": num_orbs + get_bonus_consumables(),
+					"num_orbs": num_orbs + LootTable.get_bonus_consumables(),
 					"loot": loot,
 					"coins": one_coin_value,
-					"num_coins": num_coins + get_bonus_consumables(),
+					"num_coins": num_coins + LootTable.get_bonus_consumables(),
 				}
 			)
 			queue_free()
@@ -73,17 +73,3 @@ func on_damaged(attack: Attack):
 	else:
 		push_warning("Enemy with negative hp: " + str(curr_hp) + " is being attacked.")
 
-func get_bonus_consumables() -> int:
-	var roll : int = randi_range(1,100)
-	if roll == 1:
-		var jackpot_roll: int = randi_range(1,100)
-		if jackpot_roll == 1:
-			return 100
-		else:
-			return 50
-	elif roll <= 5:
-		return 20
-	elif roll <= 20:
-		return 5
-	else:
-		return 0

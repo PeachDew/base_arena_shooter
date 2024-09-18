@@ -29,4 +29,18 @@ func roll_loottable(loot_table_name: String, n: int) -> Array:
 			final_loot.append(possible_loot[final_roll])
 	
 	return final_loot
-				
+
+func get_bonus_consumables() -> int:
+	var roll : int = randi_range(1,100)
+	if roll == 1:
+		var jackpot_roll: int = randi_range(1,100)
+		if jackpot_roll == 1:
+			return 100
+		else:
+			return 50
+	elif roll <= 5:
+		return 20
+	elif roll <= 20:
+		return 5
+	else:
+		return 0

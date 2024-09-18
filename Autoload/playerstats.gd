@@ -105,7 +105,6 @@ func get_default_statue_dict(num_statues: int) -> Dictionary:
 			"level": 0,
 			"built": false,
 		}
-	print(default_statue_dict)
 	return default_statue_dict
 
 signal stats_updated
@@ -308,7 +307,7 @@ func initialise_player_stats(player_stats_dict: Dictionary):
 	
 	# When accesing newly created attributes, previous saves' dicts might not 
 	# contain new attribute. Now we use default value if att_name not found.
-	if "attune_statue_id" in player_stats_dict:
+	if "attuned_statue_id" in player_stats_dict:
 		attuned_statue_id = player_stats_dict.attuned_statue_id
 	else:
 		attuned_statue_id = get_default_player_stats_dict().attuned_statue_id
