@@ -38,8 +38,7 @@ func _ready() -> void:
 		enemy_hpbar.visible = true
 	else:
 		enemy_hpbar.visible = false
-	
-		
+
 func on_damaged(attack: Attack):
 	AutoloadUI.display_damage_number(
 		int(attack.damage), 

@@ -29,20 +29,17 @@ func _physics_process(_delta: float) -> void:
 				animated_sprite.play("sway_right")
 			else:
 				animated_sprite.play("idle")
-		
-		
+
 func on_body_entered(body) -> void:
 	if body is Player:
 		monitoring_player = true
 		player = body
 		last_player_position = player.position
-		print("Player in grass")
 
 func on_body_exited(body) -> void:
 	if body is Player:
 		monitoring_player = false
 		player = null
-		print("Player exited grass")
 
 func on_animation_finished() -> void:
 	if animated_sprite.animation != "idle":

@@ -16,6 +16,8 @@ var auto_firing := false
 var firing := false
 var player_target
 
+@export var bomb_cooldown : float = 1.0
+
 var projectile_timers : Array = []
 var bomb_timers : Array = []
 var bombs : Array = []
@@ -51,7 +53,7 @@ func shoot_if_can():
 			fire_projectile_at_player(projectile_configs[i])
 			projectile_timers[i] = 0
 	for i in range(len(bomb_timers)):
-		if bomb_timers[i] > bombs[i].cooldown:
+		if bomb_timers[i] > bomb_cooldown:
 			throw_bomb_at_player.emit(bombs[i])
 			bomb_timers[i] = 0
 	

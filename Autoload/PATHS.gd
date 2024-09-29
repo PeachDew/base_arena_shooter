@@ -42,6 +42,8 @@ const PROJ_BWZERO : String = PROJ_PS_DIR + "projectile_basicweapon.tscn"
 const PROJ_EXPLOSIONS_PS_DIR : String = "res://Objects/Projectiles/ProjectileExplosionPackedScenes/"
 const EXPLOSION_TEST : String = PROJ_EXPLOSIONS_PS_DIR+"test_projectile_explosion.tscn"
 
+const BEAM_01 : String = "res://Projectile/aoe_attack.tscn"
+
 ### abilities ###
 const PROJ_A01 : String = ABILITIES_PROJ_PS_DIR + "flash_bolt_projectile.tscn"
 

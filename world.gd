@@ -11,6 +11,12 @@ extends Node2D
 
 signal resume_change_scene
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("primary_fire"):
+		var aoe_attack: AOEAttack = load("res://Projectile/aoe_attack.tscn").instantiate()
+		aoe_attack.global_position = get_global_mouse_position()
+		region.add_child(aoe_attack)
+
 func _ready() -> void:
 	enemymanager = $EnemyManager
 	enemymanager.spawn_in_region.connect(on_spawn_in_region)
@@ -20,7 +26,6 @@ func _ready() -> void:
 	
 	initialise_region()
 	
-	spawn_boss_in_region(Vector2(0,0),"res://Objects/Bosses/first_boss.tscn")
 
 func initialise_region():
 	var region_packed_scene_instance = load(region_packed_scene_path).instantiate()
@@ -42,6 +47,11 @@ func load_region(region_packed_scene_instance):
 		region_packed_scene_instance.receive_player(player)
 
 	region_packed_scene_instance.child_entered_tree.connect(on_child_entered_region)
+	
+	
+	if region.region_name == "first_boss_region":
+		spawn_boss_in_region(Vector2(0,0),"res://Objects/Bosses/first_boss.tscn")
+	
 
 func spawn_boss_in_region(gp: Vector2, boss_packed_scene_path: String):
 	if region and player:

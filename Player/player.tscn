@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://hoc8wacnty4h"]
+[gd_scene load_steps=34 format=3 uid="uid://hoc8wacnty4h"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_rtain"]
 [ext_resource type="Script" path="res://Player/player_movement.gd" id="3_hf5p4"]
@@ -12,9 +12,6 @@
 [ext_resource type="Script" path="res://Player/player_weapon.gd" id="7_l8q3j"]
 [ext_resource type="PackedScene" uid="uid://bavu4ca8grige" path="res://Player/player_sprites.tscn" id="8_1gntw"]
 [ext_resource type="Script" path="res://hurtbox.gd" id="10_jcess"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ql0ih"]
-size = Vector2(11.9149, 6.80851)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qlb5e"]
 atlas = ExtResource("5_8qdir")
@@ -174,9 +171,6 @@ scale_max = 2.5
 scale_curve = SubResource("CurveTexture_r4urv")
 color = Color(0.937255, 1, 1, 1)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0lgdj"]
-size = Vector2(26, 46)
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_t7fct"]
 radius = 50.04
 
@@ -185,18 +179,11 @@ scale = Vector2(0.5, 0.5)
 collision_mask = 288
 script = ExtResource("1_rtain")
 
-[node name="PlayerCollision" type="CollisionShape2D" parent="."]
-position = Vector2(0, 6)
-scale = Vector2(1.175, 1.175)
-shape = SubResource("RectangleShape2D_ql0ih")
-debug_color = Color(0.35258, 0.526266, 0.862807, 0.42)
+[node name="PlayerCollision" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(4, 28, -8, 28, -12, -10, -6, -14, -6, -24, 6, -24, 6, -14, 10, -8)
 
 [node name="PlayerMovement" type="Node" parent="."]
 script = ExtResource("3_hf5p4")
-
-[node name="PlayerAnimation" type="Node2D" parent="." node_paths=PackedStringArray("animated_sprite")]
-script = ExtResource("5_pmraa")
-animated_sprite = NodePath("../PlayerCenter/AnimatedSprite2D")
 
 [node name="PlayerCenter" type="Marker2D" parent="."]
 y_sort_enabled = true
@@ -224,18 +211,22 @@ randomness = 0.2
 [node name="MiscParticles" type="Node2D" parent="PlayerCenter"]
 
 [node name="ThrowBombAt" type="Marker2D" parent="PlayerCenter"]
-position = Vector2(0, 13.38)
+position = Vector2(0, 27)
 
 [node name="PlayerSprites" parent="PlayerCenter" instance=ExtResource("8_1gntw")]
 position = Vector2(0, 28.975)
 scale = Vector2(2, 2)
 
+[node name="PlayerAnimation" type="Node2D" parent="." node_paths=PackedStringArray("animated_sprite")]
+script = ExtResource("5_pmraa")
+animated_sprite = NodePath("../PlayerCenter/AnimatedSprite2D")
+
 [node name="PlayerHurtbox" type="Area2D" parent="."]
 collision_mask = 12
 script = ExtResource("10_jcess")
 
-[node name="PlayerHurtboxCollisionShape" type="CollisionShape2D" parent="PlayerHurtbox"]
-shape = SubResource("RectangleShape2D_0lgdj")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerHurtbox"]
+polygon = PackedVector2Array(4, 28, -8, 28, -12, -10, -6, -14, -6, -24, 6, -24, 6, -14, 10, -8)
 
 [node name="PickupGravity" type="Area2D" parent="."]
 collision_layer = 0

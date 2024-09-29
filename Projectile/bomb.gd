@@ -19,11 +19,14 @@ const RANDOM_ROTATIONS : Array[int] = [500,700,900,-500,-700,-900]
 ]
 
 @export var damage : int = 10
-@export var cooldown : float = 1.0
 @export var bomb_origin : Vector2 = Vector2(0.0, 0.0)
 @export var bomb_destination : Vector2 = Vector2(0.0, 0.0)
 @export var bomb_height : float = 150.0
 @export var warning_duration : float = 2.0
+
+@export var bomb_height_y_offset : float = -10.0
+
+@export var warn_area_anim_name : String = "warn_area_1"
 
 var tween_1 : Tween
 var tween_2 : Tween
@@ -73,9 +76,10 @@ func throw_bomb():
 		if bomb_ready(i):
 			warning_area_animated_sprite_2ds[i].show()
 			projectile_sprites[i].global_position = bomb_origin
-			animate_projectile_sprite(bomb_origin, bomb_destination, bomb_height, warning_duration, i)
+			var offset_bomb_destination : Vector2 = bomb_destination+Vector2(0,bomb_height_y_offset)
+			animate_projectile_sprite(bomb_origin, offset_bomb_destination, bomb_height, warning_duration, i)
 			explosion_hitboxes[i].global_position = bomb_destination
-			warning_area_animated_sprite_2ds[i].play("warn_area")
+			warning_area_animated_sprite_2ds[i].play(warn_area_anim_name)
 			break
 			
 		else:

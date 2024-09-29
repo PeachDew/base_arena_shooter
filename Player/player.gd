@@ -119,13 +119,20 @@ func on_add_projectile_child(proj_instance, particles = shot_particles):
 	add_child(proj_instance)
 	proj_instance.global_position = firing_position.global_position
 	var mouse_direction = get_global_mouse_position() - firing_position.global_position
-	proj_instance.rotation += mouse_direction.angle()
+	var proj_direction : float = mouse_direction.angle()
+	proj_instance.rotation += proj_direction
 	
 	if len(particles) > 0:
 		for p in particles:
 			proj_instance.add_child(p.instantiate())
 	# make projectile a sibling so it has independent movement
 	proj_instance.reparent(get_parent())
+	
+	for ef in player_animation.player_sprites.explosion_firers:
+		if !ef.emitting:
+			ef.process_material.set("direction", Vector3(-1*abs(cos(proj_direction)), -1*sin(proj_direction),0))
+			ef.emitting = true
+			break
 
 func update_animation_speed(): 
 	# Player animation node will update both firing 

@@ -1,13 +1,8 @@
 extends Node
 class_name BossPattern
 
-const ACTIONS_DICT : Dictionary = {
-	0: "Idle",
-	1: "Projectiles",
-	2: "Move"
-}
-
-@export var actions_cycle : Array[String]
+var actions_cycle : Array
+@export var boss_pattern_id : String = "TEST_PATTERN_2"
 @export var boss_name : String = "BOSS_NAME_PLACEHOLDER"
 # Comma delimeted strings
 # Actions Examples
@@ -21,6 +16,7 @@ var action_index = 0
 signal move
 signal moveplayer
 signal fire_projectiles
+signal aoe_attack
 
 var move_done : bool = true
 var fire_done : bool = true
@@ -28,70 +24,65 @@ var fire_done : bool = true
 func _ready() -> void:
 	# start first action
 	
-	if len(actions_cycle):
-		start_action(actions_cycle[0])
-	else:
-		push_warning("actions_cycle is empty for boss: " + boss_name)
+	actions_cycle = BossPatterns.get(boss_pattern_id)
 
-func start_action(action_string: String):
-	var action_split = action_string.split(",")
-	var action: String = action_split[0]
-	var action_info = action_split.slice(1, len(action_split))
+func start_action(action_i: int):
+	var action = actions_cycle[action_i]
+	var action_id : int = action[0]
+	var action_info : Dictionary = action[1]
 	
-	match action.to_lower():
-		"idle":
-			var idle_duration: float = float(action_info[0])
+	match action_id:
+		0:
+			var idle_duration: float = float(action_info.duration)
 			get_tree().create_timer(idle_duration).timeout.connect(finish_action)
-		"move":
-			if len(action_info) == 3:
-				var x : float =  float(action_info[0])
-				var y : float =  float(action_info[1])
-				var cut_off : float = float(action_info[2])
-				move_done = false
-				move.emit(Vector2(x,y), cut_off)
+		1:
+			var x : float =  float(action_info.x)
+			var y : float =  float(action_info.y)
+			var cut_off : float = float(action_info.cut_off)
+			move_done = false
+			move.emit(Vector2(x,y), cut_off)
 				
-			else:
-				push_warning("move command but len(action_info)!=3 (x,y,cutoff)")
-		"moveplayer":
-			if len(action_info) == 3:
-				var x : float =  float(action_info[0])
-				var y : float =  float(action_info[1])
-				var cut_off : float = float(action_info[2])
-				move_done = false
-				moveplayer.emit(Vector2(x,y), cut_off)
-				
-			else:
-				push_warning("move command but len(action_info)!=3 (x,y,cutoff)")
-		"projectiles":
-			if len(action_info) == 3:
-				var boss_pc_id : String = String(action_info[0])
-				var cooldown : float = float(action_info[1])
-				var duration : float = float(action_info[2])
-				fire_done = false
-				
-				fire_projectiles.emit(boss_pc_id, cooldown, duration)
-			else:
-				push_warning("projectile command but len(action_info)!=3 (config_id, cooldown, duration)")
-		"projectiles_move":
-			if len(action_info) == 6:
-				var boss_pc_id : String = String(action_info[0])
-				var cooldown : float = float(action_info[1])
-				var duration : float = float(action_info[2])
-				
-				var x : float =  float(action_info[3])
-				var y : float =  float(action_info[4])
-				var cut_off : float = float(action_info[5])
-				
-				move.emit(Vector2(x,y), cut_off)
-				fire_projectiles.emit(boss_pc_id, cooldown, duration)
-				move_done = false
-				fire_done = false
-				
-			else:
-				push_warning("projectile_move command but len(action_info)!=6 (boss_pc_id, cooldown, duration, x, y, cut_off)")
+		2:
+			var x : float =  float(action_info.x)
+			var y : float =  float(action_info.y)
+			var cut_off : float = float(action_info.cut_off)
+			move_done = false
+			moveplayer.emit(Vector2(x,y), cut_off)
+		3:
+			var boss_pc_id : String = String(action_info.config_id)
+			var cooldown : float = float(action_info.cooldown)
+			var duration : float = float(action_info.duration)
+			fire_done = false
+			
+			fire_projectiles.emit(boss_pc_id, cooldown, duration)
+		4:
+			var boss_pc_id : String = String(action_info.config_id)
+			var cooldown : float = float(action_info.cooldown)
+			var duration : float = float(action_info.duration)
+			
+			var x : float =  float(action_info.x)
+			var y : float =  float(action_info.y)
+			var cut_off : float = float(action_info.cut_off)
+			
+			move.emit(Vector2(x,y), cut_off)
+			fire_projectiles.emit(boss_pc_id, cooldown, duration)
+			move_done = false
+			fire_done = false
+		5:
+			var boss_pc_id : String = String(action_info.config_id)
+			var cooldown : float = float(action_info.cooldown)
+			var duration : float = float(action_info.duration)
+			
+			aoe_attack.emit(boss_pc_id, cooldown, duration)
+			fire_done = false
+			#var aoe_attack: AOEAttack = load("res://Projectile/aoe_attack.tscn").instantiate()
+			#aoe_attack.global_position = get_global_mouse_position()
+			#region.add_child(aoe_attack)
+			#aoe_attack.explode()
+		#6:
 		
 		_:
-			push_warning("Unrecognised action: "+ action)
+			push_warning("Unrecognised action_id: "+ str(action_id))
 
 func finish_firing()->void:
 	fire_done = true
@@ -104,4 +95,4 @@ func finish_moving()->void:
 func finish_action()->void:
 	if move_done and fire_done:	
 		action_index = (action_index + 1)%len(actions_cycle)
-		start_action(actions_cycle[action_index])
+		start_action(action_index)

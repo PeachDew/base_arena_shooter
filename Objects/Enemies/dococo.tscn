@@ -116,9 +116,9 @@ size = Vector2(23.0453, 16.4609)
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_q2c85")
+contact_damage = 2.0
 one_xp_orb_value = 6.0
 one_coin_value = 2
-contact_damage = 2.0
 
 [node name="FloorCollision" type="CollisionShape2D" parent="."]
 position = Vector2(-4.76837e-07, 4)
@@ -175,7 +175,6 @@ projectile_config_ids = Array[String](["DOCOCO_COCONUT"])
 
 [node name="Bomb" parent="EnemyBehavior/EnemyWeapon" instance=ExtResource("10_m4ppw")]
 scale = Vector2(3, 3)
-cooldown = 0.4
 warning_duration = 1.1
 
 [node name="EnemyHurtbox" type="Area2D" parent="."]

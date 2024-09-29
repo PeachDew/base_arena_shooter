@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://ba437a5xjgtdf"]
+[gd_scene load_steps=31 format=3 uid="uid://ba437a5xjgtdf"]
 
 [ext_resource type="Script" path="res://Objects/Enemies/boss.gd" id="1_y5nx6"]
 [ext_resource type="Texture2D" uid="uid://bgtcny4baxhf2" path="res://Art/characters/bosses/first_boss/firstboss.png" id="2_4g3e0"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://d1g38eiel1d5l" path="res://Art/ui/boss_hp_initialise.png" id="6_q5ojs"]
 [ext_resource type="Texture2D" uid="uid://dcdsx0fmekxjo" path="res://Art/ui/boss_hp_fade_out.png" id="7_kyva4"]
 [ext_resource type="Script" path="res://Objects/Bosses/boss_pattern.gd" id="8_evdat"]
+[ext_resource type="PackedScene" uid="uid://beaf2xab8l11d" path="res://Projectile/fire_bomb.tscn" id="10_lcxru"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_djuxi"]
 atlas = ExtResource("7_kyva4")
@@ -162,7 +163,6 @@ max_hp = 50.0
 
 [node name="Boss_Pattern" type="Node" parent="."]
 script = ExtResource("8_evdat")
-actions_cycle = Array[String](["Idle,1.0", "moveplayer,0.0,0.0,0.5", "projectiles,TEST_BOSS_PHASE_2,-1.0,2.0", "move,-280,-100,0.5", "projectiles,TEST_BOSS_PHASE_1,1.0,4.1", "projectiles_move,TEST_BOSS_PHASE_3, 0.8, 3.0, 337, 22, 3.0", "projectiles_move,TEST_BOSS_PHASE_3, 0.8, 3.0, -246, 22, 3.0"])
 
 [node name="Marker2D" type="Marker2D" parent="."]
 scale = Vector2(4, 4)
@@ -222,3 +222,5 @@ theme_override_font_sizes/font_size = 32
 text = "100"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="FireBomb" parent="." instance=ExtResource("10_lcxru")]

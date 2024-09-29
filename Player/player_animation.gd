@@ -18,6 +18,10 @@ var neutral_animation_speed := 1.0
 func _ready() -> void:
 	update_animation_speed()
 	animated_sprite.animation_finished.connect(on_animation_finished)
+	
+	#player_sprites.animation_player.animation_finished.connect(on_animation_player_animation_finished)
+	player_sprites.animation_player.current_animation_changed.connect(on_animation_player_current_animation_changed)
+	
 
 func update_animation_speed():
 	if player_sprites.animation_player:
@@ -30,6 +34,13 @@ func on_animation_finished():
 	if animated_sprite.animation == "move_start":
 		player_sprites.animation_player.play("move")
 		animated_sprite.play("move")
+
+func on_animation_player_current_animation_changed(anim_name: String)->void:
+	if anim_name == "attack_start":
+		player_sprites.attacking_particles.emitting = true
+	elif anim_name != "attack":
+		player_sprites.attacking_particles.emitting = false		
+		
 	
 func _physics_process(_delta):
 	if Input.is_action_pressed("primary_fire") or Input.is_action_pressed("ultimate"):
@@ -37,10 +48,9 @@ func _physics_process(_delta):
 			center.scale.x = 1
 		else:
 			center.scale.x = -1
-		if player.velocity:
-			animated_sprite.play("attack_move")
-		else:
-			animated_sprite.play("attack")
+		if player_sprites.animation_player.current_animation != "attack" and player_sprites.animation_player.current_animation != "attack_start":
+			player_sprites.animation_player.play("attack_start")
+			player_sprites.animation_player.queue("attack")
 	else:
 		if player.velocity and center:
 			if player.velocity.x < 0:

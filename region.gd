@@ -4,6 +4,8 @@ class_name Region
 var portals = []
 var player
 
+@export var region_name : String
+
 var monster_spawners = []
 
 signal send_player_to

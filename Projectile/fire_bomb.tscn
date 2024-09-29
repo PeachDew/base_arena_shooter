@@ -1,32 +1,32 @@
-[gd_scene load_steps=17 format=3 uid="uid://b841nqghmjgl"]
+[gd_scene load_steps=17 format=3 uid="uid://beaf2xab8l11d"]
 
-[ext_resource type="Script" path="res://Projectile/bomb.gd" id="1_vepkx"]
-[ext_resource type="Texture2D" uid="uid://f5q14cgwhocj" path="res://Art/items/Projectiles/bomb/warning_area_animation.png" id="2_1rqqy"]
-[ext_resource type="Texture2D" uid="uid://vsbsrfqfacgd" path="res://Art/items/Projectiles/bomb/cocoexplosion.png" id="3_ldvfy"]
-[ext_resource type="Texture2D" uid="uid://b16dlma4tr06b" path="res://Art/items/Projectiles/enemy/dococo_coconut_proj.png" id="4_rny7i"]
+[ext_resource type="Script" path="res://Projectile/bomb.gd" id="1_gp68e"]
+[ext_resource type="Texture2D" uid="uid://cu2ahe40og8m8" path="res://Art/items/Projectiles/bomb/bomb_projectile_1.png" id="2_p6tf7"]
+[ext_resource type="Texture2D" uid="uid://f5q14cgwhocj" path="res://Art/items/Projectiles/bomb/warning_area_animation.png" id="3_c23os"]
+[ext_resource type="Texture2D" uid="uid://vsbsrfqfacgd" path="res://Art/items/Projectiles/bomb/cocoexplosion.png" id="4_hhix0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3ueb2"]
-atlas = ExtResource("2_1rqqy")
+atlas = ExtResource("3_c23os")
 region = Rect2(0, 0, 12, 12)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6r88d"]
-atlas = ExtResource("2_1rqqy")
+atlas = ExtResource("3_c23os")
 region = Rect2(12, 0, 12, 12)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g6c88"]
-atlas = ExtResource("2_1rqqy")
+atlas = ExtResource("3_c23os")
 region = Rect2(24, 0, 12, 12)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n1bal"]
-atlas = ExtResource("2_1rqqy")
+atlas = ExtResource("3_c23os")
 region = Rect2(36, 0, 12, 12)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3xlyc"]
-atlas = ExtResource("2_1rqqy")
+atlas = ExtResource("3_c23os")
 region = Rect2(48, 0, 12, 12)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vqmax"]
-atlas = ExtResource("2_1rqqy")
+atlas = ExtResource("3_c23os")
 region = Rect2(60, 0, 12, 12)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ojmjq"]
@@ -56,15 +56,15 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v2bny"]
-atlas = ExtResource("3_ldvfy")
+atlas = ExtResource("4_hhix0")
 region = Rect2(0, 0, 32, 36)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_em22t"]
-atlas = ExtResource("3_ldvfy")
+atlas = ExtResource("4_hhix0")
 region = Rect2(32, 0, 32, 36)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vnkqt"]
-atlas = ExtResource("3_ldvfy")
+atlas = ExtResource("4_hhix0")
 region = Rect2(64, 0, 32, 36)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fibjw"]
@@ -87,26 +87,27 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_3gup4"]
 radius = 6.5
 
-[node name="Bomb" type="Node2D"]
+[node name="FireBomb" type="Node2D"]
 scale = Vector2(2, 2)
-script = ExtResource("1_vepkx")
+script = ExtResource("1_gp68e")
 
 [node name="ProjectileSprite_1" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
-texture = ExtResource("4_rny7i")
+texture = ExtResource("2_p6tf7")
 offset = Vector2(0, -0.51)
 
 [node name="ProjectileSprite_2" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
-texture = ExtResource("4_rny7i")
+texture = ExtResource("2_p6tf7")
 offset = Vector2(0, -0.51)
 
 [node name="ProjectileSprite_3" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
-texture = ExtResource("4_rny7i")
+texture = ExtResource("2_p6tf7")
 offset = Vector2(0, -0.51)
 
 [node name="BombArea_1" type="Area2D" parent="."]
+scale = Vector2(1.52, 1.52)
 collision_layer = 0
 
 [node name="WarningAreaAnimation" type="AnimatedSprite2D" parent="BombArea_1"]

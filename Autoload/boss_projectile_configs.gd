@@ -2,6 +2,12 @@ extends Node
 
 const TEST_BOSS_PHASE_2_N_BULLETS : float = 20.0
 const TEST_BOSS_PHASE_3_N_BULLETS : float = 10.0
+const TEST_BOSS_AOE_1_COUNT : int = 10
+const TEST_BOSS_AOE_1_WIDTH : float = 200.0
+const TEST_BOSS_AOE_1_HEIGHT : float = 100.0
+const TEST_BOSS_AOE_1_PERIMETER = 2 * (TEST_BOSS_AOE_1_WIDTH + TEST_BOSS_AOE_1_HEIGHT)
+const TEST_BOSS_AOE_1_STEP = TEST_BOSS_AOE_1_PERIMETER / float(TEST_BOSS_AOE_1_COUNT)
+
 var configs : Dictionary = {
 	"TEST_BOSS_PHASE_1": 
 		[
@@ -101,5 +107,46 @@ var configs : Dictionary = {
 					"rotation": n * (360.0/TEST_BOSS_PHASE_3_N_BULLETS),
 					"start_delay": 0.0,
 					"aim_player": true,
-				})
+				}),
+	
+	"TEST_BOSS_AOE_1": 
+		range(16).map(
+			func(n: float):
+				var t : float = n*TAU/16
+				return {
+					"projectile_packed_scene": load(PATHS.BEAM_01),
+					"warning_duration": 1.0,
+					"x": TEST_BOSS_AOE_1_WIDTH * 0.5 * sign(cos(t)) * pow(abs(cos(t)), 0.2),
+					"y": TEST_BOSS_AOE_1_HEIGHT * 0.5 * sign(sin(t)) * pow(abs(sin(t)), 0.2),
+					"damage": 10.0,
+					"start_delay": 0.0,
+				}),
+	
+	"TEST_BOSS_AOE_2":
+		range(TEST_BOSS_AOE_1_COUNT).map(
+			func(i: float):
+				var distance = i * TEST_BOSS_AOE_1_STEP
+				var x: float
+				var y: float
+				if distance < TEST_BOSS_AOE_1_WIDTH:
+					x = distance - TEST_BOSS_AOE_1_WIDTH / 2
+					y = -TEST_BOSS_AOE_1_HEIGHT / 2
+				elif distance < TEST_BOSS_AOE_1_WIDTH + TEST_BOSS_AOE_1_HEIGHT:
+					x = TEST_BOSS_AOE_1_WIDTH / 2
+					y = distance - TEST_BOSS_AOE_1_WIDTH - TEST_BOSS_AOE_1_HEIGHT / 2
+				elif distance < 2 * TEST_BOSS_AOE_1_WIDTH + TEST_BOSS_AOE_1_HEIGHT:
+					x = TEST_BOSS_AOE_1_WIDTH / 2 - (distance - TEST_BOSS_AOE_1_WIDTH - TEST_BOSS_AOE_1_HEIGHT)
+					y = TEST_BOSS_AOE_1_HEIGHT / 2
+				else:
+					x = -TEST_BOSS_AOE_1_WIDTH / 2
+					y = TEST_BOSS_AOE_1_HEIGHT / 2 - (distance - 2 * TEST_BOSS_AOE_1_WIDTH - TEST_BOSS_AOE_1_HEIGHT)
+				
+				return {
+					"projectile_packed_scene": load(PATHS.BEAM_01),
+					"warning_duration": 1.0,
+					"x": x,
+					"y": y,
+					"damage": 10.0,
+					"start_delay": 0.0,
+				}),
 }

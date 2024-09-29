@@ -29,6 +29,7 @@ PATHS="*res://Autoload/PATHS.gd"
 ScenesManager="*res://Autoload/scenes_manager.gd"
 WorldManager="*res://Autoload/world_manager.gd"
 BossProjectileConfigs="*res://Autoload/boss_projectile_configs.gd"
+BossPatterns="*res://Autoload/boss_patterns.gd"
 
 [display]
 

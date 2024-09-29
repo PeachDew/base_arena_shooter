@@ -6,6 +6,13 @@ class_name PlayerSprites
 @export var eye_sprite: Sprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+#Particles
+@onready var attacking_particles : GPUParticles2D = $AttackingParticles
+@onready var explosion_firers : Array[GPUParticles2D] = [
+	$AttackExplodeFirer1,
+	$AttackExplodeFirer2
+]
+
 const possible_eye_colors : Array[String] = [
 	"#000000",  # Black
 	"#4E3100",  # Dark Brown
@@ -47,7 +54,9 @@ func _ready() -> void:
 	hair_sprite = $Hair
 	eye_sprite = $Eyes
 	
+	attacking_particles.emitting = false
 	animation_player.play("idle")
+
 
 func set_eye_color(i: int):
 	if i >= 0 and i < len(possible_eye_colors):

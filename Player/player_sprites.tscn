@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bavu4ca8grige"]
+[gd_scene load_steps=23 format=3 uid="uid://bavu4ca8grige"]
 
 [ext_resource type="Script" path="res://Player/PlayerSprites.gd" id="1_sj8t4"]
 [ext_resource type="Texture2D" uid="uid://2j4guskq0epr" path="res://Art/characters/physique_test.png" id="2_g4jkj"]
@@ -42,6 +42,86 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_urp85"]
+resource_name = "attack"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Physique:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [12, 13]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Eyes:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [8, 9]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hair:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+
+[sub_resource type="Animation" id="Animation_0fdlx"]
+resource_name = "attack_start"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Physique:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [8, 9, 10]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Eyes:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [12, 13, 14]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hair:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
 }
 
 [sub_resource type="Animation" id="Animation_uid3v"]
@@ -128,9 +208,77 @@ tracks/2/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_urjd3"]
 _data = {
 "RESET": SubResource("Animation_lmfkt"),
+"attack": SubResource("Animation_urp85"),
+"attack_start": SubResource("Animation_0fdlx"),
 "idle": SubResource("Animation_uid3v"),
 "move": SubResource("Animation_upomp")
 }
+
+[sub_resource type="Gradient" id="Gradient_jkyxm"]
+offsets = PackedFloat32Array(0, 0.59589, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_pfyta"]
+gradient = SubResource("Gradient_jkyxm")
+
+[sub_resource type="Curve" id="Curve_g6lgt"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.791209), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_8gfmr"]
+curve = SubResource("Curve_g6lgt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sspia"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 5.0
+angle_max = 180.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 15.0
+radial_accel_max = 20.0
+scale_min = 2.5
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_8gfmr")
+color_ramp = SubResource("GradientTexture1D_pfyta")
+
+[sub_resource type="Gradient" id="Gradient_ss1as"]
+offsets = PackedFloat32Array(0, 0.0890411, 0.671233, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5gpuk"]
+gradient = SubResource("Gradient_ss1as")
+
+[sub_resource type="Curve" id="Curve_k2l5k"]
+_data = [Vector2(0.0229885, 0.989011), 0.0, 0.0, 0, 0, Vector2(0.183908, 0.285714), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_7vs23"]
+curve = SubResource("Curve_k2l5k")
+
+[sub_resource type="Curve" id="Curve_v43vu"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.0862069, 0.417582), 0.0, 0.0, 0, 0, Vector2(1, 0.197802), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_7qt0r"]
+curve = SubResource("Curve_v43vu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ol255"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 2.55
+angle_max = 360.0
+direction = Vector3(-1, 0, 0)
+spread = 0.0
+initial_velocity_min = 40.0
+initial_velocity_max = 40.0
+radial_velocity_min = 300.0
+radial_velocity_max = 300.0
+radial_velocity_curve = SubResource("CurveTexture_7vs23")
+gravity = Vector3(0, 0, 0)
+scale_min = 8.0
+scale_max = 10.0
+scale_curve = SubResource("CurveTexture_7qt0r")
+color_ramp = SubResource("GradientTexture1D_5gpuk")
 
 [node name="PlayerSprites" type="Node2D"]
 script = ExtResource("1_sj8t4")
@@ -146,16 +294,42 @@ speed_scale = 2.0
 texture = ExtResource("2_g4jkj")
 offset = Vector2(0, -14)
 hframes = 4
-vframes = 2
+vframes = 4
 
 [node name="Eyes" type="Sprite2D" parent="."]
 texture = ExtResource("3_motbq")
 offset = Vector2(0, -14)
 hframes = 4
-vframes = 2
+vframes = 4
 
 [node name="Hair" type="Sprite2D" parent="."]
 texture = ExtResource("4_dasqr")
 offset = Vector2(0, -14)
 hframes = 4
 vframes = 2
+
+[node name="AttackingParticles" type="GPUParticles2D" parent="."]
+position = Vector2(11, -18)
+process_material = SubResource("ParticleProcessMaterial_sspia")
+lifetime = 0.3
+randomness = 0.24
+
+[node name="AttackExplodeFirer1" type="GPUParticles2D" parent="."]
+position = Vector2(11, -18)
+emitting = false
+amount = 5
+process_material = SubResource("ParticleProcessMaterial_ol255")
+lifetime = 0.3
+one_shot = true
+explosiveness = 0.8
+randomness = 0.2
+
+[node name="AttackExplodeFirer2" type="GPUParticles2D" parent="."]
+position = Vector2(11, -18)
+emitting = false
+amount = 5
+process_material = SubResource("ParticleProcessMaterial_ol255")
+lifetime = 0.3
+one_shot = true
+explosiveness = 0.8
+randomness = 0.2

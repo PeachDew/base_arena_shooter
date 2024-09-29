@@ -108,7 +108,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w2gy3"]
-size = Vector2(11.5, 5.5)
+size = Vector2(11.5, 9)
 
 [node name="Grass" type="Area2D"]
 scale = Vector2(2, 2)
@@ -121,5 +121,5 @@ animation = &"sway_left"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.25, 5.25)
+position = Vector2(-1.25, 3.5)
 shape = SubResource("RectangleShape2D_w2gy3")
