@@ -5,6 +5,7 @@ var portals = []
 var player
 
 @export var region_name : String
+@export var spawn_loc : Marker2D
 
 var monster_spawners = []
 
@@ -34,6 +35,10 @@ func check_portals_reqs():
 			
 func receive_player(pl):
 	player = pl
+	if spawn_loc:
+		player.global_position = spawn_loc.global_position
+	else:
+		player.global_position = Vector2(0,0)
 	check_portals_reqs()
 	for ms in monster_spawners:
 		ms.set_player(player)

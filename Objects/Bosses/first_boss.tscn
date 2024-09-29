@@ -158,6 +158,7 @@ animations = [{
 }]
 
 [node name="FirstBoss" type="CharacterBody2D"]
+y_sort_enabled = true
 script = ExtResource("1_y5nx6")
 max_hp = 50.0
 
@@ -165,6 +166,7 @@ max_hp = 50.0
 script = ExtResource("8_evdat")
 
 [node name="Marker2D" type="Marker2D" parent="."]
+y_sort_enabled = true
 scale = Vector2(4, 4)
 
 [node name="BossSprite" type="Sprite2D" parent="Marker2D"]

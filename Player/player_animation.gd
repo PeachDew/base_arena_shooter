@@ -17,7 +17,6 @@ var neutral_animation_speed := 1.0
 
 func _ready() -> void:
 	update_animation_speed()
-	animated_sprite.animation_finished.connect(on_animation_finished)
 	
 	#player_sprites.animation_player.animation_finished.connect(on_animation_player_animation_finished)
 	player_sprites.animation_player.current_animation_changed.connect(on_animation_player_current_animation_changed)
@@ -60,7 +59,6 @@ func _physics_process(_delta):
 			start_move_animation()
 			
 		else:
-			animated_sprite.play("idle")
 			player_sprites.animation_player.play("idle")
 
 func start_move_animation() -> void:
@@ -76,10 +74,10 @@ func _process(delta: float) -> void:
 			blink_timer = 0.0
 			is_opaque = !is_opaque
 		if !is_opaque:
-			animated_sprite.modulate.a = 0.5
+			player_sprites.modulate.a = 0.5
 		else:
-			animated_sprite.modulate.a = 1
+			player_sprites.modulate.a = 1
 	else:
-		animated_sprite.modulate.a = 1
+		player_sprites.modulate.a = 1
 		
 	
