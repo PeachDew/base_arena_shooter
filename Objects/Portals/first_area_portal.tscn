@@ -120,7 +120,7 @@ animations = [{
 "speed": 10.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 3.0,
 "texture": SubResource("AtlasTexture_yvbt2")
 }, {
 "duration": 1.0,
@@ -156,7 +156,5 @@ shape = SubResource("CircleShape2D_e5af2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5k8o1")
-animation = &"going"
+animation = &"idle"
 autoplay = "idle"
-frame = 6
-frame_progress = 0.778879

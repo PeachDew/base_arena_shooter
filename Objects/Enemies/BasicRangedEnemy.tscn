@@ -231,7 +231,7 @@ debug_color = Color(0.709177, 0.481276, 0.201482, 0.42)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemyBehavior/EnemyFlipMarker"]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_uaahh")
-animation = &"charge"
+animation = &"walk"
 autoplay = "idle"
 speed_scale = 1.36
 
