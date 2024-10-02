@@ -220,8 +220,8 @@ func get_stat_sum():
 		stats += total_player_stats[k]
 	return stats
 
-func apply_might(num: float):
-	return num * (1.0 + float(total_player_stats['might'])*4.0/100.0)
+func get_might_dmg_bonus():
+	return total_player_stats['might']*0.05
 
 func get_vigor_crit_bonus():
 	return total_player_stats['vigor'] * 0.05

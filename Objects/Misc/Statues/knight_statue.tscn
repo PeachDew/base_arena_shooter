@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://b5tt3a7pr42qc"]
+[gd_scene load_steps=10 format=3 uid="uid://b5tt3a7pr42qc"]
 
 [ext_resource type="Script" path="res://Objects/Misc/Statues/statue.gd" id="1_qqjjj"]
 [ext_resource type="Texture2D" uid="uid://chrkju6l8dxnw" path="res://Art/misc/statues/knight_statue.png" id="2_mhuva"]
+[ext_resource type="Texture2D" uid="uid://dcrm25gxt0hdp" path="res://Art/misc/statues/knight_statue_ruined.png" id="3_jdb0e"]
 [ext_resource type="Texture2D" uid="uid://dpvjv58xs8ahm" path="res://Art/misc/statues/ruined_statue.png" id="3_pr120"]
 [ext_resource type="Texture2D" uid="uid://b6lyhkf0kk2lm" path="res://Art/misc/statues/statue_pad.png" id="4_xxdaw"]
 [ext_resource type="Theme" uid="uid://b1tb3h6x4i01j" path="res://UIScenes/test_theme.tres" id="5_u4sag"]
@@ -30,7 +31,7 @@ position = Vector2(-72, -1)
 collision_layer = 0
 script = ExtResource("1_qqjjj")
 built_texture = ExtResource("2_mhuva")
-unbuilt_texture = ExtResource("3_pr120")
+unbuilt_texture = ExtResource("3_jdb0e")
 
 [node name="AttunedParticles" type="GPUParticles2D" parent="."]
 y_sort_enabled = true

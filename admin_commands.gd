@@ -11,13 +11,14 @@ var spawned_enemies := 0
 @onready var world = $World
 
 func _ready() -> void:
-	
 	SavesManager.curr_player_name = SaveSystem.get_var("selected_button_name")
 	
 	# IF PLAYER GO BACK TO HOME AND THEN LOG IN, ITEMS MANAGER IS ALREADY INITIALISED AND 
 	# RE INNITIALISING BREAKS THINGS
 	ItemsManager.reset_inventory() # emptying inventory might mess with stats
 	PlayerStats.reset_player_stats() # reset the messed up stats
+	
+	SavesManager.initialise_mastery()
 	
 	#print(SaveSystem.get_var(SavesManager.curr_player_name+":playerstats").statue_dict)
 	PlayerStats.initialise_player_stats(SaveSystem.get_var(SavesManager.curr_player_name+":playerstats"))

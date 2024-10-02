@@ -35,6 +35,11 @@ var last_autofiring_state = -1
 
 var shot_particles : Array = []
 
+var mastery_bonus : Dictionary = {
+	"weapon":0,
+	#"others":0,
+}
+
 signal player_loaded
 
 signal activate_ability_cooldown_ui
@@ -89,7 +94,6 @@ func on_set_shot_particles(particles_array: Array):
 	shot_particles = particles_array
 	
 func set_misc_particles(packed_scene_paths: Array):
-	#print(misc_particles.get_child_count())
 	for c in misc_particles.get_children():
 		c.emitting = false
 		if !c.finished.is_connected(c.queue_free):
@@ -113,7 +117,7 @@ func update_crit(proj_instance): # Updates the crit chance given input projectil
 		proj_instance.is_crit = true
 
 func on_add_projectile_child(proj_instance, particles = shot_particles):
-	proj_instance.damage = PlayerStats.apply_might(proj_instance.damage)
+	proj_instance.damage *= 1+ PlayerStats.get_might_dmg_bonus()+ mastery_bonus.weapon
 	update_crit(proj_instance)
 	
 	add_child(proj_instance)
@@ -173,6 +177,11 @@ func add_weapon(weapon_item) -> void:
 		equipped_weapon.add_child(new_weapon_instance)
 		
 		equipped_weapon_item = weapon_item
+		
+		if "mastery" in weapon_item:
+			mastery_bonus.weapon = ItemsDatabase.get_mastery_bonus(weapon_item.mastery)
+		else:
+			mastery_bonus.weapon = 0.0
 		
 		#disable bare weapon
 		bare_weapon.process_mode = Node.PROCESS_MODE_DISABLED

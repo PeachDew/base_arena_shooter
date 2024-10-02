@@ -1,7 +1,7 @@
 extends Node
 
-var empty_inventory := {
-	"HatSlot": null, #null,
+var empty_inventory : Dictionary = {
+	"HatSlot": null, 
 	"AbilitySlot": null,
 	"WeaponSlot": null,
 	"Slot1": null,
@@ -128,7 +128,7 @@ func update_lootnodes(loot_node):
 				var loot_item = ItemsDatabase.items[loot_item_id]
 				inventory[key] = loot_item
 				change_inv_ui_texture.emit(key, load(loot_item.sprite_path))
-				
+
 		else:
 			inventory[key] = null
 			change_inv_ui_texture.emit(key, null)
@@ -139,7 +139,7 @@ func on_playerbody_exited_lootbag(lootnode_info)->void:
 
 func on_item_moved(move_dict: Dictionary):
 	if !(move_dict.origin_slot in inventory and move_dict.destination_slot in inventory):
-		print("ERROR: item_moved signal transmitting wrong node names.")
+		push_error("ERROR: item_moved signal transmitting wrong node names.")
 	elif move_dict.origin_slot == move_dict.destination_slot:
 		print("Putting item in same slot, nothing happens.")
 	elif !inventory[move_dict.origin_slot]:
@@ -166,7 +166,6 @@ func on_item_moved(move_dict: Dictionary):
 				move_dict.destination_slot
 			)
 			empty_itemslot(move_dict.origin_slot)
-	
 	if last_shown_lootbag:
 		check_empty_lootbag()
 	
@@ -176,11 +175,9 @@ func check_empty_lootbag():
 		if inventory[lnn]:
 			all_loot_empty = false
 	if all_loot_empty:
-		print(lootbags_in_contact_with_player)
 		lootbags_in_contact_with_player.erase(last_shown_lootbag)
 		last_shown_lootbag.queue_free()
 		last_shown_lootbag = null
-		print(lootbags_in_contact_with_player)
 		if len(lootbags_in_contact_with_player) > 0:
 			update_lootnodes(lootbags_in_contact_with_player[0])
 
@@ -193,7 +190,7 @@ func empty_itemslot(slot_name):
 	if "Loot" in slot_name:
 		if is_instance_valid(last_shown_lootbag):
 			last_shown_lootbag.loot_dict[slot_name] = null
-	
+
 	if !ex_item:
 		return true
 	if (("modifiers" in ex_item)
@@ -204,7 +201,7 @@ func empty_itemslot(slot_name):
 			var stat_name = stat_modifier[0] 
 			var stat_change = -1 * stat_modifier[1]
 			update_stats.emit(stat_name, stat_change)
-			
+
 	if "Weapon" in slot_name:
 		clear_weapon.emit()
 	elif "Hat" in slot_name:
@@ -224,7 +221,7 @@ func put_item(item, slot_name):
 		for stat_modifier in item.modifiers:
 			var stat_name = stat_modifier[0] 
 			var stat_change = stat_modifier[1]
-			
+
 			PlayerStats.update_stats(stat_name, stat_change)
 		#PlayerStats.update_VMST_stats_ui.emit()
 		
@@ -232,12 +229,11 @@ func put_item(item, slot_name):
 		inventory[slot_name] = item
 		change_inv_ui_texture.emit(str(slot_name), load(item.sprite_path))
 	else: 
-		print(inventory[slot_name])
-		print("ITEMS_MANAGER: WARNING: attempting to put_item into NON EMPTY slot.")
+		push_warning("ITEMS_MANAGER: WARNING: attempting to put_item into NON EMPTY slot.")
 	
 	if "Loot" in slot_name: # Putting item into a lootbag
 		if last_shown_lootbag.loot_dict[slot_name]:
-			print("NEED TO INVESTIGATE: CANNOT OVERRIDE LOOT")
+			push_warning("NEED TO INVESTIGATE: CANNOT OVERRIDE LOOT")
 		last_shown_lootbag.loot_dict[slot_name] = item.id
 	
 	if "Weapon" in slot_name:

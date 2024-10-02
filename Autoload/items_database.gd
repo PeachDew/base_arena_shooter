@@ -1,13 +1,18 @@
 extends Node
 
-const HAT_DIR := "res://Art/items/equipment/hats/"
+const HAT_DIR : String = "res://Art/items/equipment/hats/"
 
-const WEAPONS_DIR := "res://Art/items/weapons/"
-const MAGIC_WEAPONS_DIR := WEAPONS_DIR + "magic/"
-const RANGED_WEAPONS_DIR := WEAPONS_DIR + "ranged/"
-const MELEE_WEAPONS_DIR := WEAPONS_DIR + "melee/"
+const WEAPONS_DIR : String = "res://Art/items/weapons/"
+const MAGIC_WEAPONS_DIR : String = WEAPONS_DIR + "magic/"
+const RANGED_WEAPONS_DIR : String = WEAPONS_DIR + "ranged/"
+const MELEE_WEAPONS_DIR : String = WEAPONS_DIR + "melee/"
 
-const ABILITIES_DIR := "res://Art/items/abilities/"
+const ABILITIES_DIR : String = "res://Art/items/abilities/"
+
+var initialised_mastery : bool = false
+
+func get_mastery_bonus(mastery_level: int):
+	return mastery_level * 0.1
 
 var items:= {
 	'template': {
@@ -35,7 +40,8 @@ var items:= {
 		"sprite_path": MAGIC_WEAPONS_DIR+"fire_staff.png",
 		"type": 3,
 		"modifiers": [["tempo", 3],["might", 1]],
-		"projectile_config_ids" : ["F0"]
+		"projectile_config_ids" : ["F0"],
+		"mastery": 0,
 	},
 	"W02": {
 		"id": "W02",
@@ -45,7 +51,8 @@ var items:= {
 		"modifiers": [
 			["might",1],
 		],
-		"projectile_config_ids" : ["traineeblade"]
+		"projectile_config_ids" : ["traineeblade"],
+		"mastery": 0,
 	},
 	"W03": {
 		"id": "W03",
@@ -55,7 +62,8 @@ var items:= {
 		"modifiers": [
 			["tempo",1],
 		],
-		"projectile_config_ids" : ["traineestaff"]
+		"projectile_config_ids" : ["traineestaff"],
+		"mastery": 0,
 	},
 	"W04": {
 		"id": "W04",
@@ -65,7 +73,8 @@ var items:= {
 		"modifiers": [
 			["speed",1],
 		],
-		"projectile_config_ids" : ["traineebow"]
+		"projectile_config_ids" : ["traineebow"],
+		"mastery": 0,
 	},
 	
 	"S02": {
@@ -76,7 +85,8 @@ var items:= {
 		"modifiers": [
 			["speed",2],
 		],
-		"projectile_config_ids" : ["t2staff"]
+		"projectile_config_ids" : ["t2staff"],
+		"mastery": 0,
 	},
 	
 	# Abilities
@@ -89,6 +99,7 @@ var items:= {
 			["tempo",1],
 		],
 		"projectile_config_ids" : ["A01"],
+		"mastery": 0,
 	},
 }
 

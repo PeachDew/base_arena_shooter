@@ -65,7 +65,7 @@ func spawn_boss_in_region(gp: Vector2, boss_packed_scene_path: String):
 			boss.boss_death.connect(ui_manager.on_boss_death)
 			ui_manager.xp_bar.hide()
 	else:
-		print("No Region to spawn boss in!")
+		push_error("No Region to spawn boss in!")
 	
 func on_child_entered_region(child):
 	if child is Enemy:
@@ -97,6 +97,6 @@ func change_scene(destination_scene_path: String):
 		load_region(loaded_packed_scene.instantiate())
 		SavesManager.save_game()
 	else:
-		print("Error changing scene (world.gd) curr 'region' is false")
+		push_error("Error changing scene (world.gd) curr 'region' is false")
 	
 	

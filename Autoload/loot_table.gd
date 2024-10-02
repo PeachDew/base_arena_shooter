@@ -11,7 +11,7 @@ var loot_tables:= {
 }
 
 func roll_loottable(loot_table_name: String, n: int) -> Array:
-	var final_loot := []
+	var final_loot : Array = []
 	if !(loot_table_name in loot_tables):
 		print("WARNING: loot_table_name not found in loot_tables")
 		return final_loot

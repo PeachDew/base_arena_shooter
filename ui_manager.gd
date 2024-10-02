@@ -162,7 +162,7 @@ func set_stat_value(stat: String, stat_val):
 	if number_node:
 		number_node.text = str(stat_val)
 	else:
-		print("SHOULD NOT HAPPEN ERROR: set_stat_value()")
+		push_error("SHOULD NOT HAPPEN ERROR: set_stat_value()")
 
 func enable_stats():
 	stats_ui.process_mode = Node.PROCESS_MODE_INHERIT

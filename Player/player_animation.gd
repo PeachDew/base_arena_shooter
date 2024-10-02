@@ -25,7 +25,7 @@ func _ready() -> void:
 func update_animation_speed():
 	if player_sprites.animation_player:
 		player_sprites.animation_player.speed_scale = player_sprites_base_speed_scale + PlayerStats.get_speed_animation_bonus()
-		print(player_sprites.animation_player.speed_scale)
+		#print(player_sprites.animation_player.speed_scale)
 	#attack_animation_speed = 1.0 + PlayerStats.get_tempo_animation_bonus()
 	
 
