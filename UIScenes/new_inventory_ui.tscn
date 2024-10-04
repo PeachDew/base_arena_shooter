@@ -1,0 +1,131 @@
+[gd_scene load_steps=3 format=3 uid="uid://bue65q66og8dh"]
+
+[ext_resource type="Script" path="res://UIScenes/new_inventory_script.gd" id="1_4m85g"]
+[ext_resource type="PackedScene" uid="uid://b5osg0sd0huy8" path="res://UIScenes/slot.tscn" id="1_brab1"]
+
+[node name="NewInventoryUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4m85g")
+
+[node name="InvEquipLoot" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 294.0
+offset_bottom = 321.0
+theme_override_constants/separation = 9
+
+[node name="Loot" type="VBoxContainer" parent="InvEquipLoot"]
+layout_mode = 2
+
+[node name="LootRow" type="HBoxContainer" parent="InvEquipLoot/Loot"]
+layout_mode = 2
+alignment = 1
+
+[node name="Slot1" parent="InvEquipLoot/Loot/LootRow" instance=ExtResource("1_brab1")]
+layout_mode = 2
+
+[node name="Slot2" parent="InvEquipLoot/Loot/LootRow" instance=ExtResource("1_brab1")]
+layout_mode = 2
+
+[node name="Slot3" parent="InvEquipLoot/Loot/LootRow" instance=ExtResource("1_brab1")]
+layout_mode = 2
+
+[node name="Slot4" parent="InvEquipLoot/Loot/LootRow" instance=ExtResource("1_brab1")]
+layout_mode = 2
+
+[node name="LootRow2" type="HBoxContainer" parent="InvEquipLoot/Loot"]
+layout_mode = 2
+alignment = 1
+
+[node name="Slot1" parent="InvEquipLoot/Loot/LootRow2" instance=ExtResource("1_brab1")]
+layout_mode = 2
+
+[node name="Slot2" parent="InvEquipLoot/Loot/LootRow2" instance=ExtResource("1_brab1")]
+layout_mode = 2
+
+[node name="Slot3" parent="InvEquipLoot/Loot/LootRow2" instance=ExtResource("1_brab1")]
+layout_mode = 2
+
+[node name="Slot4" parent="InvEquipLoot/Loot/LootRow2" instance=ExtResource("1_brab1")]
+layout_mode = 2
+
+[node name="InventoryPlusEquip" type="HBoxContainer" parent="InvEquipLoot"]
+layout_mode = 2
+
+[node name="EquipPage" type="VBoxContainer" parent="InvEquipLoot/InventoryPlusEquip"]
+layout_mode = 2
+
+[node name="HatSlot" parent="InvEquipLoot/InventoryPlusEquip/EquipPage" instance=ExtResource("1_brab1")]
+layout_mode = 2
+
+[node name="AbilitySlot" parent="InvEquipLoot/InventoryPlusEquip/EquipPage" instance=ExtResource("1_brab1")]
+layout_mode = 2
+
+[node name="WeaponSlot" parent="InvEquipLoot/InventoryPlusEquip/EquipPage" instance=ExtResource("1_brab1")]
+layout_mode = 2
+
+[node name="InventoryPageWButtons" type="HBoxContainer" parent="InvEquipLoot/InventoryPlusEquip"]
+layout_mode = 2
+
+[node name="ButtonLeft" type="Button" parent="InvEquipLoot/InventoryPlusEquip/InventoryPageWButtons"]
+layout_mode = 2
+text = "<"
+
+[node name="InvPage" type="VBoxContainer" parent="InvEquipLoot/InventoryPlusEquip/InventoryPageWButtons"]
+layout_mode = 2
+
+[node name="Row1" type="HBoxContainer" parent="InvEquipLoot/InventoryPlusEquip/InventoryPageWButtons/InvPage"]
+layout_mode = 2
+
+[node name="Slot1" parent="InvEquipLoot/InventoryPlusEquip/InventoryPageWButtons/InvPage/Row1" instance=ExtResource("1_brab1")]
+layout_mode = 2
+
+[node name="Slot2" parent="InvEquipLoot/InventoryPlusEquip/InventoryPageWButtons/InvPage/Row1" instance=ExtResource("1_brab1")]
+layout_mode = 2
+
+[node name="Slot3" parent="InvEquipLoot/InventoryPlusEquip/InventoryPageWButtons/InvPage/Row1" instance=ExtResource("1_brab1")]
+layout_mode = 2
+
+[node name="Row2" type="HBoxContainer" parent="InvEquipLoot/InventoryPlusEquip/InventoryPageWButtons/InvPage"]
+layout_mode = 2
+
+[node name="Slot1" parent="InvEquipLoot/InventoryPlusEquip/InventoryPageWButtons/InvPage/Row2" instance=ExtResource("1_brab1")]
+layout_mode = 2
+
+[node name="Slot2" parent="InvEquipLoot/InventoryPlusEquip/InventoryPageWButtons/InvPage/Row2" instance=ExtResource("1_brab1")]
+layout_mode = 2
+
+[node name="Slot3" parent="InvEquipLoot/InventoryPlusEquip/InventoryPageWButtons/InvPage/Row2" instance=ExtResource("1_brab1")]
+layout_mode = 2
+
+[node name="Row3" type="HBoxContainer" parent="InvEquipLoot/InventoryPlusEquip/InventoryPageWButtons/InvPage"]
+layout_mode = 2
+
+[node name="Slot1" parent="InvEquipLoot/InventoryPlusEquip/InventoryPageWButtons/InvPage/Row3" instance=ExtResource("1_brab1")]
+layout_mode = 2
+
+[node name="Slot2" parent="InvEquipLoot/InventoryPlusEquip/InventoryPageWButtons/InvPage/Row3" instance=ExtResource("1_brab1")]
+layout_mode = 2
+
+[node name="Slot3" parent="InvEquipLoot/InventoryPlusEquip/InventoryPageWButtons/InvPage/Row3" instance=ExtResource("1_brab1")]
+layout_mode = 2
+
+[node name="ButtonRight" type="Button" parent="InvEquipLoot/InventoryPlusEquip/InventoryPageWButtons"]
+layout_mode = 2
+text = ">"
+
+[node name="ButtonAddPage" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.166406
+anchor_top = 0.455556
+anchor_right = 0.208594
+anchor_bottom = 0.498611
+offset_top = -1.52588e-05
+text = "+Page
+"
+metadata/_edit_use_anchors_ = true

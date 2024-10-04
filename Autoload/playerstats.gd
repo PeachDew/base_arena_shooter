@@ -98,6 +98,17 @@ const STATUES_INFO : Dictionary = {
 
 var statue_dict : Dictionary
 
+var muncher_dict : Dictionary
+# eg.
+#{
+	#"weapon": false,
+	#"hat": true,
+#}
+func get_default_muncher_dict() -> Dictionary: 
+	return {
+		"weapon": false,
+	}
+	
 func get_default_statue_dict(num_statues: int) -> Dictionary:
 	var default_statue_dict: Dictionary = {"num_statues_built": 0}
 	for i in range(num_statues):
@@ -317,6 +328,11 @@ func initialise_player_stats(player_stats_dict: Dictionary):
 	else:
 		statue_dict = get_default_player_stats_dict().statue_dict
 	
+	if "muncher_dict" in player_stats_dict:
+		muncher_dict = player_stats_dict.muncher_dict
+	else:
+		muncher_dict = get_default_muncher_dict()
+	
 	xp_change.emit()
 	level_change.emit()
 	coins_change.emit()
@@ -358,6 +374,8 @@ func get_player_stats_dict():
 		
 		# Statues Stats
 		"statue_dict": statue_dict,
+		
+		"muncher_dict": muncher_dict,
 	}
 	
 	return player_stats_dict
@@ -395,7 +413,9 @@ func get_default_player_stats_dict():
 		"base_player_stats" : DEFAULT_PLAYER_STATS,
 		
 		# Statues Stats
-		"statue_dict": get_default_statue_dict(len(STATUES_INFO))
+		"statue_dict": get_default_statue_dict(len(STATUES_INFO)),
+		
+		"muncher_dict": get_default_muncher_dict(),
 	}
 	
 	return player_stats_dict

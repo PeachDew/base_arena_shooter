@@ -1,0 +1,105 @@
+[gd_scene load_steps=14 format=3 uid="uid://cm6inlyhegmk7"]
+
+[ext_resource type="Texture2D" uid="uid://b0p0qw34c5f0r" path="res://Art/misc/munchers/weapon_muncher.png" id="1_04kj8"]
+[ext_resource type="Script" path="res://Objects/Misc/Munchers/muncher.gd" id="1_v7qvm"]
+[ext_resource type="Texture2D" uid="uid://b6lyhkf0kk2lm" path="res://Art/misc/statues/statue_pad.png" id="2_fhqkc"]
+[ext_resource type="Texture2D" uid="uid://cfolc26ay5xfe" path="res://Art/misc/munchers/weapon_muncher_broken.png" id="2_xnuqn"]
+[ext_resource type="Theme" uid="uid://b1tb3h6x4i01j" path="res://UIScenes/test_theme.tres" id="5_scrw2"]
+[ext_resource type="Texture2D" uid="uid://b76cqhfyilm2a" path="res://Art/misc/coin.png" id="6_y1c6d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_olays"]
+atlas = ExtResource("2_xnuqn")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g03t0"]
+atlas = ExtResource("1_04kj8")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlflp"]
+atlas = ExtResource("1_04kj8")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qo614"]
+atlas = ExtResource("1_04kj8")
+region = Rect2(96, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ql56h"]
+atlas = ExtResource("1_04kj8")
+region = Rect2(144, 0, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w24d6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_olays")
+}],
+"loop": false,
+"name": &"broken",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g03t0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlflp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qo614")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ql56h")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u60al"]
+size = Vector2(32, 32)
+
+[node name="Muncher" type="Area2D"]
+script = ExtResource("1_v7qvm")
+unlock_cost = 10
+
+[node name="MuncherAS2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(30, 6)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_w24d6")
+animation = &"broken"
+offset = Vector2(0, -15.74)
+
+[node name="MuncherPadCollision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 15)
+shape = SubResource("RectangleShape2D_u60al")
+
+[node name="PadTexture" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, 15)
+texture = ExtResource("2_fhqkc")
+
+[node name="BuildUI" type="VBoxContainer" parent="."]
+z_index = 1
+offset_left = -20.0
+offset_top = -54.0
+offset_right = 67.0
+offset_bottom = -31.0
+metadata/_edit_group_ = true
+
+[node name="BuildHbox" type="HBoxContainer" parent="BuildUI"]
+layout_mode = 2
+
+[node name="BuildMuncherButton" type="Button" parent="BuildUI/BuildHbox"]
+layout_mode = 2
+theme = ExtResource("5_scrw2")
+text = "Build"
+
+[node name="BuildCostLabel" type="Label" parent="BuildUI/BuildHbox"]
+layout_mode = 2
+theme = ExtResource("5_scrw2")
+text = "NA"
+
+[node name="CoinPicture" type="TextureRect" parent="BuildUI/BuildHbox"]
+layout_mode = 2
+texture = ExtResource("6_y1c6d")
+expand_mode = 2

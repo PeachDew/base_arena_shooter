@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5osg0sd0huy8"]
+
+[ext_resource type="Script" path="res://UIScenes/inv_slot.gd" id="1_fhlxq"]
+[ext_resource type="Texture2D" uid="uid://b38bo6gmtfk3n" path="res://Art/items/weapons/magic/fire_staff.png" id="2_8lj6b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ki7k3"]
+bg_color = Color(0.658824, 0.709804, 0.698039, 0.356863)
+
+[node name="Slot1" type="Panel"]
+custom_minimum_size = Vector2(60, 60)
+anchors_preset = -1
+anchor_right = 0.046875
+anchor_bottom = 0.0833333
+theme_override_styles/panel = SubResource("StyleBoxFlat_ki7k3")
+script = ExtResource("1_fhlxq")
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(1, 1, 1, 0)
+metadata/_edit_use_anchors_ = true
+
+[node name="ItemTexture" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -20.0
+offset_bottom = -20.0
+texture = ExtResource("2_8lj6b")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true

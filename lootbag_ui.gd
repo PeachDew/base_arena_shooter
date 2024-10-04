@@ -25,12 +25,8 @@ extends Control
 @onready var ability_cooldown_ui = $AbilityCooldown
 
 var loot_node_names : Array = [
-	"LootSlot1",
-	"LootSlot2",
-	"LootSlot3",
-	"LootSlot4",
-	"LootSlot5",
-	"LootSlot6",
+	"lootslot11","lootslot12","lootslot13","lootslot14",
+	"lootslot21","lootslot22","lootslot23","lootslot24",
 ]
 
 signal item_moved

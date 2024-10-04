@@ -5,21 +5,25 @@ signal player_body_entered
 signal player_body_exited
 
 var loot_dict := {
-	"LootSlot1": null,
-	"LootSlot2": null,
-	"LootSlot3": null,
-	"LootSlot4": null,
-	"LootSlot5": null,
-	"LootSlot6": null,
+	"lootslot11": null,
+	"lootslot12": null,
+	"lootslot13": null,
+	"lootslot14": null,
+	"lootslot21": null,
+	"lootslot22": null,
+	"lootslot23": null,
+	"lootslot24": null,
 }
 
 var index_to_lootid := {
-	0:"LootSlot1",
-	1:"LootSlot2",
-	2:"LootSlot3",
-	3:"LootSlot4",
-	4:"LootSlot5",
-	5:"LootSlot6"
+	0:"lootslot11",
+	1:"lootslot12",
+	2:"lootslot13",
+	3:"lootslot14",
+	4:"lootslot21",
+	5:"lootslot22",
+	6:"lootslot23",
+	7:"lootslot24",
 }
 
 func _ready() -> void:

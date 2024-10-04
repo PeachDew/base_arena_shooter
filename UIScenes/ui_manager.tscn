@@ -10,12 +10,12 @@
 [ext_resource type="Texture2D" uid="uid://dc6nxv30400io" path="res://Art/ui/progress_hp.png" id="5_uk6dm"]
 [ext_resource type="Texture2D" uid="uid://dubekjla6jv75" path="res://Art/ui/ult_charged_animation.png" id="5_x3n4c"]
 [ext_resource type="Texture2D" uid="uid://c6jaok3i40d0d" path="res://Art/ui/ult_left_bar.png" id="6_gd6rc"]
-[ext_resource type="PackedScene" uid="uid://bprmbisj0m7n4" path="res://UIScenes/inventory_ui.tscn" id="7_o1dt0"]
 [ext_resource type="Script" path="res://UIScenes/ult_left_bar.gd" id="7_xiig0"]
 [ext_resource type="Script" path="res://UIScenes/LoadingUI.gd" id="8_saxpn"]
 [ext_resource type="Texture2D" uid="uid://b4h0ls2cjqt2n" path="res://Art/ui/over_xp.png" id="9_y87r6"]
 [ext_resource type="Texture2D" uid="uid://pdxydw6lllym" path="res://Art/ui/progress_xp.png" id="10_l0xxf"]
 [ext_resource type="Texture2D" uid="uid://dt7fqogrdkhiu" path="res://Art/ui/STATS_UI.png" id="11_j5lk0"]
+[ext_resource type="PackedScene" uid="uid://bue65q66og8dh" path="res://UIScenes/new_inventory_ui.tscn" id="12_8p6bm"]
 [ext_resource type="FontFile" uid="uid://duhl0exjcfl03" path="res://Art/fonts/rainyhearts.ttf" id="12_j5yyt"]
 [ext_resource type="Texture2D" uid="uid://b76cqhfyilm2a" path="res://Art/misc/coin.png" id="19_18x0b"]
 
@@ -363,12 +363,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="InventoryUI" parent="." instance=ExtResource("7_o1dt0")]
-visible = false
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 295.0
-offset_bottom = 260.0
+[node name="InventoryUI" parent="." instance=ExtResource("12_8p6bm")]
 
 [node name="LoadingUI" type="Control" parent="."]
 layout_mode = 3

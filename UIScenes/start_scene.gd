@@ -130,12 +130,12 @@ func add_char_child(
 	char_button.set_level_number(level_number)
 	
 	# Set equipment sprites
-	if inventory.HatSlot:
-		char_button.set_slot_texture("hat", inventory.HatSlot.sprite_path)
-	if inventory.WeaponSlot:
-		char_button.set_slot_texture("weapon", inventory.WeaponSlot.sprite_path)
-	if inventory.AbilitySlot:
-		char_button.set_slot_texture("ability", inventory.AbilitySlot.sprite_path)
+	if inventory.hatslot:
+		char_button.set_slot_texture("hat", inventory.hatslot.sprite_path)
+	if inventory.weaponslot:
+		char_button.set_slot_texture("weapon", inventory.weaponslot.sprite_path)
+	if inventory.abilityslot:
+		char_button.set_slot_texture("ability", inventory.abilityslot.sprite_path)
 	
 	return char_button
 

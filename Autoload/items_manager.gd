@@ -1,75 +1,83 @@
 extends Node
 
 var empty_inventory : Dictionary = {
-	"HatSlot": null, 
-	"AbilitySlot": null,
-	"WeaponSlot": null,
-	"Slot1": null,
-	"Slot2": null,
-	"Slot3": null,
-	"Slot4": null,
-	"Slot5": null,
-	"Slot6": null,
-	"Slot7": null,
-	"Slot8": null,
-	"Slot9": null,
-	"LootSlot1": null,
-	"LootSlot2": null,
-	"LootSlot3": null,
-	"LootSlot4": null,
-	"LootSlot5": null,
-	"LootSlot6": null,
+	"hatslot": null, 
+	"abilityslot": null,
+	"weaponslot": null,
+	"slot11": null,
+	"slot12": null,
+	"slot13": null,
+	"slot21": null,
+	"slot22": null,
+	"slot23": null,
+	"slot31": null,
+	"slot32": null,
+	"slot33": null,
+	"lootslot11": null,
+	"lootslot12": null,
+	"lootslot13": null,
+	"lootslot14": null,
+	"lootslot21": null,
+	"lootslot22": null,
+	"lootslot23": null,
+	"lootslot24": null,
 }
 
 @export var inventory := {
-	"HatSlot": null,
-	"AbilitySlot": null,
-	"WeaponSlot": null,
-	"Slot1": null,
-	"Slot2": null,
-	"Slot3": null,
-	"Slot4": null,
-	"Slot5": null,
-	"Slot6": null,
-	"Slot7": null,
-	"Slot8": null,
-	"Slot9": null,
-	"LootSlot1": null,
-	"LootSlot2": null,
-	"LootSlot3": null,
-	"LootSlot4": null,
-	"LootSlot5": null,
-	"LootSlot6": null,
+	"hatslot": null,
+	"abilityslot": null,
+	"weaponslot": null,
+		"slot11": null,
+	"slot12": null,
+	"slot13": null,
+	"slot21": null,
+	"slot22": null,
+	"slot23": null,
+	"slot31": null,
+	"slot32": null,
+	"slot33": null,
+	"lootslot11": null,
+	"lootslot12": null,
+	"lootslot13": null,
+	"lootslot14": null,
+	"lootslot21": null,
+	"lootslot22": null,
+	"lootslot23": null,
+	"lootslot24": null,
 }
 
 @export var inventory_slot_types := {
-	"HatSlot": 1,
-	"AbilitySlot": 2,
-	"WeaponSlot": 3,
-	"Slot1": 0,
-	"Slot2": 0,
-	"Slot3": 0,
-	"Slot4": 0,
-	"Slot5": 0,
-	"Slot6": 0,
-	"Slot7": 0,
-	"Slot8": 0,
-	"Slot9": 0,
-	"LootSlot1": 0,
-	"LootSlot2": 0,
-	"LootSlot3": 0,
-	"LootSlot4": 0,
-	"LootSlot5": 0,
-	"LootSlot6": 0,
+	"hatslot": 1,
+	"abilityslot": 2,
+	"weaponslot": 3,
+	"slot11": 0,
+	"slot12": 0,
+	"slot13": 0,
+	"slot21": 0,
+	"slot22": 0,
+	"slot23": 0,
+	"slot31": 0,
+	"slot32": 0,
+	"slot33": 0,
+	"lootslot11": 0,
+	"lootslot12": 0,
+	"lootslot13": 0,
+	"lootslot14": 0,
+	"lootslot21": 0,
+	"lootslot22": 0,
+	"lootslot23": 0,
+	"lootslot24": 0,
 }
 
 var loot_node_names : Array = [
-	"LootSlot1",
-	"LootSlot2",
-	"LootSlot3",
-	"LootSlot4",
-	"LootSlot5",
-	"LootSlot6",
+	"lootslot11",
+	"lootslot12",
+	"lootslot13",
+	"lootslot14",
+	"lootslot21",
+	"lootslot22",
+	"lootslot23",
+	"lootslot24",
 ]
 
 var player_on_lootbag := 0
@@ -187,26 +195,26 @@ func empty_itemslot(slot_name):
 	inventory[slot_name] = null
 	change_inv_ui_texture.emit(str(slot_name), null)
 	
-	if "Loot" in slot_name:
+	if "loot" in slot_name:
 		if is_instance_valid(last_shown_lootbag):
 			last_shown_lootbag.loot_dict[slot_name] = null
 
 	if !ex_item:
 		return true
 	if (("modifiers" in ex_item)
-	and ("Weapon" in slot_name 
-	or "Hat" in slot_name
-	or "Ability" in slot_name)): # THIS MIGHT BE MORE APPROPRIATE IN PLAYERSTATS
+	and ("weapon" in slot_name 
+	or "hat" in slot_name
+	or "ability" in slot_name)): # THIS MIGHT BE MORE APPROPRIATE IN PLAYERSTATS
 		for stat_modifier in ex_item.modifiers:
 			var stat_name = stat_modifier[0] 
 			var stat_change = -1 * stat_modifier[1]
 			update_stats.emit(stat_name, stat_change)
 
-	if "Weapon" in slot_name:
+	if "weapon" in slot_name:
 		clear_weapon.emit()
-	elif "Hat" in slot_name:
+	elif "hat" in slot_name:
 		clear_hat.emit()
-	elif "Ability" in slot_name:
+	elif "ability" in slot_name:
 		clear_ability.emit()
 
 func reset_inventory():
@@ -215,9 +223,9 @@ func reset_inventory():
 
 func put_item(item, slot_name):
 	if (("modifiers" in item)
-	and ("Weapon" in slot_name 
-	or "Hat" in slot_name
-	or "Ability" in slot_name)):
+	and ("weapon" in slot_name 
+	or "hat" in slot_name
+	or "ability" in slot_name)):
 		for stat_modifier in item.modifiers:
 			var stat_name = stat_modifier[0] 
 			var stat_change = stat_modifier[1]
@@ -225,27 +233,27 @@ func put_item(item, slot_name):
 			PlayerStats.update_stats(stat_name, stat_change)
 		#PlayerStats.update_VMST_stats_ui.emit()
 		
-	if !inventory[slot_name]: # Slot is empty, proceed with putting
+	if !inventory[slot_name]: # slot is empty, proceed with putting
 		inventory[slot_name] = item
 		change_inv_ui_texture.emit(str(slot_name), load(item.sprite_path))
 	else: 
 		push_warning("ITEMS_MANAGER: WARNING: attempting to put_item into NON EMPTY slot.")
 	
-	if "Loot" in slot_name: # Putting item into a lootbag
+	if "loot" in slot_name: # Putting item into a lootbag
 		if last_shown_lootbag.loot_dict[slot_name]:
 			push_warning("NEED TO INVESTIGATE: CANNOT OVERRIDE LOOT")
 		last_shown_lootbag.loot_dict[slot_name] = item.id
 	
-	if "Weapon" in slot_name:
+	if "weapon" in slot_name:
 		add_weapon.emit(item)
-	elif "Hat" in slot_name:
+	elif "hat" in slot_name:
 		add_hat.emit(item)
-	elif "Ability" in slot_name:
+	elif "ability" in slot_name:
 		add_ability.emit(item)
 		
 func initialise_inventory(init_inv: Dictionary):
 	for key in init_inv:
-		if init_inv[key] and !("Loot" in key):
+		if init_inv[key] and !("loot" in key):
 			put_item(init_inv[key], key)
 
 func enable_inv():
