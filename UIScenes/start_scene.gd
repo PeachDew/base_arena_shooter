@@ -130,12 +130,13 @@ func add_char_child(
 	char_button.set_level_number(level_number)
 	
 	# Set equipment sprites
-	if inventory.hatslot:
-		char_button.set_slot_texture("hat", inventory.hatslot.sprite_path)
-	if inventory.weaponslot:
-		char_button.set_slot_texture("weapon", inventory.weaponslot.sprite_path)
-	if inventory.abilityslot:
-		char_button.set_slot_texture("ability", inventory.abilityslot.sprite_path)
+	var just_inv : Dictionary = inventory['inventory']
+	if just_inv.hatslot:
+		char_button.set_slot_texture("hat", just_inv.hatslot.sprite_path)
+	if just_inv.weaponslot:
+		char_button.set_slot_texture("weapon", just_inv.weaponslot.sprite_path)
+	if just_inv.abilityslot:
+		char_button.set_slot_texture("ability", just_inv.abilityslot.sprite_path)
 	
 	return char_button
 
@@ -155,7 +156,7 @@ func on_charcreate_close_button_pressed() -> void:
 	char_creating = false
 
 func on_create_char_button_pressed(pname: String, haircolor_index: int, eyecolor_index: int, char_create_node: UI_CharCreate):
-	var fresh_inv = ItemsManager.empty_inventory.duplicate()
+	var fresh_inv = ItemsManager.get_empty_inv_dict()
 	var fresh_stats = PlayerStats.get_default_player_stats_dict()
 	
 	# Save character data

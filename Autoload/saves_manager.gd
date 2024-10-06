@@ -15,6 +15,8 @@ func save_game():
 		print("Can't save, no player selected!")
 	else:
 		var player_inv = ItemsManager.inventory
+		var player_inv_pages = ItemsManager.inventory_pages
+		var player_current_page : int = ItemsManager.current_page
 		var player_stats = PlayerStats.get_player_stats_dict()
 		var appearance = SaveSystem.get_var(curr_player_name+":appearance")
 	
@@ -28,7 +30,12 @@ func save_game():
 		)
 		SaveSystem.set_var(
 			curr_player_name+":inventory",
-			player_inv)
+			{
+				"inventory":player_inv,
+				"inventory_pages":player_inv_pages,
+				"current_page":player_current_page,
+			}
+		)
 		SaveSystem.set_var(
 			curr_player_name+":playerstats",
 			player_stats)

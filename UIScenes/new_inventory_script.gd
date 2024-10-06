@@ -35,10 +35,20 @@ var slots_dict : Dictionary
 ]
 
 #@onready var ability_cooldown_ui = $AbilityCooldown
+@onready var button_left : Button = $InvEquipLoot/InventoryPlusEquip/InventoryPageWButtons/ButtonLeft
+@onready var button_right : Button = $InvEquipLoot/InventoryPlusEquip/InventoryPageWButtons/ButtonRight
+@onready var button_add_page : Button = $PageUI/ButtonAddPage
+
+@onready var page_num_label : Label = $PageUI/Label
 
 signal item_moved
 
+func update_page_label():
+	page_num_label.text = str(ItemsManager.current_page+1)+"/"+str(len(ItemsManager.inventory_pages))
+
 func _ready() -> void:
+	hide()
+	
 	initialise_slot_names()
 	var width = get_viewport_rect().size[0]
 	var height = get_viewport_rect().size[1]
@@ -46,10 +56,15 @@ func _ready() -> void:
 	position.x += width*7.2/10
 	position.y += height*5/10
 
-	
 	ItemsManager.change_inv_ui_texture.connect(on_change_inv_ui_texture)
 	ItemsManager.enable_loot_sig.connect(on_enable_loot_sig)
 	ItemsManager.disable_loot_sig.connect(on_disable_loot_sig)
+	
+	button_left.pressed.connect(ItemsManager.change_page.bind(true))
+	button_right.pressed.connect(ItemsManager.change_page)
+	button_add_page.pressed.connect(ItemsManager.add_page)
+	
+	ItemsManager.update_page_ui.connect(update_page_label)
 
 func initialise_slot_names() -> void:
 	slots_dict = {
@@ -65,26 +80,7 @@ func initialise_slot_names() -> void:
 	for sa in slots_dict:
 		slots_dict[sa].slot_name = sa
 		slots_dict[sa].item_moved.connect(on_item_moved)
-	#hatslot.slot_name = "hatslot"
-	#abilityslot.slot_name = "abilityslot"
-	#weaponslot.slot_name = "weaponslot"
-	#slot11.slot_name = "slot11"
-	#slot12.slot_name = "slot12"
-	#slot13.slot_name = "slot13"
-	#slot21.slot_name = "slot21"
-	#slot22.slot_name = "slot22"
-	#slot23.slot_name = "slot23"
-	#slot31.slot_name = "slot31"
-	#slot32.slot_name = "slot32"
-	#slot33.slot_name = "slot33"
-	#lootslot11.slot_name = "lootslot11"
-	#lootslot12.slot_name = "lootslot12"
-	#lootslot13.slot_name = "lootslot13"
-	#lootslot14.slot_name = "lootslot14"
-	#lootslot21.slot_name = "lootslot21"
-	#lootslot22.slot_name = "lootslot22"
-	#lootslot23.slot_name = "lootslot23"
-	#lootslot24.slot_name = "lootslot24"
+
 	
 #func show_ability_cooldown(cooldown_num: int):
 	#ability_cooldown_ui.set_cooldown_label(cooldown_num)
@@ -95,17 +91,17 @@ func on_item_moved(move_dict: Dictionary):
 
 func on_change_inv_ui_texture(key, new_sprite):
 	slots_dict[key].item_texture.texture = new_sprite
+	if new_sprite:
+		slots_dict[key].bg_color_rect.show()
+	else:
+		slots_dict[key].bg_color_rect.hide()
 
 func on_disable_loot_sig():
-	#$InvEquipLoot/Loot.hide()
 	for ln in loot_nodes:
 		ln.set_process(PROCESS_MODE_DISABLED)
 		ln.modulate.a = 0
-		#ln.hide()
 		
 func on_enable_loot_sig():
-	#$InvEquipLoot/Loot.show()
 	for ln in loot_nodes:
 		ln.set_process(PROCESS_MODE_INHERIT)
 		ln.modulate.a = 1
-		#ln.show()

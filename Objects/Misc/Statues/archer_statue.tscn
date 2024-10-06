@@ -26,6 +26,7 @@ hue_variation_max = 1.0
 size = Vector2(32, 32)
 
 [node name="ArcherStatue" type="Area2D"]
+y_sort_enabled = true
 script = ExtResource("1_0nn45")
 built_texture = ExtResource("2_e1368")
 unbuilt_texture = ExtResource("3_fiqll")
@@ -38,10 +39,10 @@ amount = 37
 process_material = SubResource("ParticleProcessMaterial_151te")
 
 [node name="StatueTexture" type="Sprite2D" parent="."]
-position = Vector2(2, -31)
+position = Vector2(2, -20)
 scale = Vector2(4, 4)
 texture = ExtResource("2_7roov")
-offset = Vector2(0, -6.95)
+offset = Vector2(0, -9.95)
 
 [node name="StatuePadCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_08aqg")

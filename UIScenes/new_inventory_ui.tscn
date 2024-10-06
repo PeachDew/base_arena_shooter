@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bue65q66og8dh"]
+[gd_scene load_steps=4 format=3 uid="uid://bue65q66og8dh"]
 
 [ext_resource type="Script" path="res://UIScenes/new_inventory_script.gd" id="1_4m85g"]
 [ext_resource type="PackedScene" uid="uid://b5osg0sd0huy8" path="res://UIScenes/slot.tscn" id="1_brab1"]
+[ext_resource type="Theme" uid="uid://b1tb3h6x4i01j" path="res://UIScenes/test_theme.tres" id="3_pg8ah"]
 
 [node name="NewInventoryUI" type="Control"]
 layout_mode = 3
@@ -61,12 +62,15 @@ layout_mode = 2
 
 [node name="HatSlot" parent="InvEquipLoot/InventoryPlusEquip/EquipPage" instance=ExtResource("1_brab1")]
 layout_mode = 2
+activated_bg_color = "e8c170"
 
 [node name="AbilitySlot" parent="InvEquipLoot/InventoryPlusEquip/EquipPage" instance=ExtResource("1_brab1")]
 layout_mode = 2
+activated_bg_color = "a4dddb"
 
 [node name="WeaponSlot" parent="InvEquipLoot/InventoryPlusEquip/EquipPage" instance=ExtResource("1_brab1")]
 layout_mode = 2
+activated_bg_color = "df84a5"
 
 [node name="InventoryPageWButtons" type="HBoxContainer" parent="InvEquipLoot/InventoryPlusEquip"]
 layout_mode = 2
@@ -118,14 +122,30 @@ layout_mode = 2
 layout_mode = 2
 text = ">"
 
-[node name="ButtonAddPage" type="Button" parent="."]
+[node name="PageUI" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.166406
-anchor_top = 0.455556
-anchor_right = 0.208594
-anchor_bottom = 0.498611
-offset_top = -1.52588e-05
+anchor_left = 0.134375
+anchor_top = 0.173611
+anchor_right = 0.198437
+anchor_bottom = 0.216667
+offset_left = 20.0
+offset_top = 200.0
+offset_right = 20.0
+offset_bottom = 200.0
+metadata/_edit_use_anchors_ = true
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="PageUI"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+theme = ExtResource("3_pg8ah")
+theme_override_font_sizes/font_size = 32
+text = "0/0
+"
+
+[node name="ButtonAddPage" type="Button" parent="PageUI"]
+layout_mode = 2
 text = "+Page
 "
 metadata/_edit_use_anchors_ = true

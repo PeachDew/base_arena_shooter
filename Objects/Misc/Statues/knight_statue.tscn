@@ -40,10 +40,10 @@ amount = 37
 process_material = SubResource("ParticleProcessMaterial_bsntk")
 
 [node name="StatueTexture" type="Sprite2D" parent="."]
-position = Vector2(2, -31)
+position = Vector2(2, -20)
 scale = Vector2(4, 4)
 texture = ExtResource("3_pr120")
-offset = Vector2(0, -6.95)
+offset = Vector2(0, -9.95)
 
 [node name="StatuePadCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_386dw")

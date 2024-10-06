@@ -1,5 +1,23 @@
 extends Node
 
+var inventory_pages : Array = []
+var empty_inventory_page : Array = [
+	null,null,null,
+	null,null,null,
+	null,null,null]
+const SLOTNAME_2_INDEX : Dictionary = {
+	"slot11": 0,
+	"slot12": 1,
+	"slot13": 2,
+	"slot21": 3,
+	"slot22": 4,
+	"slot23": 5,
+	"slot31": 6,
+	"slot32": 7,
+	"slot33": 8,
+}
+var current_page : int = 0
+
 var empty_inventory : Dictionary = {
 	"hatslot": null, 
 	"abilityslot": null,
@@ -23,11 +41,19 @@ var empty_inventory : Dictionary = {
 	"lootslot24": null,
 }
 
+func get_empty_inv_dict() -> Dictionary:
+	var empty_inv_dict : Dictionary = {
+		"inventory": empty_inventory.duplicate(),
+		"inventory_pages": [empty_inventory_page.duplicate()],
+		"current_page": 0
+	}
+	return empty_inv_dict
+
 @export var inventory := {
 	"hatslot": null,
 	"abilityslot": null,
 	"weaponslot": null,
-		"slot11": null,
+	"slot11": null,
 	"slot12": null,
 	"slot13": null,
 	"slot21": null,
@@ -99,12 +125,12 @@ signal disable_inv_sig
 signal enable_loot_sig
 signal disable_loot_sig
 signal activate_ability_cooldown_ui
+signal update_page_ui
 
 func _physics_process(_delta: float) -> void:
-
 	if Input.is_action_just_pressed("inventory"): # SHOULD THIS BE IN ITEMSMANAGER
 		inv_active = !inv_active
-	
+
 	if player_on_lootbag or inv_active:
 		inv_active = true
 		enable_inv()
@@ -193,6 +219,8 @@ func check_empty_lootbag():
 func empty_itemslot(slot_name):
 	var ex_item = inventory[slot_name]
 	inventory[slot_name] = null
+	if slot_name in SLOTNAME_2_INDEX:
+		inventory_pages[current_page][SLOTNAME_2_INDEX[slot_name]] = null
 	change_inv_ui_texture.emit(str(slot_name), null)
 	
 	if "loot" in slot_name:
@@ -218,8 +246,11 @@ func empty_itemslot(slot_name):
 		clear_ability.emit()
 
 func reset_inventory():
+	current_page = 0
+	inventory_pages = [empty_inventory_page.duplicate()]
 	for slot in inventory:
 		empty_itemslot(slot)
+	
 
 func put_item(item, slot_name):
 	if (("modifiers" in item)
@@ -235,6 +266,9 @@ func put_item(item, slot_name):
 		
 	if !inventory[slot_name]: # slot is empty, proceed with putting
 		inventory[slot_name] = item
+		
+		if slot_name in SLOTNAME_2_INDEX:
+			inventory_pages[current_page][SLOTNAME_2_INDEX[slot_name]] = item
 		change_inv_ui_texture.emit(str(slot_name), load(item.sprite_path))
 	else: 
 		push_warning("ITEMS_MANAGER: WARNING: attempting to put_item into NON EMPTY slot.")
@@ -250,11 +284,41 @@ func put_item(item, slot_name):
 		add_hat.emit(item)
 	elif "ability" in slot_name:
 		add_ability.emit(item)
-		
+
+func add_page():
+	inventory_pages.append(empty_inventory_page.duplicate())
+	update_page_ui.emit()
+
+func change_page(reverse_direction : bool = false):
+	var num_pages : int = len(inventory_pages)
+	if !num_pages<=1:
+		if !reverse_direction:
+			current_page = (current_page+1) % num_pages
+		else:
+			current_page = (current_page-1)
+			if current_page < 0:
+				current_page = num_pages - 1
+		for k in SLOTNAME_2_INDEX:
+			inventory[k] = inventory_pages[current_page][SLOTNAME_2_INDEX[k]]
+			if inventory[k]: # Slot contains item, update sprite
+				change_inv_ui_texture.emit(str(k), load(inventory[k].sprite_path))
+			else:
+				change_inv_ui_texture.emit(str(k), null)
+		update_page_ui.emit()
+	else:
+		push_warning("Only has one page.")
+	
+
+
 func initialise_inventory(init_inv: Dictionary):
-	for key in init_inv:
-		if init_inv[key] and !("loot" in key):
-			put_item(init_inv[key], key)
+	current_page = init_inv['current_page']
+	for key in init_inv['inventory']:
+		if init_inv['inventory'][key] and !("loot" in key):
+			put_item(init_inv['inventory'][key], key)
+	inventory_pages = init_inv['inventory_pages']
+	
+	update_page_ui.emit()
+	
 
 func enable_inv():
 	enable_inv_sig.emit()
