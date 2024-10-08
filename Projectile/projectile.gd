@@ -16,10 +16,16 @@ var is_crit = false
 @export var explode_on_death : bool = false
 @export var explosion_packed_scene_path : String = PATHS.EXPLOSION_TEST
 @export var explosion_spawn_marker : Marker2D
+
+@export var seeking_area : Area2D
+@export var max_turn_speed : float = PI/9
+
 var explosion_packed_scene : PackedScene
 
 @onready var hurtbox : Area2D = $Projectile_Area2D
 @onready var lifetime_timer : Timer = $Projectile_Lifetime_Timer
+
+var target = null
 
 signal hit_hitbox
 
@@ -34,6 +40,14 @@ func _ready() -> void:
 	if explode_on_death:
 		if explosion_packed_scene_path:
 			explosion_packed_scene = load(explosion_packed_scene_path)
+	
+	if seeking_area:
+		seeking_area.area_entered.connect(on_seeking_area_entered)
+
+func on_seeking_area_entered(area)->void:
+	if !target:
+		if area is Hurtbox:
+			target = area
 
 func check_valid_projectile():
 	if speed == -1 or damage == -1 or max_pierce == -1 or lifetime == -1:
@@ -47,7 +61,24 @@ func on_lifetime_timer_timeout():
 		spawn_projectile_explosion()
 	queue_free()
 	
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	if target:
+		if is_instance_valid(target):
+			var target_angle = global_position.direction_to(target.global_position).angle()
+			var current_angle = rotation
+			var angle_diff = fmod((target_angle - current_angle + PI), TAU) - PI
+			# Limit the maximum turn per frame
+			var turn_amount = sign(angle_diff) * min(max_turn_speed * delta, abs(angle_diff))
+			turn_amount = clamp(turn_amount, -max_turn_speed * delta, max_turn_speed * delta)
+
+			rotation += turn_amount
+		else:
+			for a in seeking_area.get_overlapping_areas():
+				if a is Hurtbox:
+					target = a
+			if !is_instance_valid(target):
+				target = null
+				
 	var direction = Vector2.RIGHT.rotated(rotation)
 	velocity = direction*speed
 	move_and_slide()

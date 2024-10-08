@@ -63,6 +63,9 @@ position = Vector2(0, 27)
 position = Vector2(0, 29)
 scale = Vector2(2, 2)
 
+[node name="DamageNumberOrigin" type="Marker2D" parent="PlayerCenter"]
+position = Vector2(0, -50)
+
 [node name="PlayerAnimation" type="Node2D" parent="."]
 script = ExtResource("5_pmraa")
 

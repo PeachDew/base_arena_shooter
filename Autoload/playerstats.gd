@@ -98,6 +98,9 @@ const STATUES_INFO : Dictionary = {
 
 var statue_dict : Dictionary
 
+# BOOLEAN BUFFS
+var steelskin : bool = false
+
 var muncher_dict : Dictionary
 # eg.
 #{

@@ -82,10 +82,17 @@ func remove_buffs():
 func apply_modifiers(modifiers: Array, remove: bool = false):
 	for stat_modifier in modifiers:
 		var stat_name = stat_modifier[0] 
-		var stat_change = stat_modifier[1]
-		if remove: 
-			stat_change *= -1
-		ItemsManager.update_stats.emit(stat_name, stat_change)
+		if stat_name in ["vigor","might","speed","tempo"]:
+			var stat_change = stat_modifier[1]
+			if remove: 
+				stat_change *= -1
+			ItemsManager.update_stats.emit(stat_name, stat_change)
+		else:
+			if stat_name == "steelskin":
+				if !remove:
+					PlayerStats.steelskin = true
+				else:
+					PlayerStats.steelskin = false
 	
 # implement cooldown!!
 func fire_projectile_at_cursor(projectile_config: Dictionary):

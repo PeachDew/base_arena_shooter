@@ -15,9 +15,10 @@ extends CharacterBody2D
 @onready var equipped_class := $EquippedClass
 
 @onready var bare_weapon := $BareWeapon
-@onready var firing_position := $PlayerCenter/FiringPosition
-@onready var throw_bomb_at := $PlayerCenter/ThrowBombAt
+@onready var firing_position : Marker2D = $PlayerCenter/FiringPosition
+@onready var throw_bomb_at : Marker2D = $PlayerCenter/ThrowBombAt
 @onready var hurtbox := $PlayerHurtbox
+@onready var damage_number_origin : Marker2D = $PlayerCenter/DamageNumberOrigin
 
 @onready var hp_regen_node := $HPRegen
 
@@ -158,7 +159,15 @@ func on_body_exited_player_hurtbox(body)->void:
 			
 func take_damage(attack: Attack) -> void:
 	var damage = attack.damage
+	if PlayerStats.steelskin:
+		damage *= 0.5
 	PlayerStats.change_hp(-1*damage)
+	AutoloadUI.display_damage_number(
+		int(damage), 
+		damage_number_origin.global_position+Vector2(-9.0,0.0),
+		false,
+		true
+	)
 	damageable = false
 	iframes_timer.start()
 	

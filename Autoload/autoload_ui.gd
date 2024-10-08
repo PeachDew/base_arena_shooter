@@ -1,11 +1,13 @@
 extends Node
 
-var damage_font = load("res://Art/fonts/DigitalDisco.ttf")
+#var damage_font = load("res://Art/fonts/DigitalDisco.ttf")
+var damage_font = load("res://Art/fonts/Gothica-Bold.ttf")
 
 func display_damage_number(
 	value: int, 
 	position: Vector2, 
 	is_critical: bool = false,
+	for_player: bool = false,
 	):
 		
 	if is_zero_approx(value):
@@ -22,15 +24,20 @@ func display_damage_number(
 	
 	damage_number_label.label_settings.font = damage_font
 	
-	var color = "#FFF"
+	
+	var color : String = "#FFF"
 	if is_critical:
-		color = "#ffc869"
-		damage_number_label.label_settings.outline_color = "#852a03"			
-		damage_number_label.label_settings.font_size = 33
+		color = "#e8c170"
+		damage_number_label.label_settings.outline_color = "#a53030"			
+		damage_number_label.label_settings.font_size = 32
 		damage_number_label.label_settings.outline_size = 6
+	elif for_player:
+		damage_number_label.label_settings.outline_color = "#3c5e8b"
+		damage_number_label.label_settings.font_size = 20
+		damage_number_label.label_settings.outline_size = 5
 	else:
-		damage_number_label.label_settings.outline_color = "#000"
-		damage_number_label.label_settings.font_size = 28
+		damage_number_label.label_settings.outline_color = "#a53030"
+		damage_number_label.label_settings.font_size = 24
 		damage_number_label.label_settings.outline_size = 5
 		
 	damage_number_label.label_settings.font_color = color
