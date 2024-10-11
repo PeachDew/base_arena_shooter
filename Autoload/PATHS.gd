@@ -24,6 +24,7 @@ const CLASS_PS_DIR : String = "res://Classes/"
 const CLASS_MAGE : String = CLASS_PS_DIR + "mage.tscn"
 const CLASS_ARCHER : String = CLASS_PS_DIR + "archer.tscn"
 const CLASS_WARRIOR : String = CLASS_PS_DIR + "warrior.tscn"
+const CLASS_PRIEST : String = CLASS_PS_DIR + "priest.tscn"
 
 ## PROJECTILES ##
 const PROJ_PS_DIR : String = "res://Objects/Projectiles/ProjectilePackedScenes/"
@@ -42,7 +43,9 @@ const PROJ_BWZERO : String = PROJ_PS_DIR + "projectile_basicweapon.tscn"
 const PROJ_EXPLOSIONS_PS_DIR : String = "res://Objects/Projectiles/ProjectileExplosionPackedScenes/"
 const EXPLOSION_TEST : String = PROJ_EXPLOSIONS_PS_DIR+"test_projectile_explosion.tscn"
 
+const AOE_DIR : String = "res://Objects/AOEAttacks/"
 const BEAM_01 : String = "res://Projectile/aoe_attack.tscn"
+const BEAM_PRIEST : String = AOE_DIR + "priest_beam.tscn"
 
 ### abilities ###
 const PROJ_A01 : String = ABILITIES_PROJ_PS_DIR + "flash_bolt_projectile.tscn"
@@ -55,6 +58,7 @@ const PROJ_DOCOCO : String = ENEMY_PROJ_PS_DIR + "dococo_coconut_proj.tscn"
 ### ultimates ###
 const PROJ_METEOR_STRIKE : String = PROJ_PS_DIR +  "projectile_meteor_strike.tscn"
 const PROJ_DECASHOT : String = PROJ_PS_DIR + "projectile_decashot.tscn"
+const PROJ_MAGE_ULT : String = PROJ_PS_DIR + "ultimates/" + "homing_bolt_mage_ult.tscn"
 
 ### particles ###
 const PARTICLES_PS_DIR : String = "res://Particles/"

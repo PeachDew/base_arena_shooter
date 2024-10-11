@@ -94,8 +94,14 @@ const STATUES_INFO : Dictionary = {
 			["tempo", 0.5],
 			["speed", 0.5]],
 	},
+	"statue_3": {
+		"name": "PriestStatue",
+		"attune_class": PATHS.CLASS_PRIEST,
+		"bonus_per_level": [
+			["might", 0.5],
+			["vigor", 0.5]],
+	},
 }
-
 var statue_dict : Dictionary
 
 # BOOLEAN BUFFS
@@ -112,7 +118,7 @@ func get_default_muncher_dict() -> Dictionary:
 		"weapon": false,
 	}
 	
-func get_default_statue_dict(num_statues: int) -> Dictionary:
+func get_default_statue_dicts(num_statues: int) -> Dictionary:
 	var default_statue_dict: Dictionary = {"num_statues_built": 0}
 	for i in range(num_statues):
 		default_statue_dict["statue_"+str(i)] = {
@@ -120,6 +126,12 @@ func get_default_statue_dict(num_statues: int) -> Dictionary:
 			"built": false,
 		}
 	return default_statue_dict
+
+func get_default_statue_dict_REMOVE_THIS_AFTER_DEBUG()->Dictionary:
+	return {
+		"level": 0,
+		"built": false,
+	}
 
 signal stats_updated
 signal damage_dealt
@@ -416,7 +428,7 @@ func get_default_player_stats_dict():
 		"base_player_stats" : DEFAULT_PLAYER_STATS,
 		
 		# Statues Stats
-		"statue_dict": get_default_statue_dict(len(STATUES_INFO)),
+		"statue_dict": get_default_statue_dicts(len(STATUES_INFO)),
 		
 		"muncher_dict": get_default_muncher_dict(),
 	}

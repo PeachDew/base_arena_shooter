@@ -1,0 +1,163 @@
+[gd_scene load_steps=23 format=3 uid="uid://2ii50teio0kf"]
+
+[ext_resource type="Script" path="res://Mechanics/AOEAttack.gd" id="1_4e44b"]
+[ext_resource type="Texture2D" uid="uid://csamkq1emo6oe" path="res://Art/items/Projectiles/bomb/warning_area_2.png" id="2_w4aur"]
+[ext_resource type="Texture2D" uid="uid://cpn35dj0jy6cx" path="res://Art/items/Projectiles/bomb/priest_beam_explode.png" id="3_2dqnl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jpnvs"]
+atlas = ExtResource("2_w4aur")
+region = Rect2(0, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6g0e"]
+atlas = ExtResource("2_w4aur")
+region = Rect2(17, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cj5qg"]
+atlas = ExtResource("2_w4aur")
+region = Rect2(34, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p6yuw"]
+atlas = ExtResource("2_w4aur")
+region = Rect2(51, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qxqyi"]
+atlas = ExtResource("2_w4aur")
+region = Rect2(68, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qgqym"]
+atlas = ExtResource("2_w4aur")
+region = Rect2(85, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_23vyg"]
+atlas = ExtResource("2_w4aur")
+region = Rect2(102, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fue8c"]
+atlas = ExtResource("2_w4aur")
+region = Rect2(119, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4wsi5"]
+atlas = ExtResource("2_w4aur")
+region = Rect2(136, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bf04e"]
+atlas = ExtResource("2_w4aur")
+region = Rect2(153, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3hw4u"]
+atlas = ExtResource("2_w4aur")
+region = Rect2(170, 0, 17, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0r8qj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jpnvs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r6g0e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cj5qg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p6yuw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qxqyi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qgqym")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_23vyg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fue8c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4wsi5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bf04e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3hw4u")
+}],
+"loop": false,
+"name": &"warn",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7emdq"]
+atlas = ExtResource("3_2dqnl")
+region = Rect2(0, 0, 26, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ngcy"]
+atlas = ExtResource("3_2dqnl")
+region = Rect2(26, 0, 26, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ea2u"]
+atlas = ExtResource("3_2dqnl")
+region = Rect2(52, 0, 26, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nqbcl"]
+atlas = ExtResource("3_2dqnl")
+region = Rect2(78, 0, 26, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rnmef"]
+atlas = ExtResource("3_2dqnl")
+region = Rect2(104, 0, 26, 84)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wpjcd"]
+animations = [{
+"frames": [{
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_7emdq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ngcy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ea2u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nqbcl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rnmef")
+}],
+"loop": false,
+"name": &"explode",
+"speed": 8.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rvdfe"]
+radius = 7.0
+height = 18.0
+
+[node name="PriestBeam" type="Area2D"]
+y_sort_enabled = true
+scale = Vector2(5, 5)
+script = ExtResource("1_4e44b")
+
+[node name="WarningAreaAnimation" type="AnimatedSprite2D" parent="."]
+z_index = -1
+position = Vector2(0, -0.675)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_0r8qj")
+animation = &"warn"
+frame = 10
+frame_progress = 1.0
+
+[node name="ExplosionAnimation" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, 6.015)
+sprite_frames = SubResource("SpriteFrames_wpjcd")
+animation = &"explode"
+frame = 1
+offset = Vector2(0, -36.875)
+
+[node name="HitboxCollision" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_rvdfe")

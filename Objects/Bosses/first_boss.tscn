@@ -160,7 +160,6 @@ animations = [{
 [node name="FirstBoss" type="CharacterBody2D"]
 y_sort_enabled = true
 script = ExtResource("1_y5nx6")
-max_hp = 50.0
 
 [node name="Boss_Pattern" type="Node" parent="."]
 script = ExtResource("8_evdat")

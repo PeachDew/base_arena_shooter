@@ -55,6 +55,8 @@ func update_built_status()->void:
 
 func update_statue_level():
 	#print(PlayerStats.statue_dict)
+	if !(statue_id in PlayerStats.statue_dict):
+		PlayerStats.statue_dict[statue_id] = PlayerStats.get_default_statue_dict_REMOVE_THIS_AFTER_DEBUG()
 	var statue_level : int = PlayerStats.statue_dict[statue_id].level
 	statue_level_label.text = "Level" + " " + str(statue_level)
 	upgrade_cost_label.text = str(get_statue_upgrade_cost(statue_level))

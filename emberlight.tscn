@@ -510,6 +510,7 @@ radius = 6.01644
 [node name="TownScene" type="Node2D" node_paths=PackedStringArray("spawn_loc")]
 y_sort_enabled = true
 script = ExtResource("1_8860g")
+region_name = "emberlight"
 spawn_loc = NodePath("SpawnPoint")
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -551,6 +552,10 @@ statue_id = "statue_1"
 
 [node name="ArcherStatue" parent="." instance=ExtResource("10_rf5uv")]
 position = Vector2(-211, 0)
+
+[node name="Priest" parent="." instance=ExtResource("7_xnbbw")]
+position = Vector2(-72, 111)
+statue_id = "statue_3"
 
 [node name="SpawnPoint" type="Marker2D" parent="."]
 position = Vector2(54, -46)

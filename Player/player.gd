@@ -58,6 +58,7 @@ func _ready() -> void:
 	bare_weapon.add_projectile_child.connect(on_add_projectile_child)
 	
 	equipped_class.add_projectile_child.connect(on_add_projectile_child)
+	equipped_class.add_AOE_attack_on_cursor.connect(on_add_AOE_attack_on_cursor)
 	equipped_class.set_misc_particles.connect(set_misc_particles)
 	equipped_class.set_shot_particles.connect(on_set_shot_particles)
 		
@@ -116,6 +117,10 @@ func update_crit(proj_instance): # Updates the crit chance given input projectil
 	if randf() <= crit_chance:
 		proj_instance.damage *= 2.0
 		proj_instance.is_crit = true
+
+func on_add_AOE_attack_on_cursor(projectile_instance):
+	get_parent().add_child(projectile_instance)
+	projectile_instance.global_position = get_global_mouse_position()
 
 func on_add_projectile_child(proj_instance, particles = shot_particles):
 	proj_instance.damage *= 1+ PlayerStats.get_might_dmg_bonus()+ mastery_bonus.weapon

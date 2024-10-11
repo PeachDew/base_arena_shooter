@@ -102,17 +102,18 @@ radius = 7.0
 height = 18.0
 
 [node name="AOEAttack" type="Area2D"]
-y_sort_enabled = true
 scale = Vector2(3, 3)
 script = ExtResource("1_f43eg")
 warning_duration = 1.0
 
 [node name="WarningAreaAnimation" type="AnimatedSprite2D" parent="."]
+z_index = -1
 scale = Vector2(1.36, 1.36)
 sprite_frames = SubResource("SpriteFrames_kyv3l")
 animation = &"warn"
 
 [node name="ExplosionAnimation" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_5nbwb")
 animation = &"explode"
 frame = 4

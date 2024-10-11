@@ -2,10 +2,13 @@ extends Node2D
 class_name Ultimate
 
 @export var projectile_config_ids : Array
+@export var aoe_config_ids : Array
 
-var projectile_configs := []
+var projectile_configs : Array = []
+var aoe_configs : Array = []
 
 signal add_projectile_child
+signal add_AOE_attack_on_cursor
 signal ult_used
 signal set_misc_particles
 signal set_shot_particles
@@ -51,7 +54,7 @@ func _physics_process(delta: float) -> void:
 		PlayerStats.buff_time_left -= delta
 		if PlayerStats.buff_time_left < 0.0:
 			remove_buffs()
-	
+			
 func use_ultimate():
 	if buff_time > 0.0:
 		PlayerStats.set_buff_time(buff_time)
@@ -64,6 +67,9 @@ func use_ultimate():
 	else:
 		for i in range(len(projectile_configs)):
 			fire_projectile_at_cursor(projectile_configs[i])
+		if aoe_configs:
+			for ac in aoe_configs:
+				aoe_attack_on_cursor(ac)
 
 func add_buffs():
 	if len(has_buffs_misc_particles) > 0 and PlayerStats.buff_time_left > 0.0:
@@ -115,4 +121,25 @@ func fire_projectile_at_cursor(projectile_config: Dictionary):
 	projectile_instance.max_pierce = projectile_config.max_pierce
 	projectile_instance.lifetime = projectile_config.lifetime
 	print("EMITTING!")
+	if projectile_config.start_delay == 0.0:
+		add_projectile_child.emit(projectile_instance)
+	else:
+		get_tree().create_timer(projectile_config.start_delay).timeout.connect(on_start_delay_timeout.bind(projectile_instance))
+
+func on_start_delay_timeout(projectile_instance) -> void:
 	add_projectile_child.emit(projectile_instance)
+	
+func aoe_attack_on_cursor(projectile_config: Dictionary):
+	print("AOE_ATTACKINGGG")
+	var projectile_instance = projectile_config.projectile_packed_scene.instantiate()
+
+	projectile_instance.damage = projectile_config.damage
+	projectile_instance.warning_duration = projectile_config.warning_duration
+	
+	projectile_instance.position.x = projectile_config.x
+	projectile_instance.position.y = projectile_config.y
+	
+	if projectile_config.start_delay == 0.0:
+		add_AOE_attack_on_cursor.emit(projectile_instance)
+	else:
+		get_tree().create_timer(projectile_config.start_delay).timeout.connect(on_start_delay_timeout.bind(projectile_instance))

@@ -1,6 +1,12 @@
 extends Area2D
 class_name AOEAttack
 
+# YSORT NOTES
+# for explosion offset to be considered in ysort, BOTH AOEParent and ExplosionAnim have
+# to have YSORT enabled
+# WARNING AREA priority/prder = -1 for it to always be below things
+# Need to see if it goes below tile map (i think it doesn't)
+
 @onready var warning_as2d : AnimatedSprite2D = $WarningAreaAnimation
 @onready var explosion_as2d : AnimatedSprite2D = $ExplosionAnimation
 

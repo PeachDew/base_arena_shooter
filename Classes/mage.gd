@@ -4,12 +4,15 @@ extends Node2D
 
 func _ready() -> void:
 	ultimate.projectile_config_ids = [
-		"U_METEOR_STRIKE_1",
-		"U_METEOR_STRIKE_2",
-		"U_METEOR_STRIKE_3",
-		"U_METEOR_STRIKE_4",
-		"U_METEOR_STRIKE_5",
-		"U_METEOR_STRIKE_6",
+		"MAGE_ULT_2",
+		"MAGE_ULT_3",
+		"MAGE_ULT_4",
+		"MAGE_ULT_5",
+		"MAGE_ULT_6",
+		"MAGE_ULT_1",
+		"MAGE_ULT_7",
+		"MAGE_ULT_8",
+		"MAGE_ULT_9",
 	]
 	
 	for id in ultimate.projectile_config_ids:

@@ -7,6 +7,7 @@ signal ult_used
 signal set_misc_particles
 signal set_shot_particles
 signal add_projectile_child
+signal add_AOE_attack_on_cursor
 
 func _ready() -> void:
 	PlayerStats.add_class.connect(add_class)
@@ -37,6 +38,7 @@ func initialise_class_node(cn):
 			c.set_misc_particles.connect(on_set_misc_particles)
 			c.set_shot_particles.connect(on_set_shot_particles)
 			c.add_projectile_child.connect(on_add_projectile_child)
+			c.add_AOE_attack_on_cursor.connect(on_add_AOE_attack_on_cursor)
 			ultimate_node = c
 
 func on_ult_used():
@@ -50,5 +52,8 @@ func on_set_shot_particles(particles_array):
 
 func on_add_projectile_child(proj_instance):
 	add_projectile_child.emit(proj_instance)
+
+func on_add_AOE_attack_on_cursor(proj_instance):
+	add_AOE_attack_on_cursor.emit(proj_instance)
 
 
