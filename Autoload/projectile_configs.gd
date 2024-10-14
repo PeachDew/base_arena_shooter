@@ -62,6 +62,18 @@ var configs : Dictionary = {
 	"start_delay": 0.0,
 	},
 	
+	"curvybow": {
+	"projectile_packed_scene": load(PATHS.PROJ_B01),
+	"cooldown": 0.2,
+	"speed": 350.0,
+	"damage": 5.0,
+	"max_pierce": 1,
+	"lifetime": 2.5,
+	"rotation": 0.0,
+	"spread_degrees": 0,
+	"start_delay": 0.0,
+	},
+	
 	"traineestaff": 
 	{
 	"projectile_packed_scene": load(PATHS.PROJ_TRAINEESTAFF),
@@ -287,6 +299,8 @@ var configs : Dictionary = {
 		"rotation": 0.0,
 		"start_delay": 0.00,
 	},
+	
+
 
 	#BEAMS
 	"PRIEST_ULT_1": {

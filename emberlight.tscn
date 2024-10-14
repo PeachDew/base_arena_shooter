@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dvdmih1s7q881"]
+[gd_scene load_steps=37 format=3 uid="uid://dvdmih1s7q881"]
 
 [ext_resource type="Script" path="res://region.gd" id="1_8860g"]
 [ext_resource type="PackedScene" uid="uid://nux7eimswkmm" path="res://Objects/Portals/first_area_portal.tscn" id="2_pfi31"]
@@ -9,8 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://b5tt3a7pr42qc" path="res://Objects/Misc/Statues/knight_statue.tscn" id="7_xnbbw"]
 [ext_resource type="Texture2D" uid="uid://b46o15kj4sn12" path="res://Art/misc/statues/mage_statue.png" id="8_i16xr"]
 [ext_resource type="Texture2D" uid="uid://bd0kvy2hmicyi" path="res://Art/misc/statues/mage_statue_ruined.png" id="9_8ap0l"]
-[ext_resource type="PackedScene" uid="uid://8i2smhedxkhr" path="res://Objects/Misc/Statues/archer_statue.tscn" id="10_rf5uv"]
+[ext_resource type="Texture2D" uid="uid://c3ok8baiqoyuj" path="res://Art/misc/statues/archer_statue.png" id="10_ucmu4"]
 [ext_resource type="PackedScene" uid="uid://cm6inlyhegmk7" path="res://Objects/Misc/Munchers/muncher.tscn" id="11_7l8of"]
+[ext_resource type="Texture2D" uid="uid://c6swa2y8au7vn" path="res://Art/misc/statues/archer_statue_ruined.png" id="11_ohx4d"]
+[ext_resource type="Texture2D" uid="uid://cljhlomrskxf3" path="res://Art/misc/statues/priest_statue.png" id="11_v7783"]
+[ext_resource type="Texture2D" uid="uid://dg3j7d4c14tlt" path="res://Art/misc/statues/priest_statue_ruined.png" id="12_ov4jf"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_lmkcg"]
 tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 2, 1, 131072, 0, 65537, 131072, 2)
@@ -545,16 +548,21 @@ shape = SubResource("CircleShape2D_22idg")
 position = Vector2(-72, 0)
 
 [node name="MageStatue" parent="." instance=ExtResource("7_xnbbw")]
-position = Vector2(-141, 0)
+position = Vector2(-144, 0)
 built_texture = ExtResource("8_i16xr")
 unbuilt_texture = ExtResource("9_8ap0l")
 statue_id = "statue_1"
 
-[node name="ArcherStatue" parent="." instance=ExtResource("10_rf5uv")]
-position = Vector2(-211, 0)
+[node name="ArcherStatue" parent="." instance=ExtResource("7_xnbbw")]
+position = Vector2(-216, 0)
+built_texture = ExtResource("10_ucmu4")
+unbuilt_texture = ExtResource("11_ohx4d")
+statue_id = "statue_2"
 
-[node name="Priest" parent="." instance=ExtResource("7_xnbbw")]
+[node name="PriestStatue" parent="." instance=ExtResource("7_xnbbw")]
 position = Vector2(-72, 111)
+built_texture = ExtResource("11_v7783")
+unbuilt_texture = ExtResource("12_ov4jf")
 statue_id = "statue_3"
 
 [node name="SpawnPoint" type="Marker2D" parent="."]

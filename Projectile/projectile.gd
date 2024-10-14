@@ -25,6 +25,20 @@ var explosion_packed_scene : PackedScene
 @onready var hurtbox : Area2D = $Projectile_Area2D
 @onready var lifetime_timer : Timer = $Projectile_Lifetime_Timer
 
+@export var curve : bool = false
+@export var curve_period : float = 2.00 # kinda seconds
+@export var curve_turning_ratio : float = 0.1 # 0.5 = halfway
+@export var curve_one_shot : bool = true
+@export var max_curve_angle = PI/3 #radians
+@export var min_curve_angle = PI/3
+@export var curve_in_curve : CurveTexture
+@export var curve_out_curve : CurveTexture
+
+var current_curve_rotation : float = 0.0
+var curve_count : int = 0
+var curve_timer : float = 0.0
+
+
 var target = null
 
 signal hit_hitbox
@@ -43,6 +57,7 @@ func _ready() -> void:
 	
 	if seeking_area:
 		seeking_area.area_entered.connect(on_seeking_area_entered)
+	
 
 func on_seeking_area_entered(area)->void:
 	if !target:
@@ -51,7 +66,7 @@ func on_seeking_area_entered(area)->void:
 
 func check_valid_projectile():
 	if speed == -1 or damage == -1 or max_pierce == -1 or lifetime == -1:
-		print("PROTOTYPE PROJECTILE: instance has an unasssigned attribute.")
+		push_warning("PROTOTYPE PROJECTILE: instance has an unasssigned attribute.")
 		queue_free()
 		return false
 	return true
@@ -78,11 +93,48 @@ func _physics_process(delta: float) -> void:
 					target = a
 			if !is_instance_valid(target):
 				target = null
+	
+	if curve:
+		if !(curve_one_shot and (curve_count>0)):
+			handle_curve(delta)
 				
 	var direction = Vector2.RIGHT.rotated(rotation)
 	velocity = direction*speed
 	move_and_slide()
+
+func handle_curve(delta: float) -> void:
+	print("Handling Curving!")
+	var curve_out : float = curve_period * curve_turning_ratio
+	var curve_in : float = curve_period - curve_out
+	var curr_curve_ratio : float = curve_timer/curve_period
 	
+	if curve_timer > curve_period:
+		curve_count += 1
+		if curve_one_shot:
+			curve = false
+		curve_timer = 0.0
+	elif curve_timer < curve_out:
+		var curve_rotation = curve_in_curve.curve.sample_baked(curr_curve_ratio) * max_curve_angle
+		if current_curve_rotation>0:
+			rotation = rotation - current_curve_rotation + curve_rotation
+			current_curve_rotation = curve_rotation
+		else:
+			current_curve_rotation = curve_rotation
+			rotation += current_curve_rotation
+
+	elif curve_timer < curve_in:
+		var curve_rotation = curve_out_curve.curve.sample_baked(curr_curve_ratio) * max_curve_angle
+		if current_curve_rotation>0:
+			rotation = rotation - current_curve_rotation - curve_rotation
+			current_curve_rotation = -1*curve_rotation
+		else:
+			rotation = rotation + current_curve_rotation - curve_rotation
+			current_curve_rotation = -1*curve_rotation
+	
+	print(rad_to_deg(rotation))
+	
+	curve_timer += delta
+
 func on_hurtbox_area_entered(area):
 	if area is Hurtbox:
 		var attack := Attack.new()

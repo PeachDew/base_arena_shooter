@@ -120,7 +120,7 @@ func fire_projectile_at_cursor(projectile_config: Dictionary):
 	projectile_instance.damage = projectile_config.damage
 	projectile_instance.max_pierce = projectile_config.max_pierce
 	projectile_instance.lifetime = projectile_config.lifetime
-	print("EMITTING!")
+	
 	if projectile_config.start_delay == 0.0:
 		add_projectile_child.emit(projectile_instance)
 	else:

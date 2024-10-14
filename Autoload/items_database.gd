@@ -77,6 +77,18 @@ var items:= {
 		"mastery": 0,
 	},
 	
+	"B01": {
+		"id": "B01",
+		"name": "CurvyBow",
+		"sprite_path": RANGED_WEAPONS_DIR+"traineesbow.png",
+		"type": 3,
+		"modifiers": [
+			["speed",1],
+		],
+		"projectile_config_ids" : ["curvybow"],
+		"mastery": 0,
+	},
+	
 	"S02": {
 		"id": "S02",
 		"name": "Lukewarm Staff",

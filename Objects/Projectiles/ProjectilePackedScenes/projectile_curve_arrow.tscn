@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://c0oyasuiml6c7"]
+
+[ext_resource type="Script" path="res://Projectile/projectile.gd" id="1_moyf4"]
+[ext_resource type="Texture2D" uid="uid://bhqcssqg8ahuj" path="res://Art/items/Projectiles/ranged/elegantarrow.png" id="2_qaxk4"]
+
+[sub_resource type="Curve" id="Curve_31tj8"]
+_data = [Vector2(0, 0), 0.0, 3.05112, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_fufae"]
+curve = SubResource("Curve_31tj8")
+
+[sub_resource type="Curve" id="Curve_fle0j"]
+_data = [Vector2(0, 1), 0.0, 0.0195149, 0, 0, Vector2(1, 0), -2.45238, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3dga4"]
+curve = SubResource("Curve_fle0j")
+
+[node name="projectile_curved_arrow" type="CharacterBody2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_moyf4")
+curve = true
+curve_in_curve = SubResource("CurveTexture_fufae")
+curve_out_curve = SubResource("CurveTexture_3dga4")
+
+[node name="Projectile_Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="ProjectileSprite" type="Sprite2D" parent="Projectile_Area2D"]
+rotation = 0.781907
+texture = ExtResource("2_qaxk4")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Projectile_Area2D"]
+polygon = PackedVector2Array(7.5, 0, 2.5, -2, -7.5, 0, 2.5, 2)
+
+[node name="Projectile_Lifetime_Timer" type="Timer" parent="."]
