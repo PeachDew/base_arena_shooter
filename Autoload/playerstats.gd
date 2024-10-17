@@ -101,6 +101,12 @@ const STATUES_INFO : Dictionary = {
 			["might", 0.5],
 			["vigor", 0.5]],
 	},
+	"statue_4": {
+		"name": "WindWalkerStatue",
+		"attune_class": PATHS.CLASS_WINDWALKER,
+		"bonus_per_level": [
+			["tempo", 1]],
+	},
 }
 var statue_dict : Dictionary
 

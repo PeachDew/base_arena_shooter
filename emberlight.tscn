@@ -565,6 +565,12 @@ built_texture = ExtResource("11_v7783")
 unbuilt_texture = ExtResource("12_ov4jf")
 statue_id = "statue_3"
 
+[node name="WindWalkerStatue" parent="." instance=ExtResource("7_xnbbw")]
+position = Vector2(-216, 111)
+built_texture = ExtResource("11_v7783")
+unbuilt_texture = ExtResource("12_ov4jf")
+statue_id = "statue_4"
+
 [node name="SpawnPoint" type="Marker2D" parent="."]
 position = Vector2(54, -46)
 

@@ -1,38 +1,116 @@
-[gd_scene load_steps=7 format=3 uid="uid://c0oyasuiml6c7"]
+[gd_scene load_steps=18 format=3 uid="uid://c0oyasuiml6c7"]
 
 [ext_resource type="Script" path="res://Projectile/projectile.gd" id="1_moyf4"]
-[ext_resource type="Texture2D" uid="uid://bhqcssqg8ahuj" path="res://Art/items/Projectiles/ranged/elegantarrow.png" id="2_qaxk4"]
+[ext_resource type="Texture2D" uid="uid://cqrnimuyrmvan" path="res://Art/items/Projectiles/ranged/windwalker_ult.png" id="2_n7vo5"]
 
 [sub_resource type="Curve" id="Curve_31tj8"]
-_data = [Vector2(0, 0), 0.0, 3.05112, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+min_value = -1.0
+max_value = 0.0
+_data = [Vector2(0, 0), 0.0, -1.77988, 0, 0, Vector2(1, -0.538462), -0.318338, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_fufae"]
 curve = SubResource("Curve_31tj8")
 
-[sub_resource type="Curve" id="Curve_fle0j"]
-_data = [Vector2(0, 1), 0.0, 0.0195149, 0, 0, Vector2(1, 0), -2.45238, 0.0, 0, 0]
+[sub_resource type="Curve" id="Curve_8nyv2"]
+_data = [Vector2(0, 1), 0.0, -0.0353711, 0, 0, Vector2(1e-05, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.989011, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_cub3c"]
+curve = SubResource("Curve_8nyv2")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ioag8"]
+atlas = ExtResource("2_n7vo5")
+region = Rect2(0, 0, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4kv4"]
+atlas = ExtResource("2_n7vo5")
+region = Rect2(10, 0, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlymh"]
+atlas = ExtResource("2_n7vo5")
+region = Rect2(20, 0, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vaa3m"]
+atlas = ExtResource("2_n7vo5")
+region = Rect2(30, 0, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cjwvx"]
+atlas = ExtResource("2_n7vo5")
+region = Rect2(40, 0, 10, 10)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4ekww"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ioag8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4kv4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlymh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vaa3m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cjwvx")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_daf77"]
+offsets = PackedFloat32Array(0, 0.143836, 0.705479, 1)
+colors = PackedColorArray(1, 1, 1, 0, 0.815686, 0.854902, 0.568627, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1jrer"]
+gradient = SubResource("Gradient_daf77")
+
+[sub_resource type="Curve" id="Curve_oyod1"]
+_data = [Vector2(0, 1), 0.0, -3.89499, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_3dga4"]
-curve = SubResource("Curve_fle0j")
+[sub_resource type="CurveTexture" id="CurveTexture_gd53b"]
+curve = SubResource("Curve_oyod1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wb38x"]
+particle_flag_disable_z = true
+angle_min = 45.0
+angle_max = 135.0
+gravity = Vector3(0, 0, 0)
+scale_min = 3.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_gd53b")
+color_ramp = SubResource("GradientTexture1D_1jrer")
 
 [node name="projectile_curved_arrow" type="CharacterBody2D"]
 scale = Vector2(2, 2)
 script = ExtResource("1_moyf4")
 curve = true
 curve_in_curve = SubResource("CurveTexture_fufae")
-curve_out_curve = SubResource("CurveTexture_3dga4")
+curve_out_curve = SubResource("CurveTexture_cub3c")
+curve_flipped_random = true
 
 [node name="Projectile_Area2D" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 4
 
-[node name="ProjectileSprite" type="Sprite2D" parent="Projectile_Area2D"]
+[node name="ProjectileSprite" type="AnimatedSprite2D" parent="Projectile_Area2D"]
 rotation = 0.781907
-texture = ExtResource("2_qaxk4")
+sprite_frames = SubResource("SpriteFrames_4ekww")
+autoplay = "default"
+frame = 4
+frame_progress = 1.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Projectile_Area2D"]
-polygon = PackedVector2Array(7.5, 0, 2.5, -2, -7.5, 0, 2.5, 2)
+polygon = PackedVector2Array(5.5, 0, 4.5, -1, 0, -1.5, -4.5, -1, -5.5, 0, -4.5, 1, 0, 1.5, 4.5, 1)
 
 [node name="Projectile_Lifetime_Timer" type="Timer" parent="."]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(2.895, 0)
+process_material = SubResource("ParticleProcessMaterial_wb38x")
+explosiveness = 0.5

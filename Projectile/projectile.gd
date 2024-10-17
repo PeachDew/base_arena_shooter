@@ -26,17 +26,22 @@ var explosion_packed_scene : PackedScene
 @onready var lifetime_timer : Timer = $Projectile_Lifetime_Timer
 
 @export var curve : bool = false
-@export var curve_period : float = 2.00 # kinda seconds
-@export var curve_turning_ratio : float = 0.1 # 0.5 = halfway
+@export var curve_period : float = 0.5 # kinda seconds
+@export var curve_turning_ratio : float = 0.5 # 0.5 = halfway
 @export var curve_one_shot : bool = true
-@export var max_curve_angle = PI/3 #radians
-@export var min_curve_angle = PI/3
+@export var max_curve_angle = PI/4 #radians
+@export var min_curve_angle = 0.0
 @export var curve_in_curve : CurveTexture
 @export var curve_out_curve : CurveTexture
+@export var curve_flipped : bool = false
+@export var curve_flipped_random : bool = false
 
 var current_curve_rotation : float = 0.0
 var curve_count : int = 0
-var curve_timer : float = 0.0
+var curve_in_timer : float = 0.0
+var curve_out_timer : float = 0.0
+var curve_out_duration : float = curve_period * curve_turning_ratio
+var curve_angle: float = randf_range(min_curve_angle, max_curve_angle)
 
 
 var target = null
@@ -44,6 +49,8 @@ var target = null
 signal hit_hitbox
 
 func _ready() -> void:
+	if curve_flipped_random:
+		curve_flipped = randi_range(0,1)
 	scale = Vector2(2,2)
 	hurtbox.area_entered.connect(on_hurtbox_area_entered)
 	if check_valid_projectile():
@@ -58,7 +65,6 @@ func _ready() -> void:
 	if seeking_area:
 		seeking_area.area_entered.connect(on_seeking_area_entered)
 	
-
 func on_seeking_area_entered(area)->void:
 	if !target:
 		if area is Hurtbox:
@@ -103,37 +109,29 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func handle_curve(delta: float) -> void:
-	print("Handling Curving!")
-	var curve_out : float = curve_period * curve_turning_ratio
-	var curve_in : float = curve_period - curve_out
-	var curr_curve_ratio : float = curve_timer/curve_period
-	
-	if curve_timer > curve_period:
+	if curve_in_timer > (curve_period-curve_out_duration):
 		curve_count += 1
 		if curve_one_shot:
 			curve = false
-		curve_timer = 0.0
-	elif curve_timer < curve_out:
-		var curve_rotation = curve_in_curve.curve.sample_baked(curr_curve_ratio) * max_curve_angle
-		if current_curve_rotation>0:
-			rotation = rotation - current_curve_rotation + curve_rotation
-			current_curve_rotation = curve_rotation
-		else:
-			current_curve_rotation = curve_rotation
-			rotation += current_curve_rotation
-
-	elif curve_timer < curve_in:
-		var curve_rotation = curve_out_curve.curve.sample_baked(curr_curve_ratio) * max_curve_angle
-		if current_curve_rotation>0:
-			rotation = rotation - current_curve_rotation - curve_rotation
-			current_curve_rotation = -1*curve_rotation
-		else:
-			rotation = rotation + current_curve_rotation - curve_rotation
-			current_curve_rotation = -1*curve_rotation
-	
-	print(rad_to_deg(rotation))
-	
-	curve_timer += delta
+			queue_free()
+		curve_in_timer = 0.0
+		curve_out_timer = 0.0
+	elif curve_out_timer < curve_out_duration:
+		var curr_curve_ratio: float = curve_out_timer/(curve_period/2)
+		var curve_rotation = curve_out_curve.curve.sample_baked(curr_curve_ratio) * curve_angle
+		if curve_flipped: 
+			curve_rotation *= -1
+		rotation = rotation - current_curve_rotation + curve_rotation
+		current_curve_rotation = curve_rotation
+		curve_out_timer += delta
+	else:
+		var curr_curve_ratio: float = curve_in_timer/(curve_period/2)
+		var curve_rotation = curve_in_curve.curve.sample_baked(curr_curve_ratio) * curve_angle
+		if curve_flipped: 
+			curve_rotation *= -1
+		rotation = rotation - current_curve_rotation + curve_rotation
+		current_curve_rotation = curve_rotation
+		curve_in_timer += delta
 
 func on_hurtbox_area_entered(area):
 	if area is Hurtbox:

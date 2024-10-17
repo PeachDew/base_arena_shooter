@@ -64,7 +64,7 @@ var configs : Dictionary = {
 	
 	"curvybow": {
 	"projectile_packed_scene": load(PATHS.PROJ_B01),
-	"cooldown": 0.2,
+	"cooldown": 0.05,
 	"speed": 350.0,
 	"damage": 5.0,
 	"max_pierce": 1,

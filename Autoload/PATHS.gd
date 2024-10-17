@@ -25,6 +25,7 @@ const CLASS_MAGE : String = CLASS_PS_DIR + "mage.tscn"
 const CLASS_ARCHER : String = CLASS_PS_DIR + "archer.tscn"
 const CLASS_WARRIOR : String = CLASS_PS_DIR + "warrior.tscn"
 const CLASS_PRIEST : String = CLASS_PS_DIR + "priest.tscn"
+const CLASS_WINDWALKER : String = CLASS_PS_DIR + "windwalker.tscn"
 
 ## PROJECTILES ##
 const PROJ_PS_DIR : String = "res://Objects/Projectiles/ProjectilePackedScenes/"
