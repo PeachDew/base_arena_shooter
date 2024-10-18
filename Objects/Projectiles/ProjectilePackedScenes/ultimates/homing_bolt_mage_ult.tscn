@@ -35,7 +35,7 @@ color_ramp = SubResource("GradientTexture1D_86iue")
 
 [node name="homing_bolt_mage_ult" type="CharacterBody2D" node_paths=PackedStringArray("seeking_area")]
 z_index = 1
-scale = Vector2(3, 3)
+scale = Vector2(6, 6)
 script = ExtResource("1_kethd")
 seeking_area = NodePath("SeekingArea")
 max_turn_speed = 2.093
