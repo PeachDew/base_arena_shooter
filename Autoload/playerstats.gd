@@ -107,6 +107,12 @@ const STATUES_INFO : Dictionary = {
 		"bonus_per_level": [
 			["tempo", 1]],
 	},
+	"statue_5": {
+		"name": "BladeDancerStatue",
+		"attune_class": PATHS.CLASS_BLADEDANCER,
+		"bonus_per_level": [
+			["tempo", 1]],
+	}
 }
 var statue_dict : Dictionary
 

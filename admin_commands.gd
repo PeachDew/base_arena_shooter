@@ -63,6 +63,7 @@ func _physics_process(_delta: float) -> void:
 		
 		world.region.add_child(spawned_enemy)
 		
+		print("ADMIN_COMMANDS.GD MOUSE GLOBAL POS: ")
 		print(get_global_mouse_position())
 	
 	

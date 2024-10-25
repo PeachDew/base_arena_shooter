@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdndqdsiir00x"]
+
+[ext_resource type="Script" path="res://Classes/blade_dancer.gd" id="1_o0j38"]
+[ext_resource type="Script" path="res://Player/ultimate.gd" id="2_jm0ue"]
+
+[node name="Bladedancer" type="Node2D"]
+script = ExtResource("1_o0j38")
+
+[node name="Ultimate" type="Node2D" parent="."]
+script = ExtResource("2_jm0ue")

@@ -122,15 +122,40 @@ func on_add_AOE_attack_on_cursor(projectile_instance):
 	get_parent().add_child(projectile_instance)
 	projectile_instance.global_position = get_global_mouse_position()
 
-func on_add_projectile_child(proj_instance, particles = shot_particles):
+func on_add_projectile_child(proj_instance: Projectile, particles = shot_particles):
 	proj_instance.damage *= 1+ PlayerStats.get_might_dmg_bonus()+ mastery_bonus.weapon
 	update_crit(proj_instance)
 	
 	add_child(proj_instance)
-	proj_instance.global_position = firing_position.global_position
-	var mouse_direction = get_global_mouse_position() - firing_position.global_position
-	var proj_direction : float = mouse_direction.angle()
+	var mouse_direction : Vector2
+	var proj_direction : float
+	if !proj_instance.rotate_mouse:
+		mouse_direction = get_global_mouse_position() - firing_position.global_position
+		proj_direction = mouse_direction.angle()
+	else:
+		if MiscInfo.confirmed_slash_angle_rad:
+			proj_direction = MiscInfo.confirmed_slash_angle_rad
+		else:
+			mouse_direction = get_global_mouse_position() - firing_position.global_position
+			proj_direction = mouse_direction.angle()
+	
 	proj_instance.rotation += proj_direction
+			
+	if proj_instance.spawn_on_mouse:
+		var distance_to_mouse: float = firing_position.global_position.distance_to(get_global_mouse_position())
+		if  distance_to_mouse < proj_instance.spawn_mouse_max_dist:
+			proj_instance.global_position = get_global_mouse_position()
+		else:
+			mouse_direction = get_global_mouse_position() - firing_position.global_position
+			proj_instance.global_position = firing_position.global_position + mouse_direction.normalized() * proj_instance.spawn_mouse_max_dist
+			
+	else:
+		proj_instance.global_position = firing_position.global_position
+		
+	if proj_instance.spawn_offset_distance:
+		proj_instance.global_position = firing_position.global_position + mouse_direction.normalized() * proj_instance.spawn_offset_distance
+		
+	
 	
 	if len(particles) > 0:
 		for p in particles:
@@ -196,6 +221,9 @@ func add_weapon(weapon_item) -> void:
 			mastery_bonus.weapon = ItemsDatabase.get_mastery_bonus(weapon_item.mastery)
 		else:
 			mastery_bonus.weapon = 0.0
+		
+		if "weapon_fire_modes" in weapon_item:
+			new_weapon_instance.total_fire_modes = weapon_item.weapon_fire_modes
 		
 		#disable bare weapon
 		bare_weapon.process_mode = Node.PROCESS_MODE_DISABLED

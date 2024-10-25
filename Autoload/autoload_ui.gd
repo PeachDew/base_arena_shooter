@@ -3,6 +3,19 @@ extends Node
 #var damage_font = load("res://Art/fonts/DigitalDisco.ttf")
 var damage_font = load("res://Art/fonts/Gothica-Bold.ttf")
 
+var fire_mode_canvas_layer : CanvasLayer
+var fire_mode_label : Label
+
+func display_weapon_fire_mode(value: int):
+	if !fire_mode_label:
+		fire_mode_canvas_layer = CanvasLayer.new()
+		fire_mode_label = Label.new()
+		fire_mode_canvas_layer.call_deferred("add_child", fire_mode_label)
+		call_deferred("add_child", fire_mode_canvas_layer)
+	else:
+		fire_mode_canvas_layer.show() # already exists
+	fire_mode_label.text = "Weapon Fire Mode: " + str(value)
+
 func display_damage_number(
 	value: int, 
 	position: Vector2, 

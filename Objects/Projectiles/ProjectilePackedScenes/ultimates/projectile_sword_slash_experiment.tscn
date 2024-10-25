@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=3 uid="uid://cybqmd0ceip38"]
+
+[ext_resource type="Script" path="res://Projectile/projectile.gd" id="1_namv5"]
+[ext_resource type="Texture2D" uid="uid://23s5t66txax" path="res://Art/items/Projectiles/melee/sword_slash_experiment.png" id="2_n3sjr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cklmb"]
+atlas = ExtResource("2_n3sjr")
+region = Rect2(0, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tdu5t"]
+atlas = ExtResource("2_n3sjr")
+region = Rect2(14, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghf4m"]
+atlas = ExtResource("2_n3sjr")
+region = Rect2(28, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vlliw"]
+atlas = ExtResource("2_n3sjr")
+region = Rect2(42, 0, 14, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4ekww"]
+animations = [{
+"frames": [{
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_cklmb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdu5t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ghf4m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vlliw")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="projectile_sword_slash_experiment" type="CharacterBody2D"]
+scale = Vector2(4, 4)
+script = ExtResource("1_namv5")
+queue_free_on_animation_end = true
+spawn_on_mouse = true
+
+[node name="Projectile_Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="ProjectileSprite" type="AnimatedSprite2D" parent="Projectile_Area2D"]
+z_index = 1
+rotation = 0.781907
+sprite_frames = SubResource("SpriteFrames_4ekww")
+autoplay = "default"
+frame = 1
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Projectile_Area2D"]
+polygon = PackedVector2Array(10, 0, 7, -3, -8.5, 0, 7, 3)
+
+[node name="Projectile_Lifetime_Timer" type="Timer" parent="."]

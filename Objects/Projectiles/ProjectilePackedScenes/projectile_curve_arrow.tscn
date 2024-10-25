@@ -19,47 +19,47 @@ point_count = 3
 [sub_resource type="CurveTexture" id="CurveTexture_cub3c"]
 curve = SubResource("Curve_8nyv2")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ioag8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_xhody"]
 atlas = ExtResource("2_n7vo5")
 region = Rect2(0, 0, 10, 10)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_f4kv4"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_kd4kp"]
 atlas = ExtResource("2_n7vo5")
 region = Rect2(10, 0, 10, 10)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qlymh"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_yvv0c"]
 atlas = ExtResource("2_n7vo5")
 region = Rect2(20, 0, 10, 10)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vaa3m"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_iabxn"]
 atlas = ExtResource("2_n7vo5")
 region = Rect2(30, 0, 10, 10)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cjwvx"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2qtmf"]
 atlas = ExtResource("2_n7vo5")
 region = Rect2(40, 0, 10, 10)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_4ekww"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_2qxjf"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ioag8")
+"texture": SubResource("AtlasTexture_xhody")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_f4kv4")
+"texture": SubResource("AtlasTexture_kd4kp")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qlymh")
+"texture": SubResource("AtlasTexture_yvv0c")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vaa3m")
+"texture": SubResource("AtlasTexture_iabxn")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cjwvx")
+"texture": SubResource("AtlasTexture_2qtmf")
 }],
 "loop": false,
 "name": &"default",
-"speed": 10.0
+"speed": 20.0
 }]
 
 [sub_resource type="Gradient" id="Gradient_daf77"]
@@ -100,7 +100,7 @@ collision_mask = 4
 
 [node name="ProjectileSprite" type="AnimatedSprite2D" parent="Projectile_Area2D"]
 rotation = 0.781907
-sprite_frames = SubResource("SpriteFrames_4ekww")
+sprite_frames = SubResource("SpriteFrames_2qxjf")
 autoplay = "default"
 frame = 4
 frame_progress = 1.0

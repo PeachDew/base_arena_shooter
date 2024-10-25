@@ -43,6 +43,13 @@ var curve_out_timer : float = 0.0
 var curve_out_duration : float = curve_period * curve_turning_ratio
 var curve_angle: float = randf_range(min_curve_angle, max_curve_angle)
 
+@export var queue_free_on_animation_end : bool = false
+
+@export var spawn_offset_distance : float = 0
+@export var spawn_on_mouse : bool = false
+@export var spawn_mouse_max_dist : float = 100.0
+
+@export var rotate_mouse : bool = false
 
 var target = null
 
@@ -51,7 +58,6 @@ signal hit_hitbox
 func _ready() -> void:
 	if curve_flipped_random:
 		curve_flipped = randi_range(0,1)
-	scale = Vector2(2,2)
 	hurtbox.area_entered.connect(on_hurtbox_area_entered)
 	if check_valid_projectile():
 		lifetime_timer.wait_time = lifetime
@@ -61,9 +67,13 @@ func _ready() -> void:
 	if explode_on_death:
 		if explosion_packed_scene_path:
 			explosion_packed_scene = load(explosion_packed_scene_path)
-	
+
 	if seeking_area:
 		seeking_area.area_entered.connect(on_seeking_area_entered)
+	
+	if queue_free_on_animation_end:
+		if $Projectile_Area2D/ProjectileSprite:
+			$Projectile_Area2D/ProjectileSprite.animation_finished.connect(queue_free)
 	
 func on_seeking_area_entered(area)->void:
 	if !target:

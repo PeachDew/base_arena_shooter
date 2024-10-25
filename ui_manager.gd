@@ -6,10 +6,11 @@ extends CanvasLayer
 @onready var hp_bar : TextureProgressBar = $HPBar
 @onready var hp_number : Label = $HPNumber
 
-@onready var ult_bar = $UltBar
-@onready var ult_text = $UltText
-@onready var ult_left_bar = $UltLeftBar
-@onready var ult_animation = $UltAnimation
+@onready var ult_node = $UltNode
+@onready var ult_bar = ult_node.ult_bar
+@onready var ult_text = ult_node.ult_text
+@onready var ult_left_bar = ult_node.ult_left_bar
+@onready var ult_animation = ult_node.ult_animation
 
 @onready var coin_ui_hbox = $CoinUI
 @onready var coin_ui_label = $CoinUI/CoinLabel
@@ -94,14 +95,8 @@ func on_coins_change():
 	
 func initialise_ult_bar(width: float, height: float):
 	
-	ult_bar.position.x += width/3
-	ult_bar.position.y += height*9/10
-	ult_text.position.x += width/3
-	ult_text.position.y += height*9/10
-	ult_animation.position.x += width/3
-	ult_animation.position.y += height*9/10
-	ult_left_bar.position.x += width/3
-	ult_left_bar.position.y += height*9/10
+	ult_node.position.x += width/9.5
+	ult_node.position.y += height*7.8/10
 	
 	ult_bar.value = PlayerStats.ult_charge
 	
@@ -109,6 +104,12 @@ func initialise_ult_bar(width: float, height: float):
 	
 
 func update_ult_bar():
+	if !PlayerStats.attuned_statue_id:
+		ult_bar.hide()
+		ult_text.hide()
+	else:
+		ult_bar.show()
+		ult_text.show()
 	ult_bar.value = PlayerStats.ult_charge
 	ult_text.text = str(clamp(int(PlayerStats.ult_charge),0,100))
 	

@@ -571,6 +571,10 @@ built_texture = ExtResource("11_v7783")
 unbuilt_texture = ExtResource("12_ov4jf")
 statue_id = "statue_4"
 
+[node name="BladedancerStatue" parent="." instance=ExtResource("7_xnbbw")]
+position = Vector2(-144, 111)
+statue_id = "statue_5"
+
 [node name="SpawnPoint" type="Marker2D" parent="."]
 position = Vector2(54, -46)
 

@@ -26,6 +26,7 @@ const CLASS_ARCHER : String = CLASS_PS_DIR + "archer.tscn"
 const CLASS_WARRIOR : String = CLASS_PS_DIR + "warrior.tscn"
 const CLASS_PRIEST : String = CLASS_PS_DIR + "priest.tscn"
 const CLASS_WINDWALKER : String = CLASS_PS_DIR + "windwalker.tscn"
+const CLASS_BLADEDANCER : String = CLASS_PS_DIR + "bladedancer.tscn"
 
 ## PROJECTILES ##
 const PROJ_PS_DIR : String = "res://Objects/Projectiles/ProjectilePackedScenes/"
@@ -61,6 +62,7 @@ const PROJ_DOCOCO : String = ENEMY_PROJ_PS_DIR + "dococo_coconut_proj.tscn"
 const PROJ_METEOR_STRIKE : String = PROJ_PS_DIR +  "projectile_meteor_strike.tscn"
 const PROJ_DECASHOT : String = PROJ_PS_DIR + "projectile_decashot.tscn"
 const PROJ_MAGE_ULT : String = PROJ_PS_DIR + "ultimates/" + "homing_bolt_mage_ult.tscn"
+const PROJ_BLADEDANCE_ULT : String = PROJ_PS_DIR + "ultimates/" + "projectile_sword_slash_experiment.tscn"
 
 ### particles ###
 const PARTICLES_PS_DIR : String = "res://Particles/"

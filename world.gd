@@ -11,11 +11,11 @@ extends Node2D
 
 signal resume_change_scene
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("primary_fire"):
-		var aoe_attack: AOEAttack = load("res://Projectile/aoe_attack.tscn").instantiate()
-		aoe_attack.global_position = get_global_mouse_position()
-		region.add_child(aoe_attack)
+#func _input(event: InputEvent) -> void:
+	#if event.is_action_pressed("primary_fire"):
+		#var aoe_attack: AOEAttack = load("res://Projectile/aoe_attack.tscn").instantiate()
+		#aoe_attack.global_position = get_global_mouse_position()
+		#region.add_child(aoe_attack)
 
 func _ready() -> void:
 	enemymanager = $EnemyManager

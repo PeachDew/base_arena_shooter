@@ -89,6 +89,7 @@ var items:= {
 		"mastery": 0,
 	},
 	
+	
 	"S02": {
 		"id": "S02",
 		"name": "Lukewarm Staff",
@@ -99,6 +100,19 @@ var items:= {
 		],
 		"projectile_config_ids" : ["t2staff"],
 		"mastery": 0,
+	},
+	
+	"SW01": {
+		"id": "SW01",
+		"name": "Experimental Sword",
+		"sprite_path": MELEE_WEAPONS_DIR+"traineesblade.png",
+		"type": 3,
+		"modifiers": [
+			["speed",10],
+		],
+		"projectile_config_ids" : ["U_BLADEDANCE_0","U_BLADEDANCE_11","U_BLADEDANCE_12","U_BLADEDANCE_13"],
+		"mastery": 0,
+		"weapon_fire_modes": 2
 	},
 	
 	# Abilities
