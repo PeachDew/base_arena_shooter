@@ -71,7 +71,6 @@ func fire_projectile_at_cursor(projectile_config: Dictionary):
 	if "rotate_mouse" in projectile_config:
 		projectile_instance.rotate_mouse = projectile_config.rotate_mouse
 	
-		
 	projectile_instance.damage = projectile_config.damage
 	projectile_instance.max_pierce = projectile_config.max_pierce
 	projectile_instance.lifetime = projectile_config.lifetime

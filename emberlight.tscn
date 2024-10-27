@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dvdmih1s7q881"]
+[gd_scene load_steps=41 format=3 uid="uid://dvdmih1s7q881"]
 
 [ext_resource type="Script" path="res://region.gd" id="1_8860g"]
 [ext_resource type="PackedScene" uid="uid://nux7eimswkmm" path="res://Objects/Portals/first_area_portal.tscn" id="2_pfi31"]
@@ -14,6 +14,10 @@
 [ext_resource type="Texture2D" uid="uid://c6swa2y8au7vn" path="res://Art/misc/statues/archer_statue_ruined.png" id="11_ohx4d"]
 [ext_resource type="Texture2D" uid="uid://cljhlomrskxf3" path="res://Art/misc/statues/priest_statue.png" id="11_v7783"]
 [ext_resource type="Texture2D" uid="uid://dg3j7d4c14tlt" path="res://Art/misc/statues/priest_statue_ruined.png" id="12_ov4jf"]
+[ext_resource type="Texture2D" uid="uid://dxydt8atx6n3h" path="res://Art/misc/statues/windwalker_statue.png" id="14_75nu6"]
+[ext_resource type="Texture2D" uid="uid://d68bay10vwa" path="res://Art/misc/statues/windwalker_statue_ruined.png" id="15_vb8x2"]
+[ext_resource type="Texture2D" uid="uid://duka1ixorba6q" path="res://Art/misc/statues/blade_dancer_statue.png" id="16_5vr1f"]
+[ext_resource type="Texture2D" uid="uid://c8vpusqtk30nv" path="res://Art/misc/statues/blade_dancer_ruined.png" id="17_nerv4"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_lmkcg"]
 tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 2, 1, 131072, 0, 65537, 131072, 2)
@@ -545,34 +549,36 @@ autoplay = "idle"
 shape = SubResource("CircleShape2D_22idg")
 
 [node name="KnightStatue" parent="." instance=ExtResource("7_xnbbw")]
-position = Vector2(-72, 0)
+position = Vector2(-72, -10)
 
 [node name="MageStatue" parent="." instance=ExtResource("7_xnbbw")]
-position = Vector2(-144, 0)
+position = Vector2(-144, -10)
 built_texture = ExtResource("8_i16xr")
 unbuilt_texture = ExtResource("9_8ap0l")
 statue_id = "statue_1"
 
 [node name="ArcherStatue" parent="." instance=ExtResource("7_xnbbw")]
-position = Vector2(-216, 0)
+position = Vector2(-216, -10)
 built_texture = ExtResource("10_ucmu4")
 unbuilt_texture = ExtResource("11_ohx4d")
 statue_id = "statue_2"
 
 [node name="PriestStatue" parent="." instance=ExtResource("7_xnbbw")]
-position = Vector2(-72, 111)
+position = Vector2(-144, 111)
 built_texture = ExtResource("11_v7783")
 unbuilt_texture = ExtResource("12_ov4jf")
 statue_id = "statue_3"
 
 [node name="WindWalkerStatue" parent="." instance=ExtResource("7_xnbbw")]
 position = Vector2(-216, 111)
-built_texture = ExtResource("11_v7783")
-unbuilt_texture = ExtResource("12_ov4jf")
+built_texture = ExtResource("14_75nu6")
+unbuilt_texture = ExtResource("15_vb8x2")
 statue_id = "statue_4"
 
 [node name="BladedancerStatue" parent="." instance=ExtResource("7_xnbbw")]
-position = Vector2(-144, 111)
+position = Vector2(-72, 111)
+built_texture = ExtResource("16_5vr1f")
+unbuilt_texture = ExtResource("17_nerv4")
 statue_id = "statue_5"
 
 [node name="SpawnPoint" type="Marker2D" parent="."]

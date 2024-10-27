@@ -8,7 +8,7 @@ class_name Statue
 @onready var upgrade_attune_ui : VBoxContainer = $UpgradeAttuneUI
 @onready var upgrade_cost_label : Label = $UpgradeAttuneUI/UpgradeHbox/Label
 @onready var upgrade_button : Button = $UpgradeAttuneUI/UpgradeHbox/UpgradeButton
-@onready var statue_level_label : Label = $LevelLabel
+@onready var statue_level_label : Label = $UpgradeAttuneUI/LevelLabel
 @onready var attune_button : Button = $UpgradeAttuneUI/AttuneButton
 
 @onready var attune_particles : GPUParticles2D = $AttunedParticles

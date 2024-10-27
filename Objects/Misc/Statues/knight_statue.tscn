@@ -54,10 +54,10 @@ texture = ExtResource("4_xxdaw")
 
 [node name="BuildUI" type="VBoxContainer" parent="."]
 z_index = 1
-offset_left = 22.0
-offset_top = -68.0
-offset_right = 107.0
-offset_bottom = -45.0
+offset_left = 36.52
+offset_top = -64.09
+offset_right = 123.52
+offset_bottom = -41.09
 metadata/_edit_group_ = true
 
 [node name="BuildHbox" type="HBoxContainer" parent="BuildUI"]
@@ -79,14 +79,21 @@ texture = ExtResource("6_7oo7y")
 expand_mode = 2
 
 [node name="UpgradeAttuneUI" type="VBoxContainer" parent="."]
-visible = false
 z_index = 1
-offset_left = 22.0
-offset_top = -83.0
-offset_right = 139.0
-offset_bottom = -33.0
+offset_left = 27.18
+offset_top = -109.72
+offset_right = 144.18
+offset_bottom = -40.72
 metadata/_edit_group_ = true
 metadata/_edit_use_anchors_ = true
+
+[node name="LevelLabel" type="Label" parent="UpgradeAttuneUI"]
+z_index = 1
+layout_mode = 2
+theme = ExtResource("5_u4sag")
+text = "Level 0"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="AttuneButton" type="Button" parent="UpgradeAttuneUI"]
 layout_mode = 2
@@ -110,14 +117,3 @@ text = "100"
 layout_mode = 2
 texture = ExtResource("6_7oo7y")
 expand_mode = 2
-
-[node name="LevelLabel" type="Label" parent="."]
-z_index = 1
-offset_left = -22.0
-offset_top = -110.0
-offset_right = 23.0
-offset_bottom = -87.0
-theme = ExtResource("5_u4sag")
-text = "Level 0"
-horizontal_alignment = 1
-vertical_alignment = 1
