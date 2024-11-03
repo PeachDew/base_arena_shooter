@@ -37,10 +37,17 @@ const PROJ_P0 : String = PROJ_PS_DIR + "prototype_projectile.tscn"
 const PROJ_F0 : String = PROJ_PS_DIR + "firestaff_projectile.tscn"
 const PROJ_TRAINEEBOW : String = PROJ_PS_DIR + "projectile_traineearrow.tscn"
 const PROJ_TRAINEESTAFF : String = PROJ_PS_DIR + "projectile_traineebolt.tscn"
-const PROJ_T2STAFF : String = PROJ_PS_DIR + "projectile_t2staff.tscn"
 const PROJ_TRAINEEBLADE : String = PROJ_PS_DIR + "projectile_traineeslash.tscn"
 const PROJ_BWZERO : String = PROJ_PS_DIR + "projectile_basicweapon.tscn"
 const PROJ_B01 : String = PROJ_PS_DIR + "projectile_curve_arrow.tscn"
+
+const MAGIC_PROJ_PS_DIR : String = "res://Objects/Projectiles/ProjectilePackedScenes/magic/"
+const PROJ_T0STAFF : String = MAGIC_PROJ_PS_DIR + "staff_t0_projectile.tscn"
+const PROJ_T1STAFF : String = MAGIC_PROJ_PS_DIR + "staff_t1_projectile.tscn"
+const PROJ_T2STAFF : String = MAGIC_PROJ_PS_DIR + "staff_t2_projectile.tscn"
+const PROJ_T3STAFF : String = MAGIC_PROJ_PS_DIR + "staff_t3_projectile.tscn"
+const PROJ_T4STAFF : String = MAGIC_PROJ_PS_DIR + "staff_t4_projectile.tscn"
+const PROJ_T5STAFF : String = MAGIC_PROJ_PS_DIR + "staff_t5_projectile.tscn"
 
 ## EXPLOSIONS ##
 const PROJ_EXPLOSIONS_PS_DIR : String = "res://Objects/Projectiles/ProjectileExplosionPackedScenes/"
