@@ -126,6 +126,45 @@ var configs : Dictionary = {
 	"start_delay": 0.0,
 	},
 	
+	"t3staff":
+	{
+	"projectile_packed_scene": load(PATHS.PROJ_T3STAFF),
+	"cooldown": 0.5,
+	"speed": 400.0,
+	"damage": 15.0,
+	"max_pierce": 0,
+	"lifetime": 0.7,
+	"rotation": 0.0,
+	"spread_degrees": 10,
+	"start_delay": 0.0,
+	},
+	
+	"t4staff":
+	{
+	"projectile_packed_scene": load(PATHS.PROJ_T4STAFF),
+	"cooldown": 0.5,
+	"speed": 400.0,
+	"damage": 20.0,
+	"max_pierce": 0,
+	"lifetime": 0.7,
+	"rotation": 0.0,
+	"spread_degrees": 10,
+	"start_delay": 0.0,
+	},
+	
+	"t5staff":
+	{
+	"projectile_packed_scene": load(PATHS.PROJ_T5STAFF),
+	"cooldown": 0.4,
+	"speed": 400.0,
+	"damage": 25.0,
+	"max_pierce": 0,
+	"lifetime": 0.7,
+	"rotation": 0.0,
+	"spread_degrees": 10,
+	"start_delay": 0.0,
+	},
+	
 	"traineeblade":
 	{
 	"projectile_packed_scene": load(PATHS.PROJ_TRAINEEBLADE),

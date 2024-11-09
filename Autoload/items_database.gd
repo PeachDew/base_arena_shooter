@@ -129,6 +129,33 @@ var items:= {
 		"mastery": 0,
 	},
 	
+	"t3staff": {
+		"id": "t3staff",
+		"name": "Lukewarm Staff",
+		"sprite_path": MAGIC_WEAPONS_DIR+"tiered_staves4.png",
+		"type": 3,
+		"projectile_config_ids" : ["t3staff"],
+		"mastery": 0,
+	},
+	
+	"t4staff": {
+		"id": "t4staff",
+		"name": "Lukewarm Staff",
+		"sprite_path": MAGIC_WEAPONS_DIR+"tiered_staves5.png",
+		"type": 3,
+		"projectile_config_ids" : ["t4staff"],
+		"mastery": 0,
+	},
+	
+	"t5staff": {
+		"id": "t5staff",
+		"name": "Lukewarm Staff",
+		"sprite_path": MAGIC_WEAPONS_DIR+"tiered_staves6.png",
+		"type": 3,
+		"projectile_config_ids" : ["t5staff"],
+		"mastery": 0,
+	},
+	
 	"SW01": {
 		"id": "SW01",
 		"name": "Experimental Sword",

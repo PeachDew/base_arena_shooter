@@ -11,7 +11,10 @@ var loot_tables:= {
 		#"SW01": 100,
 		"t0staff": 100,
 		"t1staff": 100,
-		#"t2staff": 100,
+		"t2staff": 100,
+		"t3staff": 100,
+		"t4staff": 100,
+		"t5staff": 100,
 	}
 }
 
