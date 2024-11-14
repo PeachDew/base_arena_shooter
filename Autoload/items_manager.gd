@@ -210,7 +210,8 @@ func check_empty_lootbag():
 			all_loot_empty = false
 	if all_loot_empty:
 		lootbags_in_contact_with_player.erase(last_shown_lootbag)
-		last_shown_lootbag.queue_free()
+		if is_instance_valid(last_shown_lootbag):
+			last_shown_lootbag.queue_free()
 		last_shown_lootbag = null
 		if len(lootbags_in_contact_with_player) > 0:
 			update_lootnodes(lootbags_in_contact_with_player[0])
@@ -307,15 +308,13 @@ func change_page(reverse_direction : bool = false):
 		update_page_ui.emit()
 	else:
 		push_warning("Only has one page.")
-	
-
 
 func initialise_inventory(init_inv: Dictionary):
 	current_page = init_inv['current_page']
+	inventory_pages = init_inv['inventory_pages']
 	for key in init_inv['inventory']:
 		if init_inv['inventory'][key] and !("loot" in key):
 			put_item(init_inv['inventory'][key], key)
-	inventory_pages = init_inv['inventory_pages']
 	
 	update_page_ui.emit()
 	

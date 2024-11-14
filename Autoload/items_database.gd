@@ -156,6 +156,61 @@ var items:= {
 		"mastery": 0,
 	},
 	
+	"t0sword": {
+		"id": "t0sword",
+		"name": "Lukewarm Sword",
+		"sprite_path": MELEE_WEAPONS_DIR+"tiered_swords1.png",
+		"type": 3,
+		"projectile_config_ids" : ["t0sword"],
+		"mastery": 0,
+		"weapon_fire_modes": 2
+	},
+	"t1sword": {
+		"id": "t1sword",
+		"name": "Lukewarm Sword",
+		"sprite_path": MELEE_WEAPONS_DIR+"tiered_swords2.png",
+		"type": 3,
+		"projectile_config_ids" : ["t1sword"],
+		"mastery": 0,
+		"weapon_fire_modes": 2
+	},
+	"t2sword": {
+		"id": "t2sword",
+		"name": "Lukewarm Sword",
+		"sprite_path": MELEE_WEAPONS_DIR+"tiered_swords3.png",
+		"type": 3,
+		"projectile_config_ids" : ["t2sword"],
+		"mastery": 0,
+		"weapon_fire_modes": 2
+	},
+	"t3sword": {
+		"id": "t3sword",
+		"name": "Lukewarm Sword",
+		"sprite_path": MELEE_WEAPONS_DIR+"tiered_swords4.png",
+		"type": 3,
+		"projectile_config_ids" : ["t3sword"],
+		"mastery": 0,
+		"weapon_fire_modes": 2
+	},
+	"t4sword": {
+		"id": "t4sword",
+		"name": "Lukewarm Sword",
+		"sprite_path": MELEE_WEAPONS_DIR+"tiered_swords5.png",
+		"type": 3,
+		"projectile_config_ids" : ["t4sword"],
+		"mastery": 0,
+		"weapon_fire_modes": 2
+	},
+	"t5sword": {
+		"id": "t5sword",
+		"name": "Lukewarm Sword",
+		"sprite_path": MELEE_WEAPONS_DIR+"tiered_swords6.png",
+		"type": 3,
+		"projectile_config_ids" : ["t5sword"],
+		"mastery": 0,
+		"weapon_fire_modes": 2
+	},
+	
 	"SW01": {
 		"id": "SW01",
 		"name": "Experimental Sword",

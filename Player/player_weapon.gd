@@ -47,7 +47,7 @@ func shoot_if_can():
 		if test_timers[i] > cooldown_after_tempo:
 			var projectile_config : Dictionary = projectile_configs[i]
 			if "fire_mode" in projectile_config:
-				if projectile_config.fire_mode == fire_mode:
+				if projectile_config.fire_mode == fire_mode or projectile_config.fire_mode < 0:
 					fire_projectile_at_cursor(projectile_configs[i])
 			else:
 				fire_projectile_at_cursor(projectile_configs[i])

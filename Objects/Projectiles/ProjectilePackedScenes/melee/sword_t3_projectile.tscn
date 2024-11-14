@@ -1,0 +1,83 @@
+[gd_scene load_steps=11 format=3 uid="uid://bx7md3vwrsuqd"]
+
+[ext_resource type="Script" path="res://Projectile/projectile.gd" id="1_ytkfi"]
+[ext_resource type="Texture2D" uid="uid://dyutklcm3rjfk" path="res://Art/items/Projectiles/melee/t3_sword_projectiles.png" id="2_u8rsq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7m08i"]
+atlas = ExtResource("2_u8rsq")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1at7r"]
+atlas = ExtResource("2_u8rsq")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8wsrv"]
+atlas = ExtResource("2_u8rsq")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wilwa"]
+atlas = ExtResource("2_u8rsq")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1eh3o"]
+atlas = ExtResource("2_u8rsq")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_561e2"]
+atlas = ExtResource("2_u8rsq")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4hs3w"]
+atlas = ExtResource("2_u8rsq")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4ekww"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7m08i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1at7r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8wsrv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wilwa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1eh3o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_561e2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4hs3w")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="projectile_sword_slash_experiment" type="CharacterBody2D"]
+scale = Vector2(3, 3)
+script = ExtResource("1_ytkfi")
+queue_free_on_animation_end = true
+spawn_on_mouse = true
+
+[node name="Projectile_Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="ProjectileSprite" type="AnimatedSprite2D" parent="Projectile_Area2D"]
+z_index = 1
+rotation = 0.781907
+sprite_frames = SubResource("SpriteFrames_4ekww")
+autoplay = "default"
+frame = 3
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Projectile_Area2D"]
+polygon = PackedVector2Array(9, 0, 2.66667, -3, -9.25, 0, 2.66667, 3)
+
+[node name="Projectile_Lifetime_Timer" type="Timer" parent="."]
