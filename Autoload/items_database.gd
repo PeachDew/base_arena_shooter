@@ -211,6 +211,56 @@ var items:= {
 		"weapon_fire_modes": 2
 	},
 	
+	"t0bow": {
+		"id": "t0bow",
+		"name": "Lukewarm Bow",
+		"sprite_path": RANGED_WEAPONS_DIR+"tiered_bows1.png",
+		"type": 3,
+		"projectile_config_ids" : ["t0bow"],
+		"mastery": 0,
+	},
+	"t1bow": {
+		"id": "t1bow",
+		"name": "Lukewarm Bow",
+		"sprite_path": RANGED_WEAPONS_DIR+"tiered_bows2.png",
+		"type": 3,
+		"projectile_config_ids" : ["t1bow"],
+		"mastery": 0,
+	},
+	"t2bow": {
+		"id": "t2bow",
+		"name": "Lukewarm Bow",
+		"sprite_path": RANGED_WEAPONS_DIR+"tiered_bows3.png",
+		"type": 3,
+		"projectile_config_ids" : ["t2bow"],
+		"mastery": 0,
+	},
+	"t3bow": {
+		"id": "t3bow",
+		"name": "Lukewarm Bow",
+		"sprite_path": RANGED_WEAPONS_DIR+"tiered_bows4.png",
+		"type": 3,
+		"projectile_config_ids" : ["t3bow"],
+		"mastery": 0,
+	},
+	"t4bow": {
+		"id": "t4bow",
+		"name": "Lukewarm Bow",
+		"sprite_path": RANGED_WEAPONS_DIR+"tiered_bows5.png",
+		"type": 3,
+		"projectile_config_ids" : ["t4bow"],
+		"mastery": 0,
+	},
+	"t5bow": {
+		"id": "t5bow",
+		"name": "Lukewarm Bow",
+		"sprite_path": RANGED_WEAPONS_DIR+"tiered_bows6.png",
+		"type": 3,
+		"projectile_config_ids" : ["t5bow"],
+		"mastery": 0,
+	},
+	
+	
 	"SW01": {
 		"id": "SW01",
 		"name": "Experimental Sword",

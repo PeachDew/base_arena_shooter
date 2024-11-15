@@ -57,6 +57,14 @@ const PROJ_T3SWORD : String = MELEE_PROJ_PS_DIR + "sword_t3_projectile.tscn"
 const PROJ_T4SWORD : String = MELEE_PROJ_PS_DIR + "sword_t4_projectile.tscn"
 const PROJ_T5SWORD : String = MELEE_PROJ_PS_DIR + "sword_t5_projectile.tscn"
 
+const RANGED_PROJ_PS_DIR : String = "res://Objects/Projectiles/ProjectilePackedScenes/ranged/"
+const PROJ_T0BOW : String = RANGED_PROJ_PS_DIR + "bow_t0_projectile.tscn"
+const PROJ_T1BOW : String = RANGED_PROJ_PS_DIR + "bow_t1_projectile.tscn"
+const PROJ_T2BOW : String = RANGED_PROJ_PS_DIR + "bow_t2_projectile.tscn"
+const PROJ_T3BOW : String = RANGED_PROJ_PS_DIR + "bow_t3_projectile.tscn"
+const PROJ_T4BOW : String = RANGED_PROJ_PS_DIR + "bow_t4_projectile.tscn"
+const PROJ_T5BOW : String = RANGED_PROJ_PS_DIR + "bow_t5_projectile.tscn"
+
 ## EXPLOSIONS ##
 const PROJ_EXPLOSIONS_PS_DIR : String = "res://Objects/Projectiles/ProjectileExplosionPackedScenes/"
 const EXPLOSION_TEST : String = PROJ_EXPLOSIONS_PS_DIR+"test_projectile_explosion.tscn"

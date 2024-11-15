@@ -246,6 +246,80 @@ var configs : Dictionary = {
 		#"rotate_mouse": true,
 	},
 	
+	"t0bow":
+	{
+	"projectile_packed_scene": load(PATHS.PROJ_T0BOW),
+	"cooldown": 0.2,
+	"speed": 400.0,
+	"damage": 3.0,
+	"max_pierce": 0,
+	"lifetime": 0.7,
+	"rotation": 0.0,
+	"spread_degrees": 10,
+	"start_delay": 0.0,
+	},
+	"t1bow":
+	{
+	"projectile_packed_scene": load(PATHS.PROJ_T1BOW),
+	"cooldown": 0.2,
+	"speed": 400.0,
+	"damage": 4.0,
+	"max_pierce": 0,
+	"lifetime": 0.7,
+	"rotation": 0.0,
+	"spread_degrees": 10,
+	"start_delay": 0.0,
+	},
+	"t2bow":
+	{
+	"projectile_packed_scene": load(PATHS.PROJ_T2BOW),
+	"cooldown": 0.2,
+	"speed": 400.0,
+	"damage": 5.0,
+	"max_pierce": 0,
+	"lifetime": 0.7,
+	"rotation": 0.0,
+	"spread_degrees": 10,
+	"start_delay": 0.0,
+	},
+	"t3bow":
+	{
+	"projectile_packed_scene": load(PATHS.PROJ_T3BOW),
+	"cooldown": 0.17,
+	"speed": 400.0,
+	"damage": 6.0,
+	"max_pierce": 0,
+	"lifetime": 0.7,
+	"rotation": 0.0,
+	"spread_degrees": 10,
+	"start_delay": 0.0,
+	},
+	"t4bow":
+	{
+	"projectile_packed_scene": load(PATHS.PROJ_T4BOW),
+	"cooldown": 0.15,
+	"speed": 400.0,
+	"damage": 7.0,
+	"max_pierce": 0,
+	"lifetime": 0.7,
+	"rotation": 0.0,
+	"spread_degrees": 15,
+	"start_delay": 0.0,
+	},
+	"t5bow":
+	{
+	"projectile_packed_scene": load(PATHS.PROJ_T5BOW),
+	"cooldown": 0.15,
+	"speed": 400.0,
+	"damage": 9.0,
+	"max_pierce": 0,
+	"lifetime": 0.7,
+	"rotation": 0.0,
+	"spread_degrees": 13,
+	"start_delay": 0.0,
+	},
+	
+	
 	"traineeblade":
 	{
 	"projectile_packed_scene": load(PATHS.PROJ_TRAINEEBLADE),
