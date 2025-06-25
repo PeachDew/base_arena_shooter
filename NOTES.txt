@@ -1,0 +1,4 @@
+
+1) Base Fist Shooting, exploding animation not happening per shot
+2) Test Map Generation?
+	- Now do expand map algorithm

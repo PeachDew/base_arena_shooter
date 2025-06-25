@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cphp8g2myn1vr"]
+
+[ext_resource type="TileSet" uid="uid://cc1hjdth6bobm" path="res://TileCode/common_tileset_test.tres" id="1_0qidu"]
+[ext_resource type="Script" path="res://Rooms/room.gd" id="2_l5p2k"]
+
+[node name="EmptyRoom" type="TileMap"]
+y_sort_enabled = true
+tile_set = ExtResource("1_0qidu")
+format = 2
+layer_0/y_sort_enabled = true
+layer_1/name = "rm"
+layer_1/y_sort_enabled = true
+layer_1/tile_data = PackedInt32Array(-2359300, 0, 2, -2424832, 0, 4, -2424828, 0, 2, 1900540, 0, 2, 1835008, 65536, 4, 1835012, 0, 2, -262185, 0, 2, -41, 0, 3, 262103, 0, 2, -327645, 0, 2, -65501, 65536, 3, 196643, 0, 2)
+script = ExtResource("2_l5p2k")

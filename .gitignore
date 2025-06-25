@@ -1,2 +1,11 @@
 # Godot 4+ specific ignores
 .godot/
+
+#Android
+android/build/*
+!android/build/AndroidManifest.xml
+
+.import/
+*.import
+export.cfg
+export_presets.cfg

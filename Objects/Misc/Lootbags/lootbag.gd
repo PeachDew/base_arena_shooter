@@ -4,6 +4,8 @@ class_name LootBag
 signal player_body_entered
 signal player_body_exited
 
+@export var bag_size : int = 8
+
 var loot_dict := {
 	"lootslot11": null,
 	"lootslot12": null,

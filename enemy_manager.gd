@@ -47,13 +47,16 @@ func spawn_bags(enemy_info: Dictionary):
 		var spawned_common_loot_bag : Area2D = common_loot_bag.instantiate()
 		spawned_common_loot_bag.position = Vector2(enemy_info.x, enemy_info.y)
 		spawned_common_loot_bag.position += Vector2(randf_range(-10,10), randf_range(-10,10))
+		var loot_bag_size : int = spawned_common_loot_bag.bag_size
+		print(loot_bag_size)
 		for i in range(len(loot)):
-			if i != 0 and i % 6 == 0:
+			var loot_bag_index = i  % loot_bag_size
+			if i != 0 and loot_bag_index == 0:
 
 				spawn_in_region.emit(spawned_common_loot_bag)
 				spawned_common_loot_bag = common_loot_bag.instantiate()
 				spawned_common_loot_bag.position = Vector2(enemy_info.x, enemy_info.y)
 				spawned_common_loot_bag.position += Vector2(randf_range(-10,10), randf_range(-10,10))
 				
-			spawned_common_loot_bag.loot_dict[spawned_common_loot_bag.index_to_lootid[i%6]] = loot[i]
+			spawned_common_loot_bag.loot_dict[spawned_common_loot_bag.index_to_lootid[loot_bag_index]] = loot[i]
 		spawn_in_region.emit(spawned_common_loot_bag)

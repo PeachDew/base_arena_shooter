@@ -49,11 +49,11 @@ func load_region(region_packed_scene_instance):
 	region_packed_scene_instance.child_entered_tree.connect(on_child_entered_region)
 	
 	
-	if region.region_name == "first_boss_region":
-		spawn_boss_in_region(Vector2(0,0),"res://Objects/Bosses/first_boss.tscn")
-	
-	if region.region_name == "emberlight":
-		spawn_boss_in_region(Vector2(0,0),"res://Objects/Bosses/first_boss.tscn")
+	#if region.region_name == "first_boss_region":
+		#spawn_boss_in_region(Vector2(0,0),"res://Objects/Bosses/first_boss.tscn")
+	#
+	#if region.region_name == "emberlight":
+		#spawn_boss_in_region(Vector2(0,0),"res://Objects/Bosses/first_boss.tscn")
 	
 
 func spawn_boss_in_region(gp: Vector2, boss_packed_scene_path: String):

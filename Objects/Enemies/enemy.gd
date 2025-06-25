@@ -6,7 +6,7 @@ class_name Enemy
 @export var contact_damage := 20.0
 
 @export var loot_table := "common_monster"
-@export var roll_loot_num := 2
+@export var roll_loot_num := 100
 @export var one_xp_orb_value : float = 3.0
 @export var base_num_orbs : Array[int] = [3,4]
 @export var one_coin_value : int = 1

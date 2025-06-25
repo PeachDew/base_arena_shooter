@@ -30,7 +30,7 @@ curve = SubResource("Curve_2aaxq")
 radius = 79.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8hwlg"]
-radius = 42.1667
+radius = 21.5113
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x6eog"]
 radius = 79.1581
